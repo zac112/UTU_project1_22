@@ -152,11 +152,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d9e3e1994d24741a606faefe7939be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemap: {fileID: 0}
-  tile: {fileID: 0}
-  Width: 0
-  Height: 0
-  Offset: {x: 0, y: 0, z: 0}
+  tilemap: {fileID: 1927771050}
+  tile: {fileID: 11400000, guid: 66004e53745e1b347beda12d9e69a1dc, type: 2}
+  Width: 50
+  Height: 50
+  Offset: {x: -25, y: -25, z: 0}
 --- !u!4 &285471492
 Transform:
   m_ObjectHideFlags: 0
