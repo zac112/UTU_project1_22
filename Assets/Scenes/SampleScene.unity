@@ -220,9 +220,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b285d61a57474b4ab77e2432601335e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraSpeed: 0
-  MouseCameraIgnoreRadius: 0
-  CameraMouseControlEnabled: 0
+  CameraSpeed: 10
+  MouseCameraIgnoreRadius: 0.5
+  CameraMouseControlEnabled: 1
 --- !u!1 &1893350131
 GameObject:
   m_ObjectHideFlags: 0
