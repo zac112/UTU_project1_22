@@ -22,17 +22,18 @@ public class ResourceGenerator : MonoBehaviour
         {
             for (int j = 0; j < height; j++)
             {
+                // Create a new tile
                 Vector3Int position = new Vector3Int(i, j, 0) + offset;
                 Tilemap.SetTile(position, Tile);
-
+                
+                // Determine the resource value using 4D simplex noise
                 float resourceValue = noise.snoise(new float4(position.x, position.y, position.z, Seed));
                 
                 // Transform the resourceValue to be between 0 and 1
                 resourceValue = (resourceValue + 1) / 2;
                 
+                // Set the tile color to match the resource value
                 Tilemap.SetColor(position, new Color(resourceValue, resourceValue, resourceValue));
-                
-                print(resourceValue);
             }
         }
     }
