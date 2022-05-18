@@ -13,6 +13,10 @@ public class MainCameraController : MonoBehaviour
     // Move direction and speed of the camera (not accounting for deltaTime)
     private Vector3 cameraMoveDirection = Vector3.zero;
 
+    // Zoom variables
+    float minz=1f;
+    float maxz=30f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +26,6 @@ public class MainCameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Listens for mouseinput, for whatever reason it doesn't work after the NullReference check.
-        listen();
         // Avoid NullReferenceException
         if (!Camera.current)
         {
@@ -60,11 +62,10 @@ public class MainCameraController : MonoBehaviour
         // Move the camera
         Camera.current.transform.Translate(cameraMoveDirection*Time.deltaTime);
     }
-    void listen(){
+
+    void OnGUI(){
         //Listens to change of Scroll wheel change
-        if (Input.mouseScrollDelta.y != 0)
-        {
-            GetComponent<Camera>().orthographicSize+=0.5f*(-Input.mouseScrollDelta.y);
-        }
+        GetComponent<Camera>().orthographicSize+=0.5f*(-Input.mouseScrollDelta.y);
+        GetComponent<Camera>().orthographicSize=Mathf.Clamp(GetComponent<Camera>().orthographicSize,minz,maxz);
     }
 }
