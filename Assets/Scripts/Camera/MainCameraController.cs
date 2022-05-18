@@ -22,12 +22,14 @@ public class MainCameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Listens for mouseinput, for whatever reason it doesn't work after the NullReference check.
+        listen();
         // Avoid NullReferenceException
         if (!Camera.current)
         {
             return;
         }
-
+        
         Rect viewport = Camera.current.pixelRect;
         
         // Check if the mouse cursor is inside the viewport and that mouse control is enabled
@@ -57,5 +59,12 @@ public class MainCameraController : MonoBehaviour
 
         // Move the camera
         Camera.current.transform.Translate(cameraMoveDirection*Time.deltaTime);
+    }
+    void listen(){
+        //Listens to change of Scroll wheel change
+        if (Input.mouseScrollDelta.y != 0)
+        {
+            GetComponent<Camera>().orthographicSize+=0.5f*(-Input.mouseScrollDelta.y);
+        }
     }
 }
