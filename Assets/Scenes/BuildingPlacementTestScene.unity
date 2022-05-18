@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 813885495}
   - component: {fileID: 813885494}
   m_Layer: 0
-  m_Name: ingPlacementSystem
+  m_Name: BuildingPlacementSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,12 +147,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 813885493}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff2ecb43c7823f54dbbfb55b272f5630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buildingToPlace: {fileID: 7953807960417106101, guid: 944dcfb610eb8274c898f34f5e5a7c98, type: 3}
+  buildableBuildings:
+  - {fileID: 7953807960417106101, guid: 944dcfb610eb8274c898f34f5e5a7c98, type: 3}
+  - {fileID: 9113664018743696094, guid: 569a9665642b1e54cb8ed27ef6803447, type: 3}
 --- !u!4 &813885495
 Transform:
   m_ObjectHideFlags: 0
