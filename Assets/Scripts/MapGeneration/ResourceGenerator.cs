@@ -24,6 +24,13 @@ public class ResourceGenerator : MonoBehaviour
             {
                 // Create a new tile
                 Vector3Int position = new Vector3Int(i, j, 0) + offset;
+                
+                // Move on to the next tile if there already is a tile at this position
+                if (Tilemap.GetTile(position))
+                {
+                    continue;
+                }
+                
                 Tilemap.SetTile(position, Tile);
                 
                 // Determine the resource value using 4D simplex noise
