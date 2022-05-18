@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 813885495}
   - component: {fileID: 813885494}
   m_Layer: 0
-  m_Name: BuildingPlacementManager
+  m_Name: ingPlacementSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
