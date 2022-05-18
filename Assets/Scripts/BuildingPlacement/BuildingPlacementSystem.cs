@@ -18,20 +18,7 @@ public class BuildingPlacementSystem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            selectedBuilding = null;
-        }
-
-        if (Input.GetKeyDown(KeyCode.K)) 
-        {
-            selectedBuilding = buildableBuildings[0];
-        }
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            selectedBuilding = buildableBuildings[1];
-        }
+        SelectBuilding();
 
         if (Input.GetMouseButtonDown(1) && selectedBuilding != null) 
         {
@@ -58,5 +45,23 @@ public class BuildingPlacementSystem : MonoBehaviour
         tileLocationInWorld.z = 0;
 
         return tileLocationInWorld;
+    }
+
+    void SelectBuilding() 
+    {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            selectedBuilding = null;
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            selectedBuilding = buildableBuildings[0];
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            selectedBuilding = buildableBuildings[1];
+        }
     }
 }
