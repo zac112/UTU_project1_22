@@ -43,5 +43,5 @@ public class PlayerStats : MonoBehaviour
         maxHealth += amount;
     }
 
-    public void GetCurrentHealth(){return health;}
+    public int GetCurrentHealth(){return health;}
 }

@@ -2,21 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCombat : MonoBehaviour
-{
+public class PlayerCombat : MonoBehaviour{
 
-    private float playerHP = 100f;
+    [SerializeField] PlayerStats stats;
 
-    void Start()
-    {
-        
+    private int playerHP;
+
+    void Start(){
+        playerHP = stats.GetCurrentHealth();
     }
 
 
 
     void Update()
     {
-        if(playerHP<=0f){
+        if(stats.GetCurrentHealth()<=0f){
 
             //what happens when the player dies
 
@@ -31,7 +31,8 @@ public class PlayerCombat : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag=="EnemyHitbox"){
-            playerHP=playerHP-10f;
+            stats.DamagePlayer(10);
+            playerHP-=10;
             Debug.Log(playerHP + " HP");
         }
     }
