@@ -30,10 +30,11 @@ public class PlayerCombat : MonoBehaviour{
     //take damage when inside enemy hitbox
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag=="EnemyHitbox"){
+        if(other.tag=="EnemyMeleeHitbox"){
             stats.DamagePlayer(10);
-            playerHP-=10;
-            Debug.Log(playerHP + " HP");
+        }else if(other.tag=="EnemyRangedHitbox"){
+            stats.DamagePlayer(5);
+            Destroy(other.gameObject); //delete projectile after hitting player
         }
     }
 

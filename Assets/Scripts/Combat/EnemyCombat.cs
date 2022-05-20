@@ -7,9 +7,11 @@ public class EnemyCombat : MonoBehaviour
 
     private GameObject player;
     private Rigidbody2D rb;
-    private float attackRange = 2.0f;
+    private float meleeAttackRange = 2.5f;
+    private float rangedAttackRange = 15.0f;    
     public GameObject hitbox;
-    private float attackCooldown = 1.0f; //seconds
+    public GameObject enemyProjectile;
+    private float attackCooldown = 2.0f; //seconds
     private float lastAttackedAt = 0f;
     
     // HP could probably be moved to playerStats
@@ -26,10 +28,16 @@ public class EnemyCombat : MonoBehaviour
     void Update()
     {
 
-        //if the enemy is within attackRange of the player, and hasn't attacked within attackCoolDown, the enemy will attack
-        if(Vector2.Distance(this.gameObject.transform.position, player.transform.position) < attackRange){
+        //if the enemy is within meleeAttackRange of the player, and hasn't attacked within attackCoolDown, the enemy will do a melee attack
+        if(Vector2.Distance(this.gameObject.transform.position, player.transform.position) < meleeAttackRange){
             if(Time.time > lastAttackedAt + attackCooldown){
-                Attack();
+                MeleeAttack();
+                lastAttackedAt = Time.time;
+            }
+            //if the enemy is within rangedAttackRange of the player, and hasn't attacked within attackCoolDown, the enemy will do a ranged attack
+        }else if(Vector2.Distance(this.gameObject.transform.position, player.transform.position) < rangedAttackRange){
+            if(Time.time > lastAttackedAt + attackCooldown){
+                RangedAttack();
                 lastAttackedAt = Time.time;
             }
         }
@@ -42,11 +50,10 @@ public class EnemyCombat : MonoBehaviour
     }
 
 
-    void Attack(){
+    void MeleeAttack(){
 
             //stop enemy movement
             rb.velocity = Vector2.zero;
-
 
             //offset hitbox position
             Vector3 horisontalOffset = (player.transform.position - this.gameObject.transform.position).normalized*3.5f;
@@ -56,5 +63,16 @@ public class EnemyCombat : MonoBehaviour
             //spawn hitbox
             Instantiate(hitbox, hitboxPosition, new Quaternion(0, 0, 0, 0));
     }
+
+    void RangedAttack(){
+
+            //stop enemy movement
+            rb.velocity = Vector2.zero;
+
+            //spawn projectile
+            Instantiate(enemyProjectile, this.gameObject.transform.position+new Vector3 (0f, 0f, 50f), new Quaternion(0, 0, 0, 0));
+
+    }
+
 
 }

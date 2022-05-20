@@ -2,21 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hitbox : MonoBehaviour
+public class EnemyRangedHitbox : MonoBehaviour
 {
 
-    private float lifeTime = 0.1f;
-    private GameObject player;
+
+
+    private float lifeTime = 5.0f;
+    private float projectileSpeed=250.0f;
 
 
     void Start()
     {
+        this.gameObject.GetComponent<Rigidbody2D>().gravityScale = 0f;
 
-        //hitbox gets deleted after lifeTime has passed
+        //projectile gets deleted after lifeTime has passed
         Destroy(gameObject, lifeTime);
 
-
-        //rotate hitbox towards player
+        //rotate projectile towards player
         Vector3 target = GameObject.FindWithTag("Player").transform.position;
         Vector3 hitboxPosition = transform.position;
         target.z = 0f;
@@ -25,8 +27,10 @@ public class Hitbox : MonoBehaviour
         float angle = Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
+        //add velocity
+        target.Normalize();
+        this.gameObject.GetComponent<Rigidbody2D>().AddForce(target*projectileSpeed);
+
     }
-
-
 
 }
