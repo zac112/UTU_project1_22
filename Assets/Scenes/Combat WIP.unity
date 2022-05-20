@@ -672,9 +672,9 @@ GameObject:
   - component: {fileID: 344496381}
   - component: {fileID: 344496385}
   - component: {fileID: 344496386}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -787,8 +787,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Offset: {x: -0.0027172565, y: 0.0027172565}
+  m_Size: {x: 0.98366785, y: 1.9510322}
   m_Direction: 0
 --- !u!1 &497221006
 GameObject:
@@ -53843,6 +53843,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 1639299255}
   PlayerMeleeHitbox: {fileID: 7811522601900068367, guid: 2377311536767b944864407a29aea6b0, type: 3}
+  PlayerProjectile: {fileID: 63389239456623083, guid: 5ed71c261dbb5194b9c567df8804ba03, type: 3}
 --- !u!61 &1639299254
 BoxCollider2D:
   m_ObjectHideFlags: 0

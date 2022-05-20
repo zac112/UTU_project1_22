@@ -7,10 +7,14 @@ public class PlayerCombat : MonoBehaviour{
     [SerializeField] PlayerStats stats;
 
     private int playerHP;
+
     private string MeleeButton = "1";
     private string RangedButton = "2";
+
     private Rigidbody2D rb;
     public GameObject PlayerMeleeHitbox;
+    public GameObject PlayerProjectile;
+    
     private float attackCooldown = 0.7f; //seconds
     private float lastAttackedAt = 0f;
 
@@ -77,7 +81,14 @@ public class PlayerCombat : MonoBehaviour{
             Instantiate(PlayerMeleeHitbox, hitboxPosition, new Quaternion(0, 0, 0, 0));
     }
 
+
     void RangedAttack(){
+
+            //stop player movement
+            rb.velocity = Vector2.zero;
+
+            //spawn projectile
+            Instantiate(PlayerProjectile, this.gameObject.transform.position+new Vector3 (0f, 0f, 50f), new Quaternion(0, 0, 0, 0));
 
     }
 
