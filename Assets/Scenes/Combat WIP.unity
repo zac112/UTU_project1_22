@@ -671,6 +671,7 @@ GameObject:
   - component: {fileID: 344496382}
   - component: {fileID: 344496381}
   - component: {fileID: 344496385}
+  - component: {fileID: 344496386}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -773,6 +774,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitbox: {fileID: 6286591741058424022, guid: 92945cbc34abf1244b5e0909305e3f13, type: 3}
   enemyProjectile: {fileID: 7389375861155235134, guid: cba876b7c24ed104a872d491e80c1687, type: 3}
+--- !u!70 &344496386
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344496380}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.5, y: 1}
+  m_Direction: 0
 --- !u!1 &497221006
 GameObject:
   m_ObjectHideFlags: 0
@@ -53825,6 +53842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 1639299255}
+  PlayerMeleeHitbox: {fileID: 7811522601900068367, guid: 2377311536767b944864407a29aea6b0, type: 3}
 --- !u!61 &1639299254
 BoxCollider2D:
   m_ObjectHideFlags: 0

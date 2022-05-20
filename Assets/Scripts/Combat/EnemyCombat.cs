@@ -75,4 +75,14 @@ public class EnemyCombat : MonoBehaviour
     }
 
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag=="PlayerMeleeHitbox"){
+            hitPoints-=20;
+        }else if(other.tag=="PlayerRangedHitbox"){
+            hitPoints-=10;
+            Destroy(other.gameObject); //delete projectile after getting hit
+        }
+    }
+
 }
