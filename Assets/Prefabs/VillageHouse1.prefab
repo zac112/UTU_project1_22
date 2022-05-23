@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9113664018743696094}
   m_Layer: 0
-  m_Name: Village
+  m_Name: VillageHouse1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,7 +105,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: b397a9ece7acb96419cc4b4b264cc3ed, type: 3}
+  m_Sprite: {fileID: 21300000, guid: feeede73716d68e41891be3f9216a691, type: 3}
   m_Color: {r: 1, g: 0.9310135, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
