@@ -24,6 +24,9 @@ public class BuildingPlacementSystem : MonoBehaviour
         {
             Vector3 tileLocationInWorld = GetTileOnMouse();
 
+            // Set Z to avoid building being underground
+            tileLocationInWorld.z = 10;
+
             // Instantiate building on tileLocation
             Instantiate(selectedBuilding, tileLocationInWorld, Quaternion.identity);
         }
@@ -40,9 +43,6 @@ public class BuildingPlacementSystem : MonoBehaviour
         // Get the center of the tile under the mouse?
         // Perhaps a bit redundant to first get the tile location in the tilemap and then turn it back to world position?
         Vector3 tileLocationInWorld = tilemap.GetCellCenterWorld(tileLocation);
-
-        // Set Z to 0, to avoid building being underground
-        tileLocationInWorld.z = 0;
 
         return tileLocationInWorld;
     }
