@@ -8,6 +8,10 @@ public class BuildingPlacementSystem : MonoBehaviour
     [SerializeField] Transform buildingToPlace;
     [SerializeField] List<Transform> buildableBuildings;
 
+    [SerializeField] KeyCode buildingDeselect;
+    [SerializeField] KeyCode building1Hotkey;
+    [SerializeField] KeyCode building2Hotkey;
+
     Tilemap tilemap;
     Transform selectedBuilding;
 
@@ -49,17 +53,17 @@ public class BuildingPlacementSystem : MonoBehaviour
 
     void SelectBuilding() 
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(buildingDeselect))
         {
             selectedBuilding = null;
         }
 
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(building1Hotkey))
         {
             selectedBuilding = buildableBuildings[0];
         }
 
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(building2Hotkey))
         {
             selectedBuilding = buildableBuildings[1];
         }
