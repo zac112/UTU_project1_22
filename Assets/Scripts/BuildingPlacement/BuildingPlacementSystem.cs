@@ -8,6 +8,10 @@ public class BuildingPlacementSystem : MonoBehaviour
     [SerializeField] Transform buildingToPlace;
     [SerializeField] List<Transform> buildableBuildings;
 
+    [SerializeField] KeyCode buildingDeselect;
+    [SerializeField] KeyCode building1Hotkey;
+    [SerializeField] KeyCode building2Hotkey;
+
     Tilemap tilemap;
     Transform selectedBuilding;
 
@@ -23,6 +27,9 @@ public class BuildingPlacementSystem : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && selectedBuilding != null) 
         {
             Vector3 tileLocationInWorld = GetTileOnMouse();
+
+            // Set Z to avoid building being underground
+            tileLocationInWorld.z = 10;
 
             // Instantiate building on tileLocation
             Instantiate(selectedBuilding, tileLocationInWorld, Quaternion.identity);
@@ -41,25 +48,22 @@ public class BuildingPlacementSystem : MonoBehaviour
         // Perhaps a bit redundant to first get the tile location in the tilemap and then turn it back to world position?
         Vector3 tileLocationInWorld = tilemap.GetCellCenterWorld(tileLocation);
 
-        // Set Z to 0, to avoid building being underground
-        tileLocationInWorld.z = 0;
-
         return tileLocationInWorld;
     }
 
     void SelectBuilding() 
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(buildingDeselect))
         {
             selectedBuilding = null;
         }
 
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(building1Hotkey))
         {
             selectedBuilding = buildableBuildings[0];
         }
 
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(building2Hotkey))
         {
             selectedBuilding = buildableBuildings[1];
         }
