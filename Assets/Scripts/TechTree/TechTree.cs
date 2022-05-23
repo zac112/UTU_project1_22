@@ -6,3 +6,8 @@ public class TechTree
 {
     
 }
+
+class Node
+{
+    
+}
