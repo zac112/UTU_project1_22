@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Tick : MonoBehaviour
 {
-    public delegate int TickDelegate(int tickNumber);
+    public delegate void TickDelegate(int tickNumber);
 
     public static TickDelegate OnTick;
 
