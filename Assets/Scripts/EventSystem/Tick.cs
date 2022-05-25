@@ -10,8 +10,8 @@ public class Tick : MonoBehaviour
     private float tickTimerMax;
     private int currentTick = 0;
 
-    [Tooltip("Number of game ticks per second")]
-    private int tickSpeed = 20;
+    [Tooltip("Number of game ticks per second")] [SerializeField]
+    private int tickSpeed;
 
     private IEnumerator coroutine;
     
