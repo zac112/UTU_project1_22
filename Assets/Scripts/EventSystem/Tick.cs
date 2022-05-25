@@ -1,31 +1,32 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Tick : MonoBehaviour
+namespace EventSystem
 {
-    // Tick values
-    private float tickTimer;
-    private float tickTimerMax;
-    private int currentTick = 0;
-
-    [Tooltip("Number of game ticks per second")] [SerializeField]
-    private int tickSpeed;
-
-    private IEnumerator coroutine;
-    
-    private void Start()
+    public class Tick : MonoBehaviour
     {
-        coroutine = DoTick();
-        StartCoroutine(coroutine);
-    }
+        // Tick values
+        private float tickTimer;
+        private float tickTimerMax;
+        private int currentTick = 0;
 
-    private IEnumerator DoTick() {
-        while(true){
-            currentTick++;
-            GameEvents.current.OnTick(currentTick);
-            yield return new WaitForSeconds(1f/tickSpeed);
+        [Tooltip("Number of game ticks per second")] [SerializeField]
+        private int tickSpeed;
+
+        private IEnumerator coroutine;
+    
+        private void Start()
+        {
+            coroutine = DoTick();
+            StartCoroutine(coroutine);
+        }
+
+        private IEnumerator DoTick() {
+            while(true){
+                currentTick++;
+                GameEvents.current.OnTick(currentTick);
+                yield return new WaitForSeconds(1f/tickSpeed);
+            }
         }
     }
 }
