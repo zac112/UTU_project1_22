@@ -28,9 +28,4 @@ public class Tick : MonoBehaviour
             yield return new WaitForSeconds(1f/tickSpeed);
         }
     }
-    
-    public int GetTickSpeed()
-    {
-        return tickSpeed;
-    }
 }
