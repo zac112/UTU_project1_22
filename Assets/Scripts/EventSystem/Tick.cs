@@ -5,17 +5,13 @@ using UnityEngine;
 
 public class Tick : MonoBehaviour
 {
-    public delegate void TickDelegate(int tickNumber);
-
-    public static TickDelegate OnTick;
-
     // Tick values
-    private static float tickTimer;
-    private static float tickTimerMax;
-    private static int currentTick = 0;
+    private float tickTimer;
+    private float tickTimerMax;
+    private int currentTick = 0;
 
     [Tooltip("Number of game ticks per second")]
-    private static int tickSpeed = 20;
+    private int tickSpeed = 20;
 
     private IEnumerator coroutine;
     
@@ -33,7 +29,7 @@ public class Tick : MonoBehaviour
         }
     }
     
-    public static int GetTickSpeed()
+    public int GetTickSpeed()
     {
         return tickSpeed;
     }
