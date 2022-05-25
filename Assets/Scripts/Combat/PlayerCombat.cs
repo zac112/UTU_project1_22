@@ -9,6 +9,8 @@ public class PlayerCombat : MonoBehaviour{
     private Rigidbody2D rb;
     public GameObject PlayerMeleeHitbox;
     public GameObject PlayerProjectile;
+
+    public EnemyStats enemy;
     
     private float attackCooldown = 0.7f; //seconds
     private float lastAttackedAt = 0f;
@@ -16,11 +18,18 @@ public class PlayerCombat : MonoBehaviour{
 
     void Start(){
         rb = GetComponent<Rigidbody2D>();
+        enemy = GameObject.Find("Enemy").GetComponent<EnemyStats>();
     }
 
 
     void Update()
     {
+        // Demonstration of player doing damage
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            enemy.TakeDamage(20);
+        }
+
         //TODO: move this to event system
         if(stats.GetCurrentHealth()<=0f){
             Debug.Log("YOU DIED");
