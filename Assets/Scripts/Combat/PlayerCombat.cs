@@ -6,11 +6,6 @@ public class PlayerCombat : MonoBehaviour{
 
     [SerializeField] PlayerStats stats;
 
-    private int playerHP;
-
-    private string MeleeButton = "1";
-    private string RangedButton = "2";
-
     private Rigidbody2D rb;
     public GameObject PlayerMeleeHitbox;
     public GameObject PlayerProjectile;
@@ -20,35 +15,19 @@ public class PlayerCombat : MonoBehaviour{
 
 
     void Start(){
-        playerHP = stats.GetCurrentHealth();
         rb = GetComponent<Rigidbody2D>();
     }
 
 
-
     void Update()
     {
+
+        //TODO: move this to event system
         if(stats.GetCurrentHealth()<=0f){
 
-            //what happens when the player dies
             Debug.Log("YOU DIED");
             Destroy(gameObject);
         }
-
-        if (Input.GetKeyDown(MeleeButton)){
-            if(Time.time > lastAttackedAt + attackCooldown){
-                MeleeAttack();
-                lastAttackedAt = Time.time;
-            }
-        }
-        if (Input.GetKeyDown(RangedButton)){
-            if(Time.time > lastAttackedAt + attackCooldown){
-                RangedAttack();
-                lastAttackedAt = Time.time;
-            }
-        }
-
-
 
     }
 
@@ -64,31 +43,41 @@ public class PlayerCombat : MonoBehaviour{
         }
     }
 
-    void MeleeAttack(){
-            //stop player movement
-            rb.velocity = Vector2.zero;
+    public void MeleeAttack(){
+            if(Time.time > lastAttackedAt + attackCooldown){
+                lastAttackedAt = Time.time;
+
+                //stop player movement
+                rb.velocity = Vector2.zero;
 
 
-            //offset hitbox position towards mouse
-            Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
-            Vector3 dir = Input.mousePosition - pos;
+                //offset hitbox position towards mouse
+                Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
+                Vector3 dir = Input.mousePosition - pos;
 
-            Vector3 horisontalOffset = dir.normalized;
-            Vector3 verticalOffset = new Vector3 (0f, 0f, 50f);
-            Vector3 hitboxPosition = this.gameObject.transform.position + horisontalOffset + verticalOffset;
+                Vector3 horisontalOffset = dir.normalized;
+                Vector3 verticalOffset = new Vector3 (0f, 0f, 50f);
+                Vector3 hitboxPosition = this.gameObject.transform.position + horisontalOffset + verticalOffset;
 
-            //spawn hitbox
-            Instantiate(PlayerMeleeHitbox, hitboxPosition, new Quaternion(0, 0, 0, 0));
+                //spawn hitbox
+                Instantiate(PlayerMeleeHitbox, hitboxPosition, new Quaternion(0, 0, 0, 0));
+            }
     }
 
 
-    void RangedAttack(){
+    public void RangedAttack(){
 
-            //stop player movement
-            rb.velocity = Vector2.zero;
+            if(Time.time > lastAttackedAt + attackCooldown){
+                lastAttackedAt = Time.time;
 
-            //spawn projectile
-            Instantiate(PlayerProjectile, this.gameObject.transform.position+new Vector3 (0f, 0f, 50f), new Quaternion(0, 0, 0, 0));
+                //stop player movement
+                rb.velocity = Vector2.zero;
+
+                //spawn projectile
+                Instantiate(PlayerProjectile, this.gameObject.transform.position+new Vector3 (0f, 0f, 50f), new Quaternion(0, 0, 0, 0));
+            }
+
+
 
     }
 
