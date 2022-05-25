@@ -15,21 +15,21 @@ public class GameEvents : MonoBehaviour
         current = this;
     }
 
-    public event Action<int> onTick;
+    public event Action<int> Tick;
     public void OnTick(int currentTick)
     {
-        onTick?.Invoke(currentTick);
+        Tick?.Invoke(currentTick);
     }
 
-    public event Action<Vector2, Vector2> onMovementInputChanged;
+    public event Action<Vector2, Vector2> MovementInputChanged;
     public void OnMovementInputChanged(Vector2 input, Vector2 delta)
     {
-        onMovementInputChanged?.Invoke(input, delta);
+        MovementInputChanged?.Invoke(input, delta);
     }
 
-    public event Action<Vector3, Vector3> onMouseMoved;
+    public event Action<Vector3, Vector3> MouseMoved;
     public void OnMouseMoved(Vector3 position, Vector3 delta)
     {
-        onMouseMoved?.Invoke(position, delta);
+        MouseMoved?.Invoke(position, delta);
     }
 }

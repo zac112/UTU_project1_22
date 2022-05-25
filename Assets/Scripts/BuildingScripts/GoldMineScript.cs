@@ -16,20 +16,20 @@ public class GoldMineScript : MonoBehaviour
 
     private void Start()
     {
-        GameEvents.current.onTick += OnTick;
+        GameEvents.current.Tick += Tick;
     }
 
     private void OnEnable()
     {
-        GameEvents.current.onTick += OnTick;
+        GameEvents.current.Tick += Tick;
     }
 
     private void OnDisable()
     {
-        GameEvents.current.onTick -= OnTick;
+        GameEvents.current.Tick -= Tick;
     }
 
-    private void OnTick(int tick)
+    private void Tick(int tick)
     {
         float goldPerTick = miningSpeed / 60f / 20f;    // Assuming tick speed is 20. TODO: implement getter for tick speed
         goldProgress += goldPerTick;
