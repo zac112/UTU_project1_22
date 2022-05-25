@@ -10,6 +10,8 @@ TagManager:
   - PlayerMeleeHitbox
   - Enemy
   - PlayerRangedHitbox
+  - EnemyMeleeRange
+  - EnemyRangedRange
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - EnemyHitbox
   - PlayerHitbox
   - Enemy
-  - 
+  - EnemyAggro
   - 
   - 
   - 

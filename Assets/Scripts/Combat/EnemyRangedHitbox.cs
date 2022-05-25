@@ -7,12 +7,13 @@ public class EnemyRangedHitbox : MonoBehaviour
 
 
 
-    private float lifeTime = 5.0f;
+    private float lifeTime = 999.0f;
     private float projectileSpeed=250.0f;
 
 
     void Start()
     {
+
         this.gameObject.GetComponent<Rigidbody2D>().gravityScale = 0f;
 
         //projectile gets deleted after lifeTime has passed

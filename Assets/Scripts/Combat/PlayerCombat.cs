@@ -21,14 +21,11 @@ public class PlayerCombat : MonoBehaviour{
 
     void Update()
     {
-
         //TODO: move this to event system
         if(stats.GetCurrentHealth()<=0f){
-
             Debug.Log("YOU DIED");
             Destroy(gameObject);
         }
-
     }
 
 
@@ -36,7 +33,7 @@ public class PlayerCombat : MonoBehaviour{
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag=="EnemyMeleeHitbox"){
-            stats.DamagePlayer(10);
+            stats.DamagePlayer(10); 
         }else if(other.tag=="EnemyRangedHitbox"){
             stats.DamagePlayer(5);
             Destroy(other.gameObject); //delete projectile after hitting player
