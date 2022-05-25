@@ -17,21 +17,22 @@ public class Tick : MonoBehaviour
     [Tooltip("Number of game ticks per second")]
     private static int tickSpeed = 20;
 
+    private IEnumerator coroutine;
+    
     private void Start()
     {
-        tickTimerMax = 1f / tickSpeed;
-        DoTick();
+        coroutine = DoTick();
+        StartCoroutine(coroutine);
     }
 
-    private IEnumerable DoTick() {
+    private IEnumerator DoTick() {
         while(true){
             currentTick++;
-            OnTick?.Invoke(currentTick);
+            GameEvents.current.OnTick(currentTick);
             yield return new WaitForSeconds(1f/tickSpeed);
         }
     }
-
-
+    
     public static int GetTickSpeed()
     {
         return tickSpeed;
