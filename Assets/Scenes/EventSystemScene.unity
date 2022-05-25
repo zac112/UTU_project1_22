@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 1521109502}
   - component: {fileID: 1521109501}
   - component: {fileID: 1521109503}
+  - component: {fileID: 1521109505}
   m_Layer: 0
   m_Name: Game Event System
   m_TagString: Untagged
@@ -265,3 +266,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tickSpeed: 20
+--- !u!114 &1521109505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521109499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c835b1c1c44742b419b3e51f43629144, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
