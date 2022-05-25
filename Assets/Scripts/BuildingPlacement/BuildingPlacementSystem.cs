@@ -8,6 +8,8 @@ public class BuildingPlacementSystem : MonoBehaviour
     [SerializeField] Transform buildingToPlace;
     [SerializeField] List<Transform> buildableBuildings;
 
+    [Range(0,2)]
+    [SerializeField] int buildBuildingMouseButton = 1;
     [SerializeField] KeyCode buildingDeselect;
     [SerializeField] KeyCode building1Hotkey;
     [SerializeField] KeyCode building2Hotkey;
@@ -24,7 +26,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     {
         SelectBuilding();
 
-        if (Input.GetMouseButtonDown(1) && selectedBuilding != null) 
+        if (Input.GetMouseButtonDown(buildBuildingMouseButton) && selectedBuilding != null) 
         {
             Vector3 tileLocationInWorld = GetTileOnMouse();
 
