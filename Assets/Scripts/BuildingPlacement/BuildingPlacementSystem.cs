@@ -7,7 +7,7 @@ public class BuildingPlacementSystem : MonoBehaviour
 {
     [SerializeField] Transform buildingToPlace;
     [SerializeField] List<Transform> buildableBuildings;
-    public List<(int, int)> occupiedTiles;
+    public List<(float, float)> occupiedTiles;
 
     [Range(0,2)]
     [SerializeField] int buildBuildingMouseButton = 1;
@@ -23,7 +23,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     void Start()
     {
         tilemap = GameObject.Find("Grid").GetComponentInChildren<Tilemap>();
-        occupiedTiles = new List<(int, int)>();
+        occupiedTiles = new List<(float, float)>();
     }
 
     void Update()
@@ -72,24 +72,28 @@ public class BuildingPlacementSystem : MonoBehaviour
         }
     }
 
-    
-    public void OccupyTile((int, int) tileXY) 
-    { 
+
+    private void OccupyTile(Vector3 tileLocation) 
+    {
+        (float, float) tileXY = GetXY(tileLocation);
+
         if (!occupiedTiles.Contains(tileXY)) 
         {
             occupiedTiles.Add(tileXY);
         }
         else 
         {
-            Debug.Log("occupiedTiles already contains tileXY");
+            Debug.Log("occupiedTiles already contains this tile");
         }
     }
 
-    public void RemoveFromOccupiedTiles((int, int) tileXY) 
+    private void RemoveFromOccupiedTiles(Vector3 tileLocation) 
     {
+        (float, float) tileXY = GetXY(tileLocation);
+
         if (!occupiedTiles.Contains(tileXY))
         {
-            Debug.Log("occupiedTiles does not contain tileXY");
+            Debug.Log("occupiedTiles does not contain this tile");
         }
         else 
         {
@@ -97,17 +101,33 @@ public class BuildingPlacementSystem : MonoBehaviour
         }
     }
 
-    public Vector3Int GetTileLocation() 
+    private Vector3Int GetTileLocation() 
     {
         // Get the location of the tile under the mouse
         Vector3Int tileLocation = tilemap.WorldToCell(GetMousePosition());
         return tileLocation;
     }
 
-    public Vector3 GetMousePosition() 
+    private Vector3 GetMousePosition() 
     {
         // Get the mouse position and store it in a variable
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         return mousePosition;
+    }
+
+    private bool IsTileOccupied(Vector3 tileLocation) 
+    {
+        if (occupiedTiles.Contains(GetXY(tileLocation)))
+        {
+            return true;
+        }
+        else return false;
+    }
+
+    private (float, float) GetXY(Vector3 tileLocation) 
+    {
+        // Make Vector3 into a tuple, so that we can ignore z-coordinates (just in case?)
+        (float, float) tileXY = (tileLocation.x, tileLocation.y);
+        return tileXY;
     }
 }
