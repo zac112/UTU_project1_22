@@ -5,15 +5,16 @@ using UnityEngine;
 public class EnemyCombat : MonoBehaviour
 {
 
+    [SerializeField] EnemyStats stats;
+
+
     private GameObject player;
     private Rigidbody2D rb;
     public GameObject hitbox;
     public GameObject enemyProjectile;
     private float attackCooldown = 2.0f; //seconds
     private float lastAttackedAt = 0f;
-    
-    // HP could probably be moved to playerStats
-    private float hitPoints=100f;
+
 
 
     void Start()
@@ -21,17 +22,6 @@ public class EnemyCombat : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
     }
-
-
-    void Update()
-    {
-        //TODO: move to event system
-        if(hitPoints<=0){
-            Destroy(gameObject);
-        }
-
-    }
-
 
     void MeleeAttack(){
 
@@ -70,10 +60,10 @@ public class EnemyCombat : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag=="PlayerMeleeHitbox"){
-            hitPoints-=20;
+            stats.TakeDamage(20);
         } else if(other.tag=="PlayerRangedHitbox"){
-            hitPoints-=10;
             Destroy(other.gameObject); //delete projectile after getting hit
+            stats.TakeDamage(10);
         }
 
     }
@@ -81,12 +71,12 @@ public class EnemyCombat : MonoBehaviour
 
    void OnTriggerStay2D(Collider2D other){
 
-        if(other.tag=="EnemyRangedRange"&&Vector3.Distance((other.gameObject.transform.position-new Vector3(0f,0f,5f)), this.transform.position)>=2.25f){
+        if(other.tag=="EnemyRangedRange"&&Vector3.Distance((other.gameObject.transform.position-new Vector3(0f,0f,5f)), this.transform.position)>=2.5f){
             RangedAttack();
-            Debug.Log(Vector3.Distance((other.gameObject.transform.position-new Vector3(0f,0f,5f)), this.transform.position));
         }else if(other.tag=="EnemyMeleeRange"){
             MeleeAttack();
         }
     }
+    
 
 }

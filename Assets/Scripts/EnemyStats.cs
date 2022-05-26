@@ -21,5 +21,11 @@ public class EnemyStats : MonoBehaviour
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+
+        //what happens when enemy dies
+        //maybe enemy dying should give xp/score or resources
+        if(currentHealth<=0){
+            Destroy(gameObject);
+        }
     }
 }

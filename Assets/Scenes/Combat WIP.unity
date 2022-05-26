@@ -898,6 +898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1924674544962e54c8085a5f32c24d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 344496387}
   hitbox: {fileID: 6286591741058424022, guid: 92945cbc34abf1244b5e0909305e3f13, type: 3}
   enemyProjectile: {fileID: 7389375861155235134, guid: cba876b7c24ed104a872d491e80c1687, type: 3}
 --- !u!70 &344496386
@@ -28657,7 +28658,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.25
+  m_Radius: 2.5
 --- !u!1 &849659928
 GameObject:
   m_ObjectHideFlags: 0

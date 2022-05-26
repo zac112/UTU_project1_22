@@ -30,11 +30,6 @@ public class PlayerCombat : MonoBehaviour{
             enemy.TakeDamage(20);
         }
 
-        //TODO: move this to event system
-        if(stats.GetCurrentHealth()<=0f){
-            Debug.Log("YOU DIED");
-            Destroy(gameObject);
-        }
     }
 
 
@@ -82,9 +77,12 @@ public class PlayerCombat : MonoBehaviour{
                 //spawn projectile
                 Instantiate(PlayerProjectile, this.gameObject.transform.position+new Vector3 (0f, 0f, 50f), new Quaternion(0, 0, 0, 0));
             }
-
-
-
     }
+
+
+    void TakeDamage(int dmg){
+        stats.DamagePlayer(dmg);
+    }
+
 
 }
