@@ -44,19 +44,12 @@ public class BuildingPlacementSystem : MonoBehaviour
 
     Vector3 GetTileLocationUnderMouse()
     {
-        // Get the mouse position and store it in a variable
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        // Get the location of the tile under the mouse
-        Vector3Int tileLocation = tilemap.WorldToCell(mousePosition);
+        Vector3 mousePosition = GetMousePosition();
+        Vector3Int tileLocation = GetTileLocation();
 
         // Get the center of the tile under the mouse?
         // Perhaps a bit redundant to first get the tile location in the tilemap and then turn it back to world position?
         Vector3 tileLocationInWorld = tilemap.GetCellCenterWorld(tileLocation);
-
-        // Get tile gameobject
-        Debug.Log(tileLocation);
-        
 
         return tileLocationInWorld;
     }
@@ -96,11 +89,25 @@ public class BuildingPlacementSystem : MonoBehaviour
     {
         if (!occupiedTiles.Contains(tileXY))
         {
-            Debug.Log("tileXY does not exist in the list");
+            Debug.Log("occupiedTiles does not contain tileXY");
         }
         else 
         {
             occupiedTiles.Remove(tileXY);
         }
+    }
+
+    public Vector3Int GetTileLocation() 
+    {
+        // Get the location of the tile under the mouse
+        Vector3Int tileLocation = tilemap.WorldToCell(GetMousePosition());
+        return tileLocation;
+    }
+
+    public Vector3 GetMousePosition() 
+    {
+        // Get the mouse position and store it in a variable
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        return mousePosition;
     }
 }
