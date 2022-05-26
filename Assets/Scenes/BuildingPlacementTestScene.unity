@@ -223,7 +223,7 @@ MonoBehaviour:
   buildableBuildings:
   - {fileID: 7953807960417106101, guid: 944dcfb610eb8274c898f34f5e5a7c98, type: 3}
   - {fileID: 9113664018743696094, guid: 569a9665642b1e54cb8ed27ef6803447, type: 3}
-  buildBuildingMouseButton: 0
+  buildBuildingMouseButton: 1
   buildingDeselect: 106
   building1Hotkey: 107
   building2Hotkey: 108

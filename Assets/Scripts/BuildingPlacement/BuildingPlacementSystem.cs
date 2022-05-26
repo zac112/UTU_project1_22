@@ -7,6 +7,7 @@ public class BuildingPlacementSystem : MonoBehaviour
 {
     [SerializeField] Transform buildingToPlace;
     [SerializeField] List<Transform> buildableBuildings;
+    public List<(int, int)> occupiedTiles;
 
     [Range(0,2)]
     [SerializeField] int buildBuildingMouseButton = 1;
@@ -17,9 +18,12 @@ public class BuildingPlacementSystem : MonoBehaviour
     Tilemap tilemap;
     Transform selectedBuilding;
 
+    
+
     void Start()
     {
         tilemap = GameObject.Find("Grid").GetComponentInChildren<Tilemap>();
+        occupiedTiles = new List<(int, int)>();
     }
 
     void Update()
@@ -28,9 +32,9 @@ public class BuildingPlacementSystem : MonoBehaviour
 
         if (Input.GetMouseButtonDown(buildBuildingMouseButton) && selectedBuilding != null) 
         {
-            Vector3 tileLocationInWorld = GetTileOnMouse();
+            Vector3 tileLocationInWorld = GetTileLocationUnderMouse();
 
-            // Set Z to avoid building being underground
+            // Set Z to avoid buildings being underground
             tileLocationInWorld.z = 10;
 
             // Instantiate building on tileLocation
@@ -38,7 +42,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         }
     }
 
-    Vector3 GetTileOnMouse()
+    Vector3 GetTileLocationUnderMouse()
     {
         // Get the mouse position and store it in a variable
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -50,6 +54,10 @@ public class BuildingPlacementSystem : MonoBehaviour
         // Perhaps a bit redundant to first get the tile location in the tilemap and then turn it back to world position?
         Vector3 tileLocationInWorld = tilemap.GetCellCenterWorld(tileLocation);
 
+        // Get tile gameobject
+        Debug.Log(tileLocation);
+        
+
         return tileLocationInWorld;
     }
 
@@ -60,14 +68,39 @@ public class BuildingPlacementSystem : MonoBehaviour
             selectedBuilding = null;
         }
 
-        if (Input.GetKeyDown(building1Hotkey))
+        else if (Input.GetKeyDown(building1Hotkey))
         {
             selectedBuilding = buildableBuildings[0];
         }
 
-        if (Input.GetKeyDown(building2Hotkey))
+        else if (Input.GetKeyDown(building2Hotkey))
         {
             selectedBuilding = buildableBuildings[1];
+        }
+    }
+
+    
+    public void OccupyTile((int, int) tileXY) 
+    { 
+        if (!occupiedTiles.Contains(tileXY)) 
+        {
+            occupiedTiles.Add(tileXY);
+        }
+        else 
+        {
+            Debug.Log("occupiedTiles already contains tileXY");
+        }
+    }
+
+    public void RemoveFromOccupiedTiles((int, int) tileXY) 
+    {
+        if (!occupiedTiles.Contains(tileXY))
+        {
+            Debug.Log("tileXY does not exist in the list");
+        }
+        else 
+        {
+            occupiedTiles.Remove(tileXY);
         }
     }
 }
