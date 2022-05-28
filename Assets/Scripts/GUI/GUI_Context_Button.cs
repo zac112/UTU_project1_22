@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GUI_Button : MonoBehaviour
+public class GUI_ContextButton : MonoBehaviour
 {
 
     [SerializeField]

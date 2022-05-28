@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 7437130711767175303}
   - component: {fileID: 2401329551665444769}
   - component: {fileID: 6851621556898289585}
+  - component: {fileID: 3789017166390660999}
   m_Layer: 0
   m_Name: Inventory
   m_TagString: Untagged
@@ -227,6 +228,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.97, y: 0.45}
   m_EdgeRadius: 0
+--- !u!114 &3789017166390660999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2450397320766592238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebc5c68f09c3b7b4e852ec75122978b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  context: {fileID: 2865322659233164992, guid: e0c94d3a026604a4eb243b603b2d70ff, type: 3}
+  GUI_GO: {fileID: 1739754843961540973}
 --- !u!1 &4214804179943758850
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,6 +388,7 @@ GameObject:
   - component: {fileID: 2908976674117872627}
   - component: {fileID: 704894261390398103}
   - component: {fileID: 4229234765927346980}
+  - component: {fileID: 378198592232767553}
   m_Layer: 0
   m_Name: Tech_tree
   m_TagString: Untagged
@@ -473,6 +489,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.78, y: 0.4}
   m_EdgeRadius: 0
+--- !u!114 &378198592232767553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6243932790112220937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebc5c68f09c3b7b4e852ec75122978b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  context: {fileID: 7494657151859071307, guid: 8620ac96438a7bf48b10fd1395906421, type: 3}
+  GUI_GO: {fileID: 1739754843961540973}
 --- !u!1 &7719274218576296203
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,6 +514,7 @@ GameObject:
   - component: {fileID: 7106013893263889841}
   - component: {fileID: 9029014053835252914}
   - component: {fileID: 5550801898381595583}
+  - component: {fileID: 6139725102312413122}
   m_Layer: 0
   m_Name: Buildings
   m_TagString: Untagged
@@ -584,6 +615,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.81, y: 0.39}
   m_EdgeRadius: 0
+--- !u!114 &6139725102312413122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7719274218576296203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebc5c68f09c3b7b4e852ec75122978b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  context: {fileID: 4697173378810476474, guid: 09a5f2a6bc6c46b4985e0f5720fec51a, type: 3}
+  GUI_GO: {fileID: 1739754843961540973}
 --- !u!1 &7741711674886401428
 GameObject:
   m_ObjectHideFlags: 0
