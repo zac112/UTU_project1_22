@@ -11,12 +11,12 @@ public interface IBuildable
     /// <summary>
     /// Width of the building (in the axis that faces towards north-west)
     /// </summary>
-    int width { get; set; }
+    public int Width { get; set; }
 
     /// <summary>
     /// Length of the building (in the axis that faces towards north-east)
     /// </summary>
-    int length { get; set; }
+    public int Length { get; set; }
 
     
 }
