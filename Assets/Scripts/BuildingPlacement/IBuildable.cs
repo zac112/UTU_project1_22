@@ -9,12 +9,12 @@ public interface IBuildable
     // be built if gold exist within an x radius.)
 
     /// <summary>
-    /// Width of the building (in the axis that faces towards north-west)
+    /// Width of the building (in the axis that faces towards northwest)
     /// </summary>
     public int Width { get; set; }
 
     /// <summary>
-    /// Length of the building (in the axis that faces towards north-east)
+    /// Length of the building (in the axis that faces towards northeast)
     /// </summary>
     public int Length { get; set; }
 
