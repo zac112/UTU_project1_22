@@ -34,11 +34,25 @@ public class BuildingPlacementSystem : MonoBehaviour
         {
             Vector3 tileLocationInWorld = GetTileLocationUnderMouse();
 
+            // Copy tileLocationInWorld, so that we can use it in occupiedTiles, without the change in z-axis
+            Vector3 originalTileLocationInWorld = tileLocationInWorld;
+
             // Set Z to avoid buildings being underground
             tileLocationInWorld.z = 10;
 
             // Instantiate building on tileLocation
             Instantiate(selectedBuilding, tileLocationInWorld, Quaternion.identity);
+
+            // Add tiles to occupiedTiles
+            OccupyTile(originalTileLocationInWorld);
+            
+            /*
+            for (int i = 0; i < occupiedTiles.Count; i++) 
+            {
+                Debug.Log(occupiedTiles[i].ToString());
+            }
+            */
+
         }
     }
 
@@ -120,10 +134,12 @@ public class BuildingPlacementSystem : MonoBehaviour
         else return false;
     }
 
+    /*
     public (float, float) GetXY(Vector3 tileLocation) 
     {
         // Make Vector3 into a tuple, so that we can ignore z-coordinates (just in case?)
         (float, float) tileXY = (tileLocation.x, tileLocation.y);
         return tileXY;
     }
+    */
 }
