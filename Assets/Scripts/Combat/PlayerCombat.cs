@@ -9,8 +9,6 @@ public class PlayerCombat : MonoBehaviour{
     private Rigidbody2D rb;
     public GameObject PlayerMeleeHitbox;
     public GameObject PlayerProjectile;
-
-    public EnemyStats enemy;
     
     private float attackCooldown = 0.7f; //seconds
     private float lastAttackedAt = 0f;
@@ -18,17 +16,11 @@ public class PlayerCombat : MonoBehaviour{
 
     void Start(){
         rb = GetComponent<Rigidbody2D>();
-        enemy = GameObject.Find("Enemy").GetComponent<EnemyStats>();
     }
 
 
     void Update()
     {
-        // Demonstration of player doing damage
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            enemy.TakeDamage(20);
-        }
 
     }
 
@@ -78,11 +70,5 @@ public class PlayerCombat : MonoBehaviour{
                 Instantiate(PlayerProjectile, this.gameObject.transform.position+new Vector3 (0f, 0f, 50f), new Quaternion(0, 0, 0, 0));
             }
     }
-
-
-    void TakeDamage(int dmg){
-        stats.DamagePlayer(dmg);
-    }
-
 
 }

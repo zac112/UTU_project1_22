@@ -77,4 +77,14 @@ public class AIPathfinding : MonoBehaviour
             seeker.StartPath(rb.position, target.position, OnPathComplete);
         }
     }
+
+    public void setTarget(Transform t){
+        target=t;
+    }
+    
+    public Transform getTarget(){
+        return target;
+    }
+
+
 }

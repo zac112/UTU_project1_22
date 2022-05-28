@@ -2,41 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCombat : MonoBehaviour
+public class AllyCombat : MonoBehaviour
 {
 
-    [SerializeField] EnemyStats stats;
+    [SerializeField] AllyStats stats;
     [SerializeField] AIPathfinding ai;
 
 
-    private GameObject player;
     private Rigidbody2D rb;
     public GameObject hitbox;
     public GameObject projectile;
-
-    private GameObject target;
-    
     private float attackCooldown = 2.0f; //seconds
     private float lastAttackedAt = 0f;
 
-    private bool MeleeAggro;
-
     private float distance;
+
+    GameObject target;
+    private GameObject player;
 
 
     void Start()
     {
-        MeleeAggro=false;
-        player = GameObject.FindWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
     }
 
 
 
-   void Update()
+    void Update()
     {
 
-        //If an ally is destroyed, the target will become null and cause errors. This statement will set the player as the target when if it is null.
+        //If an enemy is destroyed, the target will become null and cause errors. This statement will set the player as the target when if it is null.
         //TODO: move this somewhere else
         if(ai.getTarget()==null){
             ai.setTarget(player.transform);
@@ -45,9 +41,7 @@ public class EnemyCombat : MonoBehaviour
 
 
 
-
-
-    void MeleeAttack(GameObject target){
+    void MeleeAttack(){
 
             if(Time.time > lastAttackedAt + attackCooldown){
 
@@ -68,8 +62,8 @@ public class EnemyCombat : MonoBehaviour
 
     }
 
-    void RangedAttack(GameObject target){
 
+    void RangedAttack(){
         if(Time.time >= lastAttackedAt + attackCooldown){
             Vector3 verticalOffset = new Vector3 (0f, 0f, 50f);
 
@@ -85,74 +79,40 @@ public class EnemyCombat : MonoBehaviour
 
             lastAttackedAt = Time.time;
         }
-
     }
 
 
 
     void OnTriggerEnter2D(Collider2D other)
     {
-
-    switch (other.tag)
-    {
-        case "PlayerMeleeHitbox":
-            stats.TakeDamage(20);
-            break;
-
-        case "AllyMeleeHitbox":
-            stats.TakeDamage(10);
-            break;
-
-        case "PlayerRangedHitbox":
-            Destroy(other.gameObject); //delete projectile after getting hit
-            stats.TakeDamage(10);
-            break;
-
-        case "AllyRangedHitbox":
-            Destroy(other.gameObject); //delete projectile after getting hit
+        if(other.tag=="EnemyMeleeHitbox"){
+            stats.TakeDamage(10); 
+        }else if(other.tag=="EnemyRangedHitbox"){
             stats.TakeDamage(5);
-            break;
-
-        case "EnemyMeleeRange":
-            target = other.gameObject;
-            ai.setTarget(target.transform); //set AIPathinding target to whatever enters aggro range
-            MeleeAggro = true; // MeleeAggro boolean prevents enemy from doing ranged attacks if within melee range.
-            break;
-
-    /*  
-        case "EnemyRangedRange":
-            if(!MeleeAggro){
-            target = other.gameObject;
-            ai.setTarget(target.transform); //set AIPathinding target to whatever enters aggro range
-            }
-            break; 
-    */
-
-        default:
-            break;
-    }
-
+            Destroy(other.gameObject); //delete projectile after hitting player
+        }
     }
 
 
    void OnTriggerStay2D(Collider2D other){
        
         distance = Vector3.Distance((other.gameObject.transform.position-new Vector3(0f,0f,5f)), this.transform.position);
-        if(other.tag=="EnemyRangedRange"&&distance>=2.5f&&!MeleeAggro){
+        if(other.tag=="AllyRangedRange"&&distance>=2.5f){
+            target = other.gameObject;
+            ai.setTarget(target.transform); //set enemy as target when enemy is inside AllyRangedRange
+            RangedAttack();
+        }else if(other.tag=="AllyMeleeRange"){
             target = other.gameObject;
             ai.setTarget(target.transform);
-            RangedAttack(target);
-        }else if(other.tag=="EnemyMeleeRange"){
-            MeleeAttack(target);
+            MeleeAttack();
         }
     }
 
 
     void OnTriggerExit2D(Collider2D other){
-        if(other.tag=="EnemyMeleeRange"){
-            MeleeAggro=false;
-        }
+        if(other.tag=="AllyRangedRange"&&other.tag=="AllyMeleeRange"){
+            ai.setTarget(player.transform);
     }
-    
+    }
 
 }

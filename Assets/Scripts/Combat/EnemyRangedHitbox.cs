@@ -6,8 +6,8 @@ public class EnemyRangedHitbox : MonoBehaviour
 {
 
 
-
-    private float lifeTime = 999.0f;
+/*
+    private float lifeTime = 5.0f;
     private float projectileSpeed=250.0f;
 
 
@@ -19,8 +19,10 @@ public class EnemyRangedHitbox : MonoBehaviour
         //projectile gets deleted after lifeTime has passed
         Destroy(gameObject, lifeTime);
 
-        //rotate projectile towards player
+        //rotate projectile towards target
         Vector3 target = GameObject.FindWithTag("Player").transform.position;
+
+
         Vector3 hitboxPosition = transform.position;
         target.z = 0f;
         target.x = target.x - hitboxPosition.x;
@@ -33,5 +35,7 @@ public class EnemyRangedHitbox : MonoBehaviour
         this.gameObject.GetComponent<Rigidbody2D>().AddForce(target*projectileSpeed);
 
     }
+
+*/
 
 }

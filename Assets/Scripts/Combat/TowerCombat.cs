@@ -29,9 +29,6 @@ public class TowerCombat : MonoBehaviour{
     void Attack(){
 
         if(Time.time >= lastAttackTime + attackCooldown){
-            
-
-
             GameObject inst = Instantiate(projectile, transform.position, Quaternion.identity);
 
             Vector3 dir = target.transform.position - inst.transform.position;
