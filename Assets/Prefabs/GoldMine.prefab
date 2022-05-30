@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5481268444285399938}
   - component: {fileID: 3235017493067127201}
-  - component: {fileID: 290831927283426057}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -85,35 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &290831927283426057
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4949601872427628222}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.14956108, y: -0.025118653}
-      - {x: -0.58740205, y: -0.23999143}
-      - {x: 0.32129037, y: -0.63427705}
-      - {x: 0.7563044, y: -0.4157769}
 --- !u!1 &7953807960417106100
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7953807960417106101}
   - component: {fileID: -5464121371805605703}
+  - component: {fileID: 515510084250974613}
   m_Layer: 0
   m_Name: GoldMine
   m_TagString: Untagged
@@ -163,3 +134,32 @@ MonoBehaviour:
   _length: 1
   miningSpeed: 60
   storedGold: 0
+--- !u!60 &515510084250974613
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7953807960417106100}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.14956108, y: -0.025118653}
+      - {x: -0.58740205, y: -0.23999143}
+      - {x: 0.32129037, y: -0.63427705}
+      - {x: 0.7563044, y: -0.4157769}

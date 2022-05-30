@@ -44,6 +44,7 @@ public class BuildingPlacementSystem : MonoBehaviour
             Instantiate(selectedBuilding, tileLocationInWorld, Quaternion.identity);
 
             // Check for collision between building collider and tile collider
+            Vector3 mousePosition = GetMousePosition();
 
             // Add tiles to occupiedTiles
             OccupyTile(originalTileLocationInWorld);
