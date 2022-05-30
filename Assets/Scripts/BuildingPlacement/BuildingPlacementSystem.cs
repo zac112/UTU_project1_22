@@ -8,6 +8,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     [SerializeField] Transform buildingToPlace;
     [SerializeField] List<Transform> buildableBuildings;
     public List<Vector3> occupiedTiles;
+    List<Vector3> tilesOccuipedByBuilding;
 
     [Range(0,2)]
     [SerializeField] int buildBuildingMouseButton = 1;
@@ -24,6 +25,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     {
         tilemap = GameObject.Find("Grid").GetComponentInChildren<Tilemap>();
         occupiedTiles = new List<Vector3>();
+        tilesOccuipedByBuilding = new List<Vector3>();
     }
 
     void Update()
@@ -32,7 +34,38 @@ public class BuildingPlacementSystem : MonoBehaviour
 
         if (Input.GetMouseButtonDown(buildBuildingMouseButton) && selectedBuilding != null) 
         {
+            // Get selected buildings width and height
+            // Testing with GoldMineScript
+            // TODO: Get the script attached to the individual selectedBuilding
+            GoldMineScript script = selectedBuilding.GetComponent<GoldMineScript>();
+            int buildingWidth = script.Width;
+            int buildingLength = script.Length;
+
             Vector3 tileLocationInWorld = GetTileLocationUnderMouse();
+            //Debug.Log(tileLocationInWorld);
+
+            // Calculate tile coordinates that the building will occupy based on buildingWidth and buildingLength
+            // Currently, moving NW will modify X by -0.50 and Y by +0.25
+            // Moving NE will modify X by +0.50 and Y by +0.25
+            //float targetX = tileLocationInWorld.x - (0.50f * buildingWidth);
+            //float targetY = tileLocationInWorld.y + (0.25f * buildingLength);
+
+            // Loop through width and height and add these tiles to tilesOccupiedByBuilding
+            float currentX;
+            float currentY;
+            
+            for (int width = 0; width < buildingWidth; width++) 
+            {
+                for (int length = 0; length < buildingLength; length++) 
+                {
+                    currentX = tileLocationInWorld.x + 0.50f * width;
+                    currentY = tileLocationInWorld.y + 0.25f * length;
+
+                    tilesOccuipedByBuilding.Add(new Vector3(currentX, currentY, 0));
+                }
+            }
+
+            // PrintTilesOccupiedByBuildingList();
 
             // Copy tileLocationInWorld, so that we can use it in occupiedTiles, without the change in z-axis
             Vector3 originalTileLocationInWorld = tileLocationInWorld;
@@ -42,9 +75,6 @@ public class BuildingPlacementSystem : MonoBehaviour
 
             // Instantiate building on tileLocation
             Instantiate(selectedBuilding, tileLocationInWorld, Quaternion.identity);
-
-            // Check for collision between building collider and tile collider
-            Vector3 mousePosition = GetMousePosition();
 
             // Add tiles to occupiedTiles
             OccupyTile(originalTileLocationInWorld);
@@ -63,6 +93,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     {
         Vector3 mousePosition = GetMousePosition();
         Vector3Int tileLocation = GetTileLocation();
+        //Debug.Log("Tilelocation:" + tileLocation);
 
         // Get the center of the tile under the mouse?
         // Perhaps a bit redundant to first get the tile location in the tilemap and then turn it back to world position?
@@ -145,4 +176,12 @@ public class BuildingPlacementSystem : MonoBehaviour
         return tileXY;
     }
     */
+
+    private void PrintTilesOccupiedByBuildingList()
+    {
+        foreach (Vector3 tile in tilesOccuipedByBuilding)
+        {
+            Debug.Log(tile);
+        }
+    }
 }
