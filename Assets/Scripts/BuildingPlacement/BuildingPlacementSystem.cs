@@ -43,6 +43,8 @@ public class BuildingPlacementSystem : MonoBehaviour
             // Instantiate building on tileLocation
             Instantiate(selectedBuilding, tileLocationInWorld, Quaternion.identity);
 
+            // Check for collision between building collider and tile collider
+
             // Add tiles to occupiedTiles
             OccupyTile(originalTileLocationInWorld);
             
