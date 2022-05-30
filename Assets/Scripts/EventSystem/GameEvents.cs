@@ -32,4 +32,12 @@ public class GameEvents : MonoBehaviour
     {
         MouseMoved?.Invoke(position, delta);
     }
+
+    public event Action<bool> GameOver;
+    public void OnGameOver(bool over)
+    {
+        // launch end scene
+    }
+
+
 }
