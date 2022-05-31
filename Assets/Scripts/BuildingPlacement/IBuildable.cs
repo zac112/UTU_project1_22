@@ -11,11 +11,13 @@ public interface IBuildable
     /// <summary>
     /// Width of the building (in the axis that faces towards northwest)
     /// </summary>
+    [Tooltip("Width of the building in the axis facing northwest")]
     public int Width { get; set; }
 
     /// <summary>
     /// Length of the building (in the axis that faces towards northeast)
     /// </summary>
+    [Tooltip("Length of the building in the axis facing northeast")]
     public int Length { get; set; }
 
     
