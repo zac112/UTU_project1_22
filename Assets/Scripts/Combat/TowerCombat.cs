@@ -21,7 +21,7 @@ public class TowerCombat : MonoBehaviour{
 
 
     void OnTriggerEnter2D(Collider2D other){
-        if(other.TryGetComponent<EnemyCombat>(out EnemyCombat e)){
+        if(other.TryGetComponent<EnemyCombat>(out EnemyCombat e) || other.TryGetComponent<TowerEnemy>(out TowerEnemy et)){
             target = other.gameObject;
         }
     }
