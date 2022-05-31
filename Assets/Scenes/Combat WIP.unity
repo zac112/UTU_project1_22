@@ -1426,7 +1426,6 @@ GameObject:
   - component: {fileID: 497221010}
   - component: {fileID: 497221007}
   - component: {fileID: 497221009}
-  - component: {fileID: 497221008}
   m_Layer: 0
   m_Name: Gold tilemap
   m_TagString: Untagged
@@ -28938,22 +28937,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!19719996 &497221008
-TilemapCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 497221006}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_MaximumTileChangeCount: 1000
-  m_ExtrusionFactor: 0.00001
 --- !u!483693784 &497221009
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -54712,13 +54695,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d9e3e1994d24741a606faefe7939be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grid: {fileID: 0}
+  grid: {fileID: 3074226476965674740, guid: 74e12817773f86e43a93e777183d171a, type: 3}
   tilemap: {fileID: 910422927}
-  tile: {fileID: 11400000, guid: 66004e53745e1b347beda12d9e69a1dc, type: 2}
+  desert: {fileID: 11400000, guid: 90e6470470e98f64fbd44cea0bf54bb2, type: 2}
+  grass: {fileID: 11400000, guid: 66004e53745e1b347beda12d9e69a1dc, type: 2}
+  water: {fileID: 11400000, guid: eac12303961091c439e7736fc75d23f6, type: 2}
   Width: 50
   Height: 50
   Offset: {x: -25, y: -25, z: 0}
-  fog: {fileID: 0}
+  fog: {fileID: 5696099164015990282, guid: b081c5d93c3297640934e14a723d5195, type: 3}
 --- !u!4 &1304282048
 Transform:
   m_ObjectHideFlags: 0
