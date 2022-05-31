@@ -13,7 +13,10 @@ public class MapGenerator : MonoBehaviour
     Tilemap tilemap;
 
     [Tooltip("Tile used to fill the play area")] [SerializeField]
-    Tile tile;
+    Dictionary<VoronoiDiagram.TileType, Tile> tiles;
+    [SerializeField] Tile desert;
+    [SerializeField] Tile grass;
+    [SerializeField] Tile water;
 
     [Tooltip("Width of the map in tiles")] [SerializeField]
     private int Width;
@@ -25,6 +28,7 @@ public class MapGenerator : MonoBehaviour
     private Vector3Int Offset;
 
     [SerializeField] GameObject fog;
+    public static VoronoiDiagram voronoi;
 
     void Generate(int width, int height, Vector3Int offset)
     {
@@ -39,25 +43,50 @@ public class MapGenerator : MonoBehaviour
                     i == 0 ||
                     i == width - 1 ) {
                     Vector3 worldPos = tilemap.CellToWorld(position);
-                    Instantiate(fog, worldPos, Quaternion.identity); }
-
-                // Move on to the next tile if there already is a tile at this position
-                if (tilemap.GetTile(position))
-                {
-                    continue;
+                    GameObject go = Instantiate(fog, worldPos, Quaternion.identity);
+                    go.GetComponentInChildren<TileSpawner>().Init(tilemap, this);
                 }
 
-                tilemap.SetTile(position, tile);
-
-                
-            }
-            
+                Generate(position);
+            }            
         }
+    }
+
+    /**
+     * Generates a tile to the given tilemap cell position.
+     * Returns true if tile was generated, false otherwise.
+     */
+    public bool Generate(Vector3Int position) {
+        if (tilemap.GetTile(position)) return false;
+
+        Tile tile;
+        Vector3 worldPos = tilemap.CellToWorld(position);
+        tiles.TryGetValue(voronoi.GetClosestSeed(worldPos), out tile);
+        tilemap.SetTile(position, tile);
+        return true;
+    }
+
+    /**
+     * Generates a tile to the given world position.
+     * Returns true if tile was generated, false otherwise.
+     */
+    public bool Generate(Vector3 worldpos)
+    {
+        Vector3Int pos = tilemap.WorldToCell(worldpos);
+
+        return Generate(pos);
     }
 
     public void Start()
     {
         tilemap = Instantiate(grid,Vector3.zero,Quaternion.identity).GetComponentInChildren<Tilemap>();
-        Generate(Width, Height, Offset);
+        voronoi = GetComponent<VoronoiDiagram>();
+
+        tiles = new Dictionary<VoronoiDiagram.TileType, Tile>();
+        tiles.Add(VoronoiDiagram.TileType.Desert, desert);
+        tiles.Add(VoronoiDiagram.TileType.Water, water);
+        tiles.Add(VoronoiDiagram.TileType.Grass, grass);
+
+        Generate(Width, Height, Offset);        
     }
 }

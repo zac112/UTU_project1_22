@@ -4,23 +4,14 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class TileSpawner : MonoBehaviour
-{
-    BoxCollider2D bc;
-    [SerializeField] Tilemap map;
-    [SerializeField] Tile tile;
+{    
+    Tilemap map;
+    MapGenerator generator;
 
-    // Start is called before the first frame update
-    void Start()
+     public void Init(Tilemap map, MapGenerator generator)
     {
-        //bc = GetComponent<BoxCollider2D>();
-        map = GameObject.FindObjectOfType<Tilemap>();
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        this.map = map;
+        this.generator = generator;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -43,18 +34,14 @@ public class TileSpawner : MonoBehaviour
                 neighbors.Add(new Vector3Int(cellpos.x+i, cellpos.y+j, 0));
             }
         }
+
         foreach (Vector3Int neighbor in neighbors) {
-            if (!map.HasTile(neighbor))
-            {
-                map.SetTile(neighbor, GetTile(neighbor));
+            if (generator.Generate(neighbor)) { 
                 GameObject go = Instantiate(transform.parent.gameObject, map.CellToWorld(neighbor), Quaternion.identity);
                 go.name = "FOW";
+                go.GetComponentInChildren<TileSpawner>().Init(map, generator);
             }
         }
     }
 
-    private Tile GetTile(Vector3Int pos) {
-        //Add lookup to procedural generated map
-        return tile;
-    }
 }
