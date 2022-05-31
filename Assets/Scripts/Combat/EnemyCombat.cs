@@ -32,14 +32,12 @@ public class EnemyCombat : MonoBehaviour
     }
 
 
-
-   void Update()
-    {
-
-        //If an ally is destroyed, the target will become null and cause errors. This statement will set the player as the target when if it is null.
-        //TODO: move this somewhere else
+    // If a target is destroyed, the target will become null and cause errors. This function will set itself as the target if it is null.
+    // because Destroy() destroys gameobjects at the end of the frame, we have to wait until the next frame to reset the AI target. 
+    IEnumerator UpdateTarget(){
+        yield return 0; // wait 1 frame
         if(ai.getTarget()==null){
-            ai.setTarget(player.transform);
+            ai.setTarget(this.transform);
         }
     }
 
@@ -104,6 +102,12 @@ public class EnemyCombat : MonoBehaviour
             break;
 
         case "PlayerRangedHitbox":
+            // change target to player if hit by player projectile 
+            //without this, the enemy will stand still and let the player kill them from far away
+            if(ai.getTarget()==this.gameObject.transform){
+                ai.setTarget(other.gameObject.transform.parent.transform); 
+            }
+
             Destroy(other.gameObject); //delete projectile after getting hit
             stats.TakeDamage(10);
             break;
@@ -151,6 +155,9 @@ public class EnemyCombat : MonoBehaviour
     void OnTriggerExit2D(Collider2D other){
         if(other.tag=="EnemyMeleeRange"){
             MeleeAggro=false;
+            StartCoroutine(UpdateTarget());
+        } else if(other.tag=="EnemyRangedRange"){
+            StartCoroutine(UpdateTarget());
         }
     }
     

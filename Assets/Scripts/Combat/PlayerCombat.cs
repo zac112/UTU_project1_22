@@ -19,10 +19,6 @@ public class PlayerCombat : MonoBehaviour{
     }
 
 
-    void Update()
-    {
-
-    }
 
 
     //take damage when inside enemy hitbox
@@ -53,7 +49,8 @@ public class PlayerCombat : MonoBehaviour{
                 Vector3 hitboxPosition = this.gameObject.transform.position + horisontalOffset + verticalOffset;
 
                 //spawn hitbox
-                Instantiate(PlayerMeleeHitbox, hitboxPosition, new Quaternion(0, 0, 0, 0));
+                GameObject melee = Instantiate(PlayerMeleeHitbox, hitboxPosition, new Quaternion(0, 0, 0, 0));
+                melee.transform.parent = this.gameObject.transform; //make child of player
             }
     }
 
@@ -67,8 +64,9 @@ public class PlayerCombat : MonoBehaviour{
                 rb.velocity = Vector2.zero;
 
                 //spawn projectile
-                Instantiate(PlayerProjectile, this.gameObject.transform.position+new Vector3 (0f, 0f, 50f), new Quaternion(0, 0, 0, 0));
+                GameObject proj = Instantiate(PlayerProjectile, this.gameObject.transform.position+new Vector3 (0f, 0f, 50f), new Quaternion(0, 0, 0, 0));
+                proj.transform.parent = this.gameObject.transform; //make child of player
             }
     }
-
 }
+

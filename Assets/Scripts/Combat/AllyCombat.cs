@@ -29,13 +29,14 @@ public class AllyCombat : MonoBehaviour
 
 
 
-    void Update()
-    {
 
-        //If an enemy is destroyed, the target will become null and cause errors. This statement will set the player as the target when if it is null.
-        //TODO: move this somewhere else
+
+    // If a target is destroyed, the target will become null and cause errors. This function will set itself as the target if it is null.
+    // because Destroy() destroys gameobjects at the end of the frame, we have to wait until the next frame to reset the AI target. 
+    IEnumerator UpdateTarget(){
+        yield return 0; // wait 1 frame
         if(ai.getTarget()==null){
-            ai.setTarget(player.transform);
+            ai.setTarget(this.transform);
         }
     }
 
@@ -109,10 +110,12 @@ public class AllyCombat : MonoBehaviour
     }
 
 
-    void OnTriggerExit2D(Collider2D other){
-        if(other.tag=="AllyRangedRange"&&other.tag=="AllyMeleeRange"){
-            ai.setTarget(player.transform);
-    }
+   void OnTriggerExit2D(Collider2D other){
+        if(other.tag=="AllyMeleeRange"){
+            StartCoroutine(UpdateTarget());
+        } else if(other.tag=="AllyRangedRange"){
+            StartCoroutine(UpdateTarget());
+        }
     }
 
 }

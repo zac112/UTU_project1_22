@@ -33,8 +33,6 @@ public class PlayerStats : MonoBehaviour
 
     public void DamagePlayer(int amount){
         health -= amount;
-        Debug.Log(health);
-
 
         //what happens when player dies
         if(health<=0){
