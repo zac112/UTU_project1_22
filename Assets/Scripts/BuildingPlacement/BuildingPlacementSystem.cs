@@ -78,6 +78,8 @@ public class BuildingPlacementSystem : MonoBehaviour
 
             // Add tiles to occupiedTiles
             OccupyTile(originalTileLocationInWorld);
+
+            GameStats.BuildingsBuilt++;  // increase GameStats record of finished buildings
             
             /*
             for (int i = 0; i < occupiedTiles.Count; i++) 

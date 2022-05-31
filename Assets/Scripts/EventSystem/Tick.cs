@@ -10,8 +10,12 @@ namespace EventSystem
         private float tickTimerMax;
         private int currentTick = 0;
 
+        public int GetCurrentTick() { return currentTick; }   // needed by GameStats for assessing game duration in the end
+
         [Tooltip("Number of game ticks per second")] [SerializeField]
         private int tickSpeed;
+
+        public int GetTickSpeed() { return tickSpeed; }   // needed by GameStats for assessing game duration in the end
 
         private IEnumerator coroutine;
     

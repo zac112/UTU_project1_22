@@ -26,6 +26,7 @@ public class EnemyStats : MonoBehaviour
         //maybe enemy dying should give xp/score or resources
         if(currentHealth<=0){
             Destroy(gameObject);
+            GameStats.EnemiesKilled++;
         }
     }
 }

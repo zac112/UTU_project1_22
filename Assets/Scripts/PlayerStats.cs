@@ -12,21 +12,23 @@ public class PlayerStats : MonoBehaviour
     int gold;
 
     GameEvents events;  // game's event system
-       
-
+           
     void Start(){
         health = startingHealth;
         maxHealth = startingHealth;
         gold = startingGold;
+        GameStats.Gold = startingGold;
         events = gameObject.GetComponent<GameEvents>() as GameEvents;
     }
 
     public void AddGold(int amount){
         gold += amount;
+        GameStats.Gold += amount;
     }
 
     public void RemoveGold(int amount){
         gold -= amount;
+        GameStats.Gold -= amount;
     }
 
     public int GetGold(){return gold;}
@@ -41,7 +43,7 @@ public class PlayerStats : MonoBehaviour
 
             if (events != null)  // if clause to prevent bugs for cases where event system is not yet plugged into the scene
             {
-                events.OnGameOver(true);  // launch game over screen through event system
+                events.OnGameOver(true);  // launch game over screen through event system. maybe later change input parameter to something better, like the type of gameover
             }
 
         }
