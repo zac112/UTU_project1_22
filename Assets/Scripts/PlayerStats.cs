@@ -33,13 +33,14 @@ public class PlayerStats : MonoBehaviour
     public void RemoveGold(int amount){
         gold -= amount;
         GameStats.Gold -= amount;
-        UIManager.current.UpdateHealthText(health);
+        UIManager.current.UpdateGoldText(gold);
     }
 
     public int GetGold(){return gold;}
 
     public void DamagePlayer(int amount){
         health -= amount;
+        UIManager.current.UpdateHealthText(health);
 
         //what happens when player dies
         if(health<=0){
@@ -56,6 +57,7 @@ public class PlayerStats : MonoBehaviour
 
     public void HealPlayer(int amount){
         health = Mathf.Clamp(0, maxHealth, health+amount);
+        UIManager.current.UpdateHealthText(health);
     }
 
     public void AddMaxHealth(int amount){
