@@ -47,8 +47,6 @@ public class BuildingPlacementSystem : MonoBehaviour
             // Calculate tile coordinates that the building will occupy based on buildingWidth and buildingLength
             // Currently, moving NW will modify X by -0.50 and Y by +0.25
             // Moving NE will modify X by +0.50 and Y by +0.25
-            //float targetX = tileLocationInWorld.x - (0.50f * buildingWidth);
-            //float targetY = tileLocationInWorld.y + (0.25f * buildingLength);
 
             // Loop through width and height and add these tiles to tilesOccupiedByBuilding
             float currentX;
@@ -74,9 +72,11 @@ public class BuildingPlacementSystem : MonoBehaviour
             tileLocationInWorld.z = 10;
 
             // Instantiate building on tileLocation
+            // TODO: Instantiate building on the center point of the buildings occupied tiles
             Instantiate(selectedBuilding, tileLocationInWorld, Quaternion.identity);
 
             // Add tiles to occupiedTiles
+            // TODO: Add all tiles occupied by the building
             OccupyTile(originalTileLocationInWorld);
 
             GameStats.BuildingsBuilt++;  // increase GameStats record of finished buildings
@@ -132,6 +132,21 @@ public class BuildingPlacementSystem : MonoBehaviour
         else 
         {
             Debug.Log("occupiedTiles already contains this tile");
+        }
+    }
+
+    public void OccupyTiles(List<Vector3> tileLocations)
+    {
+        for (int i = 0; i < tileLocations.Count; i++) 
+        {
+            if (!occupiedTiles.Contains(tileLocations[i]))
+            {
+                occupiedTiles.Add(tileLocations[i]);
+            }
+            else
+            {
+                Debug.Log("occupiedTiles already contains this tile");
+            }
         }
     }
 
