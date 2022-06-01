@@ -618,7 +618,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b114c58aa91dd4fbb8b58c4a7d5a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statsText: {fileID: 118682002}
+  health: {fileID: 0}
+  gold: {fileID: 0}
   stats: {fileID: 1639299255}
 --- !u!114 &129624476
 MonoBehaviour:
@@ -55628,6 +55629,8 @@ GameObject:
   - component: {fileID: 1639299255}
   - component: {fileID: 1639299254}
   - component: {fileID: 1639299249}
+  - component: {fileID: 1639299256}
+  - component: {fileID: 1639299257}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -55793,6 +55796,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 90
   startingGold: 10
+--- !u!95 &1639299256
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639299247}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f46cee0b8a6170c4c8270d6b472603dd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1639299257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639299247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e578faa0ba1b87429abcf4494f163a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 1639299256}
+  rb: {fileID: 1639299249}
 --- !u!1 &1810982810
 GameObject:
   m_ObjectHideFlags: 0
