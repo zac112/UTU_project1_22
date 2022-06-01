@@ -15,4 +15,7 @@ public class StoneGateScript : MonoBehaviour, IBuildable
     {
         get => _length; set => Length = _length;
     }
+
+    private List<Vector3> _occupiedTiles;
+    public List<Vector3> OccupiedTiles { get => _occupiedTiles; set => OccupiedTiles = _occupiedTiles; }
 }
