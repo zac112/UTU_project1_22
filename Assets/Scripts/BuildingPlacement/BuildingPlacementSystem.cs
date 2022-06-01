@@ -7,7 +7,6 @@ public class BuildingPlacementSystem : MonoBehaviour
 {
     [SerializeField] Transform buildingToPlace;
     [SerializeField] List<Transform> buildableBuildings;
-    public List<Vector3> occupiedTiles;
     List<Vector3> tilesOccupiedByBuilding;
 
     [Range(0,2)]
@@ -19,12 +18,9 @@ public class BuildingPlacementSystem : MonoBehaviour
     [SerializeField] Tilemap tilemap;
     Transform selectedBuilding;
 
-    
-
     void Start()
     {
         tilemap = GameObject.Find("Grid(Clone)").GetComponentInChildren<Tilemap>();
-        occupiedTiles = new List<Vector3>();
         tilesOccupiedByBuilding = new List<Vector3>();
     }
 
@@ -60,7 +56,7 @@ public class BuildingPlacementSystem : MonoBehaviour
                     currentY = tileLocationInWorld.y + 0.25f * length;
 
                     script.OccupiedTiles.Add(new Vector3(currentX, currentY, 0));
-                    occupiedTiles.Add(new Vector3(currentX, currentY, 0));
+                    //occupiedTiles.Add(new Vector3(currentX, currentY, 0));
                 }
             }
 
@@ -127,46 +123,6 @@ public class BuildingPlacementSystem : MonoBehaviour
         }
     }
 
-
-    public void OccupyTile(Vector3 tileLocation) 
-    {
-        if (!occupiedTiles.Contains(tileLocation)) 
-        {
-            occupiedTiles.Add(tileLocation);
-        }
-        else 
-        {
-            Debug.Log("occupiedTiles already contains this tile");
-        }
-    }
-
-    public void OccupyTiles(List<Vector3> tileLocations)
-    {
-        for (int i = 0; i < tileLocations.Count; i++) 
-        {
-            if (!occupiedTiles.Contains(tileLocations[i]))
-            {
-                occupiedTiles.Add(tileLocations[i]);
-            }
-            else
-            {
-                Debug.Log("occupiedTiles already contains this tile");
-            }
-        }
-    }
-
-    public void RemoveFromOccupiedTiles(Vector3 tileLocation) 
-    {
-        if (!occupiedTiles.Contains(tileLocation))
-        {
-            Debug.Log("occupiedTiles does not contain this tile");
-        }
-        else 
-        {
-            occupiedTiles.Remove(tileLocation);
-        }
-    }
-
     public Vector3Int GetTileLocation() 
     {
         // Get the location of the tile under the mouse
@@ -180,24 +136,6 @@ public class BuildingPlacementSystem : MonoBehaviour
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         return mousePosition;
     }
-
-    public bool IsTileOccupied(Vector3 tileLocation) 
-    {
-        if (occupiedTiles.Contains(tileLocation))
-        {
-            return true;
-        }
-        else return false;
-    }
-
-    /*
-    public (float, float) GetXY(Vector3 tileLocation) 
-    {
-        // Make Vector3 into a tuple, so that we can ignore z-coordinates (just in case?)
-        (float, float) tileXY = (tileLocation.x, tileLocation.y);
-        return tileXY;
-    }
-    */
 
     private void printTilesOccupiedByBuildingList()
     {
