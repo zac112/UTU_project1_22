@@ -16,14 +16,14 @@ public class BuildingPlacementSystem : MonoBehaviour
     [SerializeField] KeyCode building1Hotkey;
     [SerializeField] KeyCode building2Hotkey;
 
-    Tilemap tilemap;
+    [SerializeField] Tilemap tilemap;
     Transform selectedBuilding;
 
     
 
     void Start()
     {
-        tilemap = GameObject.Find("Grid").GetComponentInChildren<Tilemap>();
+        tilemap = GameObject.Find("Grid(Clone)").GetComponentInChildren<Tilemap>();
         occupiedTiles = new List<Vector3>();
         tilesOccuipedByBuilding = new List<Vector3>();
     }
