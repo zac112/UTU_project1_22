@@ -5,16 +5,16 @@ using TMPro;
 
 public class UIManager : MonoBehaviour{
 
-    
-    [SerializeField] TMP_Text statsText;
+    public static UIManager current;
+    void Awake() => current = this;
+
+
+    [SerializeField] TMP_Text health;
+    [SerializeField] TMP_Text gold;
     [SerializeField] PlayerStats stats;
 
-    void Update(){
-        UpdateStatText(); 
-    }
+    public void UpdateHealthText(int amount) => health.text = $"Health: {amount}";
 
-    void UpdateStatText(){
-        statsText.text = $"health:{stats.GetCurrentHealth()}\ngold:{stats.GetGold()}";
-    }
+    public void UpdateGoldText(int amount) => gold.text = $"Gold: {amount}";
 
 }

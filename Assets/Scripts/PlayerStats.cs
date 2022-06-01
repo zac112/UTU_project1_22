@@ -19,16 +19,21 @@ public class PlayerStats : MonoBehaviour
         gold = startingGold;
         GameStats.Gold = startingGold;
         events = gameObject.GetComponent<GameEvents>() as GameEvents;
+
+        UIManager.current.UpdateGoldText(gold);
+        UIManager.current.UpdateHealthText(health);
     }
 
     public void AddGold(int amount){
         gold += amount;
         GameStats.Gold += amount;
+        UIManager.current.UpdateGoldText(gold);
     }
 
     public void RemoveGold(int amount){
         gold -= amount;
         GameStats.Gold -= amount;
+        UIManager.current.UpdateHealthText(health);
     }
 
     public int GetGold(){return gold;}
