@@ -8,7 +8,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     [SerializeField] Transform buildingToPlace;
     [SerializeField] List<Transform> buildableBuildings;
     public List<Vector3> occupiedTiles;
-    List<Vector3> tilesOccuipedByBuilding;
+    List<Vector3> tilesOccupiedByBuilding;
 
     [Range(0,2)]
     [SerializeField] int buildBuildingMouseButton = 1;
@@ -25,7 +25,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     {
         tilemap = GameObject.Find("Grid(Clone)").GetComponentInChildren<Tilemap>();
         occupiedTiles = new List<Vector3>();
-        tilesOccuipedByBuilding = new List<Vector3>();
+        tilesOccupiedByBuilding = new List<Vector3>();
     }
 
     void Update()
@@ -37,7 +37,7 @@ public class BuildingPlacementSystem : MonoBehaviour
             // Get selected buildings width and height
             // Testing with GoldMineScript
             // TODO: Get the script attached to the individual selectedBuilding
-            GoldMineScript script = selectedBuilding.GetComponent<GoldMineScript>();
+            IBuildable script = selectedBuilding.GetComponent<IBuildable>();
             int buildingWidth = script.Width;
             int buildingLength = script.Length;
 
@@ -59,7 +59,8 @@ public class BuildingPlacementSystem : MonoBehaviour
                     currentX = tileLocationInWorld.x + 0.50f * width;
                     currentY = tileLocationInWorld.y + 0.25f * length;
 
-                    tilesOccuipedByBuilding.Add(new Vector3(currentX, currentY, 0));
+                    script.OccupiedTiles.Add(new Vector3(currentX, currentY, 0));
+                    occupiedTiles.Add(new Vector3(currentX, currentY, 0));
                 }
             }
 
@@ -69,15 +70,19 @@ public class BuildingPlacementSystem : MonoBehaviour
             Vector3 originalTileLocationInWorld = tileLocationInWorld;
 
             // Set Z to avoid buildings being underground
-            tileLocationInWorld.z = 10;
-
-            // Instantiate building on tileLocation
-            // TODO: Instantiate building on the center point of the buildings occupied tiles
-            Instantiate(selectedBuilding, tileLocationInWorld, Quaternion.identity);
+            tileLocationInWorld.z = 20;
 
             // Add tiles to occupiedTiles
             // TODO: Add all tiles occupied by the building
-            OccupyTile(originalTileLocationInWorld);
+            // OccupyTiles(script.OccupiedTiles);
+
+            // Instantiate building on tileLocation
+            // TODO: Instantiate building on the center point of the buildings occupied tiles
+            Instantiate(selectedBuilding, calculateBuildingLocation(script.OccupiedTiles), Quaternion.identity);
+
+            Debug.Log(script.OccupiedTiles.Count);
+
+            Debug.Log(calculateBuildingLocation(script.OccupiedTiles));
 
             GameStats.BuildingsBuilt++;  // increase GameStats record of finished buildings
             
@@ -194,11 +199,28 @@ public class BuildingPlacementSystem : MonoBehaviour
     }
     */
 
-    private void PrintTilesOccupiedByBuildingList()
+    private void printTilesOccupiedByBuildingList()
     {
-        foreach (Vector3 tile in tilesOccuipedByBuilding)
+        foreach (Vector3 tile in tilesOccupiedByBuilding)
         {
             Debug.Log(tile);
         }
+    }
+
+    private Vector3 calculateBuildingLocation(List<Vector3> occupiedTiles) 
+    {
+        float xPosition = 0;
+        float yPosition = 0;
+
+        for (int i = 0; i < occupiedTiles.Count; i++) 
+        {
+            xPosition += occupiedTiles[i].x;
+            yPosition += occupiedTiles[i].y;
+        }
+
+        xPosition /= occupiedTiles.Count;
+        yPosition /= occupiedTiles.Count;
+
+        return new Vector3(xPosition, yPosition, 10);
     }
 }
