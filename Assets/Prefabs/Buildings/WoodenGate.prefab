@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9113664018743696094}
-  - component: {fileID: -5128110632325805259}
+  - component: {fileID: 4224269023716880283}
   m_Layer: 0
   m_Name: WoodenGate
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-5128110632325805259
+--- !u!114 &4224269023716880283
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,9 +42,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2300419187923452777}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc65670d4e09f7244b08eb1c0645b1fc, type: 3}
+  m_Script: {fileID: 11500000, guid: b4fd2a9604af6fe4686022a0f905fcba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _width: 1
+  _length: 5
 --- !u!1 &9057870360101941518
 GameObject:
   m_ObjectHideFlags: 0
