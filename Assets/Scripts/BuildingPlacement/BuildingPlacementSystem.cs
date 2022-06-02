@@ -6,6 +6,7 @@ using UnityEngine.Tilemaps;
 public class BuildingPlacementSystem : MonoBehaviour
 {
     [SerializeField] Transform buildingToPlace;
+    [SerializeField] Transform cubePrefab;
     [SerializeField] List<Transform> buildableBuildings;
     [SerializeField] float buildingZ = 10;
     List<Vector3> selectedBuildingOccupiedTiles;
@@ -41,7 +42,14 @@ public class BuildingPlacementSystem : MonoBehaviour
             int buildingLength = selectedBuildingScript.Length;
 
             Vector3 tileLocationInWorld = GetTileLocationUnderMouse();
-            //Debug.Log(tileLocationInWorld);
+            Debug.Log($"tileLocationInWorld: {tileLocationInWorld}");
+
+            /*
+            float originalZ = tileLocationInWorld.z;
+            tileLocationInWorld.z = 10;
+            Instantiate(cubePrefab, tileLocationInWorld, Quaternion.identity);
+            tileLocationInWorld.z = originalZ;
+            */
 
             // Calculate tile coordinates that the building will occupy based on selected buildings width and selected building script length
             // Currently, moving NW will modify X by -0.50 and Y by +0.25
@@ -49,17 +57,27 @@ public class BuildingPlacementSystem : MonoBehaviour
 
             // Loop through width and height and add these tiles to tilesOccupiedByBuilding
             // TODO: First check if tiles are already occupied
+            Vector3 selectedTileLocationInWorld = tileLocationInWorld;
+
             float currentX;
             float currentY;
-            
+
+            float widthX = selectedTileLocationInWorld.x;
+            float widthY = selectedTileLocationInWorld.y;
+
             for (int width = 0; width < buildingWidth; width++) 
             {
+                widthX = selectedTileLocationInWorld.x - 0.50f * width;
+                widthY = selectedTileLocationInWorld.y + 0.25f * width;
+
                 for (int length = 0; length < buildingLength; length++) 
                 {
-                    currentX = tileLocationInWorld.x + 0.50f * width;
-                    currentY = tileLocationInWorld.y + 0.25f * length;
+                    widthX += 0.50f;
+                    widthY += 0.25f;
 
-                    selectedBuildingOccupiedTiles.Add(new Vector3(currentX, currentY, buildingZ));
+                    Vector3 result = new Vector3(widthX, widthY, buildingZ);
+                    selectedBuildingOccupiedTiles.Add(result);
+                    Debug.Log($"Vector3 added: {result}");
                 }
             }
 
@@ -69,21 +87,32 @@ public class BuildingPlacementSystem : MonoBehaviour
             // Instantiate building on tileLocation
             // TODO: Fix instantiating building on the center point of the buildings occupied tiles
             Transform buildingInstance = Instantiate(selectedBuilding, calculateBuildingLocation(selectedBuildingOccupiedTiles), Quaternion.identity);
-
-            // Add occupiedTiles to the building instance
-            Debug.Log(buildingInstance);
+            
+            // Debug.Log(buildingInstance);
 
             IBuildable buildingInstanceScript = buildingInstance.GetComponent<IBuildable>();
-            Debug.Log(buildingInstanceScript.OccupiedTiles);
-            
+            // Debug.Log(buildingInstanceScript.OccupiedTiles);
+
+            // Add occupiedTiles to the building instance
             for (int i = 0; i < selectedBuildingOccupiedTiles.Count; i++) 
             {
                 buildingInstanceScript.AddToOccupiedTiles(selectedBuildingOccupiedTiles[i]);
+                //Debug.Log(selectedBuildingOccupiedTiles[i]);
             }
 
-            Debug.Log(buildingInstanceScript.OccupiedTiles.Count);
+            //Debug.Log($"Average: {calculateBuildingLocation(selectedBuildingOccupiedTiles)}");
+
+            // Debug.Log(buildingInstanceScript.OccupiedTiles.Count);
 
             GameStats.BuildingsBuilt++;  // increase GameStats record of finished buildings
+
+            
+            // Testing which tiles are occupied by instancing a circle sprite on them
+            for (int i = 0; i < selectedBuildingOccupiedTiles.Count; i++) 
+            {
+                Instantiate(cubePrefab, selectedBuildingOccupiedTiles[i], Quaternion.identity);
+            }
+            
 
             selectedBuildingOccupiedTiles.Clear();
 
