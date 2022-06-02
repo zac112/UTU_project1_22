@@ -118,7 +118,7 @@ public class BuildingPlacementSystem : MonoBehaviour
 
         // Get the center of the tile under the mouse?
         // Perhaps a bit redundant to first get the tile location in the tilemap and then turn it back to world position?
-        Vector3 tileLocationInWorld = tilemap.GetCellCenterLocal(tileLocation);
+        Vector3 tileLocationInWorld = tilemap.GetCellCenterWorld(tileLocation);
 
         return tileLocationInWorld;
     }
