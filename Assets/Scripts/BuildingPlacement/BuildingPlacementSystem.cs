@@ -18,6 +18,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     [SerializeField] KeyCode building1Hotkey;
     [SerializeField] KeyCode building2Hotkey;
 
+    Grid grid;
     Tilemap tilemap;
     OccupiedTiles occupiedTiles;
     Transform selectedBuilding;
@@ -25,6 +26,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     void Start()
     {
         // TODO: Find a more reliable way to find Tilemap component that does not break every time names are changed
+        grid = GameObject.Find("Grid(Clone)").GetComponent<Grid>();
         tilemap = GameObject.Find("Grid(Clone)").GetComponentInChildren<Tilemap>();
         occupiedTiles = GameObject.Find("OccupiedTilesSystem").GetComponent<OccupiedTiles>();
         selectedBuildingOccupiedTiles = new List<Vector3>();
@@ -54,13 +56,17 @@ public class BuildingPlacementSystem : MonoBehaviour
             // TODO: First check if tiles are already occupied
             Vector3 selectedTileLocationInWorld = tileLocationInWorld;
 
-            float widthX = selectedTileLocationInWorld.x;
-            float widthY = selectedTileLocationInWorld.y;
+            float widthX;
+            float widthY;
 
             for (int width = 0; width < buildingWidth; width++) 
             {
-                widthX = selectedTileLocationInWorld.x - 0.50f * width;
-                widthY = selectedTileLocationInWorld.y + 0.25f * width;
+                /* TODO: Find a cleaner/more correct way to get correct tile.
+                 * Currently, clicking a tile returns the next tile towards NE, but subtracting
+                 * 0.50 from x and 0.25 from y fixes it.
+                 */
+                widthX = selectedTileLocationInWorld.x - 0.50f * width - 0.50f;
+                widthY = selectedTileLocationInWorld.y + 0.25f * width - 0.25f;
 
                 for (int length = 0; length < buildingLength; length++) 
                 {
@@ -144,7 +150,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     public Vector3Int GetTileLocation() 
     {
         // Get the location of the tile under the mouse
-        Vector3Int tileLocation = tilemap.WorldToCell(GetMousePosition());
+        Vector3Int tileLocation = grid.WorldToCell(GetMousePosition());
         return tileLocation;
     }
 
