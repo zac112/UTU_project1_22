@@ -45,8 +45,8 @@ public class BuildingPlacementSystem : MonoBehaviour
             int buildingWidth = selectedBuildingScript.Width;
             int buildingLength = selectedBuildingScript.Length;
 
-            Vector3 tileLocationInWorld = GetTileLocationUnderMouse();
-            Debug.Log($"tileLocationInWorld: {tileLocationInWorld}");
+            Vector3 selectedTileLocationInWorld = GetTileLocationUnderMouse();
+            Debug.Log($"tileLocationInWorld: {selectedTileLocationInWorld}");
 
             // Calculate tile coordinates that the building will occupy based on selected buildings width and selected building script length
             // Currently, moving NW will modify X by -0.50 and Y by +0.25
@@ -54,19 +54,15 @@ public class BuildingPlacementSystem : MonoBehaviour
 
             // Loop through width and height and add these tiles to tilesOccupiedByBuilding
             // TODO: First check if tiles are already occupied
-            Vector3 selectedTileLocationInWorld = tileLocationInWorld;
 
             float widthX;
             float widthY;
 
             for (int width = 0; width < buildingWidth; width++) 
             {
-                /* TODO: Find a cleaner/more correct way to get correct tile.
-                 * Currently, clicking a tile returns the next tile towards NE, but subtracting
-                 * 0.50 from x and 0.25 from y fixes it.
-                 */
-                widthX = selectedTileLocationInWorld.x - 0.50f * width - 0.50f;
-                widthY = selectedTileLocationInWorld.y + 0.25f * width - 0.25f;
+                
+                widthX = selectedTileLocationInWorld.x - 0.50f * width;
+                widthY = selectedTileLocationInWorld.y + 0.25f * width;
 
                 for (int length = 0; length < buildingLength; length++) 
                 {
@@ -118,13 +114,19 @@ public class BuildingPlacementSystem : MonoBehaviour
 
     Vector3 GetTileLocationUnderMouse()
     {
-        Vector3 mousePosition = GetMousePosition();
         Vector3Int tileLocation = GetTileLocation();
         //Debug.Log($"Tilelocation: {tileLocation}");
 
         // Get the center of the tile under the mouse?
         // Perhaps a bit redundant to first get the tile location in the tilemap and then turn it back to world position?
         Vector3 tileLocationInWorld = tilemap.GetCellCenterWorld(tileLocation);
+
+        /* TODO: Find a cleaner/more correct way to get correct tile.
+         * Currently, clicking a tile returns the next tile towards NE, but subtracting
+         * 0.50 from x and 0.25 from y fixes it.
+         */
+        tileLocationInWorld.x -= 0.50f;
+        tileLocationInWorld.y -= 0.25f;
 
         return tileLocationInWorld;
     }
