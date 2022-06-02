@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SmithyScript : MonoBehaviour, IBuildable
+public class Building : MonoBehaviour, IBuildable
 {
     [SerializeField] private int _width;
     public int Width

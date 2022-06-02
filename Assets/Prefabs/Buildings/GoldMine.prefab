@@ -93,6 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7953807960417106101}
+  - component: {fileID: 7428048697915791548}
   - component: {fileID: -5464121371805605703}
   - component: {fileID: 515510084250974613}
   m_Layer: 0
@@ -118,6 +119,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7428048697915791548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7953807960417106100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4fd2a9604af6fe4686022a0f905fcba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _width: 3
+  _length: 1
 --- !u!114 &-5464121371805605703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,8 +145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d85334044b3ab004fae503cf1f431ef4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _width: 3
-  _length: 1
   miningSpeed: 60
   storedGold: 0
 --- !u!60 &515510084250974613
