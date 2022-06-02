@@ -17,5 +17,10 @@ public class TowerScript : MonoBehaviour, IBuildable
     }
 
     private List<Vector3> _occupiedTiles;
-    public List<Vector3> OccupiedTiles { get => _occupiedTiles; set => OccupiedTiles = _occupiedTiles; }
+    public List<Vector3> OccupiedTiles { get => _occupiedTiles; }
+
+    void Awake()
+    {
+        _occupiedTiles = new List<Vector3>();
+    }
 }

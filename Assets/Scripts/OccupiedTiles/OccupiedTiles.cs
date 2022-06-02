@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OccupiedTiles : MonoBehaviour
 {
-    public List<Vector3> occupiedTiles { get; private set; }
+    private List<Vector3> occupiedTiles;
 
     private void Start()
     {

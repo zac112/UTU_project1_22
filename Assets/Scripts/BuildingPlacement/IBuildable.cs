@@ -32,13 +32,15 @@ public interface IBuildable
     /// </summary>
     [Tooltip("Length of the building in the axis facing northeast")]
     public int Length { get; set; }
-    
+
     /// <summary>
     /// List of tiles this building has occupied
     /// </summary>
     [Tooltip("List of tiles occupied by this building instance")]
-    public List<Vector3> OccupiedTiles { get; set; }
+    public List<Vector3> OccupiedTiles { get; }
 
-    
-
+    public void AddToOccupiedTiles(Vector3 tile) 
+    {
+        OccupiedTiles.Add(tile);
+    }
 }

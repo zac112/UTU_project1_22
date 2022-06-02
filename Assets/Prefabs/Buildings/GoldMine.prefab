@@ -130,8 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d85334044b3ab004fae503cf1f431ef4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _width: 2
-  _length: 2
+  _width: 3
+  _length: 1
   miningSpeed: 60
   storedGold: 0
 --- !u!60 &515510084250974613
