@@ -7,6 +7,6 @@ public class ToggleButton : MonoBehaviour{
     [SerializeField] GameObject target;
 
     public void Toggle(){
-        target.SetActive(!target.active);
+        target.SetActive(!target.activeSelf);
     }
 }
