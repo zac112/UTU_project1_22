@@ -112,7 +112,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         }
     }
 
-    Vector3 GetTileLocationUnderMouse()
+    public Vector3 GetTileLocationUnderMouse()
     {
         Vector3Int tileLocation = GetTileLocation();
         //Debug.Log($"Tilelocation: {tileLocation}");
@@ -161,14 +161,6 @@ public class BuildingPlacementSystem : MonoBehaviour
         // Get the mouse position and store it in a variable
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         return mousePosition;
-    }
-
-    private void printTilesOccupiedByBuildingList()
-    {
-        foreach (Vector3 tile in selectedBuildingOccupiedTiles)
-        {
-            Debug.Log(tile);
-        }
     }
 
     private Vector3 calculateBuildingLocation(List<Vector3> occupiedTiles) 
