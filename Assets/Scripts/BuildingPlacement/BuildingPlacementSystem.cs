@@ -28,6 +28,8 @@ public class BuildingPlacementSystem : MonoBehaviour
         tilemap = GameObject.Find("Grid(Clone)").GetComponentInChildren<Tilemap>();
         occupiedTiles = GameObject.Find("OccupiedTilesSystem").GetComponent<OccupiedTiles>();
         selectedBuildingOccupiedTiles = new List<Vector3>();
+
+        //Instantiate(cubePrefab, new Vector3(0, 0, 10), Quaternion.identity);
     }
 
     void Update()
@@ -44,13 +46,6 @@ public class BuildingPlacementSystem : MonoBehaviour
             Vector3 tileLocationInWorld = GetTileLocationUnderMouse();
             Debug.Log($"tileLocationInWorld: {tileLocationInWorld}");
 
-            /*
-            float originalZ = tileLocationInWorld.z;
-            tileLocationInWorld.z = 10;
-            Instantiate(cubePrefab, tileLocationInWorld, Quaternion.identity);
-            tileLocationInWorld.z = originalZ;
-            */
-
             // Calculate tile coordinates that the building will occupy based on selected buildings width and selected building script length
             // Currently, moving NW will modify X by -0.50 and Y by +0.25
             // Moving NE will modify X by +0.50 and Y by +0.25
@@ -58,9 +53,6 @@ public class BuildingPlacementSystem : MonoBehaviour
             // Loop through width and height and add these tiles to tilesOccupiedByBuilding
             // TODO: First check if tiles are already occupied
             Vector3 selectedTileLocationInWorld = tileLocationInWorld;
-
-            float currentX;
-            float currentY;
 
             float widthX = selectedTileLocationInWorld.x;
             float widthY = selectedTileLocationInWorld.y;
@@ -112,7 +104,6 @@ public class BuildingPlacementSystem : MonoBehaviour
             {
                 Instantiate(cubePrefab, selectedBuildingOccupiedTiles[i], Quaternion.identity);
             }
-            
 
             selectedBuildingOccupiedTiles.Clear();
 
@@ -123,11 +114,11 @@ public class BuildingPlacementSystem : MonoBehaviour
     {
         Vector3 mousePosition = GetMousePosition();
         Vector3Int tileLocation = GetTileLocation();
-        //Debug.Log("Tilelocation:" + tileLocation);
+        //Debug.Log($"Tilelocation: {tileLocation}");
 
         // Get the center of the tile under the mouse?
         // Perhaps a bit redundant to first get the tile location in the tilemap and then turn it back to world position?
-        Vector3 tileLocationInWorld = tilemap.GetCellCenterWorld(tileLocation);
+        Vector3 tileLocationInWorld = tilemap.GetCellCenterLocal(tileLocation);
 
         return tileLocationInWorld;
     }
