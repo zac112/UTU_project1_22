@@ -45,8 +45,8 @@ public class BuildingPlacementSystem : MonoBehaviour
             int buildingWidth = selectedBuildingScript.Width;
             int buildingLength = selectedBuildingScript.Length;
 
-            Vector3 selectedTileLocationInWorld = GetTileLocationUnderMouse();
-            Debug.Log($"tileLocationInWorld: {selectedTileLocationInWorld}");
+            Vector3 selectedTileLocationInWorld = GetTileLocationInWorld();
+            //Debug.Log($"tileLocationInWorld: {selectedTileLocationInWorld}");
 
             // Calculate tile coordinates that the building will occupy based on selected buildings width and selected building script length
             // Currently, moving NW will modify X by -0.50 and Y by +0.25
@@ -112,9 +112,9 @@ public class BuildingPlacementSystem : MonoBehaviour
         }
     }
 
-    public Vector3 GetTileLocationUnderMouse()
+    public Vector3 GetTileLocationInWorld()
     {
-        Vector3Int tileLocation = GetTileLocation();
+        Vector3Int tileLocation = GetTileCellLocation();
         //Debug.Log($"Tilelocation: {tileLocation}");
 
         // Get the center of the tile under the mouse?
@@ -149,7 +149,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         }
     }
 
-    public Vector3Int GetTileLocation() 
+    public Vector3Int GetTileCellLocation() 
     {
         // Get the location of the tile under the mouse
         Vector3Int tileLocation = grid.WorldToCell(GetMousePosition());
