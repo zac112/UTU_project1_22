@@ -12,6 +12,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     [Range(0,1)][SerializeField] float buildingGhostOpacity = 0.5f;
     bool buildingGhostInstantiated;
     List<Vector3> selectedBuildingOccupiedTiles;
+    List<Vector3> buildingGhostOccupiedTiles;
     Transform buildingGhost;
 
     [Range(0,2)]
@@ -32,6 +33,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         tilemap = GameObject.Find("Grid(Clone)").GetComponentInChildren<Tilemap>();
         occupiedTiles = GameObject.Find("OccupiedTilesSystem").GetComponent<OccupiedTiles>();
         selectedBuildingOccupiedTiles = new List<Vector3>();
+        buildingGhostOccupiedTiles = new List<Vector3>();
         buildingGhostInstantiated = false;
     }
 
@@ -61,10 +63,45 @@ public class BuildingPlacementSystem : MonoBehaviour
 
         if (buildingGhostInstantiated) 
         {
+            // Repeating code that exists in the if statement below
+            // Find a way to avoid repeating it.
+            IBuildable selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
+            int buildingWidth = selectedBuildingScript.Width;
+            int buildingLength = selectedBuildingScript.Length;
+
+            Vector3 selectedTileLocationInWorld = GetTileLocationInWorld();
+
+            // Calculate tile coordinates that the building will occupy based on selected buildings width and selected building script length
+            // Currently, moving NW will modify X by -0.50 and Y by +0.25
+            // Moving NE will modify X by +0.50 and Y by +0.25
+
+            // Loop through width and height and add these tiles to tilesOccupiedByBuilding
+            // TODO: First check if tiles are already occupied
+
+            float widthX;
+            float widthY;
+
+            for (int width = 0; width < buildingWidth; width++)
+            {
+                widthX = selectedTileLocationInWorld.x - 0.50f * width;
+                widthY = selectedTileLocationInWorld.y + 0.25f * width;
+
+                for (int length = 0; length < buildingLength; length++)
+                {
+                    widthX += 0.50f;
+                    widthY += 0.25f;
+
+                    buildingGhostOccupiedTiles.Add(new Vector3(widthX, widthY, buildingZ));
+                    //Debug.Log($"Vector3 added: {result}");
+                }
+            }
+
             // Move the ghost when mouse moves
-            Vector3 position = GetTileLocationInWorld();
+            Vector3 position = calculateBuildingLocation(buildingGhostOccupiedTiles);
             position.z = buildingZ;
             buildingGhost.transform.position = position;
+
+            buildingGhostOccupiedTiles.Clear();
         }
         
         if (Input.GetMouseButtonDown(buildBuildingMouseButton) && selectedBuilding != null)
