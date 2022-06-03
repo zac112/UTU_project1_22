@@ -39,12 +39,13 @@ public class BuildingPlacementSystem : MonoBehaviour
     {
         if (SelectBuilding())
         {
+            destroyBuildingGhost();
+
             // Building ghost
             // Instantiate building
             // Turn it's opacity down
             // Make it follow mouse
             // Destroy ghost when building is placed
-            buildingGhostInstantiated = false;
 
             Vector3 position = GetTileLocationInWorld();
             position.z = buildingZ;
@@ -56,11 +57,6 @@ public class BuildingPlacementSystem : MonoBehaviour
 
             Debug.Log("SelectBuilding = True");
             buildingGhostInstantiated = true;
-        }
-
-        if (!buildingGhostInstantiated && buildingGhost != null) 
-        {
-            Destroy(buildingGhost.gameObject);
         }
 
         if (buildingGhostInstantiated) 
@@ -150,7 +146,7 @@ public class BuildingPlacementSystem : MonoBehaviour
                     Instantiate(cubePrefab, selectedBuildingOccupiedTiles[i], Quaternion.identity);
                 }
 
-                buildingGhostInstantiated = false;
+                destroyBuildingGhost();
             }
             else
             {
@@ -207,6 +203,9 @@ public class BuildingPlacementSystem : MonoBehaviour
     {
         // Get the location of the tile under the mouse
         Vector3Int tileLocation = grid.WorldToCell(GetMousePosition());
+        //tileLocation.x -= 1;
+        //tileLocation.y -= 1;
+
         return tileLocation;
     }
 
@@ -232,5 +231,14 @@ public class BuildingPlacementSystem : MonoBehaviour
         yPosition /= occupiedTiles.Count;
 
         return new Vector3(xPosition, yPosition, 10);
+    }
+
+    private void destroyBuildingGhost() 
+    {
+        if (buildingGhost != null)
+        {
+            Destroy(buildingGhost.gameObject);
+            buildingGhostInstantiated = false;
+        }
     }
 }
