@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameEvents : MonoBehaviour
 {
@@ -36,17 +37,32 @@ public class GameEvents : MonoBehaviour
     public event Action<GameOverType> GameOver;
     public void OnGameOver(GameOverType t)
     {
+        SceneManager.LoadScene("GameOverScene");
+        // GameObject EndCanvas = GameObject.Find("EndStatsCanvas");
+        TextMesh EnemiesKilled = GameObject.Find("EnemiesKilled").GetComponent<TextMesh>();
+        EnemiesKilled.text = GameStats.EnemiesKilled.ToString();
+        TextMesh BuildingsDestroyed = GameObject.Find("BuildingsDestroyed").GetComponent<TextMesh>();
+        BuildingsDestroyed.text = GameStats.BuildingsDestroyed.ToString();
+        TextMesh EndGold = GameObject.Find("EndGold").GetComponent<TextMesh>();
+        EndGold.text = GameStats.Gold.ToString();
+        TextMesh OwnBuildings = GameObject.Find("OwndBuildings").GetComponent<TextMesh>();
+        OwnBuildings.text = GameStats.FriendlyBuildingsCount.ToString();
+        TextMesh GameDuration = GameObject.Find("GameDuration").GetComponent<TextMesh>();
+        GameDuration.text = GameStats.GameDuration.ToString();
+
+        TextMesh GameOverTypeText = GameObject.Find("GameOverTypeText").GetComponent<TextMesh>();
+
         if (t == GameOverType.Victory)
         {
-
+            GameOverTypeText.text = "Victory!";
         }
         if (t == GameOverType.PlayerDied)
         {
-
+            GameOverTypeText.text = "You died!";
         }
         if (t == GameOverType.OwnVillagesDestroyed)
         {
-
+            GameOverTypeText.text = "Own villages destroyed!";
         }
     }
 

@@ -18,7 +18,7 @@ public class PlayerStats : MonoBehaviour
         maxHealth = startingHealth;
         gold = startingGold;
         GameStats.Gold = startingGold;
-        events = gameObject.GetComponent<GameEvents>() as GameEvents;
+        events = gameObject.GetComponent<GameEvents>();
 
         UIManager.current.UpdateGoldText(gold);
         UIManager.current.UpdateHealthText(health);
@@ -50,7 +50,7 @@ public class PlayerStats : MonoBehaviour
 
             if (events != null)  // if clause to prevent bugs for cases where event system is not yet plugged into the scene
             {
-                events.OnGameOver(true);  // launch game over screen through event system. maybe later change input parameter to something better, like the type of gameover
+                events.OnGameOver(GameOverType.PlayerDied);  // launch game over screen through event system
             }
 
         }

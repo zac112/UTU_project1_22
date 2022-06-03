@@ -18,11 +18,11 @@ public static class GameStats
     /// How many buildings built during the game
     /// </summary>
     public static int BuildingsBuilt { get; set; }
-    
+
     /// <summary>
     /// How much gold
     /// </summary>
-    public static int Gold { get; set; }
+    public static int Gold;
 
     /// <summary>
     /// How many buildings destroyed during the game
@@ -38,6 +38,12 @@ public static class GameStats
     /// How many own villages in the game
     /// </summary>
     public static int FriendlyVillagesCount { get; set; }
+
+    /// <summary>
+    /// How many own buildings in the game
+    /// </summary>
+    public static int FriendlyBuildingsCount { get; set; }
+
 
     /// <summary>
     /// Game duration in seconds
