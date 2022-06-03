@@ -30,6 +30,16 @@ public static class GameStats
     public static int BuildingsDestroyed { get; set; }
 
     /// <summary>
+    /// How many enemy villages in the game
+    /// </summary>
+    public static int EnemyVillagesCount { get; set; }
+
+    /// <summary>
+    /// How many own villages in the game
+    /// </summary>
+    public static int FriendlyVillagesCount { get; set; }
+
+    /// <summary>
     /// Game duration in seconds
     /// </summary>
     public static float GameDuration { get; set; }

@@ -33,10 +33,21 @@ public class GameEvents : MonoBehaviour
         MouseMoved?.Invoke(position, delta);
     }
 
-    public event Action<bool> GameOver;
-    public void OnGameOver(bool over)
+    public event Action<GameOverType> GameOver;
+    public void OnGameOver(GameOverType t)
     {
-        // launch end scene
+        if (t == GameOverType.Victory)
+        {
+
+        }
+        if (t == GameOverType.PlayerDied)
+        {
+
+        }
+        if (t == GameOverType.OwnVillagesDestroyed)
+        {
+
+        }
     }
 
 
