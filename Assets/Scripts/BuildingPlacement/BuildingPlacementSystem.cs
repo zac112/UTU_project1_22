@@ -20,6 +20,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     [SerializeField] KeyCode buildingDeselect;
     [SerializeField] KeyCode building1Hotkey;
     [SerializeField] KeyCode building2Hotkey;
+    [SerializeField] KeyCode rotationHotkey = KeyCode.R;
 
     Grid grid;
     Tilemap tilemap;
@@ -57,7 +58,6 @@ public class BuildingPlacementSystem : MonoBehaviour
             SpriteRenderer spriteComponent = buildingGhost.GetComponentInChildren<SpriteRenderer>();
             spriteComponent.color = new Color(spriteComponent.color.r, spriteComponent.color.g, spriteComponent.color.b, buildingGhostOpacity);
 
-            Debug.Log("SelectBuilding = True");
             buildingGhostInstantiated = true;
         }
 
@@ -102,6 +102,15 @@ public class BuildingPlacementSystem : MonoBehaviour
             buildingGhost.transform.position = position;
 
             buildingGhostOccupiedTiles.Clear();
+        }
+
+        if (Input.GetKeyDown(rotationHotkey) && selectedBuilding != null) 
+        {
+            IBuildable selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
+            if (selectedBuildingScript.Rotations.Count > 0) 
+            { 
+                //selectedBuilding.
+            }
         }
         
         if (Input.GetMouseButtonDown(buildBuildingMouseButton) && selectedBuilding != null)

@@ -28,16 +28,15 @@ public class Building : MonoBehaviour, IBuildable
     void Awake()
     {
         _occupiedTiles = new List<Vector3>();
+        _rotations = new Dictionary<Sprite, bool>();
     }
 
     void Start() 
     {
-        /*
         foreach (var kvp in rotationList)
         {
             Rotations[kvp.sprite] = kvp.rotated;
-        }
-        */
+        }       
     }
 }
 
