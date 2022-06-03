@@ -40,13 +40,18 @@ public class BuildingPlacementSystem : MonoBehaviour
 
         if (Input.GetMouseButtonDown(buildBuildingMouseButton) && selectedBuilding != null) 
         {
+            // Empty the list of tiles
+            selectedBuildingOccupiedTiles.Clear();
+
+            // Used to check if building placement should be aborted
+            bool buildingPlacementAllowed = true;
+
             // Get selected buildings width and height
             IBuildable selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
             int buildingWidth = selectedBuildingScript.Width;
             int buildingLength = selectedBuildingScript.Length;
 
             Vector3 selectedTileLocationInWorld = GetTileLocationInWorld();
-            //Debug.Log($"tileLocationInWorld: {selectedTileLocationInWorld}");
 
             // Calculate tile coordinates that the building will occupy based on selected buildings width and selected building script length
             // Currently, moving NW will modify X by -0.50 and Y by +0.25
@@ -59,8 +64,7 @@ public class BuildingPlacementSystem : MonoBehaviour
             float widthY;
 
             for (int width = 0; width < buildingWidth; width++) 
-            {
-                
+            {      
                 widthX = selectedTileLocationInWorld.x - 0.50f * width;
                 widthY = selectedTileLocationInWorld.y + 0.25f * width;
 
@@ -75,39 +79,53 @@ public class BuildingPlacementSystem : MonoBehaviour
                 }
             }
 
-            // Add tiles to occupiedTiles
-            occupiedTiles.OccupyTiles(selectedBuildingOccupiedTiles);
-
-            // Instantiate building on tileLocation
-            // TODO: Fix instantiating building on the center point of the buildings occupied tiles
-            Transform buildingInstance = Instantiate(selectedBuilding, calculateBuildingLocation(selectedBuildingOccupiedTiles), Quaternion.identity);
-            
-            // Debug.Log(buildingInstance);
-
-            IBuildable buildingInstanceScript = buildingInstance.GetComponent<IBuildable>();
-            // Debug.Log(buildingInstanceScript.OccupiedTiles);
-
-            // Add occupiedTiles to the building instance
+            // Check for each tile, if tile is in occupied tiles list
             for (int i = 0; i < selectedBuildingOccupiedTiles.Count; i++) 
             {
-                buildingInstanceScript.AddToOccupiedTiles(selectedBuildingOccupiedTiles[i]);
-                //Debug.Log(selectedBuildingOccupiedTiles[i]);
+                if (occupiedTiles.IsTileOccupied(selectedBuildingOccupiedTiles[i])) 
+                {
+                    buildingPlacementAllowed = false;
+                }
             }
 
-            //Debug.Log($"Average: {calculateBuildingLocation(selectedBuildingOccupiedTiles)}");
+            if (buildingPlacementAllowed)
+            {
+                // Add tiles to occupiedTiles
+                occupiedTiles.OccupyTiles(selectedBuildingOccupiedTiles);
 
-            // Debug.Log(buildingInstanceScript.OccupiedTiles.Count);
+                // Instantiate building on tileLocation
+                Transform buildingInstance = Instantiate(selectedBuilding, calculateBuildingLocation(selectedBuildingOccupiedTiles), Quaternion.identity);
 
-            GameStats.BuildingsBuilt++;  // increase GameStats record of finished buildings
+                IBuildable buildingInstanceScript = buildingInstance.GetComponent<IBuildable>();
+
+                // Add occupiedTiles to the building instance
+                for (int i = 0; i < selectedBuildingOccupiedTiles.Count; i++)
+                {
+                    buildingInstanceScript.AddToOccupiedTiles(selectedBuildingOccupiedTiles[i]);
+                    //Debug.Log(selectedBuildingOccupiedTiles[i]);
+                }
+
+                //Debug.Log($"Average: {calculateBuildingLocation(selectedBuildingOccupiedTiles)}");
+
+                // Debug.Log(buildingInstanceScript.OccupiedTiles.Count);
+
+                GameStats.BuildingsBuilt++;  // increase GameStats record of finished buildings
+
+
+                // Testing which tiles are occupied by instancing a circle sprite on them
+                for (int i = 0; i < selectedBuildingOccupiedTiles.Count; i++)
+                {
+                    Instantiate(cubePrefab, selectedBuildingOccupiedTiles[i], Quaternion.identity);
+                }
+            }
+            else 
+            {
+                Debug.Log("A tile was occupied. Aborting placing building.");
+            }
+
+           
 
             
-            // Testing which tiles are occupied by instancing a circle sprite on them
-            for (int i = 0; i < selectedBuildingOccupiedTiles.Count; i++) 
-            {
-                Instantiate(cubePrefab, selectedBuildingOccupiedTiles[i], Quaternion.identity);
-            }
-
-            selectedBuildingOccupiedTiles.Clear();
 
         }
     }
