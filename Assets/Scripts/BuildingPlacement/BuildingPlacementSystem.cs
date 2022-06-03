@@ -122,11 +122,6 @@ public class BuildingPlacementSystem : MonoBehaviour
             {
                 Debug.Log("A tile was occupied. Aborting placing building.");
             }
-
-           
-
-            
-
         }
     }
 

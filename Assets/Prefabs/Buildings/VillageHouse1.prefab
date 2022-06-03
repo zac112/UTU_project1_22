@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _width: 3
-  _length: 4
+  _length: 3
 --- !u!60 &4421284640084981012
 PolygonCollider2D:
   m_ObjectHideFlags: 0
