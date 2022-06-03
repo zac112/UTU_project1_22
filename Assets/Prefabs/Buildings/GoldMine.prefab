@@ -133,6 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _width: 3
   _length: 1
+  rotationList: []
 --- !u!114 &-5464121371805605703
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -48,6 +48,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _width: 3
   _length: 3
+  rotationList:
+  - sprite: {fileID: 21300000, guid: 4c532823a231ceb4390685935ca44b0a, type: 3}
+    rotated: 1
+  - sprite: {fileID: 21300000, guid: f039494f617c6534c8c7bc7f62f0c59f, type: 3}
+    rotated: 0
+  - sprite: {fileID: 21300000, guid: 101b1b9f251cdf34db5e20ba327d1a39, type: 3}
+    rotated: 1
 --- !u!60 &4421284640084981012
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,8 +23,27 @@ public class Building : MonoBehaviour, IBuildable
     private Dictionary<Sprite, bool> _rotations;
     public Dictionary<Sprite, bool> Rotations { get => _rotations; }
 
+    public List<KeyValuePair> rotationList = new List<KeyValuePair>();
+
     void Awake()
     {
         _occupiedTiles = new List<Vector3>();
     }
+
+    void Start() 
+    {
+        /*
+        foreach (var kvp in rotationList)
+        {
+            Rotations[kvp.sprite] = kvp.rotated;
+        }
+        */
+    }
+}
+
+[Serializable]
+public class KeyValuePair
+{
+    public Sprite sprite;
+    public bool rotated;
 }
