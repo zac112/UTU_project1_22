@@ -10,7 +10,9 @@ public class BuildingPlacementSystem : MonoBehaviour
     [SerializeField] List<Transform> buildableBuildings;
     [SerializeField] float buildingZ = 10;
     [Range(0,1)][SerializeField] float buildingGhostOpacity = 0.5f;
+    bool buildingGhostInstantiated;
     List<Vector3> selectedBuildingOccupiedTiles;
+    Transform buildingGhost;
 
     [Range(0,2)]
     [SerializeField] int buildBuildingMouseButton = 1;
@@ -30,6 +32,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         tilemap = GameObject.Find("Grid(Clone)").GetComponentInChildren<Tilemap>();
         occupiedTiles = GameObject.Find("OccupiedTilesSystem").GetComponent<OccupiedTiles>();
         selectedBuildingOccupiedTiles = new List<Vector3>();
+        buildingGhostInstantiated = false;
     }
 
     void Update()
@@ -41,16 +44,31 @@ public class BuildingPlacementSystem : MonoBehaviour
             // Turn it's opacity down
             // Make it follow mouse
             // Destroy ghost when building is placed
+            buildingGhostInstantiated = false;
 
             Vector3 position = GetTileLocationInWorld();
             position.z = buildingZ;
-            Transform buildingGhost = Instantiate(selectedBuilding, position, Quaternion.identity);
+            buildingGhost = Instantiate(selectedBuilding, position, Quaternion.identity);
 
             // Turn opacity down
             SpriteRenderer spriteComponent = buildingGhost.GetComponentInChildren<SpriteRenderer>();
             spriteComponent.color = new Color(spriteComponent.color.r, spriteComponent.color.g, spriteComponent.color.b, buildingGhostOpacity);
 
             Debug.Log("SelectBuilding = True");
+            buildingGhostInstantiated = true;
+        }
+
+        if (!buildingGhostInstantiated && buildingGhost != null) 
+        {
+            Destroy(buildingGhost.gameObject);
+        }
+
+        if (buildingGhostInstantiated) 
+        {
+            // Move the ghost when mouse moves
+            Vector3 position = GetTileLocationInWorld();
+            position.z = buildingZ;
+            buildingGhost.transform.position = position;
         }
         
         if (Input.GetMouseButtonDown(buildBuildingMouseButton) && selectedBuilding != null)
@@ -131,6 +149,8 @@ public class BuildingPlacementSystem : MonoBehaviour
                 {
                     Instantiate(cubePrefab, selectedBuildingOccupiedTiles[i], Quaternion.identity);
                 }
+
+                buildingGhostInstantiated = false;
             }
             else
             {
