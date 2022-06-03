@@ -9,8 +9,8 @@ public class BuildingPlacementSystem : MonoBehaviour
     [SerializeField] Transform cubePrefab;
     [SerializeField] List<Transform> buildableBuildings;
     [SerializeField] float buildingZ = 10;
+    [Range(0,1)][SerializeField] float buildingGhostOpacity = 0.5f;
     List<Vector3> selectedBuildingOccupiedTiles;
-
 
     [Range(0,2)]
     [SerializeField] int buildBuildingMouseButton = 1;
@@ -30,15 +30,30 @@ public class BuildingPlacementSystem : MonoBehaviour
         tilemap = GameObject.Find("Grid(Clone)").GetComponentInChildren<Tilemap>();
         occupiedTiles = GameObject.Find("OccupiedTilesSystem").GetComponent<OccupiedTiles>();
         selectedBuildingOccupiedTiles = new List<Vector3>();
-
-        //Instantiate(cubePrefab, new Vector3(0, 0, 10), Quaternion.identity);
     }
 
     void Update()
     {
-        SelectBuilding();
+        if (SelectBuilding())
+        {
+            // Building ghost
+            // Instantiate building
+            // Turn it's opacity down
+            // Make it follow mouse
+            // Destroy ghost when building is placed
 
-        if (Input.GetMouseButtonDown(buildBuildingMouseButton) && selectedBuilding != null) 
+            Vector3 position = GetTileLocationInWorld();
+            position.z = buildingZ;
+            Transform buildingGhost = Instantiate(selectedBuilding, position, Quaternion.identity);
+
+            // Turn opacity down
+            SpriteRenderer spriteComponent = buildingGhost.GetComponentInChildren<SpriteRenderer>();
+            spriteComponent.color = new Color(spriteComponent.color.r, spriteComponent.color.g, spriteComponent.color.b, buildingGhostOpacity);
+
+            Debug.Log("SelectBuilding = True");
+        }
+        
+        if (Input.GetMouseButtonDown(buildBuildingMouseButton) && selectedBuilding != null)
         {
             // Empty the list of tiles
             selectedBuildingOccupiedTiles.Clear();
@@ -63,26 +78,25 @@ public class BuildingPlacementSystem : MonoBehaviour
             float widthX;
             float widthY;
 
-            for (int width = 0; width < buildingWidth; width++) 
-            {      
+            for (int width = 0; width < buildingWidth; width++)
+            {
                 widthX = selectedTileLocationInWorld.x - 0.50f * width;
                 widthY = selectedTileLocationInWorld.y + 0.25f * width;
 
-                for (int length = 0; length < buildingLength; length++) 
+                for (int length = 0; length < buildingLength; length++)
                 {
                     widthX += 0.50f;
                     widthY += 0.25f;
 
-                    Vector3 result = new Vector3(widthX, widthY, buildingZ);
-                    selectedBuildingOccupiedTiles.Add(result);
-                    Debug.Log($"Vector3 added: {result}");
+                    selectedBuildingOccupiedTiles.Add(new Vector3(widthX, widthY, buildingZ));
+                    //Debug.Log($"Vector3 added: {result}");
                 }
             }
 
             // Check for each tile, if tile is in occupied tiles list
-            for (int i = 0; i < selectedBuildingOccupiedTiles.Count; i++) 
+            for (int i = 0; i < selectedBuildingOccupiedTiles.Count; i++)
             {
-                if (occupiedTiles.IsTileOccupied(selectedBuildingOccupiedTiles[i])) 
+                if (occupiedTiles.IsTileOccupied(selectedBuildingOccupiedTiles[i]))
                 {
                     buildingPlacementAllowed = false;
                 }
@@ -118,11 +132,13 @@ public class BuildingPlacementSystem : MonoBehaviour
                     Instantiate(cubePrefab, selectedBuildingOccupiedTiles[i], Quaternion.identity);
                 }
             }
-            else 
+            else
             {
                 Debug.Log("A tile was occupied. Aborting placing building.");
             }
         }
+
+        
     }
 
     public Vector3 GetTileLocationInWorld()
@@ -144,22 +160,27 @@ public class BuildingPlacementSystem : MonoBehaviour
         return tileLocationInWorld;
     }
 
-    void SelectBuilding() 
+    bool SelectBuilding() 
     {
         if (Input.GetKeyDown(buildingDeselect))
         {
             selectedBuilding = null;
+            return false;
         }
 
         else if (Input.GetKeyDown(building1Hotkey))
         {
             selectedBuilding = buildableBuildings[0];
+            return true;
         }
 
         else if (Input.GetKeyDown(building2Hotkey))
         {
             selectedBuilding = buildableBuildings[1];
+            return true;
         }
+        return false;
+        
     }
 
     public Vector3Int GetTileCellLocation() 
