@@ -23,12 +23,13 @@ public class Building : MonoBehaviour, IBuildable
     private Dictionary<Sprite, bool> _rotations;
     public Dictionary<Sprite, bool> Rotations { get => _rotations; }
 
-    public List<KeyValuePair> rotationList = new List<KeyValuePair>();
+    public List<KeyValuePair> rotationList;
 
     void Awake()
     {
         _occupiedTiles = new List<Vector3>();
         _rotations = new Dictionary<Sprite, bool>();
+        rotationList = new List<KeyValuePair>();
     }
 
     void Start() 
@@ -36,7 +37,7 @@ public class Building : MonoBehaviour, IBuildable
         foreach (var kvp in rotationList)
         {
             Rotations[kvp.sprite] = kvp.rotated;
-        }       
+        }
     }
 }
 

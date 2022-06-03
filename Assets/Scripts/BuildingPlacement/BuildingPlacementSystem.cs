@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+
 
 public class BuildingPlacementSystem : MonoBehaviour
 {
@@ -104,14 +106,25 @@ public class BuildingPlacementSystem : MonoBehaviour
             buildingGhostOccupiedTiles.Clear();
         }
 
+        /*
         if (Input.GetKeyDown(rotationHotkey) && selectedBuilding != null) 
         {
-            IBuildable selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
-            if (selectedBuildingScript.Rotations.Count > 0) 
-            { 
-                //selectedBuilding.
+            Building selectedBuildingScript = selectedBuilding.GetComponent<Building>();
+
+            int spriteIndex = 0;
+            Debug.Log(selectedBuildingScript);
+            Debug.Log(selectedBuildingScript.Rotations.Keys);
+            if (selectedBuildingScript.Rotations.Keys.Count > 0)
+            {
+                Debug.Log(selectedBuildingScript.Rotations.ElementAt(spriteIndex));
+
+            }
+            else 
+            {
+                Debug.Log("Rotations list was empty");
             }
         }
+        */
         
         if (Input.GetMouseButtonDown(buildBuildingMouseButton) && selectedBuilding != null)
         {
