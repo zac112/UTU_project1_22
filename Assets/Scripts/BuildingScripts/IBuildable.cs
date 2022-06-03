@@ -39,6 +39,15 @@ public interface IBuildable
     [Tooltip("List of tiles occupied by this building instance")]
     public List<Vector3> OccupiedTiles { get; }
 
+    /// <summary>
+    /// Sprites used when building is rotated and a bool to inform that width and length have to be exchanged with eachother.
+    /// </summary>
+    public Dictionary<Sprite, bool> Rotations { get; }
+
+    /// <summary>
+    /// Adds tile to this buildings list of occupied tiles
+    /// </summary>
+    /// <param name="tile"></param>
     public void AddToOccupiedTiles(Vector3 tile) 
     {
         OccupiedTiles.Add(tile);

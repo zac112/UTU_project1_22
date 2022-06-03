@@ -18,6 +18,10 @@ public class Building : MonoBehaviour, IBuildable
 
     private List<Vector3> _occupiedTiles;
     public List<Vector3> OccupiedTiles { get => _occupiedTiles; }
+
+    private Dictionary<Sprite, bool> _rotations;
+    public Dictionary<Sprite, bool> Rotations { get => _rotations; }
+
     void Awake()
     {
         _occupiedTiles = new List<Vector3>();
