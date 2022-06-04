@@ -129,36 +129,11 @@ public class BuildingPlacementSystem : MonoBehaviour
 
                 // Not a part of the repeated code
                 selectedBuilding = nextRotation;
-
-                Debug.Log("Building rotated");
             }
             else 
             {
-                Debug.Log("Next rotation was null");
+                Debug.Log("Next rotation was null (Next rotation has not been set on the prefab)");
             }
-
-
-            /*
-            int spriteIndex = 0;
-            Debug.Log(selectedBuildingScript);
-            if (selectedBuildingScript.Rotations == null)
-            {
-                Debug.Log("Rotations is null");
-            }
-            else 
-            {
-                Debug.Log($"Key count: {selectedBuildingScript.Rotations.Keys.Count}");
-                Debug.Log($"Values count: {selectedBuildingScript.Rotations.Values.Count}");
-                if (selectedBuildingScript.Rotations.Count > 0)
-                {
-                    Debug.Log(selectedBuildingScript.Rotations.ElementAt(spriteIndex));
-                }
-                else
-                {
-                    Debug.Log("Rotations list is empty");
-                }
-            }
-            */
         }
         
         
