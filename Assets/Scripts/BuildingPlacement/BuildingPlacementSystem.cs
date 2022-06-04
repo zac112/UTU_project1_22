@@ -109,6 +109,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         
         if (Input.GetKeyDown(rotationHotkey) && selectedBuilding != null) 
         {
+            /*
             IBuildable selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
 
             int spriteIndex = 0;
@@ -129,7 +130,8 @@ public class BuildingPlacementSystem : MonoBehaviour
                 {
                     Debug.Log("Rotations list is empty");
                 }
-            }  
+            }
+            */
         }
         
         

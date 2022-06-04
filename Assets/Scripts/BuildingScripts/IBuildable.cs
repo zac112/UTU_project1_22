@@ -42,7 +42,7 @@ public interface IBuildable
     /// <summary>
     /// Sprites used when building is rotated and a bool to inform that width and length have to be exchanged with eachother.
     /// </summary>
-    public Dictionary<Sprite, bool> Rotations { get; }
+    //public Dictionary<Sprite, bool> Rotations { get; }
 
     /// <summary>
     /// Adds tile to this buildings list of occupied tiles
@@ -53,8 +53,10 @@ public interface IBuildable
         OccupiedTiles.Add(tile);
     }
 
+    /*
     public void AddToRotationsDict(Sprite key, bool isRotated)
     {
         Rotations.Add(key, isRotated);
     }
+    */
 }
