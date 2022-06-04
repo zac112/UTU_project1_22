@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6609971668409792004}
   - component: {fileID: 6609971668409792005}
   - component: {fileID: 6609971668409792006}
-  - component: {fileID: 4441293563575377091}
   - component: {fileID: 6609971668409792008}
   - component: {fileID: 6609971668409792009}
+  - component: {fileID: 788061082919026070}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -109,7 +109,35 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &4441293563575377091
+--- !u!114 &6609971668409792008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6609971668409792002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42a60284a7f140c4a891a51862a22f9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingHealth: 90
+  startingGold: 100
+  UIManager: {fileID: 0}
+--- !u!114 &6609971668409792009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6609971668409792002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bd80523ebc431242a68d96b8054ff7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+--- !u!61 &788061082919026070
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,30 +163,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &6609971668409792008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6609971668409792002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42a60284a7f140c4a891a51862a22f9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingHealth: 90
-  startingGold: 100
---- !u!114 &6609971668409792009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6609971668409792002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bd80523ebc431242a68d96b8054ff7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3

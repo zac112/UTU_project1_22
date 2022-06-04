@@ -79,7 +79,8 @@ public class MapGenerator : MonoBehaviour
 
     public void Start()
     {
-        tilemap = Instantiate(grid,Vector3.zero,Quaternion.identity).GetComponentInChildren<Tilemap>();
+        // tilemap = Instantiate(grid,Vector3.zero,Quaternion.identity).GetComponentInChildren<Tilemap>();
+        // tilemap.AddComponent<TilemapCollider2D>();
         voronoi = GetComponent<VoronoiDiagram>();
 
         tiles = new Dictionary<VoronoiDiagram.TileType, Tile>();
@@ -88,5 +89,10 @@ public class MapGenerator : MonoBehaviour
         tiles.Add(VoronoiDiagram.TileType.Grass, grass);
 
         Generate(Width, Height, Offset);        
+    }
+
+    private void Update() {
+        
+        tilemap.GetComponent<TilemapCollider2D>().ProcessTilemapChanges();
     }
 }
