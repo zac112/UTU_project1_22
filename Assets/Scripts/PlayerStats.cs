@@ -6,6 +6,7 @@ public class PlayerStats : MonoBehaviour
 {
     [SerializeField] int startingHealth;
     [SerializeField] int startingGold;
+    [SerializeField] UIManager UIManager;
 
     int maxHealth;
     int health;
