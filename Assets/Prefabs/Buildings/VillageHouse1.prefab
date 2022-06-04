@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _width: 3
-  _length: 3
+  _length: 4
   _isRotated: 0
   _nextRotation: {fileID: 9113664018743696094, guid: 91da41f5a38724748bd567ca8f44502f, type: 3}
 --- !u!60 &4421284640084981012

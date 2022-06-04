@@ -109,9 +109,36 @@ public class BuildingPlacementSystem : MonoBehaviour
         
         if (Input.GetKeyDown(rotationHotkey) && selectedBuilding != null) 
         {
-            /*
             IBuildable selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
 
+            Transform nextRotation = selectedBuildingScript.NextRotation;
+            if (nextRotation != null)
+            {
+                // TODO: Same code as in instantiating ghost, except that we are instantiating nextRotation. Make it into a method.
+                destroyBuildingGhost();
+
+                Vector3 position = GetTileLocationInWorld();
+                position.z = buildingZ;
+                buildingGhost = Instantiate(nextRotation, position, Quaternion.identity);
+
+                // Turn opacity down
+                SpriteRenderer spriteComponent = buildingGhost.GetComponentInChildren<SpriteRenderer>();
+                spriteComponent.color = new Color(spriteComponent.color.r, spriteComponent.color.g, spriteComponent.color.b, buildingGhostOpacity);
+
+                buildingGhostInstantiated = true;
+
+                // Not a part of the repeated code
+                selectedBuilding = nextRotation;
+
+                Debug.Log("Building rotated");
+            }
+            else 
+            {
+                Debug.Log("Next rotation was null");
+            }
+
+
+            /*
             int spriteIndex = 0;
             Debug.Log(selectedBuildingScript);
             if (selectedBuildingScript.Rotations == null)
@@ -148,6 +175,14 @@ public class BuildingPlacementSystem : MonoBehaviour
             int buildingWidth = selectedBuildingScript.Width;
             int buildingLength = selectedBuildingScript.Length;
 
+            // If building is rotated, switch length and width with eachother
+            if (selectedBuildingScript.IsRotated)
+            {
+                int temp = buildingWidth;
+                buildingWidth = buildingLength;
+                buildingLength = temp;
+            }
+
             Vector3 selectedTileLocationInWorld = GetTileLocationInWorld();
 
             // Calculate tile coordinates that the building will occupy based on selected buildings width and selected building script length
@@ -155,8 +190,6 @@ public class BuildingPlacementSystem : MonoBehaviour
             // Moving NE will modify X by +0.50 and Y by +0.25
 
             // Loop through width and height and add these tiles to tilesOccupiedByBuilding
-            // TODO: First check if tiles are already occupied
-
             float widthX;
             float widthY;
 
