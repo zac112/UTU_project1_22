@@ -34,10 +34,16 @@ public interface IBuildable
     public int Length { get; set; }
 
     /// <summary>
+    /// True if building is rotated in the opposite direction of the original building
+    /// </summary>
+    public bool IsRotated { get; set; }
+
+    /// <summary>
     /// List of tiles this building has occupied
     /// </summary>
     [Tooltip("List of tiles occupied by this building instance")]
     public List<Vector3> OccupiedTiles { get; }
+
 
     /// <summary>
     /// Sprites used when building is rotated and a bool to inform that width and length have to be exchanged with eachother.

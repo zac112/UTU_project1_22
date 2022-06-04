@@ -17,6 +17,10 @@ public class Building : MonoBehaviour, IBuildable
         get => _length; set => Length = _length;
     }
 
+    [SerializeField] private bool _isRotated;
+
+    public bool IsRotated { get => _isRotated; set => IsRotated = _isRotated; }
+
     private List<Vector3> _occupiedTiles;
     public List<Vector3> OccupiedTiles { get => _occupiedTiles; }
 
