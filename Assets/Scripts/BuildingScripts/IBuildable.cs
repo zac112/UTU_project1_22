@@ -52,4 +52,9 @@ public interface IBuildable
     {
         OccupiedTiles.Add(tile);
     }
+
+    public void AddToRotationsDict(Sprite key, bool isRotated)
+    {
+        Rotations.Add(key, isRotated);
+    }
 }

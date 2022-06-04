@@ -20,23 +20,26 @@ public class Building : MonoBehaviour, IBuildable
     private List<Vector3> _occupiedTiles;
     public List<Vector3> OccupiedTiles { get => _occupiedTiles; }
 
-    private Dictionary<Sprite, bool> _rotations;
+    private Dictionary<Sprite, bool> _rotations = new Dictionary<Sprite, bool>();
     public Dictionary<Sprite, bool> Rotations { get => _rotations; }
 
-    public List<KeyValuePair> rotationList;
+    // Serialized so initializing a new list would overwrite?
+    [SerializeField] private List<KeyValuePair> rotationList;
 
     void Awake()
     {
         _occupiedTiles = new List<Vector3>();
-        _rotations = new Dictionary<Sprite, bool>();
-        rotationList = new List<KeyValuePair>();
+        // _rotations = new Dictionary<Sprite, bool>();
+        iBuildable = this.GetComponent<IBuildable>();
     }
 
     void Start() 
     {
         foreach (var kvp in rotationList)
         {
-            Rotations[kvp.sprite] = kvp.rotated;
+            //Debug.Log($"Sprite: {kvp.Sprite}");
+            //Debug.Log($"IsRotated: {kvp.IsRotated}");
+            _rotations.Add(kvp.Sprite, kvp.IsRotated);
         }
     }
 }
@@ -44,6 +47,6 @@ public class Building : MonoBehaviour, IBuildable
 [Serializable]
 public class KeyValuePair
 {
-    public Sprite sprite;
-    public bool rotated;
+    public Sprite Sprite;
+    public bool IsRotated;
 }

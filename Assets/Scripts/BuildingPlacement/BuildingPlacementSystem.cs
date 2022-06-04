@@ -106,25 +106,32 @@ public class BuildingPlacementSystem : MonoBehaviour
             buildingGhostOccupiedTiles.Clear();
         }
 
-        /*
+        
         if (Input.GetKeyDown(rotationHotkey) && selectedBuilding != null) 
         {
-            Building selectedBuildingScript = selectedBuilding.GetComponent<Building>();
+            IBuildable selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
 
             int spriteIndex = 0;
             Debug.Log(selectedBuildingScript);
-            Debug.Log(selectedBuildingScript.Rotations.Keys);
-            if (selectedBuildingScript.Rotations.Keys.Count > 0)
+            if (selectedBuildingScript.Rotations == null)
             {
-                Debug.Log(selectedBuildingScript.Rotations.ElementAt(spriteIndex));
-
+                Debug.Log("Rotations is null");
             }
             else 
             {
-                Debug.Log("Rotations list was empty");
-            }
+                Debug.Log($"Key count: {selectedBuildingScript.Rotations.Keys.Count}");
+                Debug.Log($"Values count: {selectedBuildingScript.Rotations.Values.Count}");
+                if (selectedBuildingScript.Rotations.Count > 0)
+                {
+                    Debug.Log(selectedBuildingScript.Rotations.ElementAt(spriteIndex));
+                }
+                else
+                {
+                    Debug.Log("Rotations list is empty");
+                }
+            }  
         }
-        */
+        
         
         if (Input.GetMouseButtonDown(buildBuildingMouseButton) && selectedBuilding != null)
         {
