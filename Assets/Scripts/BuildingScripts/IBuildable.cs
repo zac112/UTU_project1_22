@@ -38,6 +38,8 @@ public interface IBuildable
     /// </summary>
     public bool IsRotated { get; set; }
 
+    public Transform NextRotation { get; set; }
+
     /// <summary>
     /// List of tiles this building has occupied
     /// </summary>
