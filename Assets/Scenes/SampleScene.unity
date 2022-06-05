@@ -28191,6 +28191,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuildingButton
       objectReference: {fileID: 0}
+    - target: {fileID: 9070188277807903730, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9070188277807903730, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9070188277807903730, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11500000, guid: ff2ecb43c7823f54dbbfb55b272f5630, type: 3}
+    - target: {fileID: 9070188277807903730, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9070188277807903730, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_name
+      objectReference: {fileID: 0}
+    - target: {fileID: 9070188277807903730, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9070188277807903730, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
 --- !u!224 &1012520260 stripped

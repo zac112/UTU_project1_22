@@ -337,4 +337,9 @@ public class BuildingPlacementSystem : MonoBehaviour
             Debug.Log("A tile was occupied. Aborting placing building.");
         }
     }
+
+    public void PrintHello() 
+    {
+        Debug.Log("Hello");
+    }
 }
