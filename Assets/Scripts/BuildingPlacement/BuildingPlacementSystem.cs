@@ -331,8 +331,6 @@ public class BuildingPlacementSystem : MonoBehaviour
             {
                 Instantiate(cubePrefab, selectedBuildingOccupiedTiles[i], Quaternion.identity);
             }
-
-            destroyBuildingGhost();
         }
         else
         {
