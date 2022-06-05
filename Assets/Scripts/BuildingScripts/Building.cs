@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class Building : MonoBehaviour, IBuildable
 {
+
+    public int hp; // building hit points, determines when it gets destroyed
+
+
     [SerializeField] private int _width;
     public int Width
     {

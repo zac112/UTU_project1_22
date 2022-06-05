@@ -13,6 +13,8 @@ public class PlayerStats : MonoBehaviour
     int gold;
 
     GameEvents events;  // game's event system
+    List<Village> FriendlyVillages;
+    Village CurrentVillage;  // currently active village
            
     void Start(){
         health = startingHealth;
@@ -20,6 +22,9 @@ public class PlayerStats : MonoBehaviour
         gold = startingGold;
         GameStats.Gold = startingGold;
         events = gameObject.GetComponent<GameEvents>();
+        GameStats.FriendlyVillages = FriendlyVillages;  // initialize player's villages
+        CurrentVillage = new Village();
+        FriendlyVillages.Add(CurrentVillage);
 
         UIManager.current.UpdateGoldText(gold);
         UIManager.current.UpdateHealthText(health);
@@ -68,4 +73,36 @@ public class PlayerStats : MonoBehaviour
     }
 
     public int GetCurrentHealth(){return health;}
+
+    public void RemoveVillage (int village_id)
+        // TODO: Build separately mechanics to remove village when all buildings inside it are destroyed
+    {
+        Village v = FriendlyVillages.Find(village => village.ID == village_id);
+        FriendlyVillages.Remove(v);
+        GameStats.FriendlyVillages.Remove(v);
+        Destroy(v);
+        if (FriendlyVillages.Count <= 0)
+        {
+            events.OnGameOver(GameOverType.OwnVillagesDestroyed);  // trigger game over if all villages destroyed
+        } else
+        {
+            CurrentVillage = FriendlyVillages[0];  // do something more sophisticated maybe later... the village closest to camera should become current?
+        }
+    }
+
+    public void AddVillage()
+    {
+        Village v = new Village();
+        CurrentVillage = v;
+        FriendlyVillages.Add(v);
+        GameStats.FriendlyVillages.Add(v);
+    }
+
+    public void AddVillage(Village village)
+    {
+        CurrentVillage = village;
+        FriendlyVillages.Add(village);
+        GameStats.FriendlyVillages.Add(village);
+    }
+
 }

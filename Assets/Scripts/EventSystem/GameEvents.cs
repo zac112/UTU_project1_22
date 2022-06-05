@@ -37,6 +37,7 @@ public class GameEvents : MonoBehaviour
     public event Action<GameOverType> GameOver;
     public void OnGameOver(GameOverType t)
     {
+        GameStats.CollectEndStats();
         SceneManager.LoadScene("GameOverScene");
         // GameObject EndCanvas = GameObject.Find("EndStatsCanvas");
         TextMesh EnemiesKilled = GameObject.Find("EnemiesKilled").GetComponent<TextMesh>();

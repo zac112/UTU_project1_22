@@ -22,7 +22,7 @@ public static class GameStats
     /// <summary>
     /// How much gold
     /// </summary>
-    public static int Gold;
+    public static int Gold { get; set; }
 
     /// <summary>
     /// How many buildings destroyed during the game
@@ -49,6 +49,9 @@ public static class GameStats
     /// Game duration in seconds
     /// </summary>
     public static float GameDuration { get; set; }
+
+
+    public static List<Village> FriendlyVillages { get; set; }
 
     public static void CollectEndStats()
     {
