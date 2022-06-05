@@ -133,7 +133,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _width: 3
   _length: 1
-  rotationList: []
+  _isRotated: 0
+  _nextRotation: {fileID: 0}
 --- !u!114 &-5464121371805605703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,7 +174,7 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.12694168, y: 0.012580372}
-      - {x: -0.6288709, y: -0.2211419}
-      - {x: 0.3250603, y: -0.6380469}
-      - {x: 0.809083, y: -0.38938758}
+    - - {x: 0.044616073, y: 0.20558287}
+      - {x: -0.50556374, y: -0.022778243}
+      - {x: 0.40011686, y: -0.45040548}
+      - {x: 0.9538348, y: -0.21246868}

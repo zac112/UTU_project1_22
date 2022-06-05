@@ -48,6 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _width: 2
   _length: 3
+  _isRotated: 0
+  _nextRotation: {fileID: 0}
 --- !u!60 &6785467768052022189
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -73,12 +75,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.14658329, y: -0.06883657}
-      - {x: -0.8472267, y: -0.6132363}
-      - {x: -0.2640804, y: -0.91284686}
-      - {x: 0.07516161, y: -0.7410643}
-      - {x: 0.63664645, y: -1.0349995}
-      - {x: 1.3663756, y: -0.66209716}
+    - - {x: -0.12346926, y: 1.0271331}
+      - {x: -1.0920916, y: 0.49581528}
+      - {x: -0.5222267, y: 0.22235096}
+      - {x: -0.17550269, y: 0.3866015}
+      - {x: 0.3523445, y: 0.1268878}
+      - {x: 1.0505297, y: 0.45008847}
 --- !u!1 &9057870360101941518
 GameObject:
   m_ObjectHideFlags: 0
