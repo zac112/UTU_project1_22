@@ -42,192 +42,25 @@ public class BuildingPlacementSystem : MonoBehaviour
 
     void Update()
     {
-        if (SelectBuilding())
+        if (selectBuilding()) 
         {
-            destroyBuildingGhost();
-
-            // Building ghost
-            // Instantiate building
-            // Turn it's opacity down
-            // Make it follow mouse
-            // Destroy ghost when building is placed
-
-            Vector3 position = GetTileLocationInWorld();
-            position.z = buildingZ;
-            buildingGhost = Instantiate(selectedBuilding, position, Quaternion.identity);
-
-            // Turn opacity down
-            SpriteRenderer spriteComponent = buildingGhost.GetComponentInChildren<SpriteRenderer>();
-            spriteComponent.color = new Color(spriteComponent.color.r, spriteComponent.color.g, spriteComponent.color.b, buildingGhostOpacity);
-
-            buildingGhostInstantiated = true;
+            instantiateGhost();
         }
 
-        if (buildingGhostInstantiated) 
+        if (buildingGhostInstantiated && selectedBuilding != null) 
         {
-            // Repeating code that exists in the if statement below
-            // Find a way to avoid repeating it.
-            IBuildable selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
-            int buildingWidth = selectedBuildingScript.Width;
-            int buildingLength = selectedBuildingScript.Length;
-
-            Vector3 selectedTileLocationInWorld = GetTileLocationInWorld();
-
-            // Calculate tile coordinates that the building will occupy based on selected buildings width and selected building script length
-            // Currently, moving NW will modify X by -0.50 and Y by +0.25
-            // Moving NE will modify X by +0.50 and Y by +0.25
-
-            // Loop through width and height and add these tiles to tilesOccupiedByBuilding
-            // TODO: First check if tiles are already occupied
-
-            float widthX;
-            float widthY;
-
-            for (int width = 0; width < buildingWidth; width++)
-            {
-                widthX = selectedTileLocationInWorld.x - 0.50f * width;
-                widthY = selectedTileLocationInWorld.y + 0.25f * width;
-
-                for (int length = 0; length < buildingLength; length++)
-                {
-                    widthX += 0.50f;
-                    widthY += 0.25f;
-
-                    buildingGhostOccupiedTiles.Add(new Vector3(widthX, widthY, buildingZ));
-                    //Debug.Log($"Vector3 added: {result}");
-                }
-            }
-
-            // Move the ghost when mouse moves
-            Vector3 position = calculateBuildingLocation(buildingGhostOccupiedTiles);
-            position.z = buildingZ;
-            buildingGhost.transform.position = position;
-
-            buildingGhostOccupiedTiles.Clear();
+            updateGhostPosition();
         }
 
-        
         if (Input.GetKeyDown(rotationHotkey) && selectedBuilding != null) 
         {
-            IBuildable selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
-
-            Transform nextRotation = selectedBuildingScript.NextRotation;
-            if (nextRotation != null)
-            {
-                // TODO: Same code as in instantiating ghost, except that we are instantiating nextRotation. Make it into a method.
-                destroyBuildingGhost();
-
-                Vector3 position = GetTileLocationInWorld();
-                position.z = buildingZ;
-                buildingGhost = Instantiate(nextRotation, position, Quaternion.identity);
-
-                // Turn opacity down
-                SpriteRenderer spriteComponent = buildingGhost.GetComponentInChildren<SpriteRenderer>();
-                spriteComponent.color = new Color(spriteComponent.color.r, spriteComponent.color.g, spriteComponent.color.b, buildingGhostOpacity);
-
-                buildingGhostInstantiated = true;
-
-                // Not a part of the repeated code
-                selectedBuilding = nextRotation;
-            }
-            else 
-            {
-                Debug.Log("Next rotation was null (Next rotation has not been set on the prefab)");
-            }
+            rotateBuilding();
         }
         
         
         if (Input.GetMouseButtonDown(buildBuildingMouseButton) && selectedBuilding != null)
         {
-            // Empty the list of tiles
-            selectedBuildingOccupiedTiles.Clear();
-
-            // Used to check if building placement should be aborted
-            bool buildingPlacementAllowed = true;
-
-            // Get selected buildings width and height
-            IBuildable selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
-            int buildingWidth = selectedBuildingScript.Width;
-            int buildingLength = selectedBuildingScript.Length;
-
-            // If building is rotated, switch length and width with eachother
-            if (selectedBuildingScript.IsRotated)
-            {
-                int temp = buildingWidth;
-                buildingWidth = buildingLength;
-                buildingLength = temp;
-            }
-
-            Vector3 selectedTileLocationInWorld = GetTileLocationInWorld();
-
-            // Calculate tile coordinates that the building will occupy based on selected buildings width and selected building script length
-            // Currently, moving NW will modify X by -0.50 and Y by +0.25
-            // Moving NE will modify X by +0.50 and Y by +0.25
-
-            // Loop through width and height and add these tiles to tilesOccupiedByBuilding
-            float widthX;
-            float widthY;
-
-            for (int width = 0; width < buildingWidth; width++)
-            {
-                widthX = selectedTileLocationInWorld.x - 0.50f * width;
-                widthY = selectedTileLocationInWorld.y + 0.25f * width;
-
-                for (int length = 0; length < buildingLength; length++)
-                {
-                    widthX += 0.50f;
-                    widthY += 0.25f;
-
-                    selectedBuildingOccupiedTiles.Add(new Vector3(widthX, widthY, buildingZ));
-                    //Debug.Log($"Vector3 added: {result}");
-                }
-            }
-
-            // Check for each tile, if tile is in occupied tiles list
-            for (int i = 0; i < selectedBuildingOccupiedTiles.Count; i++)
-            {
-                if (occupiedTiles.IsTileOccupied(selectedBuildingOccupiedTiles[i]))
-                {
-                    buildingPlacementAllowed = false;
-                }
-            }
-
-            if (buildingPlacementAllowed)
-            {
-                // Add tiles to occupiedTiles
-                occupiedTiles.OccupyTiles(selectedBuildingOccupiedTiles);
-
-                // Instantiate building on tileLocation
-                Transform buildingInstance = Instantiate(selectedBuilding, calculateBuildingLocation(selectedBuildingOccupiedTiles), Quaternion.identity);
-
-                IBuildable buildingInstanceScript = buildingInstance.GetComponent<IBuildable>();
-
-                // Add occupiedTiles to the building instance
-                for (int i = 0; i < selectedBuildingOccupiedTiles.Count; i++)
-                {
-                    buildingInstanceScript.AddToOccupiedTiles(selectedBuildingOccupiedTiles[i]);
-                    //Debug.Log(selectedBuildingOccupiedTiles[i]);
-                }
-
-                //Debug.Log($"Average: {calculateBuildingLocation(selectedBuildingOccupiedTiles)}");
-
-                // Debug.Log(buildingInstanceScript.OccupiedTiles.Count);
-
-                GameStats.BuildingsBuilt++;  // increase GameStats record of finished buildings
-
-
-                // Testing which tiles are occupied by instancing a circle sprite on them
-                for (int i = 0; i < selectedBuildingOccupiedTiles.Count; i++)
-                {
-                    Instantiate(cubePrefab, selectedBuildingOccupiedTiles[i], Quaternion.identity);
-                }
-
-                destroyBuildingGhost();
-            }
-            else
-            {
-                Debug.Log("A tile was occupied. Aborting placing building.");
-            }
+            buildBuilding();
         }
 
         
@@ -252,11 +85,12 @@ public class BuildingPlacementSystem : MonoBehaviour
         return tileLocationInWorld;
     }
 
-    bool SelectBuilding() 
+    private bool selectBuilding() 
     {
         if (Input.GetKeyDown(buildingDeselect))
         {
             selectedBuilding = null;
+            destroyBuildingGhost();
             return false;
         }
 
@@ -315,6 +149,194 @@ public class BuildingPlacementSystem : MonoBehaviour
         {
             Destroy(buildingGhost.gameObject);
             buildingGhostInstantiated = false;
+        }
+    }
+
+    private void instantiateGhost() 
+    {
+        destroyBuildingGhost();
+
+        // Building ghost
+        // Instantiate building
+        // Turn it's opacity down
+        // Make it follow mouse
+        // Destroy ghost when building is placed
+
+        Vector3 position = GetTileLocationInWorld();
+        position.z = buildingZ;
+        buildingGhost = Instantiate(selectedBuilding, position, Quaternion.identity);
+
+        // Turn opacity down
+        SpriteRenderer spriteComponent = buildingGhost.GetComponentInChildren<SpriteRenderer>();
+        spriteComponent.color = new Color(spriteComponent.color.r, spriteComponent.color.g, spriteComponent.color.b, buildingGhostOpacity);
+
+        buildingGhostInstantiated = true;
+    }
+
+    private void updateGhostPosition() 
+    {      
+        {
+            // Repeating code that exists in the if statement below
+            // Find a way to avoid repeating it.
+            IBuildable selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
+            int buildingWidth = selectedBuildingScript.Width;
+            int buildingLength = selectedBuildingScript.Length;
+
+            Vector3 selectedTileLocationInWorld = GetTileLocationInWorld();
+
+            // Calculate tile coordinates that the building will occupy based on selected buildings width and selected building script length
+            // Currently, moving NW will modify X by -0.50 and Y by +0.25
+            // Moving NE will modify X by +0.50 and Y by +0.25
+
+            // Loop through width and height and add these tiles to tilesOccupiedByBuilding
+            // TODO: First check if tiles are already occupied
+
+            float widthX;
+            float widthY;
+
+            for (int width = 0; width < buildingWidth; width++)
+            {
+                widthX = selectedTileLocationInWorld.x - 0.50f * width;
+                widthY = selectedTileLocationInWorld.y + 0.25f * width;
+
+                for (int length = 0; length < buildingLength; length++)
+                {
+                    widthX += 0.50f;
+                    widthY += 0.25f;
+
+                    buildingGhostOccupiedTiles.Add(new Vector3(widthX, widthY, buildingZ));
+                    //Debug.Log($"Vector3 added: {result}");
+                }
+            }
+
+            // Move the ghost when mouse moves
+            Vector3 position = calculateBuildingLocation(buildingGhostOccupiedTiles);
+            position.z = buildingZ;
+            buildingGhost.transform.position = position;
+
+            buildingGhostOccupiedTiles.Clear();
+        }
+    }
+
+    private void rotateBuilding() 
+    {
+        IBuildable selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
+
+        Transform nextRotation = selectedBuildingScript.NextRotation;
+        if (nextRotation != null)
+        {
+            // TODO: Same code as in instantiating ghost, except that we are instantiating nextRotation. Make it into a method.
+            destroyBuildingGhost();
+
+            Vector3 position = GetTileLocationInWorld();
+            position.z = buildingZ;
+            buildingGhost = Instantiate(nextRotation, position, Quaternion.identity);
+
+            // Turn opacity down
+            SpriteRenderer spriteComponent = buildingGhost.GetComponentInChildren<SpriteRenderer>();
+            spriteComponent.color = new Color(spriteComponent.color.r, spriteComponent.color.g, spriteComponent.color.b, buildingGhostOpacity);
+
+            buildingGhostInstantiated = true;
+
+            // Not a part of the repeated code
+            selectedBuilding = nextRotation;
+        }
+        else
+        {
+            Debug.Log("Next rotation was null (Next rotation has not been set on the prefab)");
+        }
+    }
+
+    private void buildBuilding() 
+    {
+        // Empty the list of tiles
+        selectedBuildingOccupiedTiles.Clear();
+
+        // Used to check if building placement should be aborted
+        bool buildingPlacementAllowed = true;
+
+        // Get selected buildings width and height
+        IBuildable selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
+        int buildingWidth = selectedBuildingScript.Width;
+        int buildingLength = selectedBuildingScript.Length;
+
+        // If building is rotated, switch length and width with eachother
+        if (selectedBuildingScript.IsRotated)
+        {
+            int temp = buildingWidth;
+            buildingWidth = buildingLength;
+            buildingLength = temp;
+        }
+
+        Vector3 selectedTileLocationInWorld = GetTileLocationInWorld();
+
+        // Calculate tile coordinates that the building will occupy based on selected buildings width and selected building script length
+        // Currently, moving NW will modify X by -0.50 and Y by +0.25
+        // Moving NE will modify X by +0.50 and Y by +0.25
+
+        // Loop through width and height and add these tiles to tilesOccupiedByBuilding
+        float widthX;
+        float widthY;
+
+        for (int width = 0; width < buildingWidth; width++)
+        {
+            widthX = selectedTileLocationInWorld.x - 0.50f * width;
+            widthY = selectedTileLocationInWorld.y + 0.25f * width;
+
+            for (int length = 0; length < buildingLength; length++)
+            {
+                widthX += 0.50f;
+                widthY += 0.25f;
+
+                selectedBuildingOccupiedTiles.Add(new Vector3(widthX, widthY, buildingZ));
+                //Debug.Log($"Vector3 added: {result}");
+            }
+        }
+
+        // Check for each tile, if tile is in occupied tiles list
+        for (int i = 0; i < selectedBuildingOccupiedTiles.Count; i++)
+        {
+            if (occupiedTiles.IsTileOccupied(selectedBuildingOccupiedTiles[i]))
+            {
+                buildingPlacementAllowed = false;
+            }
+        }
+
+        if (buildingPlacementAllowed)
+        {
+            // Add tiles to occupiedTiles
+            occupiedTiles.OccupyTiles(selectedBuildingOccupiedTiles);
+
+            // Instantiate building on tileLocation
+            Transform buildingInstance = Instantiate(selectedBuilding, calculateBuildingLocation(selectedBuildingOccupiedTiles), Quaternion.identity);
+
+            IBuildable buildingInstanceScript = buildingInstance.GetComponent<IBuildable>();
+
+            // Add occupiedTiles to the building instance
+            for (int i = 0; i < selectedBuildingOccupiedTiles.Count; i++)
+            {
+                buildingInstanceScript.AddToOccupiedTiles(selectedBuildingOccupiedTiles[i]);
+                //Debug.Log(selectedBuildingOccupiedTiles[i]);
+            }
+
+            //Debug.Log($"Average: {calculateBuildingLocation(selectedBuildingOccupiedTiles)}");
+
+            // Debug.Log(buildingInstanceScript.OccupiedTiles.Count);
+
+            GameStats.BuildingsBuilt++;  // increase GameStats record of finished buildings
+
+
+            // Testing which tiles are occupied by instancing a circle sprite on them
+            for (int i = 0; i < selectedBuildingOccupiedTiles.Count; i++)
+            {
+                Instantiate(cubePrefab, selectedBuildingOccupiedTiles[i], Quaternion.identity);
+            }
+
+            destroyBuildingGhost();
+        }
+        else
+        {
+            Debug.Log("A tile was occupied. Aborting placing building.");
         }
     }
 }
