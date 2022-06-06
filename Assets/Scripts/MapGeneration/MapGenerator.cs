@@ -27,6 +27,9 @@ public class MapGenerator : MonoBehaviour
     [Tooltip("Map offset, applied for all tiles")] [SerializeField]
     private Vector3Int Offset;
 
+    [Tooltip("How far from the player new tiles can be discovered")] [SerializeField]
+    private int discoveryRadius;
+
     [SerializeField] GameObject fog;
     public static VoronoiDiagram voronoi;
 
@@ -44,7 +47,7 @@ public class MapGenerator : MonoBehaviour
                     i == width - 1 ) {
                     Vector3 worldPos = tilemap.CellToWorld(position);
                     GameObject go = Instantiate(fog, worldPos, Quaternion.identity);
-                    go.GetComponentInChildren<TileSpawner>().Init(tilemap, this);
+                    go.GetComponentInChildren<TileSpawner>().Init(tilemap, this, discoveryRadius);
                 }
 
                 Generate(position);
