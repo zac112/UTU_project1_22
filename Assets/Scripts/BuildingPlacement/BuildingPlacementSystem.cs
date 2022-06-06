@@ -47,24 +47,22 @@ public class BuildingPlacementSystem : MonoBehaviour
         if (selectedBuilding != null) 
         {
             instantiateGhost();
-        }
 
-        if (buildingGhostInstantiated && selectedBuilding != null) 
-        {
-            updateGhostPosition();
-        }
+            if (buildingGhostInstantiated)
+            {
+                updateGhostPosition();
+            }
 
-        if (Input.GetKeyDown(rotationHotkey) && selectedBuilding != null) 
-        {
-            rotateBuilding();
-        }
-        
-        
-        if (Input.GetMouseButtonDown(buildBuildingMouseButton) && selectedBuilding != null)
-        {
-            buildBuilding();
-        }
+            if (Input.GetKeyDown(rotationHotkey))
+            {
+                rotateBuilding();
+            }
 
+            if (Input.GetMouseButtonDown(buildBuildingMouseButton))
+            {
+                buildBuilding();
+            }
+        }
         
     }
 
@@ -87,6 +85,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         return tileLocationInWorld;
     }
 
+    // TODO: Move to input manager. Struct with KeyCode and prefab.
     private bool selectBuildingHotkey() 
     {
         if (Input.GetKeyDown(buildingDeselect))
@@ -341,7 +340,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         }
         else
         {
-            Debug.Log("A tile was occupied. Aborting placing building.");
+            Debug.Log("A tile was occupied. Aborting building placement.");
         }
     }
 
