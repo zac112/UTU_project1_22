@@ -42,7 +42,9 @@ public class BuildingPlacementSystem : MonoBehaviour
 
     void Update()
     {
-        if (selectBuildingHotkey()) 
+        selectBuildingHotkey();
+
+        if (selectedBuilding != null) 
         {
             instantiateGhost();
         }
