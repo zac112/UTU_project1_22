@@ -6,7 +6,7 @@ using TMPro;
 
 public class GUIBuildingButton : MonoBehaviour{
 
-    [SerializeField] string name;
+    [SerializeField] string buildingName;
     [SerializeField] string cost;
     [SerializeField] Transform building;
     [SerializeField] Sprite sprite;
@@ -19,7 +19,7 @@ public class GUIBuildingButton : MonoBehaviour{
     GameObject buildingsPanel;
 
     void UpdateUI(){
-        UIName.text = name;
+        UIName.text = buildingName;
         UICost.text = "Cost:" + cost;
         UIImage.sprite = sprite;
     }

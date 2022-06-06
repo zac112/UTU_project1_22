@@ -18,6 +18,7 @@ TagManager:
   - AllyRangedRange
   - AllyRangedHitbox
   - AllyMeleeHitbox
+  - Tilemap
   layers:
   - Default
   - TransparentFX

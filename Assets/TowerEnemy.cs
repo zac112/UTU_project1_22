@@ -42,7 +42,6 @@ public class TowerEnemy : MonoBehaviour
         if(!target){
             float shortestDistance = Mathf.Infinity;
             foreach(GameObject t in towers){
-                Debug.Log("t");
                 if (shortestDistance > Mathf.Min(shortestDistance, Vector2.Distance(this.transform.position, t.transform.position))) {
                     target = t;
                 }
@@ -51,7 +50,6 @@ public class TowerEnemy : MonoBehaviour
     }
 
     void OnTriggerStay2D(Collider2D other){
-        Debug.Log(other.tag);
         if(other.tag=="Tower"){
             MeleeAttack();
         }

@@ -51,6 +51,12 @@ public class TileSpawner : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Player")) {
             RevealTiles();
+            List<Vector3Int> neighbors = getNeighbors(map.WorldToCell(transform.parent.position), discoveryRadius - 1);
+
+            foreach (var neighbor in neighbors)
+            {
+                
+            }
             Destroy(transform.parent.gameObject);
         }
         
@@ -60,6 +66,11 @@ public class TileSpawner : MonoBehaviour
         Vector3Int cellpos = map.WorldToCell(transform.parent.position);
         List<Vector3Int> neighbors = getNeighbors(cellpos, discoveryRadius - 1);
         List<Vector3Int> edges = getEdges(cellpos, discoveryRadius);
+        
+        foreach (Vector3Int neighbor in neighbors)
+        {
+            generator.Generate(neighbor);
+        }
 
         foreach (var edge in edges)
         {
@@ -68,11 +79,6 @@ public class TileSpawner : MonoBehaviour
                 go.name = "FOW";
                 go.GetComponentInChildren<TileSpawner>().Init(map, generator, discoveryRadius);
             }
-        }
-        
-        foreach (Vector3Int neighbor in neighbors)
-        {
-            generator.Generate(neighbor);
         }
     }
 

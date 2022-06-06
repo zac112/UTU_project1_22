@@ -243,7 +243,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1076432871}
   - component: {fileID: 1076432870}
-  - component: {fileID: 1076432869}
   m_Layer: 0
   m_Name: MapCamera
   m_TagString: Untagged
@@ -251,14 +250,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1076432869
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1076432868}
-  m_Enabled: 0
 --- !u!20 &1076432870
 Camera:
   m_ObjectHideFlags: 0
@@ -278,10 +269,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+    x: 0.5
+    y: 0.5
+    width: 0.5
+    height: 0.5
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 138.1

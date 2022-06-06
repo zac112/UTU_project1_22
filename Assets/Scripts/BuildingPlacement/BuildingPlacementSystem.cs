@@ -30,11 +30,10 @@ public class BuildingPlacementSystem : MonoBehaviour
     Transform selectedBuilding;
 
     void Start()
-    {
-        // TODO: Find a more reliable way to find Tilemap component that does not break every time names are changed
-        grid = GameObject.Find("Grid").GetComponent<Grid>();
-        tilemap = GameObject.Find("Grid").GetComponentInChildren<Tilemap>();
-        occupiedTiles = GameObject.Find("OccupiedTilesSystem").GetComponent<OccupiedTiles>();
+    {        
+        grid = GameObject.FindGameObjectWithTag("Tilemap").GetComponent<Grid>();
+        tilemap = grid.GetComponentInChildren<Tilemap>();
+        occupiedTiles = GameObject.FindObjectOfType<OccupiedTiles>();
         selectedBuildingOccupiedTiles = new List<Vector3>();
         buildingGhostOccupiedTiles = new List<Vector3>();
         buildingGhostInstantiated = false;

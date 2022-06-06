@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Village : MonoBehaviour
+public class Village
 {
     private static int static_id = 1;
     private int id;  // needed to find a specific village
@@ -19,15 +19,10 @@ public class Village : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    public Village()
     {
         id = static_id;
         static_id++;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

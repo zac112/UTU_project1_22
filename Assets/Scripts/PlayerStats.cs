@@ -13,7 +13,7 @@ public class PlayerStats : MonoBehaviour
     int gold;
 
     GameEvents events;  // game's event system
-    List<Village> FriendlyVillages;
+    List<Village> FriendlyVillages = new List<Village>();
     Village CurrentVillage;  // currently active village
            
     void Start(){
@@ -80,7 +80,7 @@ public class PlayerStats : MonoBehaviour
         Village v = FriendlyVillages.Find(village => village.ID == village_id);
         FriendlyVillages.Remove(v);
         GameStats.FriendlyVillages.Remove(v);
-        Destroy(v);
+        
         if (FriendlyVillages.Count <= 0)
         {
             events.OnGameOver(GameOverType.OwnVillagesDestroyed);  // trigger game over if all villages destroyed
