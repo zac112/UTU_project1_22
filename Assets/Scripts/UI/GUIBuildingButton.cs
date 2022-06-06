@@ -8,9 +8,8 @@ public class GUIBuildingButton : MonoBehaviour{
 
     [SerializeField] string name;
     [SerializeField] string cost;
-    [SerializeField] Sprite sprite;
-
     [SerializeField] Transform building;
+    [SerializeField] Sprite sprite;
 
     BuildingPlacementSystem bps;
 

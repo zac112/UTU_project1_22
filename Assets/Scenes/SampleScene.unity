@@ -277,7 +277,11 @@ PrefabInstance:
     - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 43496ec6ca3ee414fb4f4c62b343aa5d, type: 3}
+      objectReference: {fileID: 21300000, guid: 0d43ac2b1532688429f73deda4e0e5bf, type: 3}
+    - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: building
+      value: 
+      objectReference: {fileID: 9113664018743696094, guid: 02012286e3301ee499d1392f25d37ec8, type: 3}
     - target: {fileID: 1978710028388150698, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -27269,7 +27273,11 @@ PrefabInstance:
     - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 43496ec6ca3ee414fb4f4c62b343aa5d, type: 3}
+      objectReference: {fileID: 21300000, guid: 0d43ac2b1532688429f73deda4e0e5bf, type: 3}
+    - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: building
+      value: 
+      objectReference: {fileID: 9113664018743696094, guid: 3f562078f8615af4082e47b7214cafc5, type: 3}
     - target: {fileID: 1978710028388150698, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -27389,7 +27397,7 @@ PrefabInstance:
     - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 43496ec6ca3ee414fb4f4c62b343aa5d, type: 3}
+      objectReference: {fileID: 21300000, guid: 68cd235049e2a8c43b1427575d7feb7d, type: 3}
     - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: building
       value: 
@@ -28464,6 +28472,10 @@ PrefabInstance:
       propertyPath: building
       value: 
       objectReference: {fileID: 9113664018743696094, guid: 569a9665642b1e54cb8ed27ef6803447, type: 3}
+    - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: spriteOverride
+      value: 
+      objectReference: {fileID: 21300000, guid: fd6d0e4f1fbcb9540bac567160bef3d9, type: 3}
     - target: {fileID: 662533367465700603, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: building
       value: 
@@ -28883,7 +28895,11 @@ PrefabInstance:
     - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 43496ec6ca3ee414fb4f4c62b343aa5d, type: 3}
+      objectReference: {fileID: 21300000, guid: ab00636088762ac4b8cd931554bb555e, type: 3}
+    - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: building
+      value: 
+      objectReference: {fileID: 9113664018743696094, guid: f623742f1fd508846b6b2960c6a957b3, type: 3}
     - target: {fileID: 1978710028388150698, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -29733,7 +29749,11 @@ PrefabInstance:
     - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 43496ec6ca3ee414fb4f4c62b343aa5d, type: 3}
+      objectReference: {fileID: 21300000, guid: 35e693beb4d37584ebcca92f7de3c1cf, type: 3}
+    - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: building
+      value: 
+      objectReference: {fileID: 9113664018743696094, guid: aa391f734e51b334aaa10e300f23d900, type: 3}
     - target: {fileID: 1978710028388150698, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -30977,7 +30997,11 @@ PrefabInstance:
     - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 43496ec6ca3ee414fb4f4c62b343aa5d, type: 3}
+      objectReference: {fileID: 21300000, guid: 39bce7a93d7477449a0b05e2832fd647, type: 3}
+    - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: building
+      value: 
+      objectReference: {fileID: 9113664018743696094, guid: 1c05351d809ea6f48b584b7a3a288f0d, type: 3}
     - target: {fileID: 1978710028388150698, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
