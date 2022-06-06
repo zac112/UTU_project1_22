@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9113664018743696094}
-  - component: {fileID: -1277645968311181128}
-  - component: {fileID: 2533162924721199356}
+  - component: {fileID: -7354420819537065107}
+  - component: {fileID: 1853589343735386271}
   m_Layer: 0
-  m_Name: StoneWallFR
+  m_Name: VillageHouse2BR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-1277645968311181128
+--- !u!114 &-7354420819537065107
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,10 +48,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   _width: 3
-  _length: 1
+  _length: 4
   _isRotated: 0
-  _nextRotation: {fileID: 9113664018743696094, guid: 866c4392e9b143c478bcba842f2d9183, type: 3}
---- !u!60 &2533162924721199356
+  _nextRotation: {fileID: 9113664018743696094, guid: 9c692e9fb9ecfac478b6b70358c5a7e7, type: 3}
+--- !u!60 &1853589343735386271
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -76,10 +76,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.6832699, y: 0.47149473}
-      - {x: -0.892473, y: 0.35588658}
-      - {x: 0.68600756, y: -0.45473784}
-      - {x: 0.90751135, y: -0.33364543}
+    - - {x: 0.4459533, y: 1.3481684}
+      - {x: -1.2367051, y: 0.56357175}
+      - {x: -0.0021401048, y: -0.04153809}
+      - {x: 1.6354045, y: 0.74024844}
 --- !u!1 &9057870360101941518
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +105,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9057870360101941518}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.05, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -153,7 +153,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 35505ce19443fa34cb14763ffd43f1ce, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b93de8f51a1beb141b9cc269ec299c25, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
