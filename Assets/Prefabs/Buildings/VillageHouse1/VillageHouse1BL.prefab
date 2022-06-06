@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd2a9604af6fe4686022a0f905fcba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
   _width: 3
   _length: 4
   _isRotated: 1
@@ -75,10 +76,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.12553293, y: 0.6085712}
-      - {x: -1.5158374, y: -0.15121374}
-      - {x: -0.23971365, y: -0.78972757}
-      - {x: 1.3612043, y: 0.032036245}
+    - - {x: -0.1645825, y: 0.6781988}
+      - {x: -1.4113959, y: 0.046064645}
+      - {x: 0.23607571, y: -0.801332}
+      - {x: 1.523669, y: -0.15363765}
 --- !u!1 &9057870360101941518
 GameObject:
   m_ObjectHideFlags: 0
