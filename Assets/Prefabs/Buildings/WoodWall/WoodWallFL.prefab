@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 302457024628876274}
   - component: {fileID: 8892011639983444833}
   m_Layer: 0
-  m_Name: WoodWall 1
+  m_Name: WoodWallFL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,10 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
-  _width: 1
-  _length: 3
-  _isRotated: 0
-  _nextRotation: {fileID: 0}
+  _width: 3
+  _length: 1
+  _isRotated: 1
+  _nextRotation: {fileID: 9113664018743696094, guid: 60c01239c4d757441a412c98a840b822, type: 3}
 --- !u!60 &8892011639983444833
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -76,10 +76,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.50790966, y: 0.39013657}
-      - {x: -0.70401746, y: 0.33988866}
-      - {x: 0.4807801, y: -0.3096167}
-      - {x: 0.69970775, y: -0.2516476}
+    - - {x: -0.7256751, y: -0.23076752}
+      - {x: -0.50831807, y: -0.31114265}
+      - {x: 0.74590665, y: 0.35403442}
+      - {x: 0.52140355, y: 0.4480614}
 --- !u!1 &9057870360101941518
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +153,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 35e693beb4d37584ebcca92f7de3c1cf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6e66916412ab28a408eae59e6a21199b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
