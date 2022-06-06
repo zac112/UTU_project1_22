@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -8541777715021242936}
   - component: {fileID: 2424835515334960682}
   m_Layer: 0
-  m_Name: StoneGate
+  m_Name: StoneGateClosedFR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,8 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd2a9604af6fe4686022a0f905fcba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _width: 1
-  _length: 5
+  hp: 0
+  _width: 5
+  _length: 1
+  _isRotated: 0
+  _nextRotation: {fileID: 0}
 --- !u!60 &2424835515334960682
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -73,10 +76,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -1.0400819, y: -0.68463933}
-      - {x: -1.3172824, y: -0.80431}
-      - {x: 0.96501285, y: -1.9809402}
-      - {x: 1.3026334, y: -1.8443912}
+    - - {x: -1.0020368, y: 0.6808648}
+      - {x: -1.2665557, y: 0.5779975}
+      - {x: 1.0157397, y: -0.6113143}
+      - {x: 1.2697244, y: -0.4781895}
 --- !u!1 &9057870360101941518
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,7 +153,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 3a5f01ff57e844f419725a3dbe2dd870, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0d43ac2b1532688429f73deda4e0e5bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

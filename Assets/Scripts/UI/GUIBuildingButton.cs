@@ -35,9 +35,9 @@ public class GUIBuildingButton : MonoBehaviour{
     public void OnButtonDown()
     {
         bps.selectBuildingGUI(building);
-        Debug.Log("Button pressed down");
 
         // Hide building menu
+        // Also hides farming panel for some reason??
         buildingsPanel.SetActive(false);
     }
 }
