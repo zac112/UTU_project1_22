@@ -51,12 +51,6 @@ public class TileSpawner : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Player")) {
             RevealTiles();
-            List<Vector3Int> neighbors = getNeighbors(map.WorldToCell(transform.parent.position), discoveryRadius - 1);
-
-            foreach (var neighbor in neighbors)
-            {
-                
-            }
             Destroy(transform.parent.gameObject);
         }
         
