@@ -9,13 +9,14 @@ public class GUIBuildingButton : MonoBehaviour{
     [SerializeField] string name;
     [SerializeField] string cost;
     [SerializeField] Sprite sprite;
+
     [SerializeField] Transform building;
+
+    BuildingPlacementSystem bps;
 
     [SerializeField] TMP_Text UIName;
     [SerializeField] TMP_Text UICost;
     [SerializeField] Image UIImage;
-
-    BuildingPlacementSystem bps;
 
     void UpdateUI(){
         UIName.text = name;
@@ -29,8 +30,9 @@ public class GUIBuildingButton : MonoBehaviour{
         bps = GameObject.Find("BuildingPlacementSystem").GetComponent<BuildingPlacementSystem>();
     }
 
-    void OnButtonClick() 
+    public void OnButtonDown()
     {
         bps.selectBuildingGUI(building);
+        Debug.Log("Button pressed down");
     }
 }
