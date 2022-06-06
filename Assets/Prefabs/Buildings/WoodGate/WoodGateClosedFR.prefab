@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9113664018743696094}
-  - component: {fileID: 8597083762042543861}
-  - component: {fileID: 6785467768052022189}
+  - component: {fileID: 4224269023716880283}
+  - component: {fileID: 8463465385061437793}
   m_Layer: 0
-  m_Name: Smithy
+  m_Name: WoodGateClosedFR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8597083762042543861
+--- !u!114 &4224269023716880283
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,11 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
-  _width: 2
-  _length: 3
+  _width: 5
+  _length: 1
   _isRotated: 0
   _nextRotation: {fileID: 0}
---- !u!60 &6785467768052022189
+--- !u!60 &8463465385061437793
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -76,12 +76,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.18248188, y: 1.0517217}
-      - {x: -1.0920916, y: 0.49581528}
-      - {x: -0.5222267, y: 0.22235096}
-      - {x: -0.17550269, y: 0.3866015}
-      - {x: 0.3523445, y: 0.1268878}
-      - {x: 1.0505297, y: 0.45008847}
+    - - {x: -1.2543079, y: 0.61066365}
+      - {x: 1.0209361, y: -0.5817869}
+      - {x: 1.3107994, y: -0.5013852}
+      - {x: -1.0120617, y: 0.68744636}
 --- !u!1 &9057870360101941518
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +153,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: c9fe37f743b62164fb2583dca5f31d5f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 39bce7a93d7477449a0b05e2832fd647, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

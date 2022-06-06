@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4224269023716880283}
   - component: {fileID: 8463465385061437793}
   m_Layer: 0
-  m_Name: WoodGate
+  m_Name: WoodGateClosedFL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,8 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd2a9604af6fe4686022a0f905fcba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _width: 1
-  _length: 5
+  hp: 0
+  _width: 5
+  _length: 1
+  _isRotated: 1
+  _nextRotation: {fileID: 0}
 --- !u!60 &8463465385061437793
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -73,11 +76,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -1.2767882, y: -0.45340276}
-      - {x: 1.0434164, y: -1.6758269}
-      - {x: 1.2955582, y: -1.580184}
-      - {x: 1.2733322, y: -1.5579581}
-      - {x: -1.0270486, y: -0.34664667}
+    - - {x: -1.0203235, y: -0.59995395}
+      - {x: 1.2618134, y: 0.62163186}
+      - {x: 1.0028133, y: 0.7063725}
+      - {x: -1.3201509, y: -0.50052553}
 --- !u!1 &9057870360101941518
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +153,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 75010618cfb3c3a42b1ab9c6a70624b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ea352b0f93eee184097124d7c6941791, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
