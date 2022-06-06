@@ -42,7 +42,7 @@ public class BuildingPlacementSystem : MonoBehaviour
 
     void Update()
     {
-        if (selectBuilding()) 
+        if (selectBuildingHotkey()) 
         {
             instantiateGhost();
         }
@@ -85,12 +85,12 @@ public class BuildingPlacementSystem : MonoBehaviour
         return tileLocationInWorld;
     }
 
-    private bool selectBuilding() 
+    private bool selectBuildingHotkey() 
     {
         if (Input.GetKeyDown(buildingDeselect))
         {
             selectedBuilding = null;
-            destroyBuildingGhost();
+            destroyGhost();
             return false;
         }
 
@@ -105,8 +105,13 @@ public class BuildingPlacementSystem : MonoBehaviour
             selectedBuilding = buildableBuildings[1];
             return true;
         }
-        return false;
-        
+        return false;       
+    }
+
+    // TODO: Make private and expose it from an interface?
+    public void selectBuildingGUI(Transform building) 
+    {
+        selectedBuilding = building;
     }
 
     public Vector3Int GetTileCellLocation() 
@@ -143,7 +148,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         return new Vector3(xPosition, yPosition, 10);
     }
 
-    private void destroyBuildingGhost() 
+    private void destroyGhost() 
     {
         if (buildingGhost != null)
         {
@@ -154,7 +159,7 @@ public class BuildingPlacementSystem : MonoBehaviour
 
     private void instantiateGhost() 
     {
-        destroyBuildingGhost();
+        destroyGhost();
 
         // Building ghost
         // Instantiate building
@@ -226,7 +231,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         if (nextRotation != null)
         {
             // TODO: Same code as in instantiating ghost, except that we are instantiating nextRotation. Make it into a method.
-            destroyBuildingGhost();
+            destroyGhost();
 
             Vector3 position = GetTileLocationInWorld();
             position.z = buildingZ;
