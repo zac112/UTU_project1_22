@@ -343,8 +343,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Testi
   cost: 
-  sprite: {fileID: 0}
   building: {fileID: 0}
+  sprite: {fileID: 0}
   UIName: {fileID: 30902850291037297}
   UICost: {fileID: 1776905829944412992}
   UIImage: {fileID: 3166025521365639172}
@@ -399,6 +399,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GUIBuildingButton, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

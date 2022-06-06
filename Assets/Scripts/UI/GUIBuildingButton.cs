@@ -11,11 +11,12 @@ public class GUIBuildingButton : MonoBehaviour{
     [SerializeField] Transform building;
     [SerializeField] Sprite sprite;
 
-    BuildingPlacementSystem bps;
-
     [SerializeField] TMP_Text UIName;
     [SerializeField] TMP_Text UICost;
     [SerializeField] Image UIImage;
+
+    BuildingPlacementSystem bps;
+    GameObject buildingsPanel;
 
     void UpdateUI(){
         UIName.text = name;
@@ -27,11 +28,16 @@ public class GUIBuildingButton : MonoBehaviour{
         UpdateUI();
 
         bps = GameObject.Find("BuildingPlacementSystem").GetComponent<BuildingPlacementSystem>();
+
+        buildingsPanel = GameObject.Find("BuildingsPanel");
     }
 
     public void OnButtonDown()
     {
         bps.selectBuildingGUI(building);
         Debug.Log("Button pressed down");
+
+        // Hide building menu
+        buildingsPanel.SetActive(false);
     }
 }
