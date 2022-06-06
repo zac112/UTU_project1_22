@@ -190,6 +190,14 @@ public class BuildingPlacementSystem : MonoBehaviour
 
             Vector3 selectedTileLocationInWorld = GetTileLocationInWorld();
 
+            // If building is rotated, switch length and width with eachother
+            if (selectedBuildingScript.IsRotated)
+            {
+                int temp = buildingWidth;
+                buildingWidth = buildingLength;
+                buildingLength = temp;
+            }
+
             // Calculate tile coordinates that the building will occupy based on selected buildings width and selected building script length
             // Currently, moving NW will modify X by -0.50 and Y by +0.25
             // Moving NE will modify X by +0.50 and Y by +0.25
