@@ -5,30 +5,53 @@ using UnityEngine.Tilemaps;
 
 public class TileChanger : MonoBehaviour
 {
-    public Tilemap tilemap;
-
     public Tile tile;
-
     public Vector3Int location;
+    public Tilemap tilemap;
+    public GameObject plot;
 
-    public BuildingPlacementSystem bps;
-
-    void start()
+    void Start()
     {
         tilemap = GameObject.Find("Grid(Clone)").GetComponentInChildren<Tilemap>();
-        bps = GameObject.Find("BuildingPlacementSystem").GetComponent<BuildingPlacementSystem>();
     }
 
     void Update()
     {
-        // If mouse clicked change tile to given tile
-        // HAS TO BE FIXED (can now change water to any tile)
-        if (Input.GetMouseButton(0)){
-            location = bps.GetTileCellLocation();
+        Vector3 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        location = tilemap.WorldToCell(mp);
+
+        
+        if (Input.GetMouseButtonDown(0))
+        {
             location.z = 0;
             location.x = location.x -5;
             location.y = location.y -5;
             tilemap.SetTile(location, tile);
+
+           // Place crops only on farmingTile
+            if (tilemap.GetTile(location).name.Equals("farmingTile"))
+            {
+                AddCrop();
+            }
         }
     }
+
+    private void AddCrop()
+    { 
+        Vector3 location = GetTileRealPosition();
+        Instantiate(plot,location,transform.rotation);
+        plot.gameObject.SetActive(true);
+    }
+
+
+    private Vector3 GetTileRealPosition()
+    {
+        Vector3 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3Int cellPosition = tilemap.WorldToCell(mp);
+        mp = tilemap.GetCellCenterWorld(cellPosition);
+        mp.z = 0;
+
+        return mp;
+    }
 }
+
