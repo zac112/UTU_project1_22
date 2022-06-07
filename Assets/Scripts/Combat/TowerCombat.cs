@@ -8,6 +8,8 @@ public class TowerCombat : MonoBehaviour{
     [SerializeField] GameObject projectile;
     [SerializeField] float projectileSpeed;
 
+    [SerializeField] EnemyStats stats;
+
     float lastAttackTime;
     GameObject target;
 
@@ -24,6 +26,15 @@ public class TowerCombat : MonoBehaviour{
         if(other.TryGetComponent<EnemyCombat>(out EnemyCombat e) || other.TryGetComponent<TowerEnemy>(out TowerEnemy et)){
             target = other.gameObject;
         }
+
+        if(other.tag=="EnemyMeleeHitbox"){
+            Debug.Log("ching");
+            stats.TakeDamage(10); 
+        }else if(other.tag=="EnemyRangedHitbox"){
+            stats.TakeDamage(5);
+            Destroy(other.gameObject); //delete projectile after getting hit
+        }
+
     }
 
     void Attack(){
