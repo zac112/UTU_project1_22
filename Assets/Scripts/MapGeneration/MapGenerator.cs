@@ -80,7 +80,7 @@ public class MapGenerator : MonoBehaviour
         return Generate(pos);
     }
 
-    public void Start()
+    public void Awake()
     {
         tilemap = Instantiate(grid,Vector3.zero,Quaternion.identity).GetComponentInChildren<Tilemap>();
         tilemap.AddComponent<TilemapCollider2D>();
