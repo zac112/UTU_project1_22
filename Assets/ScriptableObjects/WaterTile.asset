@@ -33,6 +33,6 @@ MonoBehaviour:
     e33: 1
   m_InstancedGameObject: {fileID: 5611273208158202585, guid: 031e12d45256869469b4e6f4219d9edd, type: 3}
   m_Flags: 1
-  m_ColliderType: 1
+  m_ColliderType: 2
   isOccupied: 1
   moveSpeed: 1
