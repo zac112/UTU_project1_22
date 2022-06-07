@@ -7,7 +7,7 @@ public class PlayerRangedHitbox : MonoBehaviour
 
 
     private float lifeTime = 5.0f;
-    private float projectileSpeed=250.0f;
+    private float projectileSpeed=225.0f;
 
 
     void Start()
@@ -24,6 +24,7 @@ public class PlayerRangedHitbox : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         //add velocity
+        dir.z=0;
         dir.Normalize();
         this.gameObject.GetComponent<Rigidbody2D>().AddForce(dir*projectileSpeed);
 
