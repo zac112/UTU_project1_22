@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 584b3b8b83be1f74692d0c825e67b181, type: 3}
   m_Name: WaterTile
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: a0001444423845b4fb578c3b5a08aec5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -33,5 +33,6 @@ MonoBehaviour:
     e33: 1
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
-  m_ColliderType: 0
-  isOccupied: 0
+  m_ColliderType: 2
+  isOccupied: 1
+  moveSpeed: 1

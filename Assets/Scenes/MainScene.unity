@@ -1443,11 +1443,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 445719717}
---- !u!1 &182721248 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2908140057702063971, guid: 3a41b6b168913164f9f9716a616419e1, type: 3}
-  m_PrefabInstance: {fileID: 587283902}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &281090278
 GameObject:
   m_ObjectHideFlags: 0
@@ -7126,12 +7121,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1323990827}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a0b21a5ffd236a4dab63fcc3640a3c3, type: 3}
+  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  plot: {fileID: 182721248}
-  tilemap: {fileID: 0}
-  location: {x: 0, y: 0, z: 0}
 --- !u!114 &1352533839 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 30902850291037297, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
@@ -7577,9 +7569,21 @@ PrefabInstance:
       value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 3730005422164669894, guid: 7b0ba5a96bc4ba64aa5172ac1909545e, type: 3}
+      propertyPath: grass
+      value: 
+      objectReference: {fileID: 11400000, guid: 36a9016825af8e143b5cd8cb41da8f98, type: 2}
+    - target: {fileID: 3730005422164669894, guid: 7b0ba5a96bc4ba64aa5172ac1909545e, type: 3}
+      propertyPath: water
+      value: 
+      objectReference: {fileID: 11400000, guid: 600bf6f9a6ce58b45964f87042793142, type: 2}
+    - target: {fileID: 3730005422164669894, guid: 7b0ba5a96bc4ba64aa5172ac1909545e, type: 3}
       propertyPath: Height
       value: 64
       objectReference: {fileID: 0}
+    - target: {fileID: 3730005422164669894, guid: 7b0ba5a96bc4ba64aa5172ac1909545e, type: 3}
+      propertyPath: desert
+      value: 
+      objectReference: {fileID: 11400000, guid: 4ff2eff9e356068439dba5326aac90b6, type: 2}
     - target: {fileID: 3730005422164669894, guid: 7b0ba5a96bc4ba64aa5172ac1909545e, type: 3}
       propertyPath: tilemap
       value: 
