@@ -20,6 +20,7 @@ public class TileDataTest : MonoBehaviour
         if (Input.GetMouseButtonDown(1)) 
         {
             Vector3Int CellLocation = bps.GetTileCellLocation();
+            Debug.Log(CellLocation);
             TileBase tile = tilemap.GetTile(CellLocation);
 
             Debug.Log(tile);
