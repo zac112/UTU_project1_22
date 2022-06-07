@@ -58,4 +58,9 @@ public class OccupiedTiles : MonoBehaviour
         }
         else return false;
     }
+
+    public void UpdateOccupiedMarkers() 
+    { 
+        
+    }
 }
