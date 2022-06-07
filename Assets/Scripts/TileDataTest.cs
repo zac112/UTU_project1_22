@@ -9,6 +9,8 @@ public class TileDataTest : MonoBehaviour
     Tilemap tilemap;
     Grid grid;
 
+    [SerializeField] GameObject circlePrefab;
+
     private void Start()
     {
         grid = GameObject.FindGameObjectWithTag("Tilemap").GetComponent<Grid>();
@@ -19,11 +21,21 @@ public class TileDataTest : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1)) 
         {
-            Vector3Int CellLocation = bps.GetTileCellLocation();
-            Debug.Log(CellLocation);
-            TileBase tile = tilemap.GetTile(CellLocation);
+            Vector3 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3Int location = tilemap.WorldToCell(mp);
+            Vector3 CellCenter = tilemap.GetCellCenterWorld(location);
+            Vector3Int center = tilemap.WorldToCell(CellCenter);
 
-            Debug.Log(tile);
+            /*
+            if (tilemap.GetTile(center))
+            {
+                Debug.Log("Tile");
+            }
+            else 
+            {
+                Debug.Log("No tile");
+            }
+            */
         }
     }
 }
