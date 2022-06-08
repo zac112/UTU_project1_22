@@ -28,13 +28,12 @@ public class TowerCombat : MonoBehaviour{
         }
 
         if(other.tag=="EnemyMeleeHitbox"){
-            Debug.Log("ching");
             stats.TakeDamage(10); 
+            Debug.Log("got hit");
         }else if(other.tag=="EnemyRangedHitbox"){
             stats.TakeDamage(5);
             Destroy(other.gameObject); //delete projectile after getting hit
         }
-
     }
 
     void Attack(){

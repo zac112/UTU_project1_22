@@ -89,7 +89,7 @@ public class TowerEnemy : MonoBehaviour
                 Vector3 towerEnemyPos = this.gameObject.GetComponent<Rigidbody2D>().position;
                 Vector3 targetPos = target.GetComponent<Rigidbody2D>().position;
                 //offset hitbox position
-                Vector3 horisontalOffset = (targetPos - towerEnemyPos).normalized*2.5f;
+                Vector3 horisontalOffset = (targetPos - towerEnemyPos).normalized*1.5f;
                 Vector3 verticalOffset = new Vector3 (0f, 0f, 50f);
                 Vector3 hitboxPosition = towerEnemyPos + horisontalOffset + verticalOffset;
 
