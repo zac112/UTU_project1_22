@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6684443721583441104}
   - component: {fileID: 2162620545760424854}
+  - component: {fileID: 1182228561118914157}
   m_Layer: 12
   m_Name: WaterTile
   m_TagString: Untagged
@@ -84,3 +85,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1182228561118914157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5611273208158202585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b492ccc2c9e14d24380b48ad67905cd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOccupied: 0
+  isWalkable: 0
