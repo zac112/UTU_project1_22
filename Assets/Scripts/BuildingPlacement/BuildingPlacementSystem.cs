@@ -111,7 +111,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     // TODO: Make private and expose it from an interface?
     public void selectBuildingGUI(GameObject building) 
     {
-        selectedBuilding = building;
+        selectedBuilding = building.gameObject;
     }
 
     public Vector3Int GetTileCellLocation() 
@@ -152,7 +152,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     {
         if (buildingGhost != null)
         {
-            Destroy(buildingGhost.gameObject);
+            Destroy(buildingGhost);
             buildingGhostInstantiated = false;
         }
     }
