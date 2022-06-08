@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1563429069845493435}
   - component: {fileID: 7839450266478954225}
-  m_Layer: 1
+  m_Layer: 0
   m_Name: DesertTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
