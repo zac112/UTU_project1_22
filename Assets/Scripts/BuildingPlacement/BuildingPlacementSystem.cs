@@ -7,15 +7,15 @@ using UnityEngine.Tilemaps;
 
 public class BuildingPlacementSystem : MonoBehaviour
 {
-    [SerializeField] Transform buildingToPlace;
-    [SerializeField] Transform cubePrefab;
-    [SerializeField] List<Transform> buildableBuildings;
+    [SerializeField] GameObject buildingToPlace;
+    [SerializeField] GameObject cubePrefab;
+    [SerializeField] List<GameObject> buildableBuildings;
     [SerializeField] float buildingZ = 10;
     [Range(0,1)][SerializeField] float buildingGhostOpacity = 0.5f;
     bool buildingGhostInstantiated;
     List<Vector3> selectedBuildingOccupiedTiles;
     List<Vector3> buildingGhostOccupiedTiles;
-    Transform buildingGhost;
+    GameObject buildingGhost;
 
     [Range(0,2)]
     [SerializeField] int buildBuildingMouseButton = 1;
@@ -27,7 +27,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     Grid grid;
     Tilemap tilemap;
     OccupiedTiles occupiedTiles;
-    Transform selectedBuilding;
+    GameObject selectedBuilding;
 
     void Start()
     {        
@@ -109,7 +109,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     }
 
     // TODO: Make private and expose it from an interface?
-    public void selectBuildingGUI(Transform building) 
+    public void selectBuildingGUI(GameObject building) 
     {
         selectedBuilding = building;
     }
@@ -235,7 +235,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     {
         IBuildable selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
 
-        Transform nextRotation = selectedBuildingScript.NextRotation;
+        GameObject nextRotation = selectedBuildingScript.NextRotation;
         if (nextRotation != null)
         {
             // TODO: Same code as in instantiating ghost, except that we are instantiating nextRotation. Make it into a method.
@@ -321,7 +321,7 @@ public class BuildingPlacementSystem : MonoBehaviour
             occupiedTiles.OccupyTiles(selectedBuildingOccupiedTiles);
 
             // Instantiate building on tileLocation
-            Transform buildingInstance = Instantiate(selectedBuilding, calculateBuildingLocation(selectedBuildingOccupiedTiles), Quaternion.identity);
+            GameObject buildingInstance = Instantiate(selectedBuilding, calculateBuildingLocation(selectedBuildingOccupiedTiles), Quaternion.identity);
 
             IBuildable buildingInstanceScript = buildingInstance.GetComponent<IBuildable>();
 
