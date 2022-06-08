@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+ 
 public class TileChanger : MonoBehaviour
 {
     public Tile tile;
-    public Vector3Int location;
+    Vector3Int location;
     Tilemap tilemap;
-    public GameObject plot;
+    [SerializeField] GameObject plot;
     PlayerStats player;
+
     private int hoeToolPrice = 50;
 
     void Start()
@@ -28,16 +30,15 @@ public class TileChanger : MonoBehaviour
 
         if (player.GetGold() >= hoeToolPrice){
             // For now player can only put farming tiles on grass
-            if (Input.GetMouseButtonDown(0) && tilemap.GetTile(location).name.Equals("grassTiles1"))
+            if (Input.GetMouseButtonDown(0) && tilemap.GetTile(location).name.Equals("GrassTile"))
             {
                 tilemap.SetTile(location, tile);
 
                 // Place crops only on farmingTile
-                if (tilemap.GetTile(location).name.Equals("farmingTile"))
+                if (tilemap.GetTile(location).name.Equals("FarmTile"))
                 {
                     player.RemoveGold(hoeToolPrice);
                     AddCrop();
-            
                 }
             }
         }
