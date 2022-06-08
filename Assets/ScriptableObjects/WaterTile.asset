@@ -35,4 +35,5 @@ MonoBehaviour:
   m_Flags: 1
   m_ColliderType: 2
   isOccupied: 1
-  moveSpeed: 1
+  isWalkable: 0
+  moveSpeedMultiplier: 1
