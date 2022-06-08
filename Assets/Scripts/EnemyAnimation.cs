@@ -29,6 +29,7 @@ public class EnemyAnimation : MonoBehaviour
 
         //calculate direction and send to animator
         // BL = 1, BR = 2, FL = 3, FR = 4
+        //because some enemies dont have separate animations for left and right, its easier to just flip the spriterenderer 
         if(x!=0&&y!=0){
             if(x>0){
                 if(y>0){
