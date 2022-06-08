@@ -24,8 +24,8 @@ public class Building : MonoBehaviour, IBuildable
     [SerializeField] private bool _isRotated;
     public bool IsRotated { get => _isRotated; set => IsRotated = _isRotated; }
 
-    [SerializeField] private Transform _nextRotation;
-    public Transform NextRotation { get => _nextRotation; set => NextRotation = _nextRotation; }
+    [SerializeField] private GameObject _nextRotation;
+    public GameObject NextRotation { get => _nextRotation; set => NextRotation = _nextRotation; }
 
     private List<Vector3> _occupiedTiles;
     public List<Vector3> OccupiedTiles { get => _occupiedTiles; }

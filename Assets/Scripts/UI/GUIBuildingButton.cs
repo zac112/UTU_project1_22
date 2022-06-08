@@ -8,7 +8,7 @@ public class GUIBuildingButton : MonoBehaviour{
 
     [SerializeField] string buildingName;
     [SerializeField] string cost;
-    [SerializeField] Transform building;
+    [SerializeField] GameObject building;
     [SerializeField] Sprite sprite;
 
     [SerializeField] TMP_Text UIName;
