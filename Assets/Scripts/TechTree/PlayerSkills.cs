@@ -18,10 +18,13 @@ public class PlayerSkills
    }
 
    public void UnlockSkill(SkillType skillType) {
-       unlockedSkillTypeList.Add(skillType);
+       if (!IsSkillUnlocked(skillType)) {
+            unlockedSkillTypeList.Add(skillType);
+       }
+      
    }
 
-   public bool isSkillUnlocked(SkillType skillType) {
+   public bool IsSkillUnlocked(SkillType skillType) {
        return unlockedSkillTypeList.Contains(skillType);
    }
 }
