@@ -130,6 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   availableColor: {r: 0, g: 1, b: 0, a: 1}
   unavailableColor: {r: 1, g: 0, b: 0, a: 1}
+  player: {fileID: 0}
 --- !u!1 &8749429131717454035
 GameObject:
   m_ObjectHideFlags: 0

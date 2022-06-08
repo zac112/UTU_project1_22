@@ -19,13 +19,16 @@ public class PlotSystem : MonoBehaviour
     public Color availableColor = Color.green;
     public Color unavailableColor = Color.red;
 
+    public PlayerStats player;
+
     // Start is called before the first frame update
     void Start()
     {
         crop = transform.GetChild(0).GetComponent<SpriteRenderer>();
         cropCollider = transform.GetChild(0).GetComponent<PolygonCollider2D>();
         farming = FindObjectOfType<FarmingSystem>();
-        plot = GetComponent<SpriteRenderer>();    
+        plot = GetComponent<SpriteRenderer>();
+        player = GameObject.Find("Player").GetComponent<PlayerStats>();
     }
 
     // Update is called once per frame
@@ -48,14 +51,17 @@ public class PlotSystem : MonoBehaviour
     {
         if (isPlanted)
         {
-            if (cropPhases == selectedCrop.cropPhases.Length - 1)
+            if (cropPhases == selectedCrop.cropPhases.Length - 1 && !farming.isPlanting)
             {
                 Collect();
             }
         }
-        else if(farming.isPlanting)
+        else if(farming.isPlanting && farming.selectCrop.crop.price <= player.GetGold())
         {
-            Plant(farming.selectCrop.crop);
+            {
+                Plant(farming.selectCrop.crop);
+                player.RemoveGold(farming.selectCrop.crop.price);
+            }
         }
     }
 
@@ -88,7 +94,6 @@ public class PlotSystem : MonoBehaviour
 
     void Plant(CropObject newCrop)
     {
-        
         selectedCrop = newCrop;
         isPlanted = true;
         cropPhases = 0;
