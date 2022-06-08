@@ -196,11 +196,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff2ecb43c7823f54dbbfb55b272f5630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingToPlace: {fileID: 7953807960417106101, guid: 944dcfb610eb8274c898f34f5e5a7c98, type: 3}
-  cubePrefab: {fileID: 8920507564421770632, guid: 67b6652d2a52e6e45bb38574b11f933f, type: 3}
+  buildingToPlace: {fileID: 2300419187923452777, guid: 866c4392e9b143c478bcba842f2d9183, type: 3}
+  cubePrefab: {fileID: 7849311793634478279, guid: 67b6652d2a52e6e45bb38574b11f933f, type: 3}
   buildableBuildings:
-  - {fileID: 7953807960417106101, guid: 944dcfb610eb8274c898f34f5e5a7c98, type: 3}
-  - {fileID: 9113664018743696094, guid: 569a9665642b1e54cb8ed27ef6803447, type: 3}
+  - {fileID: 2300419187923452777, guid: 91da41f5a38724748bd567ca8f44502f, type: 3}
+  - {fileID: 2300419187923452777, guid: f623742f1fd508846b6b2960c6a957b3, type: 3}
   buildingZ: 10
   buildingGhostOpacity: 0.5
   buildBuildingMouseButton: 1

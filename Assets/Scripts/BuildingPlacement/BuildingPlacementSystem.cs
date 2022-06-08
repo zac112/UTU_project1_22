@@ -322,6 +322,7 @@ public class BuildingPlacementSystem : MonoBehaviour
 
             // Instantiate building on tileLocation
             GameObject buildingInstance = Instantiate(selectedBuilding, calculateBuildingLocation(selectedBuildingOccupiedTiles), Quaternion.identity);
+            buildingInstance.layer = LayerMask.NameToLayer("Buildings");
 
             IBuildable buildingInstanceScript = buildingInstance.GetComponent<IBuildable>();
 
