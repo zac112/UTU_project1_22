@@ -8,8 +8,8 @@ public class MainCameraController : MonoBehaviour
     // Control variables for camera movement
     [SerializeField] private float CameraSpeed;
     [SerializeField] private float MouseCameraIgnoreRadius;
-    [SerializeField] bool TargetCameraMode = false;
-    [SerializeField] bool FreeCameraMode = true;
+    [SerializeField] public bool TargetCameraMode = false;
+    [SerializeField] public bool FreeCameraMode = true;
 
 
     [SerializeField] public Transform target;
@@ -22,24 +22,33 @@ public class MainCameraController : MonoBehaviour
 
     // Zoom variables
     float minz=1f;
-    float maxz=30f;
+    float maxz;
 
     // Start is called before the first frame update
-    void Start()
+    public void ChangeCameraMode()
     {
+        if(TargetCameraMode)
+        {
+            TargetCameraMode = false;
+            FreeCameraMode = true;
+        }
+        else if (FreeCameraMode)
+        {
+            FreeCameraMode = false;
+            TargetCameraMode = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         if (FreeCameraMode){
-            TargetCameraMode = false;
-        // Avoid NullReferenceException
+            maxz = 17f;
+            // Avoid NullReferenceException
             if (!Camera.current)
             {
                 return;
             }
-            
                 Rect viewport = Camera.current.pixelRect;
             
             // Check if the mouse cursor is inside the viewport and that mouse control is enabled
@@ -72,7 +81,7 @@ public class MainCameraController : MonoBehaviour
         }
 
         else if (TargetCameraMode){
-            FreeCameraMode = false;
+            maxz = 4f;
             Vector3 goPosition = transform.position = target.position + offset;
             offset.z = -10;
             Vector3 smoothPosition = Vector3.SmoothDamp(transform.position, goPosition, ref cameraMoveDirection, smoothTime);
