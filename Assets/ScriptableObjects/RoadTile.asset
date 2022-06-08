@@ -35,4 +35,8 @@ MonoBehaviour:
   m_Flags: 1
   m_ColliderType: 2
   isOccupied: 1
-  moveSpeed: 1.5
+  isWalkable: 1
+  moveSpeedMultiplier: 1
+  layer:
+    serializedVersion: 2
+    m_Bits: 1

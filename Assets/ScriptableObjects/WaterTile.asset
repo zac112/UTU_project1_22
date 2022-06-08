@@ -37,3 +37,6 @@ MonoBehaviour:
   isOccupied: 1
   isWalkable: 0
   moveSpeedMultiplier: 1
+  layer:
+    serializedVersion: 2
+    m_Bits: 4096

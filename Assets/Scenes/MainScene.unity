@@ -7903,9 +7903,21 @@ PrefabInstance:
       value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 3730005422164669894, guid: 7b0ba5a96bc4ba64aa5172ac1909545e, type: 3}
+      propertyPath: grass
+      value: 
+      objectReference: {fileID: 11400000, guid: 36a9016825af8e143b5cd8cb41da8f98, type: 2}
+    - target: {fileID: 3730005422164669894, guid: 7b0ba5a96bc4ba64aa5172ac1909545e, type: 3}
+      propertyPath: water
+      value: 
+      objectReference: {fileID: 11400000, guid: 600bf6f9a6ce58b45964f87042793142, type: 2}
+    - target: {fileID: 3730005422164669894, guid: 7b0ba5a96bc4ba64aa5172ac1909545e, type: 3}
       propertyPath: Height
       value: 64
       objectReference: {fileID: 0}
+    - target: {fileID: 3730005422164669894, guid: 7b0ba5a96bc4ba64aa5172ac1909545e, type: 3}
+      propertyPath: desert
+      value: 
+      objectReference: {fileID: 11400000, guid: 4ff2eff9e356068439dba5326aac90b6, type: 2}
     - target: {fileID: 3730005422164669894, guid: 7b0ba5a96bc4ba64aa5172ac1909545e, type: 3}
       propertyPath: tilemap
       value: 
