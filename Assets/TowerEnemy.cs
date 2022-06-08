@@ -63,6 +63,11 @@ public class TowerEnemy : MonoBehaviour
         case "PlayerMeleeHitbox":
             stats.TakeDamage(20);
             break;
+                    
+        case "PlayerRangedHitbox":
+            stats.TakeDamage(10);
+            Destroy(other.gameObject);
+            break;
 
         case "AllyMeleeHitbox":
             stats.TakeDamage(10);

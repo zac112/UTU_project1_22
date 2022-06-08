@@ -86,7 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6461836573520944550}
   - component: {fileID: 6461836573520944551}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: TowerRangedRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
