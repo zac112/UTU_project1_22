@@ -28,7 +28,7 @@ public class TileChanger : MonoBehaviour
 
         if (player.GetGold() >= hoeToolPrice){
             // For now player can only put farming tiles on grass
-            if (Input.GetMouseButtonDown(0) && tilemap.GetTile(location).name.Equals("GrassTile"))
+            if (Input.GetMouseButtonDown(0) && tilemap.GetTile(location).name.Equals("grassTiles1"))
             {
                 tilemap.SetTile(location, tile);
 
