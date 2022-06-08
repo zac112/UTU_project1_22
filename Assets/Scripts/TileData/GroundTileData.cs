@@ -14,7 +14,7 @@ public class GroundTileData : MonoBehaviour
         tilemap = grid.GetComponentInChildren<Tilemap>();
     }
 
-    public GroundTile GetGroundTile(Vector3Int position) 
+    public GroundTile GetGroundTileOnMouseClick() 
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int location = tilemap.WorldToCell(mousePosition);

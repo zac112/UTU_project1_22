@@ -50,7 +50,7 @@ MonoBehaviour:
   _width: 3
   _length: 1
   _isRotated: 1
-  _nextRotation: {fileID: 9113664018743696094, guid: 60c01239c4d757441a412c98a840b822, type: 3}
+  _nextRotation: {fileID: 2300419187923452777, guid: 60c01239c4d757441a412c98a840b822, type: 3}
 --- !u!60 &8892011639983444833
 PolygonCollider2D:
   m_ObjectHideFlags: 0

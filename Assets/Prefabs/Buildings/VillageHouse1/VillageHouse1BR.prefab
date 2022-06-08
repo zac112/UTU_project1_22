@@ -46,10 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd2a9604af6fe4686022a0f905fcba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
   _width: 3
   _length: 4
   _isRotated: 0
-  _nextRotation: {fileID: 9113664018743696094, guid: 0d5dc48cd6b07284fb17d85023a8c01a, type: 3}
+  _nextRotation: {fileID: 2300419187923452777, guid: 0d5dc48cd6b07284fb17d85023a8c01a, type: 3}
 --- !u!60 &4421284640084981012
 PolygonCollider2D:
   m_ObjectHideFlags: 0
