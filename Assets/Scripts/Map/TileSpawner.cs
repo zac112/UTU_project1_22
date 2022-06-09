@@ -7,13 +7,13 @@ public class TileSpawner : MonoBehaviour
 {    
     Tilemap map;
     MapGenerator generator;
-    private int discoveryRadius;
+    GameObject parentGO;
 
-    public void Init(Tilemap map, MapGenerator generator, int discoveryRadius)
+    public void Init(Tilemap map, MapGenerator generator, GameObject parentGO )
     {
         this.map = map;
         this.generator = generator;
-        this.discoveryRadius = discoveryRadius;
+        this.parentGO = parentGO;
     }
 
     private List<Vector3Int> getNeighbors(Vector3Int origin, int radius)
@@ -51,12 +51,6 @@ public class TileSpawner : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Player")) {
             RevealTiles();
-            List<Vector3Int> neighbors = getNeighbors(map.WorldToCell(transform.parent.position), discoveryRadius - 1);
-
-            foreach (var neighbor in neighbors)
-            {
-                
-            }
             Destroy(transform.parent.gameObject);
         }
         
@@ -64,20 +58,21 @@ public class TileSpawner : MonoBehaviour
 
     void RevealTiles() {
         Vector3Int cellpos = map.WorldToCell(transform.parent.position);
-        List<Vector3Int> neighbors = getNeighbors(cellpos, discoveryRadius - 1);
-        List<Vector3Int> edges = getEdges(cellpos, discoveryRadius);
-        
-        foreach (Vector3Int neighbor in neighbors)
-        {
-            generator.Generate(neighbor);
+        List<Vector3Int> neighbors = new List<Vector3Int>();
+
+
+        for (int i = -1; i < 2; i++){
+            for (int j = -1; j < 2; j++)
+            {
+                neighbors.Add(new Vector3Int(cellpos.x+i, cellpos.y+j, 0));
+            }
         }
 
-        foreach (var edge in edges)
-        {
-            if (generator.Generate(edge)) { 
-                GameObject go = Instantiate(transform.parent.gameObject, map.CellToWorld(edge), Quaternion.identity);
+        foreach (Vector3Int neighbor in neighbors) {
+            if (generator.Generate(neighbor)) { 
+                GameObject go = Instantiate(transform.parent.gameObject, map.CellToWorld(neighbor), Quaternion.identity, parentGO.transform);
                 go.name = "FOW";
-                go.GetComponentInChildren<TileSpawner>().Init(map, generator, discoveryRadius);
+                go.GetComponentInChildren<TileSpawner>().Init(map, generator, parentGO);
             }
         }
     }

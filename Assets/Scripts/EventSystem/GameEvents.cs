@@ -16,23 +16,17 @@ public class GameEvents : MonoBehaviour
         current = this;
     }
 
+    public event Action<Vector3> TileRevealed;
+    public void OnTileRevealed(Vector3 worldPos){ TileRevealed?.Invoke(worldPos); }  
+
     public event Action<int> Tick;
-    public void OnTick(int currentTick)
-    {
-        Tick?.Invoke(currentTick);
-    }
+    public void OnTick(int currentTick){ Tick?.Invoke(currentTick); }
 
     public event Action<Vector2, Vector2> MovementInputChanged;
-    public void OnMovementInputChanged(Vector2 input, Vector2 delta)
-    {
-        MovementInputChanged?.Invoke(input, delta);
-    }
+    public void OnMovementInputChanged(Vector2 input, Vector2 delta){ MovementInputChanged?.Invoke(input, delta); }
 
     public event Action<Vector3, Vector3> MouseMoved;
-    public void OnMouseMoved(Vector3 position, Vector3 delta)
-    {
-        MouseMoved?.Invoke(position, delta);
-    }
+    public void OnMouseMoved(Vector3 position, Vector3 delta) { MouseMoved?.Invoke(position, delta); }
 
     public event Action<GameOverType> GameOver;
     public void OnGameOver(GameOverType t)

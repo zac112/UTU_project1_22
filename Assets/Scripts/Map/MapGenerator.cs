@@ -29,6 +29,7 @@ public class MapGenerator : MonoBehaviour
 
     [Tooltip("How far from the player new tiles can be discovered")] [SerializeField]
     private int discoveryRadius;
+    private GameObject FOWparentGO;
 
     [SerializeField] GameObject fog;
     public static VoronoiDiagram voronoi;
@@ -46,8 +47,8 @@ public class MapGenerator : MonoBehaviour
                     i == 0 ||
                     i == width - 1 ) {
                     Vector3 worldPos = tilemap.CellToWorld(position);
-                    GameObject go = Instantiate(fog, worldPos, Quaternion.identity);
-                    go.GetComponentInChildren<TileSpawner>().Init(tilemap, this, discoveryRadius);
+                    GameObject go = Instantiate(fog, worldPos, Quaternion.identity, FOWparentGO.transform);
+                    go.GetComponentInChildren<TileSpawner>().Init(tilemap, this, FOWparentGO);
                 }
 
                 Generate(position);
@@ -66,6 +67,7 @@ public class MapGenerator : MonoBehaviour
         Vector3 worldPos = tilemap.CellToWorld(position);
         tiles.TryGetValue(voronoi.GetClosestSeed(worldPos), out tile);
         tilemap.SetTile(position, tile);
+        GameEvents.current?.OnTileRevealed(worldPos);
         return true;
     }
 
@@ -82,6 +84,7 @@ public class MapGenerator : MonoBehaviour
 
     public void Awake()
     {
+        FOWparentGO = new GameObject("Fog of War");
         tilemap = Instantiate(grid,Vector3.zero,Quaternion.identity).GetComponentInChildren<Tilemap>();
         voronoi = GetComponent<VoronoiDiagram>();
 
