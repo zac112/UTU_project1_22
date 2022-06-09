@@ -66,8 +66,7 @@ public class MapGenerator : MonoBehaviour
         Tile tile;
         Vector3 worldPos = tilemap.CellToWorld(position);
         tiles.TryGetValue(voronoi.GetClosestSeed(worldPos), out tile);
-        tilemap.SetTile(position, tile);
-        GameEvents.current?.OnMapChanged(worldPos, 1);
+        tilemap.SetTile(position, tile);        
         return true;
     }
 
@@ -94,6 +93,8 @@ public class MapGenerator : MonoBehaviour
         tiles.Add(VoronoiDiagram.TileType.Grass, grass);
 
         Generate(Width, Height, Offset);        
+
+        AstarPath.active.Scan();
     }
 
     private void Update() {
