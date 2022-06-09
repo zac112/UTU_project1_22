@@ -15,7 +15,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     bool buildingGhostInstantiated;
     List<Vector3> selectedBuildingOccupiedTiles;
     List<Vector3> buildingGhostOccupiedTiles;
-    GameObject buildingGhost;
+    public GameObject buildingGhost;
 
     [Range(0,2)]
     [SerializeField] int buildBuildingMouseButton = 1;
@@ -306,12 +306,27 @@ public class BuildingPlacementSystem : MonoBehaviour
             }
         }
 
-        // Check for each tile, if tile is in occupied tiles list
+        // Check for each tile, if tile is occupied
         for (int i = 0; i < selectedBuildingOccupiedTiles.Count; i++)
         {
-            if (occupiedTiles.IsTileOccupied(selectedBuildingOccupiedTiles[i]))
+            // Turn from world coordinate to cell coordinate
+            Debug.Log(selectedBuildingOccupiedTiles[i]);
+
+
+            Vector3Int cellPosition = tilemap.WorldToCell(selectedBuildingOccupiedTiles[i]);
+            cellPosition.z = 0;
+            Debug.Log(cellPosition);
+
+            GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
+            GroundTileData tileScript = tile.GetComponent<GroundTileData>();
+
+            Debug.Log(tileScript.isOccupied);
+            Debug.Log(tileScript.isWalkable);
+
+            if (tileScript.isOccupied == true || tileScript.isWalkable == false)
             {
                 buildingPlacementAllowed = false;
+                break;
             }
         }
 
@@ -330,6 +345,15 @@ public class BuildingPlacementSystem : MonoBehaviour
             for (int i = 0; i < selectedBuildingOccupiedTiles.Count; i++)
             {
                 buildingInstanceScript.AddToOccupiedTiles(selectedBuildingOccupiedTiles[i]);
+
+                Vector3Int cellPosition = tilemap.WorldToCell(selectedBuildingOccupiedTiles[i]);
+                cellPosition.z = 0;
+
+                // Tile script
+                GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
+                GroundTileData tileScript = tile.GetComponent<GroundTileData>();
+
+                tileScript.isOccupied = true;
                 //Debug.Log(selectedBuildingOccupiedTiles[i]);
             }
 
