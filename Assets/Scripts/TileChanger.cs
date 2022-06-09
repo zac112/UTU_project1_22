@@ -13,6 +13,7 @@ public class TileChanger : MonoBehaviour
     PlayerStats player;
 
     private int hoeToolPrice = 50;
+    private int roadTilePrice = 100;
 
     void Start()
     {
@@ -28,19 +29,26 @@ public class TileChanger : MonoBehaviour
         location.x = location.x -5;
         location.y = location.y -5;
 
-        if (player.GetGold() >= hoeToolPrice){
-            // For now player can only put farming tiles on grass
-            if (Input.GetMouseButtonDown(0) && tilemap.GetTile(location).name.Equals("GrassTile"))
-            {
-                tilemap.SetTile(location, tile);
 
-                // Place crops only on farmingTile
-                if (tilemap.GetTile(location).name.Equals("FarmTile"))
-                {
-                    player.RemoveGold(hoeToolPrice);
-                    AddCrop();
-                }
+        // For now player can only put FarmTiles on grass
+        if (Input.GetMouseButtonDown(0) && tilemap.GetTile(location).name.Equals("GrassTile") && tile.name.Equals("FarmTile") && player.GetGold() >= hoeToolPrice)
+        {
+            tilemap.SetTile(location, tile);
+
+            // Place crops only on FarmTile and remove gold from player
+            if (tilemap.GetTile(location).name.Equals("FarmTile"))
+            {
+                player.RemoveGold(hoeToolPrice);
+                AddCrop();
             }
+        }
+
+        // If player is building road --> can also build on water to make bridges but not on placed FarmTiles
+        // Remove gold from player
+        else if(Input.GetMouseButtonDown(0) && tile.name.Equals("RoadTile") && tilemap.GetTile(location).name != ("FarmTile") && player.GetGold() >= roadTilePrice)
+        {
+            tilemap.SetTile(location, tile);
+            player.RemoveGold(roadTilePrice);
         }
     }
 
