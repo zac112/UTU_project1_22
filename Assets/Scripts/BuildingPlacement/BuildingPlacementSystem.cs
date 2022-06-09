@@ -310,18 +310,13 @@ public class BuildingPlacementSystem : MonoBehaviour
         for (int i = 0; i < selectedBuildingOccupiedTiles.Count; i++)
         {
             // Turn from world coordinate to cell coordinate
-            Debug.Log(selectedBuildingOccupiedTiles[i]);
-
-
             Vector3Int cellPosition = tilemap.WorldToCell(selectedBuildingOccupiedTiles[i]);
+            cellPosition.x += 5;
+            cellPosition.y += 5;
             cellPosition.z = 0;
-            Debug.Log(cellPosition);
 
             GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
             GroundTileData tileScript = tile.GetComponent<GroundTileData>();
-
-            Debug.Log(tileScript.isOccupied);
-            Debug.Log(tileScript.isWalkable);
 
             if (tileScript.isOccupied == true || tileScript.isWalkable == false)
             {
@@ -379,5 +374,15 @@ public class BuildingPlacementSystem : MonoBehaviour
     public void PrintHello() 
     {
         Debug.Log("Hello");
+    }
+
+    private void InstantiateTestCircle(Vector3Int position) 
+    {
+        Vector3 worldPosition = tilemap.CellToWorld(position);
+        GameObject prefab = Instantiate(cubePrefab, worldPosition, Quaternion.identity);
+
+        SpriteRenderer spriteComponent = prefab.GetComponentInChildren<SpriteRenderer>();
+
+        spriteComponent.color = new Color(1, 0, 0);
     }
 }
