@@ -17,6 +17,8 @@ public class BuildingPlacementSystem : MonoBehaviour
     public GameObject buildingGhost;
     public GameObject selectedBuilding;
     IBuildable selectedBuildingScript;
+    List<Vector3Int> buildingDisallowed;
+    List<GameObject> buildingOccupiedOverlay;
 
     [Range(0,2)]
     [SerializeField] int buildBuildingMouseButton = 1;
@@ -37,6 +39,8 @@ public class BuildingPlacementSystem : MonoBehaviour
         selectedBuildingOccupiedTiles = new List<Vector3>();
         buildingGhostOccupiedTiles = new List<Vector3>();
         buildingGhostInstantiated = false;
+        buildingDisallowed = new List<Vector3Int>();
+        buildingOccupiedOverlay = new List<GameObject>();
     }
 
     void Update()
@@ -209,12 +213,38 @@ public class BuildingPlacementSystem : MonoBehaviour
                 }
             }
 
+            // TODO: If mouse position was moved
+
+            // Convert worldposition to cell position
+            
+            /*
+            for (int i = 0; i < buildingGhostOccupiedTiles.Count; i++) 
+            {
+                Vector3 worldPos = buildingGhostOccupiedTiles[i];
+
+                GameObject cube = Instantiate(cubePrefab, worldPos, Quaternion.identity);
+
+                SpriteRenderer spriteComponent = cube.GetComponentInChildren<SpriteRenderer>();
+
+                Vector3Int cellPos = tilemap.WorldToCell(worldPos);
+
+                GameObject tile = tilemap.GetInstantiatedObject(cellPos);
+                GroundTileData tileScript = tile.GetComponent<GroundTileData>();
+
+                if (tileScript.isOccupied || !tileScript.isWalkable) 
+                {
+                    spriteComponent.color = new Color(1, 0, 0);
+                }
+            }
+            */
+
             // Move the ghost when mouse moves
             Vector3 position = calculateBuildingLocation(buildingGhostOccupiedTiles);
             position.z = buildingZ;
             buildingGhost.transform.position = position;
 
             buildingGhostOccupiedTiles.Clear();
+            buildingDisallowed.Clear();
         }
     }
 
@@ -308,7 +338,6 @@ public class BuildingPlacementSystem : MonoBehaviour
             if (tileScript.isOccupied == true || tileScript.isWalkable == false)
             {
                 buildingPlacementAllowed = false;
-                break;
             }
         }
 
@@ -363,5 +392,23 @@ public class BuildingPlacementSystem : MonoBehaviour
         SpriteRenderer spriteComponent = prefab.GetComponentInChildren<SpriteRenderer>();
 
         spriteComponent.color = new Color(1, 0, 0);
+    }
+
+    private List<Vector3Int> ConvertWorldToCell(List<Vector3> list) 
+    {
+        List<Vector3Int> newList = new List<Vector3Int>();
+
+        for (int i = 0; i < buildingGhostOccupiedTiles.Count; i++)
+        {
+            // Turn from world coordinate to cell coordinate
+            Vector3Int cellPosition = tilemap.WorldToCell(buildingGhostOccupiedTiles[i]);
+            cellPosition.x += 5;
+            cellPosition.y += 5;
+            cellPosition.z = 0;
+
+            newList.Add(cellPosition);
+        }
+
+        return newList;
     }
 }
