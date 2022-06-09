@@ -28,15 +28,15 @@ public class AIPathfinding : MonoBehaviour
         seeker = GetComponent<Seeker>();
 
         InvokeRepeating("UpdatePath", 0f, .5f);
-        GameEvents.current.TileRevealed += OnTileRevealed;
+        GameEvents.current.MapChange += OnTileRevealed;
     }
 
     void OnDisable(){
-        GameEvents.current.TileRevealed -= OnTileRevealed;
+        GameEvents.current.MapChange -= OnTileRevealed;
     }
 
-    void OnTileRevealed(Vector3 pos){
-        GraphUpdateObject guo = new GraphUpdateObject(new Bounds(pos,Vector3.one*2));
+    void OnTileRevealed(Vector3 pos, int size){
+        GraphUpdateObject guo = new GraphUpdateObject(new Bounds(pos,Vector3.one*size));
         AstarPath.active.UpdateGraphs(guo);
     }
 

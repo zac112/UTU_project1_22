@@ -34,7 +34,7 @@ public class GUIBuildingButton : MonoBehaviour{
 
     public void OnButtonDown()
     {
-        bps.selectBuildingGUI(building);
+        GameEvents.current.OnBuildingSelected(building);
         buildingsPanel.SetActive(false);
     }
 }

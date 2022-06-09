@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9113664018743696094}
   - component: {fileID: 4224269023716880283}
   - component: {fileID: 8463465385061437793}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WoodGateClosedFL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4347879531809182939}
   - component: {fileID: 3957749697381017011}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

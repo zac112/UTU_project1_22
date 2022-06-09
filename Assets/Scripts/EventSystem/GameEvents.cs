@@ -16,8 +16,11 @@ public class GameEvents : MonoBehaviour
         current = this;
     }
 
-    public event Action<Vector3> TileRevealed;
-    public void OnTileRevealed(Vector3 worldPos){ TileRevealed?.Invoke(worldPos); }  
+    public event Action<GameObject> BuildingSelectedForBuilding;
+    public void OnBuildingSelected(GameObject building){ BuildingSelectedForBuilding?.Invoke(building); }
+
+    public event Action<Vector3,int> MapChange;
+    public void OnMapChanged(Vector3 worldPos, int size){ MapChange?.Invoke(worldPos, size); }  
 
     public event Action<int> Tick;
     public void OnTick(int currentTick){ Tick?.Invoke(currentTick); }

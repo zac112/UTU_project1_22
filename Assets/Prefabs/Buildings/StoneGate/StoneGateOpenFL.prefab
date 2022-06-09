@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -8541777715021242936}
   - component: {fileID: 2424835515334960682}
   - component: {fileID: 3911600323569701895}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: StoneGateOpenFL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4347879531809182939}
   - component: {fileID: 3957749697381017011}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -20,6 +20,8 @@ public class BuildingPlacementSystem : MonoBehaviour
     List<Vector3Int> buildingDisallowed;
     List<GameObject> buildingOccupiedOverlay;
 
+    Coroutine ghostCoroutine;
+
     [Range(0,2)]
     [SerializeField] int buildBuildingMouseButton = 1;
     [SerializeField] KeyCode buildingDeselect;
@@ -41,7 +43,16 @@ public class BuildingPlacementSystem : MonoBehaviour
         buildingGhostInstantiated = false;
         buildingDisallowed = new List<Vector3Int>();
         buildingOccupiedOverlay = new List<GameObject>();
+
+        GameEvents.current.BuildingSelectedForBuilding += selectBuilding;
     }
+
+    void selectBuilding(GameObject building) 
+    {
+        selectedBuilding = building.gameObject;
+        instantiateGhost();
+    }
+
 
     void Update()
     {
@@ -50,11 +61,6 @@ public class BuildingPlacementSystem : MonoBehaviour
         if (selectedBuilding != null) 
         {
             instantiateGhost();
-
-            if (buildingGhostInstantiated)
-            {
-                updateGhostPosition();
-            }
 
             if (Input.GetKeyDown(rotationHotkey))
             {
@@ -111,12 +117,6 @@ public class BuildingPlacementSystem : MonoBehaviour
         return false;       
     }
 
-    // TODO: Make private and expose it from an interface?
-    public void selectBuildingGUI(GameObject building) 
-    {
-        selectedBuilding = building.gameObject;
-    }
-
     public Vector3Int GetTileCellLocation() 
     {
         // Get the location of the tile under the mouse
@@ -151,7 +151,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         if (buildingGhost != null)
         {
             Destroy(buildingGhost);
-            buildingGhostInstantiated = false;
+            StopCoroutine(ghostCoroutine);
         }
     }
 
@@ -167,15 +167,16 @@ public class BuildingPlacementSystem : MonoBehaviour
         SpriteRenderer spriteComponent = buildingGhost.GetComponentInChildren<SpriteRenderer>();
         spriteComponent.color = new Color(spriteComponent.color.r, spriteComponent.color.g, spriteComponent.color.b, buildingGhostOpacity);
 
-        buildingGhostInstantiated = true;
+        ghostCoroutine = StartCoroutine(updateGhostPosition(buildingGhost));
+
     }
 
-    private void updateGhostPosition() 
+    private IEnumerator updateGhostPosition(GameObject selectedBuilding) 
     {      
-        {
+        while (true){
             // Repeating code that exists in the if statement below
             // Find a way to avoid repeating it.
-            selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
+            IBuildable selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
             int buildingWidth = selectedBuildingScript.Width;
             int buildingLength = selectedBuildingScript.Length;
 
@@ -213,31 +214,6 @@ public class BuildingPlacementSystem : MonoBehaviour
                 }
             }
 
-            // TODO: If mouse position was moved
-
-            // Convert worldposition to cell position
-            
-            /*
-            for (int i = 0; i < buildingGhostOccupiedTiles.Count; i++) 
-            {
-                Vector3 worldPos = buildingGhostOccupiedTiles[i];
-
-                GameObject cube = Instantiate(cubePrefab, worldPos, Quaternion.identity);
-
-                SpriteRenderer spriteComponent = cube.GetComponentInChildren<SpriteRenderer>();
-
-                Vector3Int cellPos = tilemap.WorldToCell(worldPos);
-
-                GameObject tile = tilemap.GetInstantiatedObject(cellPos);
-                GroundTileData tileScript = tile.GetComponent<GroundTileData>();
-
-                if (tileScript.isOccupied || !tileScript.isWalkable) 
-                {
-                    spriteComponent.color = new Color(1, 0, 0);
-                }
-            }
-            */
-
             // Move the ghost when mouse moves
             Vector3 position = calculateBuildingLocation(buildingGhostOccupiedTiles);
             position.z = buildingZ;
@@ -245,6 +221,7 @@ public class BuildingPlacementSystem : MonoBehaviour
 
             buildingGhostOccupiedTiles.Clear();
             buildingDisallowed.Clear();
+            yield return null;
         }
     }
 
@@ -255,8 +232,8 @@ public class BuildingPlacementSystem : MonoBehaviour
         GameObject nextRotation = selectedBuildingScript.NextRotation;
         if (nextRotation != null)
         {
-            // TODO: Same code as in instantiating ghost, except that we are instantiating nextRotation. Make it into a method.
-            destroyGhost();
+            // TODO: Same code as in instantiating ghost, except that we are instantiating nextRotation. Make it into a method.            
+            Destroy(buildingGhost);
 
             Vector3 position = GetTileLocationInWorld();
             position.z = buildingZ;
@@ -370,6 +347,7 @@ public class BuildingPlacementSystem : MonoBehaviour
             }
 
             GameStats.BuildingsBuilt++;  // increase GameStats record of finished buildings
+            GameEvents.current.OnMapChanged(buildingInstance.transform.position, selectedBuildingOccupiedTiles.Count); 
 
 
             // Testing which tiles are occupied by instancing a circle sprite on them
@@ -377,11 +355,15 @@ public class BuildingPlacementSystem : MonoBehaviour
             {
                 Instantiate(cubePrefab, selectedBuildingOccupiedTiles[i], Quaternion.identity);
             }
+
         }
         else
         {
             Debug.Log("A tile was occupied. Aborting building placement.");
         }
+
+        destroyGhost();
+        selectedBuilding = null;
     }
 
     private void InstantiateTestCircle(Vector3Int position) 

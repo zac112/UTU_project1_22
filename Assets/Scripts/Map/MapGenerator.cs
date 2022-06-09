@@ -67,7 +67,7 @@ public class MapGenerator : MonoBehaviour
         Vector3 worldPos = tilemap.CellToWorld(position);
         tiles.TryGetValue(voronoi.GetClosestSeed(worldPos), out tile);
         tilemap.SetTile(position, tile);
-        GameEvents.current?.OnTileRevealed(worldPos);
+        GameEvents.current?.OnMapChanged(worldPos, 1);
         return true;
     }
 

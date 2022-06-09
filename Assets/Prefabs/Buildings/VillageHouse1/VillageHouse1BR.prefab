@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9113664018743696094}
   - component: {fileID: 9217212189827535767}
   - component: {fileID: 4421284640084981012}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: VillageHouse1BR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4347879531809182939}
   - component: {fileID: 3957749697381017011}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

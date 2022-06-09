@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9113664018743696094}
   - component: {fileID: -1277645968311181128}
   - component: {fileID: 2533162924721199356}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: StoneWallFR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4347879531809182939}
   - component: {fileID: 3957749697381017011}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
