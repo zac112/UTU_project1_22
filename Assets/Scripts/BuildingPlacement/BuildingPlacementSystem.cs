@@ -27,7 +27,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     Grid grid;
     Tilemap tilemap;
     OccupiedTiles occupiedTiles;
-    GameObject selectedBuilding;
+    public GameObject selectedBuilding;
 
     void Start()
     {        
