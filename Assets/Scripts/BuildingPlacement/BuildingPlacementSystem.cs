@@ -7,7 +7,6 @@ using UnityEngine.Tilemaps;
 
 public class BuildingPlacementSystem : MonoBehaviour
 {
-    [SerializeField] GameObject buildingToPlace;
     [SerializeField] GameObject cubePrefab;
     [SerializeField] List<GameObject> buildableBuildings;
     [SerializeField] float buildingZ = 10;
@@ -16,6 +15,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     List<Vector3> selectedBuildingOccupiedTiles;
     List<Vector3> buildingGhostOccupiedTiles;
     public GameObject buildingGhost;
+    public GameObject selectedBuilding;
 
     [Range(0,2)]
     [SerializeField] int buildBuildingMouseButton = 1;
@@ -26,8 +26,7 @@ public class BuildingPlacementSystem : MonoBehaviour
 
     Grid grid;
     Tilemap tilemap;
-    OccupiedTiles occupiedTiles;
-    public GameObject selectedBuilding;
+    OccupiedTiles occupiedTiles;  
 
     void Start()
     {        
@@ -68,7 +67,6 @@ public class BuildingPlacementSystem : MonoBehaviour
     public Vector3 GetTileLocationInWorld()
     {
         Vector3Int tileLocation = GetTileCellLocation();
-        //Debug.Log($"Tilelocation: {tileLocation}");
 
         // Get the center of the tile under the mouse?
         // Perhaps a bit redundant to first get the tile location in the tilemap and then turn it back to world position?
@@ -117,18 +115,13 @@ public class BuildingPlacementSystem : MonoBehaviour
     public Vector3Int GetTileCellLocation() 
     {
         // Get the location of the tile under the mouse
-        Vector3Int tileLocation = grid.WorldToCell(GetMousePosition());
-        //tileLocation.x -= 1;
-        //tileLocation.y -= 1;
-
-        return tileLocation;
+        return grid.WorldToCell(GetMousePosition());
     }
 
     public Vector3 GetMousePosition() 
     {
         // Get the mouse position and store it in a variable
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        return mousePosition;
+        return Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
     private Vector3 calculateBuildingLocation(List<Vector3> occupiedTiles) 
@@ -160,12 +153,6 @@ public class BuildingPlacementSystem : MonoBehaviour
     private void instantiateGhost() 
     {
         destroyGhost();
-
-        // Building ghost
-        // Instantiate building
-        // Turn it's opacity down
-        // Make it follow mouse
-        // Destroy ghost when building is placed
 
         Vector3 position = GetTileLocationInWorld();
         position.z = buildingZ;
@@ -302,7 +289,6 @@ public class BuildingPlacementSystem : MonoBehaviour
                 widthY += 0.25f;
 
                 selectedBuildingOccupiedTiles.Add(new Vector3(widthX, widthY, buildingZ));
-                //Debug.Log($"Vector3 added: {result}");
             }
         }
 
@@ -349,12 +335,7 @@ public class BuildingPlacementSystem : MonoBehaviour
                 GroundTileData tileScript = tile.GetComponent<GroundTileData>();
 
                 tileScript.isOccupied = true;
-                //Debug.Log(selectedBuildingOccupiedTiles[i]);
             }
-
-            //Debug.Log($"Average: {calculateBuildingLocation(selectedBuildingOccupiedTiles)}");
-
-            // Debug.Log(buildingInstanceScript.OccupiedTiles.Count);
 
             GameStats.BuildingsBuilt++;  // increase GameStats record of finished buildings
 
@@ -369,11 +350,6 @@ public class BuildingPlacementSystem : MonoBehaviour
         {
             Debug.Log("A tile was occupied. Aborting building placement.");
         }
-    }
-
-    public void PrintHello() 
-    {
-        Debug.Log("Hello");
     }
 
     private void InstantiateTestCircle(Vector3Int position) 
