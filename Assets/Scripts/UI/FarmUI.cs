@@ -9,15 +9,17 @@ public class FarmUI : MonoBehaviour
     public CropObject crop;
     FarmingSystem fm;
 
-    [SerializeField] TMP_Text nameTxt;
+    [SerializeField] public TMP_Text nameTxt;
     [SerializeField] TMP_Text priceTxt;
     [SerializeField] Image UIImage;
-
+    GameObject farmingPanel;
 
     // Start is called before the first frame update
+
     void Start()
     {
         fm = FindObjectOfType<FarmingSystem>();
+        farmingPanel = GameObject.Find("FarmingPanel");
         updateUI();
     }
 
@@ -30,5 +32,10 @@ public class FarmUI : MonoBehaviour
     {
         nameTxt.text = crop.cropName;
         priceTxt.text = "Cost:" + crop.price;
+    }
+
+    public void OnButtonDown()
+    {
+        farmingPanel.SetActive(false);
     }
 }
