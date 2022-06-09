@@ -33,7 +33,7 @@ TagManager:
   - Tower
   - Buildings
   - PathfindIgnore
-  - 
+  - IgnoreCollisions
   - 
   - 
   - 
