@@ -480,6 +480,10 @@ PrefabInstance:
       propertyPath: building
       value: 
       objectReference: {fileID: 2300419187923452777, guid: 02012286e3301ee499d1392f25d37ec8, type: 3}
+    - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: buildingName
+      value: Stone gate
+      objectReference: {fileID: 0}
     - target: {fileID: 1978710028388150698, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1013,6 +1017,10 @@ PrefabInstance:
       propertyPath: building
       value: 
       objectReference: {fileID: 2300419187923452777, guid: 95063e27de48f164ba6ea8493ab10de3, type: 3}
+    - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: buildingName
+      value: Tower
+      objectReference: {fileID: 0}
     - target: {fileID: 1978710028388150698, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1627,7 +1635,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &281090278
 GameObject:
@@ -2244,6 +2252,14 @@ PrefabInstance:
       propertyPath: sprite
       value: 
       objectReference: {fileID: 21300000, guid: 43496ec6ca3ee414fb4f4c62b343aa5d, type: 3}
+    - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: building
+      value: 
+      objectReference: {fileID: 4042910844310544467, guid: 6dafa5f895424284893ac92c1aca10b9, type: 3}
+    - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: buildingName
+      value: Farm House
+      objectReference: {fileID: 0}
     - target: {fileID: 1978710028388150698, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3896,6 +3912,10 @@ PrefabInstance:
       propertyPath: building
       value: 
       objectReference: {fileID: 2300419187923452777, guid: 3f562078f8615af4082e47b7214cafc5, type: 3}
+    - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: buildingName
+      value: Stone wall
+      objectReference: {fileID: 0}
     - target: {fileID: 1978710028388150698, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4020,6 +4040,10 @@ PrefabInstance:
       propertyPath: building
       value: 
       objectReference: {fileID: 7953807960417106100, guid: 944dcfb610eb8274c898f34f5e5a7c98, type: 3}
+    - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: buildingName
+      value: Goldmine
+      objectReference: {fileID: 0}
     - target: {fileID: 1978710028388150698, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4717,7 +4741,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &822664493
 GameObject:
@@ -6168,7 +6192,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: cost
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: name
@@ -6177,11 +6201,15 @@ PrefabInstance:
     - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f039494f617c6534c8c7bc7f62f0c59f, type: 3}
+      objectReference: {fileID: 21300000, guid: 564e1b63b35f2b74cae8b212c6e929b3, type: 3}
     - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: building
       value: 
-      objectReference: {fileID: 2300419187923452777, guid: 569a9665642b1e54cb8ed27ef6803447, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: buildingName
+      value: Roadtile
+      objectReference: {fileID: 0}
     - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: spriteOverride
       value: 
@@ -6274,9 +6302,53 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1952593867}
+    - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1952593867}
+    - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Toggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Toggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ToggleButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ToggleButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5605164414762312911, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Name
-      value: BuildingButton
+      value: RoadTileButton
       objectReference: {fileID: 0}
     - target: {fileID: 9070188277807903730, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -6878,6 +6950,10 @@ PrefabInstance:
       propertyPath: building
       value: 
       objectReference: {fileID: 2300419187923452777, guid: 2cc3d568d8ed6cc43b685ee7339e478e, type: 3}
+    - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: buildingName
+      value: Village house
+      objectReference: {fileID: 0}
     - target: {fileID: 1978710028388150698, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7733,7 +7809,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1352533839 stripped
 MonoBehaviour:
@@ -8345,6 +8421,10 @@ PrefabInstance:
       propertyPath: building
       value: 
       objectReference: {fileID: 2300419187923452777, guid: 33a5f5539af1d254e96bd73af3846985, type: 3}
+    - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: buildingName
+      value: Smithy
+      objectReference: {fileID: 0}
     - target: {fileID: 1978710028388150698, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -8886,6 +8966,10 @@ PrefabInstance:
       propertyPath: building
       value: 
       objectReference: {fileID: 2300419187923452777, guid: 60c01239c4d757441a412c98a840b822, type: 3}
+    - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: buildingName
+      value: Wooden wall
+      objectReference: {fileID: 0}
     - target: {fileID: 1978710028388150698, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -11320,6 +11404,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1847826475}
   m_CullTransparentMesh: 1
+--- !u!1 &1865195987
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1865195989}
+  - component: {fileID: 1865195988}
+  m_Layer: 0
+  m_Name: RoadtileChanger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1865195988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865195987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fa705a85d8d4f64dacd20933b429bb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tile: {fileID: 11400000, guid: d7baabe0a8021a84da2c6a0dd9b99232, type: 2}
+  plot: {fileID: 0}
+--- !u!4 &1865195989
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865195987}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 369.8303, y: 141.73877, z: -1.7522008}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1871281229 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1978710028388150698, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
@@ -11391,6 +11521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  canMove: 1
 --- !u!114 &1893350148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11544,6 +11675,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+--- !u!1 &1952593864 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5605164414762312911, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+  m_PrefabInstance: {fileID: 1012520259}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1952593867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952593864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90ec1fa4f49535147bd61afb6288a801, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1865195987}
 --- !u!1 &1958402198
 GameObject:
   m_ObjectHideFlags: 0
@@ -11861,6 +12010,10 @@ PrefabInstance:
       propertyPath: building
       value: 
       objectReference: {fileID: 2300419187923452777, guid: 1c05351d809ea6f48b584b7a3a288f0d, type: 3}
+    - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: buildingName
+      value: Wooden gate
+      objectReference: {fileID: 0}
     - target: {fileID: 1978710028388150698, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
