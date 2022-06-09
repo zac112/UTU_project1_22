@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -11,8 +12,7 @@ public class PlayerStats : MonoBehaviour
     int maxHealth;
     int health;
     int gold;
-
-    GameEvents events;  // game's event system
+    
     List<Village> FriendlyVillages = new List<Village>();
     Village CurrentVillage;  // currently active village
            
@@ -21,13 +21,14 @@ public class PlayerStats : MonoBehaviour
         maxHealth = startingHealth;
         gold = startingGold;
         GameStats.Gold = startingGold;
-        events = gameObject.GetComponent<GameEvents>();
         GameStats.FriendlyVillages = FriendlyVillages;  // initialize player's villages
         CurrentVillage = new Village();
         FriendlyVillages.Add(CurrentVillage);
 
         UIManager.current.UpdateGoldText(gold);
         UIManager.current.UpdateHealthText(health);
+
+        GameEvents.current.GameOver += OnGameOver;
     }
 
     public void AddGold(int amount){
@@ -54,10 +55,7 @@ public class PlayerStats : MonoBehaviour
             Destroy(gameObject);
             Debug.Log("YOU DIED");
 
-            if (events != null)  // if clause to prevent bugs for cases where event system is not yet plugged into the scene
-            {
-                events.OnGameOver(GameOverType.PlayerDied);  // launch game over screen through event system
-            }
+            GameEvents.current.OnGameOver(GameOverType.PlayerDied);  // launch game over screen through event system
 
         }
     }
@@ -83,7 +81,7 @@ public class PlayerStats : MonoBehaviour
         
         if (FriendlyVillages.Count <= 0)
         {
-            events.OnGameOver(GameOverType.OwnVillagesDestroyed);  // trigger game over if all villages destroyed
+            GameEvents.current.OnGameOver(GameOverType.OwnVillagesDestroyed);  // trigger game over if all villages destroyed
         } else
         {
             CurrentVillage = FriendlyVillages[0];  // do something more sophisticated maybe later... the village closest to camera should become current?
@@ -105,4 +103,35 @@ public class PlayerStats : MonoBehaviour
         GameStats.FriendlyVillages.Add(village);
     }
 
+    public void OnGameOver(GameOverType t)
+    {
+        GameStats.CollectEndStats();
+        SceneManager.LoadScene("GameOverScene");
+        // GameObject EndCanvas = GameObject.Find("EndStatsCanvas");
+        TextMesh EnemiesKilled = GameObject.Find("EnemiesKilled").GetComponent<TextMesh>();
+        EnemiesKilled.text = GameStats.EnemiesKilled.ToString();
+        TextMesh BuildingsDestroyed = GameObject.Find("BuildingsDestroyed").GetComponent<TextMesh>();
+        BuildingsDestroyed.text = GameStats.BuildingsDestroyed.ToString();
+        TextMesh EndGold = GameObject.Find("EndGold").GetComponent<TextMesh>();
+        EndGold.text = GameStats.Gold.ToString();
+        TextMesh OwnBuildings = GameObject.Find("OwndBuildings").GetComponent<TextMesh>();
+        OwnBuildings.text = GameStats.FriendlyBuildingsCount.ToString();
+        TextMesh GameDuration = GameObject.Find("GameDuration").GetComponent<TextMesh>();
+        GameDuration.text = GameStats.GameDuration.ToString();
+
+        TextMesh GameOverTypeText = GameObject.Find("GameOverTypeText").GetComponent<TextMesh>();
+
+        if (t == GameOverType.Victory)
+        {
+            GameOverTypeText.text = "Victory!";
+        }
+        if (t == GameOverType.PlayerDied)
+        {
+            GameOverTypeText.text = "You died!";
+        }
+        if (t == GameOverType.OwnVillagesDestroyed)
+        {
+            GameOverTypeText.text = "Own villages destroyed!";
+        }
+    }
 }

@@ -11,7 +11,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     [SerializeField] List<GameObject> buildableBuildings;
     [SerializeField] float buildingZ = 10;
     [Range(0,1)][SerializeField] float buildingGhostOpacity = 0.5f;
-    bool buildingGhostInstantiated;
+    
     List<Vector3> selectedBuildingOccupiedTiles;
     List<Vector3> buildingGhostOccupiedTiles;
     public GameObject buildingGhost;
@@ -39,8 +39,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         tilemap = grid.GetComponentInChildren<Tilemap>();
         occupiedTiles = GameObject.FindObjectOfType<OccupiedTiles>();
         selectedBuildingOccupiedTiles = new List<Vector3>();
-        buildingGhostOccupiedTiles = new List<Vector3>();
-        buildingGhostInstantiated = false;
+        buildingGhostOccupiedTiles = new List<Vector3>();        
         buildingDisallowed = new List<Vector3Int>();
         buildingOccupiedOverlay = new List<GameObject>();
 
@@ -242,8 +241,6 @@ public class BuildingPlacementSystem : MonoBehaviour
             // Turn opacity down
             SpriteRenderer spriteComponent = buildingGhost.GetComponentInChildren<SpriteRenderer>();
             spriteComponent.color = new Color(spriteComponent.color.r, spriteComponent.color.g, spriteComponent.color.b, buildingGhostOpacity);
-
-            buildingGhostInstantiated = true;
 
             // Not a part of the repeated code
             selectedBuilding = nextRotation;
