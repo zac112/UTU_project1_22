@@ -16,6 +16,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     List<Vector3> buildingGhostOccupiedTiles;
     public GameObject buildingGhost;
     public GameObject selectedBuilding;
+    IBuildable selectedBuildingScript;
 
     [Range(0,2)]
     [SerializeField] int buildBuildingMouseButton = 1;
@@ -58,7 +59,7 @@ public class BuildingPlacementSystem : MonoBehaviour
 
             if (Input.GetMouseButtonDown(buildBuildingMouseButton))
             {
-                buildBuilding();
+                build();
             }
         }
         
@@ -170,7 +171,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         {
             // Repeating code that exists in the if statement below
             // Find a way to avoid repeating it.
-            IBuildable selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
+            selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
             int buildingWidth = selectedBuildingScript.Width;
             int buildingLength = selectedBuildingScript.Length;
 
@@ -205,7 +206,6 @@ public class BuildingPlacementSystem : MonoBehaviour
                     widthY += 0.25f;
 
                     buildingGhostOccupiedTiles.Add(new Vector3(widthX, widthY, buildingZ));
-                    //Debug.Log($"Vector3 added: {result}");
                 }
             }
 
@@ -220,7 +220,7 @@ public class BuildingPlacementSystem : MonoBehaviour
 
     private void rotateBuilding() 
     {
-        IBuildable selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
+        selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
 
         GameObject nextRotation = selectedBuildingScript.NextRotation;
         if (nextRotation != null)
@@ -247,7 +247,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         }
     }
 
-    private void buildBuilding() 
+    private void build() 
     {
         // Empty the list of tiles
         selectedBuildingOccupiedTiles.Clear();
@@ -256,7 +256,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         bool buildingPlacementAllowed = true;
 
         // Get selected buildings width and height
-        IBuildable selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
+        selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
         int buildingWidth = selectedBuildingScript.Width;
         int buildingLength = selectedBuildingScript.Length;
 
@@ -304,6 +304,7 @@ public class BuildingPlacementSystem : MonoBehaviour
             GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
             GroundTileData tileScript = tile.GetComponent<GroundTileData>();
 
+
             if (tileScript.isOccupied == true || tileScript.isWalkable == false)
             {
                 buildingPlacementAllowed = false;
@@ -320,14 +321,16 @@ public class BuildingPlacementSystem : MonoBehaviour
             GameObject buildingInstance = Instantiate(selectedBuilding, calculateBuildingLocation(selectedBuildingOccupiedTiles), Quaternion.identity);
             buildingInstance.layer = LayerMask.NameToLayer("Buildings");
 
-            IBuildable buildingInstanceScript = buildingInstance.GetComponent<IBuildable>();
+            selectedBuildingScript = buildingInstance.GetComponent<IBuildable>();
 
             // Add occupiedTiles to the building instance
             for (int i = 0; i < selectedBuildingOccupiedTiles.Count; i++)
             {
-                buildingInstanceScript.AddToOccupiedTiles(selectedBuildingOccupiedTiles[i]);
+                selectedBuildingScript.AddToOccupiedTiles(selectedBuildingOccupiedTiles[i]);
 
                 Vector3Int cellPosition = tilemap.WorldToCell(selectedBuildingOccupiedTiles[i]);
+                cellPosition.x += 5;
+                cellPosition.y += 5;
                 cellPosition.z = 0;
 
                 // Tile script
