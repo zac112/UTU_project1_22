@@ -9,6 +9,7 @@ public class WASDMovement : MonoBehaviour
     Rigidbody2D rigidbody2d;
     float horizontal;
     float vertical;
+    public bool canMove = true;
 
     
     void Start()
@@ -23,10 +24,13 @@ public class WASDMovement : MonoBehaviour
     }
     void FixedUpdate() 
     {
+        if (canMove)
+        {
         Vector2 position = rigidbody2d.position;
         position.x = position.x + speed * horizontal * Time.deltaTime;
         position.y = position.y + speed * vertical * Time.deltaTime;
 
         rigidbody2d.MovePosition(position);
+        }
     }
 }

@@ -15,6 +15,8 @@ public class MainCameraController : MonoBehaviour
     [SerializeField] public float smoothTime = 0.5f;
     [SerializeField] public Vector3 offset;
     [SerializeField] public BuildingPlacementSystem bps;
+    GameObject player;
+    WASDMovement wasd;
 
 
     // Move direction and speed of the camera (not accounting for deltaTime)
@@ -27,6 +29,7 @@ public class MainCameraController : MonoBehaviour
     void Start()
     {
         bps = FindObjectOfType<BuildingPlacementSystem>();
+        wasd = GameObject.Find("Player").GetComponent<WASDMovement>();
     }
     
     // Start is called before the first frame update
@@ -36,11 +39,13 @@ public class MainCameraController : MonoBehaviour
         {
             TargetCamera = false;
             FreeCamera = true;
+            wasd.canMove = false;
         }
         else if (FreeCamera)
         {
             FreeCamera = false;
             TargetCamera = true;
+            wasd.canMove = true;
         }
     }
 
