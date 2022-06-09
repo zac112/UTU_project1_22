@@ -17,12 +17,9 @@ namespace EventSystem
 
         public int GetTickSpeed() { return tickSpeed; }   // needed by GameStats for assessing game duration in the end
 
-        private IEnumerator coroutine;
-    
         private void Start()
         {
-            coroutine = DoTick();
-            StartCoroutine(coroutine);
+            StartCoroutine(DoTick());
         }
 
         private IEnumerator DoTick() {
