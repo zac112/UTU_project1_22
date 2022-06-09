@@ -4686,7 +4686,6 @@ MonoBehaviour:
   - {fileID: 2300419187923452777, guid: f623742f1fd508846b6b2960c6a957b3, type: 3}
   buildingZ: 10
   buildingGhostOpacity: 0.5
-  buildingGhost: {fileID: 0}
   buildBuildingMouseButton: 1
   buildingDeselect: 106
   building1Hotkey: 107
@@ -12505,8 +12504,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2845505524657465644, guid: ff0e7d46bdeebb04287f62a5c680dafe, type: 3}
+      propertyPath: near clip plane
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2845505524657465644, guid: ff0e7d46bdeebb04287f62a5c680dafe, type: 3}
       propertyPath: orthographic size
       value: 20.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2845505524657465644, guid: ff0e7d46bdeebb04287f62a5c680dafe, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2845505524657465644, guid: ff0e7d46bdeebb04287f62a5c680dafe, type: 3}
+      propertyPath: m_NormalizedViewPortRect.height
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2845505524657465647, guid: ff0e7d46bdeebb04287f62a5c680dafe, type: 3}
       propertyPath: m_Name
@@ -12531,6 +12542,10 @@ PrefabInstance:
     - target: {fileID: 2845505524657465810, guid: ff0e7d46bdeebb04287f62a5c680dafe, type: 3}
       propertyPath: TargetCameraMode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2845505524657465810, guid: ff0e7d46bdeebb04287f62a5c680dafe, type: 3}
+      propertyPath: MouseCameraIgnoreRadius
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 2845505524657465810, guid: ff0e7d46bdeebb04287f62a5c680dafe, type: 3}
       propertyPath: CameraMouseControlEnabled
