@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MainCameraController : MonoBehaviour
 {
@@ -18,7 +19,6 @@ public class MainCameraController : MonoBehaviour
     GameObject player;
     WASDMovement wasd;
 
-
     // Move direction and speed of the camera (not accounting for deltaTime)
     private Vector3 cameraMoveDirection = Vector3.zero;
 
@@ -29,7 +29,7 @@ public class MainCameraController : MonoBehaviour
     void Start()
     {
         bps = FindObjectOfType<BuildingPlacementSystem>();
-        wasd = GameObject.Find("Player").GetComponent<WASDMovement>();
+        wasd = GameObject.Find("Player").GetComponent<WASDMovement>();       
     }
     
     // Start is called before the first frame update
@@ -67,8 +67,14 @@ public class MainCameraController : MonoBehaviour
         }
     }
 
+    private bool IsMouseOverUI()
+    {
+        return UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();
+    }
+
     void FreeCameraMode()
     {
+        if(!IsMouseOverUI()){
         // Max zoomout in freecamera
         minz = 1f;
         maxz = 17f;
@@ -115,6 +121,7 @@ public class MainCameraController : MonoBehaviour
         // Move the camera
         Camera.current.transform.Translate(cameraMoveDirection*Time.deltaTime);
     }
+    }
 
     void TargetCameraMode()
     {
@@ -136,8 +143,11 @@ public class MainCameraController : MonoBehaviour
 
     void OnGUI()
     {
+        if (!IsMouseOverUI())
+        {
         //Listens to change of Scroll wheel change
         GetComponent<Camera>().orthographicSize+=0.5f*(-Input.mouseScrollDelta.y);
         GetComponent<Camera>().orthographicSize=Mathf.Clamp(GetComponent<Camera>().orthographicSize,minz,maxz);
+        }
     }
 }
