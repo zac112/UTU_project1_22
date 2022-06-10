@@ -247,6 +247,8 @@ public class BuildingPlacementSystem : MonoBehaviour
                     Vector3 tileWorldCoordinates = buildingGhostOccupiedTiles[i];
 
                     Vector3Int cellPosition = tilemap.WorldToCell(tileWorldCoordinates);
+                    cellPosition.x += 5;
+                    cellPosition.y += 5;
                     cellPosition.z = 0;
 
                     // Get instantiated tile GameObject
@@ -384,8 +386,8 @@ public class BuildingPlacementSystem : MonoBehaviour
                 selectedBuildingScript.AddToOccupiedTiles(selectedBuildingOccupiedTiles[i]);
 
                 Vector3Int cellPosition = tilemap.WorldToCell(selectedBuildingOccupiedTiles[i]);
-                //cellPosition.x += 5;
-                //cellPosition.y += 5;
+                cellPosition.x += 5;
+                cellPosition.y += 5;
                 cellPosition.z = 0;
 
                 // Tile script
