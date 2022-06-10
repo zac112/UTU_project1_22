@@ -250,17 +250,20 @@ public class BuildingPlacementSystem : MonoBehaviour
                     // Get instantiated tile GameObject
                     GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
 
-                    // Get the script attached to the GameObject
-                    GroundTileData tileScript = tile.GetComponent<GroundTileData>();
+                    if (tile != null) {
+                        // Get the script attached to the GameObject
+                        GroundTileData tileScript = tile.GetComponent<GroundTileData>();
 
-                    if (tileScript.isOccupied || !tileScript.isWalkable)
-                    {
-                        GameObject visualizer = Instantiate(occupiedVisualizer, tileWorldCoordinates, Quaternion.identity);
-                        occupiedVisualizerList.Add(visualizer);
-                    }
-                    else {
-                        GameObject visualizer = Instantiate(availableVisualizer, tileWorldCoordinates, Quaternion.identity);
-                        occupiedVisualizerList.Add(visualizer);
+                        if (tileScript.isOccupied || !tileScript.isWalkable)
+                        {
+                            GameObject visualizer = Instantiate(occupiedVisualizer, tileWorldCoordinates, Quaternion.identity);
+                            occupiedVisualizerList.Add(visualizer);
+                        }
+                        else
+                        {
+                            GameObject visualizer = Instantiate(availableVisualizer, tileWorldCoordinates, Quaternion.identity);
+                            occupiedVisualizerList.Add(visualizer);
+                        }
                     }
                 }
             }
@@ -354,12 +357,15 @@ public class BuildingPlacementSystem : MonoBehaviour
             // Get instantiated tile GameObject
             GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
 
-            // Get the script attached to the GameObject
-            GroundTileData tileScript = tile.GetComponent<GroundTileData>();
-
-            if (tileScript.isOccupied == true || tileScript.isWalkable == false)
+            if (tile != null) 
             {
-                buildingPlacementAllowed = false;
+                // Get the script attached to the GameObject
+                GroundTileData tileScript = tile.GetComponent<GroundTileData>();
+
+                if (tileScript.isOccupied == true || tileScript.isWalkable == false)
+                {
+                    buildingPlacementAllowed = false;
+                }
             }
         }
 
@@ -386,9 +392,13 @@ public class BuildingPlacementSystem : MonoBehaviour
 
                 // Tile script
                 GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
-                GroundTileData tileScript = tile.GetComponent<GroundTileData>();
 
-                tileScript.isOccupied = true;
+                if (tile != null) 
+                {
+                    GroundTileData tileScript = tile.GetComponent<GroundTileData>();
+
+                    tileScript.isOccupied = true;
+                }
             }
 
             GameStats.BuildingsBuilt++;  // increase GameStats record of finished buildings
