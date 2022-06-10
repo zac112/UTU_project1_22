@@ -357,7 +357,7 @@ public class BuildingPlacementSystem : MonoBehaviour
             // Get instantiated tile GameObject
             GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
 
-            if (tile != null) 
+            if (tile != null)
             {
                 // Get the script attached to the GameObject
                 GroundTileData tileScript = tile.GetComponent<GroundTileData>();
@@ -366,6 +366,9 @@ public class BuildingPlacementSystem : MonoBehaviour
                 {
                     buildingPlacementAllowed = false;
                 }
+            }
+            else {
+                buildingPlacementAllowed = false;
             }
         }
 
@@ -396,7 +399,6 @@ public class BuildingPlacementSystem : MonoBehaviour
                 if (tile != null) 
                 {
                     GroundTileData tileScript = tile.GetComponent<GroundTileData>();
-
                     tileScript.isOccupied = true;
                 }
             }
