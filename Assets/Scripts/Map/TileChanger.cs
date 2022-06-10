@@ -40,13 +40,13 @@ public class TileChanger : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && tilemap.GetTile(location).name.Equals("GrassTile") && tile.name.Equals("FarmTile") && player.GetGold() >= hoeToolPrice && !tileScript.isOccupied)
             {
                 tilemap.SetTile(location, tile);
-
-                // Place crops only on FarmTile and remove gold from player
-                if (tilemap.GetTile(location).name.Equals("FarmTile"))
-                {
-                    player.RemoveGold(hoeToolPrice);
-                    AddCrop();
-                }
+                tileScript.isOccupied = true;
+            }
+            // Place crops only on FarmTile and remove gold from player
+            else if (tilemap.GetTile(location).name.Equals("FarmTile") && Input.GetMouseButtonDown(0) && player.GetGold() >= hoeToolPrice)
+            {
+                player.RemoveGold(hoeToolPrice);
+                AddCrop();
             }
 
             // If player is building road --> can also build on water to make bridges but not on placed FarmTiles
