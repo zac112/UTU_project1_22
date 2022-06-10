@@ -19,7 +19,7 @@ public class OccupiedTiles : MonoBehaviour
         }
         else
         {
-            Debug.Log("occupiedTiles already contains this tile");
+            //Debug.Log("occupiedTiles already contains this tile");
         }
     }
 
@@ -33,7 +33,7 @@ public class OccupiedTiles : MonoBehaviour
             }
             else
             {
-                Debug.Log($"occupiedTiles already contains this tile [{i}]");
+                //Debug.Log($"occupiedTiles already contains this tile [{i}]");
             }
         }
     }
@@ -42,7 +42,7 @@ public class OccupiedTiles : MonoBehaviour
     {
         if (!occupiedTiles.Contains(tileLocation))
         {
-            Debug.Log("occupiedTiles does not contain this tile");
+            //Debug.Log("occupiedTiles does not contain this tile");
         }
         else
         {

@@ -241,9 +241,6 @@ public class BuildingPlacementSystem : MonoBehaviour
 
                 occupiedVisualizerList.Clear();
 
-                Debug.Log(currentMousePositionInWorld);
-                Debug.Log(mousePosition);
-
                 currentMousePositionInWorld = mousePosition;
                 for (int i = 0; i < buildingGhostOccupiedTiles.Count; i++)
                 {
@@ -387,8 +384,8 @@ public class BuildingPlacementSystem : MonoBehaviour
                 selectedBuildingScript.AddToOccupiedTiles(selectedBuildingOccupiedTiles[i]);
 
                 Vector3Int cellPosition = tilemap.WorldToCell(selectedBuildingOccupiedTiles[i]);
-                cellPosition.x += 5;
-                cellPosition.y += 5;
+                //cellPosition.x += 5;
+                //cellPosition.y += 5;
                 cellPosition.z = 0;
 
                 // Tile script
@@ -401,12 +398,13 @@ public class BuildingPlacementSystem : MonoBehaviour
             GameStats.BuildingsBuilt++;  // increase GameStats record of finished buildings
             GameEvents.current.OnMapChanged(buildingInstance.transform.position, selectedBuildingOccupiedTiles.Count); 
 
-
+            /*
             // Testing which tiles are occupied by instancing a circle sprite on them
             for (int i = 0; i < selectedBuildingOccupiedTiles.Count; i++)
             {
                 Instantiate(cubePrefab, selectedBuildingOccupiedTiles[i], Quaternion.identity);
             }
+            */
 
         }
         else
