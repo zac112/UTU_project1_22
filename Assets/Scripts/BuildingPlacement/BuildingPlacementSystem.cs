@@ -8,17 +8,23 @@ using UnityEngine.Tilemaps;
 public class BuildingPlacementSystem : MonoBehaviour
 {
     [SerializeField] GameObject cubePrefab;
+    [SerializeField] GameObject occupiedVisualizer;
+    [SerializeField] GameObject availableVisualizer;
+
     [SerializeField] List<GameObject> buildableBuildings;
     [SerializeField] float buildingZ = 10;
     [Range(0,1)][SerializeField] float buildingGhostOpacity = 0.5f;
+
+    Vector3 currentMousePositionInWorld;
+    List<Vector3Int> allowedToBuildVisualization;
     
     List<Vector3> selectedBuildingOccupiedTiles;
     List<Vector3> buildingGhostOccupiedTiles;
     public GameObject buildingGhost;
     public GameObject selectedBuilding;
     IBuildable selectedBuildingScript;
-    List<Vector3Int> buildingDisallowed;
     List<GameObject> buildingOccupiedOverlay;
+    List<GameObject> occupiedVisualizerList;
 
     Coroutine ghostCoroutine;
 
@@ -40,8 +46,9 @@ public class BuildingPlacementSystem : MonoBehaviour
         occupiedTiles = GameObject.FindObjectOfType<OccupiedTiles>();
         selectedBuildingOccupiedTiles = new List<Vector3>();
         buildingGhostOccupiedTiles = new List<Vector3>();        
-        buildingDisallowed = new List<Vector3Int>();
         buildingOccupiedOverlay = new List<GameObject>();
+        allowedToBuildVisualization = new List<Vector3Int>();
+        occupiedVisualizerList = new List<GameObject>();
 
         GameEvents.current.BuildingSelectedForBuilding += selectBuilding;
     }
@@ -174,8 +181,8 @@ public class BuildingPlacementSystem : MonoBehaviour
     {      
         while (true){
             // Repeating code that exists in the if statement below
-            // Find a way to avoid repeating it.
-            IBuildable selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
+            // Make into a method
+            selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
             int buildingWidth = selectedBuildingScript.Width;
             int buildingLength = selectedBuildingScript.Length;
 
@@ -218,8 +225,54 @@ public class BuildingPlacementSystem : MonoBehaviour
             position.z = buildingZ;
             buildingGhost.transform.position = position;
 
+
+            // Update allowed to build vizualization
+            // Change to Vector3Int and add to list
+            Vector3 mousePosition = GetTileLocationInWorld();
+            mousePosition.z = 10;
+            
+            if (currentMousePositionInWorld != mousePosition) 
+            {
+                //Destroy items in occupiedVisualizerList
+                for (int i = 0; i < occupiedVisualizerList.Count; i++)
+                {
+                    Destroy(occupiedVisualizerList[i]);
+                }
+
+                occupiedVisualizerList.Clear();
+
+                Debug.Log(currentMousePositionInWorld);
+                Debug.Log(mousePosition);
+
+                currentMousePositionInWorld = mousePosition;
+                for (int i = 0; i < buildingGhostOccupiedTiles.Count; i++)
+                {
+                    Vector3 tileWorldCoordinates = buildingGhostOccupiedTiles[i];
+
+                    Vector3Int cellPosition = tilemap.WorldToCell(tileWorldCoordinates);
+                    cellPosition.z = 0;
+
+                    // Get instantiated tile GameObject
+                    GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
+                    //Debug.Log(tile);
+
+                    // Get the script attached to the GameObject
+                    GroundTileData tileScript = tile.GetComponent<GroundTileData>();
+                    //Debug.Log(tileScript.isOccupied);
+
+                    if (tileScript.isOccupied || !tileScript.isWalkable)
+                    {
+                        GameObject visualizer = Instantiate(occupiedVisualizer, tileWorldCoordinates, Quaternion.identity);
+                        occupiedVisualizerList.Add(visualizer);
+                    }
+                    else {
+                        GameObject visualizer = Instantiate(availableVisualizer, tileWorldCoordinates, Quaternion.identity);
+                        occupiedVisualizerList.Add(visualizer);
+                    }
+                }
+            }
+
             buildingGhostOccupiedTiles.Clear();
-            buildingDisallowed.Clear();
             yield return null;
         }
     }
@@ -305,9 +358,11 @@ public class BuildingPlacementSystem : MonoBehaviour
             cellPosition.y += 5;
             cellPosition.z = 0;
 
+            // Get instantiated tile GameObject
             GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
-            GroundTileData tileScript = tile.GetComponent<GroundTileData>();
 
+            // Get the script attached to the GameObject
+            GroundTileData tileScript = tile.GetComponent<GroundTileData>();
 
             if (tileScript.isOccupied == true || tileScript.isWalkable == false)
             {
@@ -363,7 +418,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         selectedBuilding = null;
     }
 
-    private void InstantiateTestCircle(Vector3Int position) 
+    private void instantiateTestCircle(Vector3Int position) 
     {
         Vector3 worldPosition = tilemap.CellToWorld(position);
         GameObject prefab = Instantiate(cubePrefab, worldPosition, Quaternion.identity);
@@ -371,6 +426,16 @@ public class BuildingPlacementSystem : MonoBehaviour
         SpriteRenderer spriteComponent = prefab.GetComponentInChildren<SpriteRenderer>();
 
         spriteComponent.color = new Color(1, 0, 0);
+    }
+
+    private void instantiateTestCircle(Vector3 position)
+    {
+        GameObject prefab = Instantiate(cubePrefab, position, Quaternion.identity);
+
+        SpriteRenderer spriteComponent = prefab.GetComponentInChildren<SpriteRenderer>();
+
+        spriteComponent.color = new Color(1, 0, 0);
+
     }
 
     private List<Vector3Int> ConvertWorldToCell(List<Vector3> list) 
