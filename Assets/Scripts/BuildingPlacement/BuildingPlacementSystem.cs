@@ -233,13 +233,7 @@ public class BuildingPlacementSystem : MonoBehaviour
             
             if (currentMousePositionInWorld != mousePosition) 
             {
-                //Destroy items in occupiedVisualizerList
-                for (int i = 0; i < occupiedVisualizerList.Count; i++)
-                {
-                    Destroy(occupiedVisualizerList[i]);
-                }
-
-                occupiedVisualizerList.Clear();
+                EmptyOccupiedVisualizerList();
 
                 currentMousePositionInWorld = mousePosition;
                 for (int i = 0; i < buildingGhostOccupiedTiles.Count; i++)
@@ -416,6 +410,7 @@ public class BuildingPlacementSystem : MonoBehaviour
 
         destroyGhost();
         selectedBuilding = null;
+        EmptyOccupiedVisualizerList();
     }
 
     private void instantiateTestCircle(Vector3Int position) 
@@ -454,5 +449,16 @@ public class BuildingPlacementSystem : MonoBehaviour
         }
 
         return newList;
+    }
+
+    private void EmptyOccupiedVisualizerList() 
+    {
+        //Destroy items in occupiedVisualizerList
+        for (int i = 0; i < occupiedVisualizerList.Count; i++)
+        {
+            Destroy(occupiedVisualizerList[i]);
+        }
+
+        occupiedVisualizerList.Clear();
     }
 }
