@@ -169,12 +169,15 @@ public class BuildingPlacementSystem : MonoBehaviour
         position.z = buildingZ;
         buildingGhost = Instantiate(selectedBuilding, position, Quaternion.identity);
 
+        // Turn off collider
+        PolygonCollider2D collider = buildingGhost.GetComponent<PolygonCollider2D>();
+        collider.enabled = !collider.enabled;
+
         // Turn opacity down
         SpriteRenderer spriteComponent = buildingGhost.GetComponentInChildren<SpriteRenderer>();
         spriteComponent.color = new Color(spriteComponent.color.r, spriteComponent.color.g, spriteComponent.color.b, buildingGhostOpacity);
 
         ghostCoroutine = StartCoroutine(updateGhostPosition(buildingGhost));
-
     }
 
     private IEnumerator updateGhostPosition(GameObject selectedBuilding) 
@@ -225,7 +228,6 @@ public class BuildingPlacementSystem : MonoBehaviour
             position.z = buildingZ;
             buildingGhost.transform.position = position;
 
-
             // Update allowed to build vizualization
             // Change to Vector3Int and add to list
             Vector3 mousePosition = GetTileLocationInWorld();
@@ -247,11 +249,9 @@ public class BuildingPlacementSystem : MonoBehaviour
 
                     // Get instantiated tile GameObject
                     GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
-                    //Debug.Log(tile);
 
                     // Get the script attached to the GameObject
                     GroundTileData tileScript = tile.GetComponent<GroundTileData>();
-                    //Debug.Log(tileScript.isOccupied);
 
                     if (tileScript.isOccupied || !tileScript.isWalkable)
                     {
@@ -393,19 +393,6 @@ public class BuildingPlacementSystem : MonoBehaviour
 
             GameStats.BuildingsBuilt++;  // increase GameStats record of finished buildings
             GameEvents.current.OnMapChanged(buildingInstance.transform.position, selectedBuildingOccupiedTiles.Count); 
-
-            /*
-            // Testing which tiles are occupied by instancing a circle sprite on them
-            for (int i = 0; i < selectedBuildingOccupiedTiles.Count; i++)
-            {
-                Instantiate(cubePrefab, selectedBuildingOccupiedTiles[i], Quaternion.identity);
-            }
-            */
-
-        }
-        else
-        {
-            Debug.Log("A tile was occupied. Aborting building placement.");
         }
 
         destroyGhost();
