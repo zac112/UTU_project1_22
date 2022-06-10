@@ -29,27 +29,35 @@ public class TileChanger : MonoBehaviour
         location.x = location.x -5;
         location.y = location.y -5;
 
+        // Get instantiated tile GameObject
+        GameObject groundTile = tilemap.GetInstantiatedObject(location);
+        
+        if (groundTile != null) {
+            // Get the script attached to the GameObject
+            GroundTileData tileScript = groundTile.GetComponent<GroundTileData>();
 
-        // For now player can only put FarmTiles on grass
-        if (Input.GetMouseButtonDown(0) && tilemap.GetTile(location).name.Equals("GrassTile") && tile.name.Equals("FarmTile") && player.GetGold() >= hoeToolPrice)
-        {
-            tilemap.SetTile(location, tile);
-
-            // Place crops only on FarmTile and remove gold from player
-            if (tilemap.GetTile(location).name.Equals("FarmTile"))
+            // For now player can only put FarmTiles on grass
+            if (Input.GetMouseButtonDown(0) && tilemap.GetTile(location).name.Equals("GrassTile") && tile.name.Equals("FarmTile") && player.GetGold() >= hoeToolPrice && !tileScript.isOccupied)
             {
-                player.RemoveGold(hoeToolPrice);
-                AddCrop();
+                tilemap.SetTile(location, tile);
+
+                // Place crops only on FarmTile and remove gold from player
+                if (tilemap.GetTile(location).name.Equals("FarmTile"))
+                {
+                    player.RemoveGold(hoeToolPrice);
+                    AddCrop();
+                }
+            }
+
+            // If player is building road --> can also build on water to make bridges but not on placed FarmTiles
+            // Remove gold from player
+            else if (Input.GetMouseButtonDown(0) && tile.name.Equals("RoadTile") && tilemap.GetTile(location).name != ("FarmTile") && player.GetGold() >= roadTilePrice && !tileScript.isOccupied)
+            {
+                tilemap.SetTile(location, tile);
+                player.RemoveGold(roadTilePrice);
             }
         }
-
-        // If player is building road --> can also build on water to make bridges but not on placed FarmTiles
-        // Remove gold from player
-        else if(Input.GetMouseButtonDown(0) && tile.name.Equals("RoadTile") && tilemap.GetTile(location).name != ("FarmTile") && player.GetGold() >= roadTilePrice)
-        {
-            tilemap.SetTile(location, tile);
-            player.RemoveGold(roadTilePrice);
-        }
+        
     }
 
     private void AddCrop()
