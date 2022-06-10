@@ -1524,7 +1524,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &281090278
 GameObject:
@@ -4546,8 +4546,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubePrefab: {fileID: 7849311793634478279, guid: 67b6652d2a52e6e45bb38574b11f933f, type: 3}
-  occupiedVisualizer: {fileID: 7849311793634478279, guid: 031d107451d8f434db7d1fc9a8461515, type: 3}
-  availableVisualizer: {fileID: 7849311793634478279, guid: a670157633abcfb40b5ad46fd1cbcd5f, type: 3}
+  occupiedVisualizer: {fileID: 0}
+  availableVisualizer: {fileID: 0}
   buildableBuildings:
   - {fileID: 2300419187923452777, guid: 91da41f5a38724748bd567ca8f44502f, type: 3}
   - {fileID: 2300419187923452777, guid: f623742f1fd508846b6b2960c6a957b3, type: 3}
@@ -4573,7 +4573,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &822664493
 GameObject:
@@ -5309,6 +5309,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2158420551974802036, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 220
+      objectReference: {fileID: 0}
     - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -5963,10 +5967,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2158420551974802036, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 220
+      objectReference: {fileID: 0}
     - target: {fileID: 3166025521365639172, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8b80c8df9b5ad7345ae19e9b5cc8aa0d, type: 3}
+      objectReference: {fileID: 21300000, guid: f457d508c4f2d1f40986ab3750f564e3, type: 3}
     - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Transition
       value: 0
@@ -7641,7 +7649,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1352533839 stripped
 MonoBehaviour:
@@ -11152,52 +11160,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1847826475}
   m_CullTransparentMesh: 1
---- !u!1 &1865195987
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1865195989}
-  - component: {fileID: 1865195988}
-  m_Layer: 0
-  m_Name: RoadtileChanger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1865195988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1865195987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fa705a85d8d4f64dacd20933b429bb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: d7baabe0a8021a84da2c6a0dd9b99232, type: 2}
-  plot: {fileID: 0}
---- !u!4 &1865195989
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1865195987}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 369.8303, y: 141.73877, z: -1.7522008}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1871281229 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1978710028388150698, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
@@ -11440,7 +11402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90ec1fa4f49535147bd61afb6288a801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1865195987}
+  target: {fileID: 0}
 --- !u!1 &1958402198
 GameObject:
   m_ObjectHideFlags: 0
@@ -11679,10 +11641,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2158420551974802036, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 220
+      objectReference: {fileID: 0}
     - target: {fileID: 3166025521365639172, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f1cdce24e4387a74893f2d6a8d4ea373, type: 3}
+      objectReference: {fileID: 21300000, guid: 34df593f5df18a74b838edf4ca4f23af, type: 3}
     - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Transition
       value: 0
@@ -12489,6 +12455,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2845505524657465810, guid: ff0e7d46bdeebb04287f62a5c680dafe, type: 3}
+      propertyPath: CameraSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2845505524657465810, guid: ff0e7d46bdeebb04287f62a5c680dafe, type: 3}
       propertyPath: FreeCameraMode
       value: 0
       objectReference: {fileID: 0}
@@ -12498,7 +12468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2845505524657465810, guid: ff0e7d46bdeebb04287f62a5c680dafe, type: 3}
       propertyPath: MouseCameraIgnoreRadius
-      value: 0.7
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 2845505524657465810, guid: ff0e7d46bdeebb04287f62a5c680dafe, type: 3}
       propertyPath: CameraMouseControlEnabled
@@ -12643,7 +12613,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6609971668409792008, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
       propertyPath: startingGold
-      value: 1000
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6609971668409792005, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
