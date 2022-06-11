@@ -120,10 +120,6 @@ public class TileChanger : MonoBehaviour
         position.z = bps.buildingZ;
         ghost = Instantiate(selectedBuilding, position, Quaternion.identity);
 
-        // Turn off collider
-        PolygonCollider2D collider = ghost.GetComponent<PolygonCollider2D>();
-        collider.enabled = !collider.enabled;
-
         // Turn opacity down
         SpriteRenderer spriteComponent = ghost.GetComponentInChildren<SpriteRenderer>();
         spriteComponent.color = new Color(spriteComponent.color.r, spriteComponent.color.g, spriteComponent.color.b, buildingGhostOpacity);
