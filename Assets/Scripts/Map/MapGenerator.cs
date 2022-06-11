@@ -8,15 +8,11 @@ using UnityEngine.Tilemaps;
 public class MapGenerator : MonoBehaviour
 {
     [SerializeField] GameObject grid;
-
-    [Tooltip("Tilemap used for terrain tiles")] [SerializeField]
-    Tilemap tilemap;
+    
+    private Tilemap tilemap;
 
     [Tooltip("Tile used to fill the play area")] [SerializeField]
     Dictionary<VoronoiDiagram.TileType, Tile> tiles;
-    [SerializeField] Tile desert;
-    [SerializeField] Tile grass;
-    [SerializeField] Tile water;
 
     [Tooltip("Width of the map in tiles")] [SerializeField]
     private int Width;
@@ -26,13 +22,15 @@ public class MapGenerator : MonoBehaviour
 
     [Tooltip("Map offset, applied for all tiles")] [SerializeField]
     private Vector3Int Offset;
-
-    [Tooltip("How far from the player new tiles can be discovered")] [SerializeField]
-    private int discoveryRadius;
+        
     private GameObject FOWparentGO;
 
     [SerializeField] GameObject fog;
     public static VoronoiDiagram voronoi;
+    
+    [SerializeField]List<GameObject> grassTrees = new List<GameObject>();
+    
+    [SerializeField]List<GameObject> desertTrees = new List<GameObject>();
 
     void Generate(int width, int height, Vector3Int offset)
     {
@@ -65,8 +63,17 @@ public class MapGenerator : MonoBehaviour
 
         Tile tile;
         Vector3 worldPos = tilemap.CellToWorld(position);
-        tiles.TryGetValue(voronoi.GetClosestSeed(worldPos), out tile);
+        VoronoiDiagram.TileType type = voronoi.GetClosestSeed(worldPos);
+
+        tiles.TryGetValue(type, out tile);
         tilemap.SetTile(position, tile);       
+
+        switch(type){
+            case VoronoiDiagram.TileType.Desert: GenerateTree(worldPos, desertTrees); break;
+            case VoronoiDiagram.TileType.Grass: GenerateTree(worldPos, grassTrees); break;
+            default: break;
+        }
+        
         GameEvents.current?.OnMapChanged(worldPos, 1); 
         return true;
     }
@@ -82,6 +89,14 @@ public class MapGenerator : MonoBehaviour
         return Generate(pos);
     }
 
+    private void GenerateTree(Vector3 worldPos, List<GameObject> trees){
+        float forest = voronoi.HasForest(worldPos);
+        if (forest < 0 ) return;
+        int index = (int)(forest*trees.Count);
+        GameObject go = Instantiate<GameObject>(trees[index]);
+        go.transform.position = worldPos;
+        
+    }
     public void Awake()
     {
         FOWparentGO = new GameObject("Fog of War");
@@ -89,9 +104,9 @@ public class MapGenerator : MonoBehaviour
         voronoi = GetComponent<VoronoiDiagram>();
 
         tiles = new Dictionary<VoronoiDiagram.TileType, Tile>();
-        tiles.Add(VoronoiDiagram.TileType.Desert, desert);
-        tiles.Add(VoronoiDiagram.TileType.Water, water);
-        tiles.Add(VoronoiDiagram.TileType.Grass, grass);
+        tiles.Add(VoronoiDiagram.TileType.Desert, Resources.Load<Tile>("Tiles/desertTiles1"));
+        tiles.Add(VoronoiDiagram.TileType.Water, Resources.Load<Tile>("Tiles/waterTiles1"));
+        tiles.Add(VoronoiDiagram.TileType.Grass, Resources.Load<Tile>("Tiles/grassTiles1"));
 
         Generate(Width, Height, Offset);        
 

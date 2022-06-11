@@ -34,8 +34,4 @@ public class EnemyStats : MonoBehaviour
         Init();
     }
 
-
-    void Update(){
-        Debug.Log(maxHealth);
-    }
 }

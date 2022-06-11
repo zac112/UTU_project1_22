@@ -7963,6 +7963,26 @@ PrefabInstance:
       propertyPath: discoveryRadius
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3730005422164669894, guid: 7b0ba5a96bc4ba64aa5172ac1909545e, type: 3}
+      propertyPath: grassTrees.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3730005422164669894, guid: 7b0ba5a96bc4ba64aa5172ac1909545e, type: 3}
+      propertyPath: desertTrees.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3730005422164669894, guid: 7b0ba5a96bc4ba64aa5172ac1909545e, type: 3}
+      propertyPath: grassTrees.Array.data[0]
+      value: 
+      objectReference: {fileID: 916473568291660040, guid: 074aeb3b35cb1b54b8b7845f0d9a3e16, type: 3}
+    - target: {fileID: 3730005422164669894, guid: 7b0ba5a96bc4ba64aa5172ac1909545e, type: 3}
+      propertyPath: grassTrees.Array.data[1]
+      value: 
+      objectReference: {fileID: 916473568291660040, guid: 074aeb3b35cb1b54b8b7845f0d9a3e16, type: 3}
+    - target: {fileID: 3730005422164669894, guid: 7b0ba5a96bc4ba64aa5172ac1909545e, type: 3}
+      propertyPath: desertTrees.Array.data[0]
+      value: 
+      objectReference: {fileID: 7629512921835332269, guid: 10f37b5800d386e4aa53990f854a0400, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b0ba5a96bc4ba64aa5172ac1909545e, type: 3}
 --- !u!1001 &1435229322
@@ -12364,7 +12384,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 788061082919026070, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
       propertyPath: m_EdgeRadius
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1269148676507271933, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
       propertyPath: m_IsActive
