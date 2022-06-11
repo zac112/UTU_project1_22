@@ -66,7 +66,8 @@ public class MapGenerator : MonoBehaviour
         Tile tile;
         Vector3 worldPos = tilemap.CellToWorld(position);
         tiles.TryGetValue(voronoi.GetClosestSeed(worldPos), out tile);
-        tilemap.SetTile(position, tile);        
+        tilemap.SetTile(position, tile);       
+        GameEvents.current?.OnMapChanged(worldPos, 1); 
         return true;
     }
 
@@ -95,10 +96,5 @@ public class MapGenerator : MonoBehaviour
         Generate(Width, Height, Offset);        
 
         AstarPath.active.Scan();
-    }
-
-    private void Update() {
-        
-       tilemap.GetComponent<TilemapCollider2D>().ProcessTilemapChanges();
     }
 }
