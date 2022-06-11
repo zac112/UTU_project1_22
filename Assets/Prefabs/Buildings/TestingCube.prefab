@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 51574770996123061}
   - component: {fileID: 3368984040746970812}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &51574770996123061
 Transform:
@@ -95,12 +95,12 @@ GameObject:
   - component: {fileID: 8920507564421770632}
   - component: {fileID: 8007670032025669732}
   - component: {fileID: -1414107539621269123}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: TestingCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8920507564421770632
 Transform:
