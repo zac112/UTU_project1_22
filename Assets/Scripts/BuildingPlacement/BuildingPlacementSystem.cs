@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -39,7 +37,8 @@ public class BuildingPlacementSystem : MonoBehaviour
 
     Grid grid;
     public Tilemap tilemap;
-    OccupiedTiles occupiedTiles;  
+    OccupiedTiles occupiedTiles;
+    PlayerStats playerStats;
 
     void Start()
     {        
@@ -50,6 +49,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         ghostOccupiedTiles = new List<Vector3>();        
         buildingOccupiedOverlay = new List<GameObject>();
         occupiedVisualizerList = new List<GameObject>();
+        playerStats = GameObject.Find("Player").GetComponent<PlayerStats>();
 
         GameEvents.current.BuildingSelectedForBuilding += selectBuilding;
     }
@@ -403,6 +403,9 @@ public class BuildingPlacementSystem : MonoBehaviour
                     tileScript.isOccupied = true;
                 }
             }
+
+            // Remove gold from player
+            //playerStats.RemoveGold(selectedBuilding.BuildCost);
 
             GameStats.BuildingsBuilt++;  // increase GameStats record of finished buildings
             GameEvents.current.OnMapChanged(buildingInstance.transform.position, selectedBuildingOccupiedTiles.Count); 
