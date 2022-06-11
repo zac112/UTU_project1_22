@@ -6,7 +6,9 @@ using UnityEngine.Tilemaps;
  
 public class TileChanger : MonoBehaviour
 {
-    public Tile tile;
+    [SerializeField] public Tile selectedTile;
+    [SerializeField] public Tile FarmTile;
+    [SerializeField] public Tile RoadTile;
     Vector3Int location;
     Tilemap tilemap;
     [SerializeField] GameObject plot;
@@ -49,24 +51,18 @@ public class TileChanger : MonoBehaviour
             GroundTileData tileScript = groundTile.GetComponent<GroundTileData>();
 
             // For now player can only put FarmTiles on grass
-            // Add a field called "IsFarmable" to GroundTileData and use it instead of name.Equals
-            if (Input.GetMouseButtonDown(0) && tilemap.GetTile(location).name.Equals("GrassTile") && tile.name.Equals("FarmTile") && player.GetGold() >= hoeToolPrice && !tileScript.isOccupied)
+            if (Input.GetMouseButtonDown(1) && selectedTile.name.Equals("FarmTile") && tilemap.GetTile(location).name != ("WaterTile") && player.GetGold() >= hoeToolPrice && !tileScript.isOccupied)
             {
-                tilemap.SetTile(location, tile);
+                tilemap.SetTile(location, selectedTile);
+                player.RemoveGold(hoeToolPrice);
                 tileScript.isOccupied = true;
             }
-            // Place crops only on FarmTile and remove gold from player
-            else if (tilemap.GetTile(location).name.Equals("FarmTile") && Input.GetMouseButtonDown(0) && player.GetGold() >= hoeToolPrice)
-            {
-                player.RemoveGold(hoeToolPrice);
-                AddCrop();
-            }
-
+            
             // If player is building road --> can also build on water to make bridges but not on placed FarmTiles
             // Remove gold from player
-            else if (Input.GetMouseButtonDown(0) && tile.name.Equals("RoadTile") && tilemap.GetTile(location).name != ("FarmTile") && player.GetGold() >= roadTilePrice && !tileScript.isOccupied)
+            else if (Input.GetMouseButtonDown(1) && selectedTile.name.Equals("RoadTile") && tilemap.GetTile(location).name != ("FarmTile") && player.GetGold() >= roadTilePrice && !tileScript.isOccupied)
             {
-                tilemap.SetTile(location, tile);
+                tilemap.SetTile(location, selectedTile);
                 player.RemoveGold(roadTilePrice);
                 tileScript.isOccupied = true;
             }
@@ -76,23 +72,20 @@ public class TileChanger : MonoBehaviour
         
     }
 
-    private void AddCrop()
-    { 
-        Vector3 location = GetTileRealPosition();
-        Instantiate(plot,location,transform.rotation);
-        plot.gameObject.SetActive(true);
-    }
-
-
-    private Vector3 GetTileRealPosition()
+    // This will change the selected tile when switching the tool on the UI
+    public void Reset(string TileType)
     {
-        Vector3 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3Int cellPosition = tilemap.WorldToCell(mp);
-        mp = tilemap.GetCellCenterWorld(cellPosition);
-        mp.z = 0;
+        if(TileType == "FarmTile")
+        {
+            selectedTile = FarmTile;
+        }
 
-        return mp;
+        if(TileType == "RoadTile")
+        {
+            selectedTile = RoadTile;
+        }
     }
+
 
     private void OnEnable()
     {
