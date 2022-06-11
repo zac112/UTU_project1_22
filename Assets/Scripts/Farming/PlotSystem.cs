@@ -21,7 +21,7 @@ public class PlotSystem : MonoBehaviour
 
     public PlayerStats player;
 
-    [SerializeField] BuildingPlacementSystem bps;
+    BuildingPlacementSystem bps;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +31,7 @@ public class PlotSystem : MonoBehaviour
         farming = FindObjectOfType<FarmingSystem>();
         plot = GetComponent<SpriteRenderer>();
         player = GameObject.Find("Player").GetComponent<PlayerStats>();
+        bps = GameObject.Find("BuildingPlacementSystem").GetComponent<BuildingPlacementSystem>();
     }
 
     // Update is called once per frame

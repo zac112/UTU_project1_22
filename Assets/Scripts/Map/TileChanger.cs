@@ -15,6 +15,8 @@ public class TileChanger : MonoBehaviour
     private int hoeToolPrice = 50;
     private int roadTilePrice = 100;
 
+    [SerializeField] BuildingPlacementSystem bps;
+
     void Start()
     {
         tilemap = GameObject.Find("Grid(Clone)").GetComponentInChildren<Tilemap>();
@@ -30,6 +32,7 @@ public class TileChanger : MonoBehaviour
         location.y = location.y -5;
 
         // Get instantiated tile GameObject
+        // This gets called every update, maybe change to on mouseclick
         GameObject groundTile = tilemap.GetInstantiatedObject(location);
         
         if (groundTile != null) {
