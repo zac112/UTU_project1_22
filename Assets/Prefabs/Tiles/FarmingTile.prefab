@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b492ccc2c9e14d24380b48ad67905cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  isOccupied: 1
   isWalkable: 1
 --- !u!114 &-5286048205782086599
 MonoBehaviour:
