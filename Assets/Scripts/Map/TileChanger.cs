@@ -55,6 +55,7 @@ public class TileChanger : MonoBehaviour
             {
                 tilemap.SetTile(location, tile);
                 player.RemoveGold(roadTilePrice);
+                tileScript.isOccupied = true;
             }
         }
         
