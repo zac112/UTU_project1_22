@@ -8,6 +8,7 @@ public class VoronoiDiagram : MonoBehaviour
     public enum TileType { Grass, Water, Desert};
     private Dictionary<Vector3, TileType> seeds = new Dictionary<Vector3, TileType>();
     private Dictionary<Vector3,int> forestSeeds = new Dictionary<Vector3,int>();
+    private List<Vector3> goldNodeSeeds = new List<Vector3>();
     private int numSeeds = 100;
     private int minDistance = 10;
     private int maxDistance = 100;
@@ -19,21 +20,26 @@ public class VoronoiDiagram : MonoBehaviour
     public void CreateDiagram()
     {
         InitGroundSeeds();
+        InitGoldMineSeeds();
         InitForestSeeds();        
     }
 
+    private void InitGoldMineSeeds(){
+        for (int i = 0; i < numSeeds; i++) {
+            float r = UnityEngine.Random.Range(minDistance, maxDistance);
+            float[] pos = GetRandomPosOnMap(r);
+            Vector3 vector = new Vector3(pos[0], pos[1], 0);
+            goldNodeSeeds.Add(vector);  
+        }
+    }
     private void InitGroundSeeds(){
         seeds.Add(new Vector3(0, 0, 0), TileType.Grass);        
 
         for (int i = 0; i < numSeeds; i++) {
-            float t = UnityEngine.Random.Range(0f, 2 * Mathf.PI);
-            float tt = t * t;
-            float x = (1 - tt)/(1+tt);
-            float y = (2 * t) / (1 + tt);            
+            
             float r = UnityEngine.Random.Range(minDistance, maxDistance);
-
-            Vector3 vector = new Vector3(x, y, 0);
-            vector = Vector3.Scale(vector, new Vector3(r,r,0));
+            float[] pos = GetRandomPosOnMap(r);
+            Vector3 vector = new Vector3(pos[0], pos[1], 0);
 
             Array values = Enum.GetValues(typeof(TileType));
             seeds.Add(vector, (TileType)values.GetValue(UnityEngine.Random.Range(0, values.Length)));
@@ -46,14 +52,25 @@ public class VoronoiDiagram : MonoBehaviour
         int minDistance = 2;
         int maxDistance = 200;
         for (int i=0; i <numSeeds; i++){
-            float angle = UnityEngine.Random.Range(0,2*Mathf.PI);
             float r = UnityEngine.Random.Range(minDistance, maxDistance);
-            float x = r*Mathf.Cos(angle);
-            float y = r*Mathf.Sin(angle);
-            forestSeeds.Add(new Vector3(x,y,0), UnityEngine.Random.Range(minForestSize,maxForestSize));            
+            float[] pos = GetRandomPosOnMap(r);
+            forestSeeds.Add(new Vector3(pos[0],pos[1],0), UnityEngine.Random.Range(minForestSize,maxForestSize));            
         }
     }
 
+    private float[] GetRandomPosOnMap(float distanceFromOrigin){
+        float angle = UnityEngine.Random.Range(0,2*Mathf.PI);        
+        float x = distanceFromOrigin*Mathf.Cos(angle);
+        float y = distanceFromOrigin*Mathf.Sin(angle);
+        return new float[]{x,y};
+    }
+
+    public bool HasGoldNode(Vector3 worldPos){
+        foreach(Vector3 pos in goldNodeSeeds){
+            if (Vector3.Distance(pos,worldPos) < 0.3f) return true;
+        }
+        return false;
+    }
     /*
     Checks whether the given tilemap cell should have forest.
     If tile does not have forest, returns a negative number.

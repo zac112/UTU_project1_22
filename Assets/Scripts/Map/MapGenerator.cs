@@ -28,6 +28,7 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] GameObject fog;
     public static VoronoiDiagram voronoi;
     
+    [SerializeField]GameObject goldNode;
     [SerializeField]List<GameObject> grassTrees = new List<GameObject>();
     
     [SerializeField]List<GameObject> desertTrees = new List<GameObject>();
@@ -69,11 +70,19 @@ public class MapGenerator : MonoBehaviour
         tilemap.SetTile(position, tile);       
 
         switch(type){
-            case VoronoiDiagram.TileType.Desert: GenerateTree(worldPos, desertTrees); break;
-            case VoronoiDiagram.TileType.Grass: GenerateTree(worldPos, grassTrees); break;
+            case VoronoiDiagram.TileType.Desert: {
+                GenerateGoldNode(worldPos);
+                GenerateTree(worldPos, desertTrees); 
+                break;
+                }
+            case VoronoiDiagram.TileType.Grass: {
+                GenerateTree(worldPos, grassTrees); 
+                break;
+                }
             default: break;
-        }
+        }                
         
+
         GameEvents.current?.OnMapChanged(worldPos, 1); 
         return true;
     }
@@ -87,6 +96,13 @@ public class MapGenerator : MonoBehaviour
         Vector3Int pos = tilemap.WorldToCell(worldpos);
 
         return Generate(pos);
+    }
+
+    private void GenerateGoldNode(Vector3 worldPos){
+        if (!voronoi.HasGoldNode(worldPos)) return;
+
+        GameObject go = Instantiate<GameObject>(goldNode);
+        go.transform.position = worldPos;        
     }
 
     private void GenerateTree(Vector3 worldPos, List<GameObject> trees){

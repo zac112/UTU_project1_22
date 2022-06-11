@@ -7960,6 +7960,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3730005422164669894, guid: 7b0ba5a96bc4ba64aa5172ac1909545e, type: 3}
+      propertyPath: goldNode
+      value: 
+      objectReference: {fileID: 2673870751815007294, guid: 4433ec214da468d409fb32fd72f494a1, type: 3}
+    - target: {fileID: 3730005422164669894, guid: 7b0ba5a96bc4ba64aa5172ac1909545e, type: 3}
       propertyPath: discoveryRadius
       value: 4
       objectReference: {fileID: 0}
