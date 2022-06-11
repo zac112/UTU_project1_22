@@ -39,13 +39,11 @@ public class MainCameraController : MonoBehaviour
         {
             TargetCamera = false;
             FreeCamera = true;
-            wasd.canMove = false;
         }
         else if (FreeCamera)
         {
             FreeCamera = false;
             TargetCamera = true;
-            wasd.canMove = true;
         }
     }
 
@@ -74,6 +72,8 @@ public class MainCameraController : MonoBehaviour
 
     void FreeCameraMode()
     {
+        wasd.canMove = false;
+
         if(!IsMouseOverUI()){
         // Max zoomout in freecamera
         minz = 1f;
@@ -128,6 +128,9 @@ public class MainCameraController : MonoBehaviour
         // This mode centers the camera to the player and visibility is lowered(can't zoom as much as in freecamera)
         minz = 1f;
         maxz = 4f;
+
+        // Player movement activated again
+        wasd.canMove = true;
 
         // If player is building --> lock zooming
         if (bps.selectedBuilding != null){
