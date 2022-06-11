@@ -39,8 +39,8 @@ public class TileChanger : MonoBehaviour
         Vector3 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         location = tilemap.WorldToCell(mp);
         location.z = 0;
-        location.x = location.x -5;
-        location.y = location.y -5;
+        location.x -= 2;
+        location.y -= 2;
 
         // Get instantiated tile GameObject
         // This gets called every update, maybe change to on mouseclick
