@@ -33,6 +33,9 @@ public interface IBuildable
     [Tooltip("Length of the building in the axis facing northeast")]
     public int Length { get; set; }
 
+    public int HealthPoints { get; set; }
+    public int BuildCost { get; set; }
+
     /// <summary>
     /// True if building is rotated in the opposite direction of the original building
     /// </summary>
