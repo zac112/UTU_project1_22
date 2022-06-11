@@ -24,11 +24,46 @@ public class EnemyCombat : MonoBehaviour
     private float distance;
 
 
+    EnemyDifficulty diff;
+    private GameObject difficultyController;
+
     void Start()
     {
         MeleeAggro=false;
         player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
+
+        difficultyController=GameObject.Find("EnemyDifficultyController");
+        diff=difficultyController.GetComponent<EnemyDifficulty>();
+        UpdateDifficulty();
+    }
+
+
+
+    //call this to update difficulty
+    void UpdateDifficulty(){
+
+        //add more difficulty levels here
+        switch (diff.DifficultyLevel)
+        {
+        case 1:
+            stats.SetMaxHP(100);
+            break;
+        case 2:
+            stats.SetMaxHP(125);
+            break;
+        case 3:
+            stats.SetMaxHP(150);
+            break;
+        case 4:
+            stats.SetMaxHP(175);
+            break;
+        case 5:
+            stats.SetMaxHP(200);
+            break;
+        default:
+            break;
+        }
     }
 
 
@@ -40,9 +75,6 @@ public class EnemyCombat : MonoBehaviour
             ai.setTarget(this.transform);
         }
     }
-
-
-
 
 
     void MeleeAttack(GameObject target){

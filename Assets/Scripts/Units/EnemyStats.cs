@@ -28,4 +28,14 @@ public class EnemyStats : MonoBehaviour
             GameStats.EnemiesKilled++;
         }
     }
+
+    public void SetMaxHP(int HP){
+        maxHealth = HP;
+        Init();
+    }
+
+
+    void Update(){
+        Debug.Log(maxHealth);
+    }
 }
