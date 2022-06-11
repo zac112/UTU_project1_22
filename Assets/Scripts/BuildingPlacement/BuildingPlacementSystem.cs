@@ -39,6 +39,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     public Tilemap tilemap;
     OccupiedTiles occupiedTiles;
     PlayerStats playerStats;
+    BuildCost buildCost;
 
     void Start()
     {        
@@ -54,7 +55,8 @@ public class BuildingPlacementSystem : MonoBehaviour
         GameEvents.current.BuildingSelectedForBuilding += selectBuilding;
     }
 
-    void selectBuilding(GameObject building) 
+    void selectBuilding
+        (GameObject building) 
     {
         selectedBuilding = building.gameObject;
         instantiateGhost(selectedBuilding, ref buildingGhost, ghostOccupiedTiles);
@@ -303,6 +305,8 @@ public class BuildingPlacementSystem : MonoBehaviour
 
     private void build() 
     {
+        
+
         // Empty the list of tiles
         selectedBuildingOccupiedTiles.Clear();
 
@@ -375,6 +379,8 @@ public class BuildingPlacementSystem : MonoBehaviour
 
         if (buildingPlacementAllowed)
         {
+            buildCost = selectedBuilding.GetComponent<BuildCost>();
+
             // Add tiles to occupiedTiles
             occupiedTiles.OccupyTiles(selectedBuildingOccupiedTiles);
 
@@ -405,7 +411,7 @@ public class BuildingPlacementSystem : MonoBehaviour
             }
 
             // Remove gold from player
-            //playerStats.RemoveGold(selectedBuilding.BuildCost);
+            playerStats.RemoveGold(buildCost.Cost);
 
             GameStats.BuildingsBuilt++;  // increase GameStats record of finished buildings
             GameEvents.current.OnMapChanged(buildingInstance.transform.position, selectedBuildingOccupiedTiles.Count); 
@@ -414,6 +420,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         destroyGhost(buildingGhost);
         selectedBuilding = null;
         EmptyOccupiedVisualizerList();
+        buildCost = null;
     }
 
     private void instantiateTestCircle(Vector3Int position) 

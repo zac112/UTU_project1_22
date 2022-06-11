@@ -21,12 +21,11 @@ public class GUIBuildingButton : MonoBehaviour{
 
     void UpdateUI(){
         UIName.text = buildingName;
-        UICost.text = $"Cost: {buildCost}";
+        UICost.text = $"Cost: {buildCost.Cost}";
         UIImage.sprite = sprite;
     }
 
     void Start(){
-        Debug.Log(building.GetComponent<BuildCost>());
         buildCost = building.GetComponent<BuildCost>();
         buildingsPanel = GameObject.Find("BuildingsPanel");
         UpdateUI();

@@ -5879,7 +5879,7 @@ PrefabInstance:
     - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: building
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5361643511454176902, guid: 3604ba868f008b74e94996d556d8fba7, type: 3}
     - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: buildingName
       value: Roadtile
