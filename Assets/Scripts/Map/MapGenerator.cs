@@ -122,14 +122,14 @@ public class MapGenerator : MonoBehaviour
         tiles = new Dictionary<VoronoiDiagram.TileType, List<Tile>>();
         
         tiles.Add(VoronoiDiagram.TileType.Desert, new List<Tile>{
-            Resources.Load<Tile>("Tiles/desertTiles1")
+            Resources.Load<Tile>("TilesSO/DesertTile")
         });
         tiles.Add(VoronoiDiagram.TileType.Water, new List<Tile>{
-            Resources.Load<Tile>("Tiles/waterTiles1")
+            Resources.Load<Tile>("TilesSO/WaterTile")
         });
         tiles.Add(VoronoiDiagram.TileType.Grass, new List<Tile>{
-            Resources.Load<Tile>("Tiles/grassTiles1"),
-            Resources.Load<Tile>("Tiles/grassTiles2")
+            Resources.Load<Tile>("TilesSO/GrassTile"),
+            Resources.Load<Tile>("TilesSO/GrassTile2")
         });
 
         Generate(Width, Height, Offset);        
