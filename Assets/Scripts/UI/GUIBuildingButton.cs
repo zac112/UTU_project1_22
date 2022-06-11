@@ -8,6 +8,7 @@ public class GUIBuildingButton : MonoBehaviour{
 
     [SerializeField] string buildingName;
     [SerializeField] GameObject building;
+    [SerializeField] int cost;
     [SerializeField] Sprite sprite;
 
     [SerializeField] TMP_Text UIName;
@@ -20,12 +21,21 @@ public class GUIBuildingButton : MonoBehaviour{
 
     void UpdateUI(){
         UIName.text = buildingName;
-        UICost.text = $"Cost: {buildCost.Cost}";
+        if (building != null)
+        {
+            UICost.text = $"Cost: {buildCost.Cost}";
+        }
+        else {
+            UICost.text = $"Cost: {cost}";
+        }
+        
         UIImage.sprite = sprite;
     }
 
     void Start(){
-        buildCost = building.GetComponent<BuildCost>();
+        if (building != null) {
+            buildCost = building.GetComponent<BuildCost>();
+        }
         buildingsPanel = GameObject.Find("BuildingsPanel");
         UpdateUI();
     }
