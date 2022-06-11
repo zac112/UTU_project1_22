@@ -7060,6 +7060,9 @@ MonoBehaviour:
   tile: {fileID: 11400000, guid: f3555029e5c5e414ab19ef3e8f483e33, type: 2}
   plot: {fileID: 2908140057702063971, guid: 3a41b6b168913164f9f9716a616419e1, type: 3}
   bps: {fileID: 813885494}
+  buildingGhostOpacity: 0.5
+  occupiedVisualizer: {fileID: 7849311793634478279, guid: 031d107451d8f434db7d1fc9a8461515, type: 3}
+  availableVisualizer: {fileID: 7849311793634478279, guid: a670157633abcfb40b5ad46fd1cbcd5f, type: 3}
 --- !u!4 &1164199618
 Transform:
   m_ObjectHideFlags: 0

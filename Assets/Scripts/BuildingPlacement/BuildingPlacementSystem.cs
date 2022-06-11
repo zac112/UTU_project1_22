@@ -15,11 +15,10 @@ public class BuildingPlacementSystem : MonoBehaviour
     [SerializeField] GameObject availableVisualizer;
 
     [SerializeField] List<GameObject> buildableBuildings;
-    [SerializeField] float buildingZ = 10;
+    public float buildingZ = 10;
     [Range(0,1)][SerializeField] float buildingGhostOpacity = 0.5f;
 
     Vector3 currentMousePositionInWorld;
-    List<Vector3Int> allowedToBuildVisualization;
     
     List<Vector3> selectedBuildingOccupiedTiles;
     List<Vector3> ghostOccupiedTiles;
@@ -39,7 +38,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     [SerializeField] KeyCode rotationHotkey = KeyCode.R;
 
     Grid grid;
-    Tilemap tilemap;
+    public Tilemap tilemap;
     OccupiedTiles occupiedTiles;  
 
     void Start()
@@ -50,7 +49,6 @@ public class BuildingPlacementSystem : MonoBehaviour
         selectedBuildingOccupiedTiles = new List<Vector3>();
         ghostOccupiedTiles = new List<Vector3>();        
         buildingOccupiedOverlay = new List<GameObject>();
-        allowedToBuildVisualization = new List<Vector3Int>();
         occupiedVisualizerList = new List<GameObject>();
 
         GameEvents.current.BuildingSelectedForBuilding += selectBuilding;
