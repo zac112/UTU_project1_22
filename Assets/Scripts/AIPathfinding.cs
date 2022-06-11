@@ -10,7 +10,7 @@ public class AIPathfinding : MonoBehaviour
     [SerializeField] Transform enemyGraph;
 
     [SerializeField] float speed = 200f;
-    [SerializeField] float nextWaypointDistance = 3f;
+    [SerializeField] float nextWaypointDistance = 0.3f;
 
     Path path;
     int currentWaypoint = 0;

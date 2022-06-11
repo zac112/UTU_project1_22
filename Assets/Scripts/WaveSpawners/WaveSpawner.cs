@@ -21,7 +21,6 @@ public abstract class WaveSpawner : MonoBehaviour
 
     public abstract void StartNextWave();
 
-    // Update is called once per frame
     void Spawn()
     {
         while(spawns.Count > 0){
