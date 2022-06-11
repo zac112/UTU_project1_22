@@ -5199,11 +5199,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
@@ -5216,7 +5216,7 @@ PrefabInstance:
     - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1013811233}
+      objectReference: {fileID: 1164199617}
     - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -5235,7 +5235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetActive
+      value: Reset
       objectReference: {fileID: 0}
     - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -5247,11 +5247,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: TileChanger, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: TileChanger, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: FarmTile
       objectReference: {fileID: 0}
     - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
@@ -5362,6 +5366,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 445719717}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1164199616}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -11329,6 +11345,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1013811233}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1164199616}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
