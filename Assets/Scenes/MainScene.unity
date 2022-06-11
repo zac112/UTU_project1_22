@@ -4546,8 +4546,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubePrefab: {fileID: 7849311793634478279, guid: 67b6652d2a52e6e45bb38574b11f933f, type: 3}
-  occupiedVisualizer: {fileID: 0}
-  availableVisualizer: {fileID: 0}
+  occupiedVisualizer: {fileID: 7849311793634478279, guid: 031d107451d8f434db7d1fc9a8461515, type: 3}
+  availableVisualizer: {fileID: 7849311793634478279, guid: a670157633abcfb40b5ad46fd1cbcd5f, type: 3}
   buildableBuildings:
   - {fileID: 2300419187923452777, guid: 91da41f5a38724748bd567ca8f44502f, type: 3}
   - {fileID: 2300419187923452777, guid: f623742f1fd508846b6b2960c6a957b3, type: 3}
