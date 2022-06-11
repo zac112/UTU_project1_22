@@ -7,7 +7,6 @@ using TMPro;
 public class GUIBuildingButton : MonoBehaviour{
 
     [SerializeField] string buildingName;
-    [SerializeField] string cost;
     [SerializeField] GameObject building;
     [SerializeField] Sprite sprite;
 
