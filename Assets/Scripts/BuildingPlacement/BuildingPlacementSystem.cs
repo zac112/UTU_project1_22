@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+
 
 
 public class BuildingPlacementSystem : MonoBehaviour
@@ -19,7 +22,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     List<Vector3Int> allowedToBuildVisualization;
     
     List<Vector3> selectedBuildingOccupiedTiles;
-    List<Vector3> buildingGhostOccupiedTiles;
+    List<Vector3> ghostOccupiedTiles;
     public GameObject buildingGhost;
     public GameObject selectedBuilding;
     IBuildable selectedBuildingScript;
@@ -45,7 +48,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         tilemap = grid.GetComponentInChildren<Tilemap>();
         occupiedTiles = GameObject.FindObjectOfType<OccupiedTiles>();
         selectedBuildingOccupiedTiles = new List<Vector3>();
-        buildingGhostOccupiedTiles = new List<Vector3>();        
+        ghostOccupiedTiles = new List<Vector3>();        
         buildingOccupiedOverlay = new List<GameObject>();
         allowedToBuildVisualization = new List<Vector3Int>();
         occupiedVisualizerList = new List<GameObject>();
@@ -56,7 +59,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     void selectBuilding(GameObject building) 
     {
         selectedBuilding = building.gameObject;
-        instantiateGhost(selectedBuilding);
+        instantiateGhost(selectedBuilding, ref buildingGhost, ghostOccupiedTiles);
     }
 
 
@@ -66,7 +69,7 @@ public class BuildingPlacementSystem : MonoBehaviour
 
         if (selectedBuilding != null) 
         {
-            instantiateGhost(selectedBuilding);
+            instantiateGhost(selectedBuilding, ref buildingGhost, ghostOccupiedTiles);
 
             if (Input.GetKeyDown(rotationHotkey))
             {
@@ -105,7 +108,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         if (Input.GetKeyDown(buildingDeselect))
         {
             selectedBuilding = null;
-            destroyGhost();
+            destroyGhost(buildingGhost);
             return false;
         }
 
@@ -152,35 +155,35 @@ public class BuildingPlacementSystem : MonoBehaviour
         return new Vector3(xPosition, yPosition, 10);
     }
 
-    private void destroyGhost() 
+    private void destroyGhost(GameObject ghost) 
     {
-        if (buildingGhost != null)
+        if (ghost != null)
         {
-            Destroy(buildingGhost);
+            Destroy(ghost);
             StopCoroutine(ghostCoroutine);
         }
     }
 
-    public void instantiateGhost(GameObject selectedBuilding) 
+    public void instantiateGhost(GameObject selectedBuilding, ref GameObject ghost, List<Vector3> ghostOccupiedTiles) 
     {
-        destroyGhost();
+        destroyGhost(ghost);
 
         Vector3 position = GetTileLocationInWorld();
         position.z = buildingZ;
-        buildingGhost = Instantiate(selectedBuilding, position, Quaternion.identity);
+        ghost = Instantiate(selectedBuilding, position, Quaternion.identity);
 
         // Turn off collider
-        PolygonCollider2D collider = buildingGhost.GetComponent<PolygonCollider2D>();
+        PolygonCollider2D collider = ghost.GetComponent<PolygonCollider2D>();
         collider.enabled = !collider.enabled;
 
         // Turn opacity down
-        SpriteRenderer spriteComponent = buildingGhost.GetComponentInChildren<SpriteRenderer>();
+        SpriteRenderer spriteComponent = ghost.GetComponentInChildren<SpriteRenderer>();
         spriteComponent.color = new Color(spriteComponent.color.r, spriteComponent.color.g, spriteComponent.color.b, buildingGhostOpacity);
 
-        ghostCoroutine = StartCoroutine(updateGhostPosition(buildingGhost));
+        ghostCoroutine = StartCoroutine(updateGhostPosition(ghost, ghostOccupiedTiles));
     }
 
-    public IEnumerator updateGhostPosition(GameObject selectedBuilding) 
+    public IEnumerator updateGhostPosition(GameObject selectedBuilding, List<Vector3> ghostOccupiedTiles) 
     {      
         while (true){
             // Repeating code that exists in the if statement below
@@ -219,12 +222,12 @@ public class BuildingPlacementSystem : MonoBehaviour
                     widthX += 0.50f;
                     widthY += 0.25f;
 
-                    buildingGhostOccupiedTiles.Add(new Vector3(widthX, widthY, buildingZ));
+                    ghostOccupiedTiles.Add(new Vector3(widthX, widthY, buildingZ));
                 }
             }
 
             // Move the ghost when mouse moves
-            Vector3 position = calculateBuildingLocation(buildingGhostOccupiedTiles);
+            Vector3 position = calculateBuildingLocation(ghostOccupiedTiles);
             position.z = buildingZ;
             buildingGhost.transform.position = position;
 
@@ -238,9 +241,9 @@ public class BuildingPlacementSystem : MonoBehaviour
                 EmptyOccupiedVisualizerList();
 
                 currentMousePositionInWorld = mousePosition;
-                for (int i = 0; i < buildingGhostOccupiedTiles.Count; i++)
+                for (int i = 0; i < ghostOccupiedTiles.Count; i++)
                 {
-                    Vector3 tileWorldCoordinates = buildingGhostOccupiedTiles[i];
+                    Vector3 tileWorldCoordinates = ghostOccupiedTiles[i];
 
                     Vector3Int cellPosition = tilemap.WorldToCell(tileWorldCoordinates);
                     cellPosition.x += 5;
@@ -268,7 +271,7 @@ public class BuildingPlacementSystem : MonoBehaviour
                 }
             }
 
-            buildingGhostOccupiedTiles.Clear();
+            ghostOccupiedTiles.Clear();
             yield return null;
         }
     }
@@ -407,7 +410,7 @@ public class BuildingPlacementSystem : MonoBehaviour
             GameEvents.current.OnMapChanged(buildingInstance.transform.position, selectedBuildingOccupiedTiles.Count); 
         }
 
-        destroyGhost();
+        destroyGhost(buildingGhost);
         selectedBuilding = null;
         EmptyOccupiedVisualizerList();
     }
@@ -436,10 +439,10 @@ public class BuildingPlacementSystem : MonoBehaviour
     {
         List<Vector3Int> newList = new List<Vector3Int>();
 
-        for (int i = 0; i < buildingGhostOccupiedTiles.Count; i++)
+        for (int i = 0; i < ghostOccupiedTiles.Count; i++)
         {
             // Turn from world coordinate to cell coordinate
-            Vector3Int cellPosition = tilemap.WorldToCell(buildingGhostOccupiedTiles[i]);
+            Vector3Int cellPosition = tilemap.WorldToCell(ghostOccupiedTiles[i]);
             cellPosition.x += 5;
             cellPosition.y += 5;
             cellPosition.z = 0;
