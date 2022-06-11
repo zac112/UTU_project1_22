@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 7428048697915791548}
   - component: {fileID: -5464121371805605703}
   - component: {fileID: 515510084250974613}
+  - component: {fileID: 1820649854159306050}
   m_Layer: 0
   m_Name: GoldMine
   m_TagString: Untagged
@@ -131,6 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd2a9604af6fe4686022a0f905fcba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _healthPoints: 0
   _width: 3
   _length: 1
   _isRotated: 0
@@ -178,3 +180,16 @@ PolygonCollider2D:
       - {x: -0.50556374, y: -0.022778243}
       - {x: 0.40011686, y: -0.45040548}
       - {x: 0.9538348, y: -0.21246868}
+--- !u!114 &1820649854159306050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7953807960417106100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dea9b79c3925c0546a8a93e3f5473e1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cost: 0

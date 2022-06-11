@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9113664018743696094}
   - component: {fileID: -7354420819537065107}
   - component: {fileID: 1853589343735386271}
+  - component: {fileID: 2887232138409913040}
   m_Layer: 11
   m_Name: VillageHouse2FL
   m_TagString: Untagged
@@ -46,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd2a9604af6fe4686022a0f905fcba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
+  _healthPoints: 0
   _width: 3
   _length: 4
   _isRotated: 1
@@ -80,6 +81,19 @@ PolygonCollider2D:
       - {x: -1.604728, y: 0.73995024}
       - {x: 0.00418061, y: -0.053553313}
       - {x: 1.2537931, y: 0.54959536}
+--- !u!114 &2887232138409913040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2300419187923452777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dea9b79c3925c0546a8a93e3f5473e1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cost: 0
 --- !u!1 &9057870360101941518
 GameObject:
   m_ObjectHideFlags: 0

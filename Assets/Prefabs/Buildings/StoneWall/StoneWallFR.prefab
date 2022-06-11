@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9113664018743696094}
   - component: {fileID: -1277645968311181128}
   - component: {fileID: 2533162924721199356}
+  - component: {fileID: 50473350099128815}
   m_Layer: 11
   m_Name: StoneWallFR
   m_TagString: Untagged
@@ -46,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd2a9604af6fe4686022a0f905fcba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
+  _healthPoints: 0
   _width: 3
   _length: 1
   _isRotated: 0
@@ -80,6 +81,19 @@ PolygonCollider2D:
       - {x: -0.892473, y: 0.35588658}
       - {x: 0.68600756, y: -0.45473784}
       - {x: 0.90751135, y: -0.33364543}
+--- !u!114 &50473350099128815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2300419187923452777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dea9b79c3925c0546a8a93e3f5473e1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cost: 0
 --- !u!1 &9057870360101941518
 GameObject:
   m_ObjectHideFlags: 0

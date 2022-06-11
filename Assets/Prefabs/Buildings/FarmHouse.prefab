@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3367219076246992399}
   - component: {fileID: 8807639823351591623}
   - component: {fileID: 7731608608655569618}
+  - component: {fileID: -2366882539792615807}
   m_Layer: 0
   m_Name: FarmHouse
   m_TagString: Untagged
@@ -46,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd2a9604af6fe4686022a0f905fcba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
+  _healthPoints: 0
   _width: 4
   _length: 4
   _isRotated: 0
@@ -134,3 +135,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-2366882539792615807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4042910844310544467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dea9b79c3925c0546a8a93e3f5473e1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cost: 0

@@ -17,19 +17,19 @@ public class GUIBuildingButton : MonoBehaviour{
 
     BuildingPlacementSystem bps;
     GameObject buildingsPanel;
+    BuildCost buildCost;
 
     void UpdateUI(){
         UIName.text = buildingName;
-        UICost.text = "Cost:" + cost;
+        UICost.text = $"Cost: {buildCost}";
         UIImage.sprite = sprite;
     }
 
     void Start(){
-        UpdateUI();
-
-        bps = GameObject.Find("BuildingPlacementSystem").GetComponent<BuildingPlacementSystem>();
-
+        Debug.Log(building.GetComponent<BuildCost>());
+        buildCost = building.GetComponent<BuildCost>();
         buildingsPanel = GameObject.Find("BuildingsPanel");
+        UpdateUI();
     }
 
     public void OnButtonDown()

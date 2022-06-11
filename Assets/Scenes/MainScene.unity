@@ -12378,6 +12378,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1893350148, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 788061082919026070, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -12393,6 +12397,10 @@ PrefabInstance:
     - target: {fileID: 1269148676507271933, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3581001297874931303, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3581001297874931303, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
       propertyPath: EnemyDifficultyController

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -8541777715021242936}
   - component: {fileID: 2424835515334960682}
   - component: {fileID: 3911600323569701895}
+  - component: {fileID: 803073633811761476}
   m_Layer: 11
   m_Name: StoneGateOpenFL
   m_TagString: Untagged
@@ -47,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd2a9604af6fe4686022a0f905fcba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
+  _healthPoints: 0
   _width: 5
   _length: 1
   _isRotated: 1
@@ -110,6 +111,19 @@ PolygonCollider2D:
       - {x: 0.22953635, y: 0.2727322}
       - {x: 0.46759102, y: 0.15253809}
       - {x: 1.2795876, y: 0.5654318}
+--- !u!114 &803073633811761476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2300419187923452777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dea9b79c3925c0546a8a93e3f5473e1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cost: 0
 --- !u!1 &9057870360101941518
 GameObject:
   m_ObjectHideFlags: 0

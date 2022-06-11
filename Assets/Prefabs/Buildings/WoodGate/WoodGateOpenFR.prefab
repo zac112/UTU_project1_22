@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4224269023716880283}
   - component: {fileID: 8463465385061437793}
   - component: {fileID: 5435003984173953395}
+  - component: {fileID: -1045589588622495025}
   m_Layer: 11
   m_Name: WoodGateOpenFR
   m_TagString: Untagged
@@ -47,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd2a9604af6fe4686022a0f905fcba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
+  _healthPoints: 0
   _width: 5
   _length: 1
   _isRotated: 0
@@ -110,6 +111,19 @@ PolygonCollider2D:
       - {x: 0.2099328, y: -0.17493355}
       - {x: 1.041871, y: -0.57992876}
       - {x: 1.2578712, y: -0.5077034}
+--- !u!114 &-1045589588622495025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2300419187923452777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dea9b79c3925c0546a8a93e3f5473e1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cost: 0
 --- !u!1 &9057870360101941518
 GameObject:
   m_ObjectHideFlags: 0
