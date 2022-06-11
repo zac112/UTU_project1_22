@@ -9,9 +9,8 @@ public class EnemyStats : MonoBehaviour
     [SerializeField] int currentHealth;
 
     [SerializeField] HealthBar healthBar;
-
-    // Start is called before the first frame update
-    void Start()
+    
+    void Init()
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
