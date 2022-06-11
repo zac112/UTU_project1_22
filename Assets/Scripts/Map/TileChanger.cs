@@ -38,8 +38,6 @@ public class TileChanger : MonoBehaviour
     void Update()
     {
         Vector3 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //mp.x -= 0.5f;
-        //mp.y += 0.25f;
         location = tilemap.WorldToCell(mp);
         location.z = 0;
         location.x -= 2;
