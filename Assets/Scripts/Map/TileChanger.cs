@@ -51,8 +51,8 @@ public class TileChanger : MonoBehaviour
             // Get the script attached to the GameObject
             GroundTileData tileScript = groundTile.GetComponent<GroundTileData>();
 
-            // For now player can only put FarmTiles on grass
-            if (Input.GetMouseButtonDown(1) && selectedTile.name.Equals("FarmTile") && tilemap.GetTile(location).name != ("WaterTile") && player.GetGold() >= hoeToolPrice && !tileScript.isOccupied)
+            // Farmtiles can be placed anywhere else other than water and on itself
+            if (Input.GetMouseButtonDown(1) && selectedTile.name.Equals("FarmTile") && tilemap.GetTile(location).name != ("WaterTile") && tilemap.GetTile(location).name != ("FarmTile") && player.GetGold() >= hoeToolPrice && !tileScript.isOccupied)
             {
                 tilemap.SetTile(location, selectedTile);
                 player.RemoveGold(hoeToolPrice);
