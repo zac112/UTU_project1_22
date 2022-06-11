@@ -6896,8 +6896,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedTile: {fileID: 11400000, guid: f3555029e5c5e414ab19ef3e8f483e33, type: 2}
-  FarmTile: {fileID: 0}
-  RoadTile: {fileID: 0}
+  FarmTile: {fileID: 11400000, guid: f3555029e5c5e414ab19ef3e8f483e33, type: 2}
+  RoadTile: {fileID: 11400000, guid: d7baabe0a8021a84da2c6a0dd9b99232, type: 2}
   plot: {fileID: 2171666027408908105, guid: 0a367797616f6134e8238fe1aa1fb5df, type: 3}
   bps: {fileID: 813885494}
   buildingGhostOpacity: 0.5
@@ -7659,7 +7659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 904200668}
   gold: {fileID: 693778970}
-  stats: {fileID: 0}
+  stats: {fileID: 1893350137}
   healthIcon: {fileID: 1294540473}
 --- !u!114 &1367687504
 MonoBehaviour:
@@ -12436,7 +12436,7 @@ PrefabInstance:
       objectReference: {fileID: 1367687503}
     - target: {fileID: 6609971668409792008, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
       propertyPath: startingGold
-      value: 800
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 7047509641575251263, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
       propertyPath: m_IsActive
