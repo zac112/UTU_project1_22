@@ -12,7 +12,7 @@ public class MapGenerator : MonoBehaviour
     private Tilemap tilemap;
 
     [Tooltip("Tile used to fill the play area")] [SerializeField]
-    Dictionary<VoronoiDiagram.TileType, Tile> tiles;
+    Dictionary<VoronoiDiagram.TileType, List<Tile>> tiles;
 
     [Tooltip("Width of the map in tiles")] [SerializeField]
     private int Width;
@@ -62,12 +62,12 @@ public class MapGenerator : MonoBehaviour
     public bool Generate(Vector3Int position) {
         if (tilemap.GetTile(position)) return false;
 
-        Tile tile;
+        List<Tile> tileOptions;
         Vector3 worldPos = tilemap.CellToWorld(position);
         VoronoiDiagram.TileType type = voronoi.GetClosestSeed(worldPos);
 
-        tiles.TryGetValue(type, out tile);
-        tilemap.SetTile(position, tile);       
+        tiles.TryGetValue(type, out tileOptions);
+        tilemap.SetTile(position, tileOptions[UnityEngine.Random.Range(0,tileOptions.Count)]);       
 
         switch(type){
             case VoronoiDiagram.TileType.Desert: {
@@ -119,10 +119,18 @@ public class MapGenerator : MonoBehaviour
         tilemap = Instantiate(grid,Vector3.zero,Quaternion.identity).GetComponentInChildren<Tilemap>();
         voronoi = GetComponent<VoronoiDiagram>();
 
-        tiles = new Dictionary<VoronoiDiagram.TileType, Tile>();
-        tiles.Add(VoronoiDiagram.TileType.Desert, Resources.Load<Tile>("Tiles/desertTiles1"));
-        tiles.Add(VoronoiDiagram.TileType.Water, Resources.Load<Tile>("Tiles/waterTiles1"));
-        tiles.Add(VoronoiDiagram.TileType.Grass, Resources.Load<Tile>("Tiles/grassTiles1"));
+        tiles = new Dictionary<VoronoiDiagram.TileType, List<Tile>>();
+        
+        tiles.Add(VoronoiDiagram.TileType.Desert, new List<Tile>{
+            Resources.Load<Tile>("Tiles/desertTiles1")
+        });
+        tiles.Add(VoronoiDiagram.TileType.Water, new List<Tile>{
+            Resources.Load<Tile>("Tiles/waterTiles1")
+        });
+        tiles.Add(VoronoiDiagram.TileType.Grass, new List<Tile>{
+            Resources.Load<Tile>("Tiles/grassTiles1"),
+            Resources.Load<Tile>("Tiles/grassTiles2")
+        });
 
         Generate(Width, Height, Offset);        
 
