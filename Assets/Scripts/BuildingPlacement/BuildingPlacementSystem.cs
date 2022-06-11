@@ -56,7 +56,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     void selectBuilding(GameObject building) 
     {
         selectedBuilding = building.gameObject;
-        instantiateGhost();
+        instantiateGhost(selectedBuilding);
     }
 
 
@@ -66,7 +66,7 @@ public class BuildingPlacementSystem : MonoBehaviour
 
         if (selectedBuilding != null) 
         {
-            instantiateGhost();
+            instantiateGhost(selectedBuilding);
 
             if (Input.GetKeyDown(rotationHotkey))
             {
@@ -161,7 +161,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         }
     }
 
-    private void instantiateGhost() 
+    public void instantiateGhost(GameObject selectedBuilding) 
     {
         destroyGhost();
 
@@ -180,7 +180,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         ghostCoroutine = StartCoroutine(updateGhostPosition(buildingGhost));
     }
 
-    private IEnumerator updateGhostPosition(GameObject selectedBuilding) 
+    public IEnumerator updateGhostPosition(GameObject selectedBuilding) 
     {      
         while (true){
             // Repeating code that exists in the if statement below
