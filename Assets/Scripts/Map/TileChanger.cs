@@ -9,6 +9,7 @@ public class TileChanger : MonoBehaviour
     [SerializeField] public Tile selectedTile;
     [SerializeField] public Tile FarmTile;
     [SerializeField] public Tile RoadTile;
+    [SerializeField] public GameObject testCircle;
     Vector3Int location;
     Tilemap tilemap;
     [SerializeField] GameObject plot;
@@ -37,6 +38,8 @@ public class TileChanger : MonoBehaviour
     void Update()
     {
         Vector3 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //mp.x -= 0.5f;
+        //mp.y += 0.25f;
         location = tilemap.WorldToCell(mp);
         location.z = 0;
         location.x -= 2;
@@ -66,10 +69,7 @@ public class TileChanger : MonoBehaviour
                 player.RemoveGold(roadTilePrice);
                 tileScript.isOccupied = true;
             }
-        }
-
-
-        
+        } 
     }
 
     // This will change the selected tile when switching the tool on the UI
@@ -99,7 +99,7 @@ public class TileChanger : MonoBehaviour
     {
         if (ghost != null) 
         {
-            ghost = null;
+            destroyGhost(ghost);
         }
     }
 
@@ -132,7 +132,12 @@ public class TileChanger : MonoBehaviour
         while (true)
         {
             // Move the ghost when mouse moves
-            Vector3 position = bps.GetTileLocationInWorld();
+            Vector3Int tileLocation = bps.GetTileCellLocation();
+
+            // Get the center of the tile under the mouse?
+            // Perhaps a bit redundant to first get the tile location in the tilemap and then turn it back to world position?
+            Vector3 position = tilemap.GetCellCenterWorld(tileLocation);
+
             position.z = bps.buildingZ;
             ghost.transform.position = position;
 

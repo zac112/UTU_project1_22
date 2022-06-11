@@ -6898,6 +6898,7 @@ MonoBehaviour:
   selectedTile: {fileID: 11400000, guid: f3555029e5c5e414ab19ef3e8f483e33, type: 2}
   FarmTile: {fileID: 11400000, guid: f3555029e5c5e414ab19ef3e8f483e33, type: 2}
   RoadTile: {fileID: 11400000, guid: d7baabe0a8021a84da2c6a0dd9b99232, type: 2}
+  testCircle: {fileID: 7849311793634478279, guid: 67b6652d2a52e6e45bb38574b11f933f, type: 3}
   plot: {fileID: 2171666027408908105, guid: 0a367797616f6134e8238fe1aa1fb5df, type: 3}
   bps: {fileID: 813885494}
   buildingGhostOpacity: 0.5
