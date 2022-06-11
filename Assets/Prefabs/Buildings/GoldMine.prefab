@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 5481268444285399938}
   - component: {fileID: 3235017493067127201}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5481268444285399938
 Transform:
@@ -97,12 +97,12 @@ GameObject:
   - component: {fileID: -5464121371805605703}
   - component: {fileID: 515510084250974613}
   - component: {fileID: 1820649854159306050}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GoldMine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7953807960417106101
 Transform:

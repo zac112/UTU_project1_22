@@ -13,12 +13,12 @@ GameObject:
   - component: {fileID: 8807639823351591623}
   - component: {fileID: 7731608608655569618}
   - component: {fileID: -2366882539792615807}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FarmHouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5709453296932682104
 Transform:

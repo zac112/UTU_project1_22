@@ -16,40 +16,9 @@ public class TileSpawner : MonoBehaviour
         this.parentGO = parentGO;
     }
 
-    private List<Vector3Int> getNeighbors(Vector3Int origin, int radius)
-    {
-        List<Vector3Int> neighbors = new List<Vector3Int>();
-        for (int i = -radius; i < radius+1; i++)
-        {
-            for (int j = -radius; j < radius+1; j++)
-            {
-                 neighbors.Add(origin + new Vector3Int(i, j, 0));
-            }
-        }
-
-        return neighbors;
-     }
-
-    private List<Vector3Int> getEdges(Vector3Int origin, int radius)
-    {
-        List<Vector3Int> edges = new List<Vector3Int>();
-        for (int i = -radius; i < radius + 1; i++)
-        {
-            edges.Add(new Vector3Int(origin.x+i, origin.y+radius, 0));
-            edges.Add(new Vector3Int(origin.x+i, origin.y-radius, 0));
-            if (i != -radius && i != radius)
-            {
-                edges.Add(new Vector3Int(origin.x+radius, origin.y+i, 0));
-                edges.Add(new Vector3Int(origin.x-radius, origin.y+i, 0));
-            }
-        }
-
-        return edges;
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag.Equals("Player")) {
+        if (collision.gameObject.GetComponent<FogRevealer>()) {
             RevealTiles();
             Destroy(transform.parent.gameObject);
         }

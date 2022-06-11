@@ -23,7 +23,9 @@ public class MapGenerator : MonoBehaviour
     [Tooltip("Map offset, applied for all tiles")] [SerializeField]
     private Vector3Int Offset;
         
-    private GameObject FOWparentGO;
+    private GameObject parentGOfow;
+    private GameObject parentGOtree;
+    private GameObject parentGOgold;
 
     [SerializeField] GameObject fog;
     public static VoronoiDiagram voronoi;
@@ -46,8 +48,8 @@ public class MapGenerator : MonoBehaviour
                     i == 0 ||
                     i == width - 1 ) {
                     Vector3 worldPos = tilemap.CellToWorld(position);
-                    GameObject go = Instantiate(fog, worldPos, Quaternion.identity, FOWparentGO.transform);
-                    go.GetComponentInChildren<TileSpawner>().Init(tilemap, this, FOWparentGO);
+                    GameObject go = Instantiate(fog, worldPos, Quaternion.identity, parentGOfow.transform);
+                    go.GetComponentInChildren<TileSpawner>().Init(tilemap, this, parentGOfow);
                 }
 
                 Generate(position);
@@ -102,7 +104,8 @@ public class MapGenerator : MonoBehaviour
         if (!voronoi.HasGoldNode(worldPos)) return;
 
         GameObject go = Instantiate<GameObject>(goldNode);
-        go.transform.position = worldPos;        
+        go.transform.position = worldPos;
+        go.transform.parent = parentGOgold.transform;
     }
 
     private void GenerateTree(Vector3 worldPos, List<GameObject> trees){
@@ -111,11 +114,15 @@ public class MapGenerator : MonoBehaviour
         int index = (int)(forest*trees.Count);
         GameObject go = Instantiate<GameObject>(trees[index]);
         go.transform.position = worldPos;
+        go.transform.parent = parentGOtree.transform;
         
     }
     public void Awake()
     {
-        FOWparentGO = new GameObject("Fog of War");
+        parentGOfow = new GameObject("Fog of War");
+        parentGOtree = new GameObject("Trees");
+        parentGOgold = new GameObject("Gold");
+
         tilemap = Instantiate(grid,Vector3.zero,Quaternion.identity).GetComponentInChildren<Tilemap>();
         voronoi = GetComponent<VoronoiDiagram>();
 
