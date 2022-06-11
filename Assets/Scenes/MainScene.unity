@@ -12370,6 +12370,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3581001297874931303, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
+      propertyPath: EnemyDifficultyController
+      value: 
+      objectReference: {fileID: 2419132080026903519, guid: d7616b5567929d6448e0776793e20bd4, type: 3}
     - target: {fileID: 6609971668409792002, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
       propertyPath: m_Name
       value: Player
