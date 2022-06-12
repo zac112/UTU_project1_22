@@ -73,6 +73,7 @@ public class PlayerCombat : MonoBehaviour{
 
     public void MeleeAttack(){
             if(Time.time > lastAttackedAt + attackCooldown){
+                transform.GetChild(0).GetComponent<PlayerSwordController>().Attack();
                 lastAttackedAt = Time.time;
 
                 //stop player movement
@@ -90,6 +91,7 @@ public class PlayerCombat : MonoBehaviour{
                 //spawn hitbox
                 GameObject melee = Instantiate(PlayerMeleeHitbox, hitboxPosition, new Quaternion(0, 0, 0, 0));
                 melee.transform.parent = this.gameObject.transform; //make child of player
+
             }
     }
 
