@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wave2Spawner : WaveSpawner
+public class Wave8Spawner : WaveSpawner
 {
     protected override void PopulateSpawns(List<UnitBase> spawns){
         spawns.Add(UnitBase.Goblin());
@@ -14,7 +14,7 @@ public class Wave2Spawner : WaveSpawner
 
     public override void StartNextWave()
     {
-        //Game won here
+        gameObject.AddComponent<Wave9Spawner>();
         Destroy(this);
     }
 }
