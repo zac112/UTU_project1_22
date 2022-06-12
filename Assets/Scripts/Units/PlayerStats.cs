@@ -16,7 +16,8 @@ public class PlayerStats : MonoBehaviour
     List<Village> FriendlyVillages = new List<Village>();
     Village CurrentVillage;  // currently active village
 
-    private PlayerSkills playerSkills;
+   // private PlayerSkills playerSkills;
+   
            
     void Start(){
         health = startingHealth;
@@ -31,14 +32,14 @@ public class PlayerStats : MonoBehaviour
         UIManager.current.UpdateHealthText(health);
 
         GameEvents.current.GameOver += OnGameOver;
-        GameEvents.current.OnSkillUnlockedEvent += OnSkillUnlocked;
+        //GameEvents.current.OnSkillUnlockedEvent += OnSkillUnlocked;
 
 
     }
 
-    public PlayerSkills GetPlayerSkills() {
-        return playerSkills;
-    }
+    // public PlayerSkills GetPlayerSkills() {
+    //     return playerSkills;
+    // }
 
     public void AddGold(int amount){
         gold += amount;
@@ -144,13 +145,19 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public void OnSkillUnlocked(PlayerSkills.SkillType skillType) {
+    // public void OnSkillUnlocked(PlayerSkills.SkillType skillType) {
        
-        switch (skillType) {
-            case PlayerSkills.SkillType.HealthMax_1:
-                AddMaxHealth(25);
-                Debug.Log(maxHealth);
-                break;
-        }
-    }
+    //     switch (skillType) {
+    //         case PlayerSkills.SkillType.HealthMax_1:
+    //             AddMaxHealth(25);
+    //             Debug.Log(maxHealth);
+    //             break;
+    //         case PlayerSkills.SkillType.HealthMax_2:
+    //             AddMaxHealth(15);
+    //             Debug.Log(maxHealth);
+    //             break;
+    //     }
+    //     //uiSkillTree.UpdateVisuals();
+
+    // }
 }
