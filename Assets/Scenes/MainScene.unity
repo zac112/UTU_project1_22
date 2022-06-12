@@ -9429,6 +9429,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1551079486}
   m_CullTransparentMesh: 1
+--- !u!1 &1551173910 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1793952858, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
+  m_PrefabInstance: {fileID: 6609971669738720497}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1551173913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551173910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 161fe384dc81eff42bf2cb7ba5b142d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1568599694
 GameObject:
   m_ObjectHideFlags: 0
@@ -12739,12 +12756,40 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1793952858, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
+      propertyPath: m_Name
+      value: Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 1793952858, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1793952859, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1793952859, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1793952859, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1793952859, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1793952860, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1793952860, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
+      propertyPath: m_FlipY
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1893350148, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 788061082919026070, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
       propertyPath: m_Enabled
