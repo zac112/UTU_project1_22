@@ -19,6 +19,7 @@ TagManager:
   - AllyRangedHitbox
   - AllyMeleeHitbox
   - Tilemap
+  - FogOfWar
   layers:
   - Default
   - TransparentFX
