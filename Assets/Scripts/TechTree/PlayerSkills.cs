@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSkills
+
 {
+
+
+
    public enum SkillType {
        MoveSpeed_1,
        MoveSpeed_2,
        HealthMax_1,
-    HealthMax_2
+    HealthMax_2,
+    Farming,
+    RangeAttack,
    }
 
    private List<SkillType> unlockedSkillTypeList;
@@ -20,6 +26,7 @@ public class PlayerSkills
    public void UnlockSkill(SkillType skillType) {
        if (!IsSkillUnlocked(skillType)) {
             unlockedSkillTypeList.Add(skillType);
+            GameEvents.current.OnSkillUnlocked(skillType);
        }
       
    }

@@ -33,4 +33,7 @@ public class GameEvents : MonoBehaviour
 
     public event Action<GameOverType> GameOver;
     public void OnGameOver(GameOverType type){ GameOver?.Invoke(type);}
+
+    public event Action<PlayerSkills.SkillType> OnSkillUnlockedEvent;
+    public void OnSkillUnlocked(PlayerSkills.SkillType skillType){ OnSkillUnlockedEvent?.Invoke(skillType);}
 }

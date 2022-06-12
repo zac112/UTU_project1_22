@@ -15,6 +15,8 @@ public class PlayerStats : MonoBehaviour
     
     List<Village> FriendlyVillages = new List<Village>();
     Village CurrentVillage;  // currently active village
+
+    private PlayerSkills playerSkills;
            
     void Start(){
         health = startingHealth;
@@ -29,6 +31,13 @@ public class PlayerStats : MonoBehaviour
         UIManager.current.UpdateHealthText(health);
 
         GameEvents.current.GameOver += OnGameOver;
+        GameEvents.current.OnSkillUnlockedEvent += OnSkillUnlocked;
+
+
+    }
+
+    public PlayerSkills GetPlayerSkills() {
+        return playerSkills;
     }
 
     public void AddGold(int amount){
@@ -132,6 +141,16 @@ public class PlayerStats : MonoBehaviour
         if (t == GameOverType.OwnVillagesDestroyed)
         {
             GameOverTypeText.text = "Own villages destroyed!";
+        }
+    }
+
+    public void OnSkillUnlocked(PlayerSkills.SkillType skillType) {
+       
+        switch (skillType) {
+            case PlayerSkills.SkillType.HealthMax_1:
+                AddMaxHealth(25);
+                Debug.Log(maxHealth);
+                break;
         }
     }
 }

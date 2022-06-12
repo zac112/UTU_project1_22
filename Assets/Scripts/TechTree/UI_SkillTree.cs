@@ -8,11 +8,14 @@ public class UI_SkillTree : MonoBehaviour
 
     void Awake()
     {
-        
+        playerSkills = new PlayerSkills();
     }
 
     public void SetPlayerSkills(PlayerSkills playerSkills) {
         this.playerSkills = playerSkills;
     }
 
+    public void HealthMax1Click() {
+        playerSkills.UnlockSkill(PlayerSkills.SkillType.HealthMax_1);
+    }
 }
