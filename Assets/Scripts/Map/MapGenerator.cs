@@ -26,13 +26,15 @@ public class MapGenerator : MonoBehaviour
     private GameObject parentGOfow;
     private GameObject parentGOtree;
     private GameObject parentGOgold;
+    private GameObject parentGOrain;
 
     [SerializeField] GameObject fog;
     public static VoronoiDiagram voronoi;
     
     [SerializeField]GameObject goldNode;
+    [SerializeField]GameObject rain;
+
     [SerializeField]List<GameObject> grassTrees = new List<GameObject>();
-    
     [SerializeField]List<GameObject> desertTrees = new List<GameObject>();
 
     void Generate(int width, int height, Vector3Int offset)
@@ -78,7 +80,8 @@ public class MapGenerator : MonoBehaviour
                 break;
                 }
             case VoronoiDiagram.TileType.Grass: {
-                GenerateTree(worldPos, grassTrees); 
+                GenerateTree(worldPos, grassTrees);
+                GenerateRain(worldPos); 
                 break;
                 }
             default: break;
@@ -117,11 +120,21 @@ public class MapGenerator : MonoBehaviour
         go.transform.parent = parentGOtree.transform;
         
     }
+
+    private void GenerateRain(Vector3 worldPos){
+                if (!voronoi.HasRain(worldPos)) return;
+
+        GameObject go = Instantiate<GameObject>(rain);
+        go.transform.position = worldPos;
+        go.transform.parent = parentGOgold.transform;
+        
+    }
     public void Awake()
     {
         parentGOfow = new GameObject("Fog of War");
         parentGOtree = new GameObject("Trees");
         parentGOgold = new GameObject("Gold");
+        parentGOrain = new GameObject("Rain");
 
         tilemap = Instantiate(grid,Vector3.zero,Quaternion.identity).GetComponentInChildren<Tilemap>();
         voronoi = GetComponent<VoronoiDiagram>();

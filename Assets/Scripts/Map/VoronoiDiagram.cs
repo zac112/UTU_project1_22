@@ -9,6 +9,7 @@ public class VoronoiDiagram : MonoBehaviour
     private Dictionary<Vector3, TileType> seeds = new Dictionary<Vector3, TileType>();
     private Dictionary<Vector3,int> forestSeeds = new Dictionary<Vector3,int>();
     private List<Vector3> goldNodeSeeds = new List<Vector3>();
+    private List<Vector3> rainSeeds = new List<Vector3>();
     private int numSeeds = 100;
     private int minDistance = 10;
     private int maxDistance = 100;
@@ -21,7 +22,8 @@ public class VoronoiDiagram : MonoBehaviour
     {
         InitGroundSeeds();
         InitGoldMineSeeds();
-        InitForestSeeds();        
+        InitForestSeeds();  
+        InitRainSeeds();      
     }
 
     private void InitGoldMineSeeds(){
@@ -30,6 +32,15 @@ public class VoronoiDiagram : MonoBehaviour
             float[] pos = GetRandomPosOnMap(r);
             Vector3 vector = new Vector3(pos[0], pos[1], 0);
             goldNodeSeeds.Add(vector);  
+        }
+    }
+
+    private void InitRainSeeds(){
+        for (int i = 0; i < numSeeds; i++) {
+            float r = UnityEngine.Random.Range(minDistance, maxDistance);
+            float[] pos = GetRandomPosOnMap(r);
+            Vector3 vector = new Vector3(pos[0], pos[1], 0);
+            rainSeeds.Add(vector);  
         }
     }
     private void InitGroundSeeds(){
@@ -67,6 +78,13 @@ public class VoronoiDiagram : MonoBehaviour
 
     public bool HasGoldNode(Vector3 worldPos){
         foreach(Vector3 pos in goldNodeSeeds){
+            if (Vector3.Distance(pos,worldPos) < 0.3f) return true;
+        }
+        return false;
+    }
+
+    public bool HasRain(Vector3 worldPos){
+        foreach(Vector3 pos in rainSeeds){
             if (Vector3.Distance(pos,worldPos) < 0.3f) return true;
         }
         return false;
