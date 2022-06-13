@@ -71,7 +71,6 @@ public class SpawnpointGenerator : MonoBehaviour
         {
             for (int j = 0; j < fogsCopy.Count; j++)
             {
-                // TODO: also check if buildings are enough away
                 // TODO: check if another spawnpoint is too close
                 playerDistance = Vector3.Distance(player.transform.position, fogsCopy[j].transform.position);
                 if (playerDistance >= minDistance && playerDistance <= maxDistance)
