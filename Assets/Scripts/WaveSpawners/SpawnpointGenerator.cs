@@ -78,7 +78,10 @@ public class SpawnpointGenerator : MonoBehaviour
                 {
                     // TODO: if pathfinding finds the player
                     spawnpoints[i].transform.position = fogsCopy[j].transform.position;
+                    Debug.Log(spawnpoints[i].transform.position);
+                    Debug.Log(fogsCopy[j].transform.position);
                     fogsCopy.Remove(fogsCopy[j]);
+                    break;
                 }
                 else
                 {
