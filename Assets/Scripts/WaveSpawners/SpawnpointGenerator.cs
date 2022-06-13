@@ -27,8 +27,9 @@ public class SpawnpointGenerator : MonoBehaviour
     private void Start()
     {
         fogs = new List<GameObject>();
-
         player = GameObject.FindGameObjectWithTag("Player");
+
+        GameEvents.current.FogSpawned += AddToFogs;
 
         UpdateLocations();
     }
@@ -97,5 +98,9 @@ public class SpawnpointGenerator : MonoBehaviour
             list[i] = list[random];
             list[random] = temp;
             }
+    }
+
+    private void AddToFogs(GameObject fog) {
+        fogs.Add(fog);
     }
 }
