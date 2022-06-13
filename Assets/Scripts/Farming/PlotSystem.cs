@@ -22,6 +22,7 @@ public class PlotSystem : MonoBehaviour
     public PlayerStats player;
 
     BuildingPlacementSystem bps;
+    InventoryManager im;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,7 @@ public class PlotSystem : MonoBehaviour
         plot = GetComponent<SpriteRenderer>();
         player = GameObject.Find("Player").GetComponent<PlayerStats>();
         bps = GameObject.Find("BuildingPlacementSystem").GetComponent<BuildingPlacementSystem>();
+        im = GameObject.Find("InventorySystem").GetComponent<InventoryManager>();
     }
 
     // Update is called once per frame
@@ -57,6 +59,7 @@ public class PlotSystem : MonoBehaviour
             if (cropPhases == selectedCrop.cropPhases.Length - 1 && !farming.isPlanting)
             {
                 Collect();
+                im.AddItem(selectedCrop.cropName, 1);
             }
         }
         else if(farming.isPlanting && farming.selectCrop.crop.price <= player.GetGold())

@@ -123,6 +123,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5096286226957045270}
     m_Modifications:
+    - target: {fileID: -1837146055349831325, guid: 3a41b6b168913164f9f9716a616419e1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -1837146055349831325, guid: 3a41b6b168913164f9f9716a616419e1, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 384704302603102276, guid: 3a41b6b168913164f9f9716a616419e1, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -169,7 +177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2908140057702063971, guid: 3a41b6b168913164f9f9716a616419e1, type: 3}
       propertyPath: m_Name
-      value: Plot
+      value: Plant
       objectReference: {fileID: 0}
     - target: {fileID: 2908140057702063971, guid: 3a41b6b168913164f9f9716a616419e1, type: 3}
       propertyPath: m_StaticEditorFlags
