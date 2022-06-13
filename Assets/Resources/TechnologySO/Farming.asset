@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Farming
   m_EditorClassIdentifier: 
   prereqs: 0100000004000000
-  unlocksPreq: 5
+  unlocksPreq: 6
   techName: Farming
   cost: 50
   image: {fileID: 0}

@@ -1241,6 +1241,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1244682041}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &180903142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2297,9 +2309,9 @@ MonoBehaviour:
   dayNightColor:
     serializedVersion: 2
     key0: {r: 0, g: 0, b: 0, a: 0}
-    key1: {r: 0, g: 0, b: 0, a: 0.43137255}
-    key2: {r: 0, g: 0, b: 0, a: 0.9019608}
-    key3: {r: 0, g: 0, b: 0, a: 0.43137255}
+    key1: {r: 0, g: 0, b: 0, a: 0.21960784}
+    key2: {r: 0, g: 0, b: 0, a: 0.6039216}
+    key3: {r: 0, g: 0, b: 0, a: 0.20784314}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
@@ -2313,9 +2325,9 @@ MonoBehaviour:
     ctime6: 0
     ctime7: 0
     atime0: 0
-    atime1: 16377
+    atime1: 17926
     atime2: 32768
-    atime3: 49151
+    atime3: 45682
     atime4: 65535
     atime5: 0
     atime6: 0
@@ -2323,6 +2335,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 5
+  daylength: 50
 --- !u!114 &553656250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2335,7 +2348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -4230,7 +4243,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2771741638270154712, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: unlocksOn
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1929013926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: unlocksOn
@@ -4679,7 +4692,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2771741638270154712, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: unlocksOn
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1929013926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: unlocksOn
@@ -7286,6 +7299,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1244682041}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1507016854}
         m_TargetAssemblyTypeName: ToggleButton, Assembly-CSharp
         m_MethodName: Toggle
@@ -7651,18 +7676,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1532016409}
-        m_TargetAssemblyTypeName: ToggleButton, Assembly-CSharp
-        m_MethodName: Toggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 445719717}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -7691,6 +7704,30 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1164199616}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1532016409}
+        m_TargetAssemblyTypeName: ToggleButton, Assembly-CSharp
+        m_MethodName: Toggle
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -8227,6 +8264,18 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1013811233}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1244682041}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -9085,7 +9134,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2771741638270154712, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: unlocksOn
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1929013926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: unlocksOn

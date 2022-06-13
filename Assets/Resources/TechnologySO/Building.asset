@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Building
   m_EditorClassIdentifier: 
   prereqs: 01000000
-  unlocksPreq: 3
+  unlocksPreq: 4
   techName: Building skill
   cost: 10
   image: {fileID: 0}

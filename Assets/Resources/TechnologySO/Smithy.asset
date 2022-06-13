@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Smithy
   m_EditorClassIdentifier: 
   prereqs: 0100000004000000
-  unlocksPreq: 4
+  unlocksPreq: 5
   techName: Smithy
   cost: 30
   image: {fileID: 0}
