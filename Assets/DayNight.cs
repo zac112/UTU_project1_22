@@ -11,7 +11,6 @@ public class DayNight : MonoBehaviour
     [SerializeField] public Gradient dayNightColor;
 
     private int days;
-    private bool active = true;
 
 
     
@@ -33,13 +32,12 @@ public class DayNight : MonoBehaviour
         if (ticks == 120)
         {
             days++;
-        }
+        }*/
 
-        ticks += (int)Time.deltaTime;*/
+        ticks += (int)Time.deltaTime;
 
-        // Switch DayNightFilter transparency (24min = 0.00001f ???);
-
-        Debug.Log(dayNight.color = dayNightColor.Evaluate(ticks *0.0002f));
+        // Switch DayNightFilter transparency (24min = 0.00001f ???)
+        dayNight.color = dayNightColor.Evaluate(ticks *0.0002f);      
     }
 
 
