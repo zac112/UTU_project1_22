@@ -42,4 +42,7 @@ public class GameEvents : MonoBehaviour
     public event Action<TechnologyPrerequisite> TechnologyUnlock;
     public void OnTechnologyUnlock(TechnologyPrerequisite tech) { TechnologyUnlock?.Invoke(tech); }
 
+    public event Action<GameObject> FogSpawned;
+    public void OnFogSpawned(GameObject fog) { FogSpawned?.Invoke(fog);  }
+
 }
