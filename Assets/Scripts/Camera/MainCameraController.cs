@@ -59,10 +59,6 @@ public class MainCameraController : MonoBehaviour
         {
             TargetCameraMode();
         }
-        else
-        {
-            FreeCameraMode();
-        }
     }
 
     private bool IsMouseOverUI()
