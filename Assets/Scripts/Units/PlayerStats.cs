@@ -7,7 +7,6 @@ public class PlayerStats : MonoBehaviour
 {
     [SerializeField] int startingHealth;
     [SerializeField] int startingGold;
-    [SerializeField] UIManager UIManager;
 
     int maxHealth;
     int health;
@@ -15,9 +14,7 @@ public class PlayerStats : MonoBehaviour
     
     List<Village> FriendlyVillages = new List<Village>();
     Village CurrentVillage;  // currently active village
-
-   // private PlayerSkills playerSkills;
-   
+       
            
     void Start(){
         health = startingHealth;
@@ -31,15 +28,28 @@ public class PlayerStats : MonoBehaviour
         UIManager.current.UpdateGoldText(gold);
         UIManager.current.UpdateHealthText(health);
 
-        GameEvents.current.GameOver += OnGameOver;
-        //GameEvents.current.OnSkillUnlockedEvent += OnSkillUnlocked;
-
-
+        
     }
 
-    // public PlayerSkills GetPlayerSkills() {
-    //     return playerSkills;
-    // }
+    private void OnEnable()
+    {
+        GameEvents.current.GameOver += OnGameOver;
+        GameEvents.current.TechnologyPurchaseAttempt += AttemptPurchase;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.current.GameOver -= OnGameOver;
+        GameEvents.current.TechnologyPurchaseAttempt -= AttemptPurchase;
+    }
+
+    private void AttemptPurchase(Technology tech) {
+        if (gold > tech.cost)
+        {
+            gold -= tech.cost;
+            GameEvents.current.OnTechnologyUnlock(tech.unlocksPreq);
+        }
+    }
 
     public void AddGold(int amount){
         gold += amount;
@@ -144,20 +154,5 @@ public class PlayerStats : MonoBehaviour
             GameOverTypeText.text = "Own villages destroyed!";
         }
     }
-
-    // public void OnSkillUnlocked(PlayerSkills.SkillType skillType) {
-       
-    //     switch (skillType) {
-    //         case PlayerSkills.SkillType.HealthMax_1:
-    //             AddMaxHealth(25);
-    //             Debug.Log(maxHealth);
-    //             break;
-    //         case PlayerSkills.SkillType.HealthMax_2:
-    //             AddMaxHealth(15);
-    //             Debug.Log(maxHealth);
-    //             break;
-    //     }
-    //     //uiSkillTree.UpdateVisuals();
-
-    // }
+     
 }

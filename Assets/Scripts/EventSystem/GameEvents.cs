@@ -34,6 +34,12 @@ public class GameEvents : MonoBehaviour
     public event Action<GameOverType> GameOver;
     public void OnGameOver(GameOverType type){ GameOver?.Invoke(type);}
 
-    //public event Action<PlayerSkills.SkillType> OnSkillUnlockedEvent;
-    //public void OnSkillUnlocked(PlayerSkills.SkillType skillType){ OnSkillUnlockedEvent?.Invoke(skillType);}
+    //When player attempts to buy a new technology
+    public event Action<Technology> TechnologyPurchaseAttempt;
+    public void OnTechnologyPurchase(Technology tech) { TechnologyPurchaseAttempt?.Invoke(tech); }
+
+    //When player unlocks a new tech
+    public event Action<TechnologyPrerequisite> TechnologyUnlock;
+    public void OnTechnologyUnlock(TechnologyPrerequisite tech) { TechnologyUnlock?.Invoke(tech); }
+
 }
