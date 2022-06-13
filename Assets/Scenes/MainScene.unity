@@ -2335,7 +2335,6 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 5
-  daylength: 50
 --- !u!114 &553656250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3906,8 +3905,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubePrefab: {fileID: 7849311793634478279, guid: 67b6652d2a52e6e45bb38574b11f933f, type: 3}
-  occupiedVisualizer: {fileID: 7849311793634478279, guid: 031d107451d8f434db7d1fc9a8461515, type: 3}
-  availableVisualizer: {fileID: 7849311793634478279, guid: a670157633abcfb40b5ad46fd1cbcd5f, type: 3}
+  occupiedVisualizer: {fileID: 926927214805872018, guid: 9fbf29370b21aee4a848df415caa4ed9, type: 3}
+  availableVisualizer: {fileID: 8815777532811354241, guid: 733eb10ae18233a4188ee19d8d650366, type: 3}
   buildableBuildings:
   - {fileID: 2300419187923452777, guid: 91da41f5a38724748bd567ca8f44502f, type: 3}
   - {fileID: 2300419187923452777, guid: f623742f1fd508846b6b2960c6a957b3, type: 3}
@@ -5802,8 +5801,8 @@ MonoBehaviour:
   plot: {fileID: 2171666027408908105, guid: 0a367797616f6134e8238fe1aa1fb5df, type: 3}
   bps: {fileID: 813885494}
   buildingGhostOpacity: 0.5
-  occupiedVisualizer: {fileID: 7849311793634478279, guid: 031d107451d8f434db7d1fc9a8461515, type: 3}
-  availableVisualizer: {fileID: 7849311793634478279, guid: a670157633abcfb40b5ad46fd1cbcd5f, type: 3}
+  occupiedVisualizer: {fileID: 926927214805872018, guid: 9fbf29370b21aee4a848df415caa4ed9, type: 3}
+  availableVisualizer: {fileID: 8815777532811354241, guid: 733eb10ae18233a4188ee19d8d650366, type: 3}
 --- !u!4 &1164199618
 Transform:
   m_ObjectHideFlags: 0
