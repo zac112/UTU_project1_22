@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tier2MainBuilding
   m_EditorClassIdentifier: 
   prereqs: 0600000005000000
-  unlocksPreq: 1
+  unlocksPreq: 2
   techName: HeadQuarters
   cost: 500
   image: {fileID: 0}

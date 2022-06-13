@@ -1241,6 +1241,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1244682041}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &180903142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1537,7 +1549,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -830, y: 500}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &316488304
@@ -2292,6 +2304,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e1c0b799e8dab74ab733feb0f151b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dayNight: {fileID: 553656250}
+  DayValue: {fileID: 316488304}
+  dayNightColor:
+    serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0, a: 0}
+    key1: {r: 0, g: 0, b: 0, a: 0.21960784}
+    key2: {r: 0, g: 0, b: 0, a: 0.6039216}
+    key3: {r: 0, g: 0, b: 0, a: 0.20784314}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 17926
+    atime2: 32768
+    atime3: 45682
+    atime4: 65535
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 5
 --- !u!114 &553656250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2304,8 +2347,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -3862,8 +3905,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubePrefab: {fileID: 7849311793634478279, guid: 67b6652d2a52e6e45bb38574b11f933f, type: 3}
-  occupiedVisualizer: {fileID: 7849311793634478279, guid: 031d107451d8f434db7d1fc9a8461515, type: 3}
-  availableVisualizer: {fileID: 7849311793634478279, guid: a670157633abcfb40b5ad46fd1cbcd5f, type: 3}
+  occupiedVisualizer: {fileID: 926927214805872018, guid: 9fbf29370b21aee4a848df415caa4ed9, type: 3}
+  availableVisualizer: {fileID: 8815777532811354241, guid: 733eb10ae18233a4188ee19d8d650366, type: 3}
   buildableBuildings:
   - {fileID: 2300419187923452777, guid: 91da41f5a38724748bd567ca8f44502f, type: 3}
   - {fileID: 2300419187923452777, guid: f623742f1fd508846b6b2960c6a957b3, type: 3}
@@ -4199,7 +4242,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2771741638270154712, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: unlocksOn
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1929013926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: unlocksOn
@@ -4648,7 +4691,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2771741638270154712, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: unlocksOn
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1929013926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: unlocksOn
@@ -5758,8 +5801,8 @@ MonoBehaviour:
   plot: {fileID: 2171666027408908105, guid: 0a367797616f6134e8238fe1aa1fb5df, type: 3}
   bps: {fileID: 813885494}
   buildingGhostOpacity: 0.5
-  occupiedVisualizer: {fileID: 7849311793634478279, guid: 031d107451d8f434db7d1fc9a8461515, type: 3}
-  availableVisualizer: {fileID: 7849311793634478279, guid: a670157633abcfb40b5ad46fd1cbcd5f, type: 3}
+  occupiedVisualizer: {fileID: 926927214805872018, guid: 9fbf29370b21aee4a848df415caa4ed9, type: 3}
+  availableVisualizer: {fileID: 8815777532811354241, guid: 733eb10ae18233a4188ee19d8d650366, type: 3}
 --- !u!4 &1164199618
 Transform:
   m_ObjectHideFlags: 0
@@ -7255,6 +7298,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1244682041}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1507016854}
         m_TargetAssemblyTypeName: ToggleButton, Assembly-CSharp
         m_MethodName: Toggle
@@ -7620,18 +7675,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1532016409}
-        m_TargetAssemblyTypeName: ToggleButton, Assembly-CSharp
-        m_MethodName: Toggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 445719717}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -7660,6 +7703,30 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1164199616}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1532016409}
+        m_TargetAssemblyTypeName: ToggleButton, Assembly-CSharp
+        m_MethodName: Toggle
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -8196,6 +8263,18 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1013811233}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1244682041}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -9054,7 +9133,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2771741638270154712, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: unlocksOn
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1929013926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: unlocksOn
