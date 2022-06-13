@@ -20,7 +20,7 @@ public class GUIBuildingButton : MonoBehaviour{
     GameObject buildingsPanel;
     BuildCost buildCost;
 
-    void UpdateUI(){
+   void UpdateUI(){
         UIName.text = buildingName;
         if (building != null)
         {
@@ -34,9 +34,9 @@ public class GUIBuildingButton : MonoBehaviour{
     }
 
     void Start(){
-        GameEvents.current.TechnologyUnlock += TechUnlock;
 
-        if (unlocksOn != TechnologyPrerequisite.None) gameObject.SetActive(false);
+        GameEvents.current.TechnologyUnlock += TechUnlock;
+        gameObject.SetActive(unlocksOn == TechnologyPrerequisite.None || GameObject.FindObjectOfType<AllTechUnlock>());
 
         if (building != null) {
             buildCost = building.GetComponent<BuildCost>();
