@@ -78,8 +78,7 @@ public class BuildingPlacementSystem : MonoBehaviour
             {
                 build();
             }
-        }
-        
+        }       
     }
 
     public Vector3 GetTileLocationInWorld()
@@ -468,5 +467,13 @@ public class BuildingPlacementSystem : MonoBehaviour
         }
 
         occupiedVisualizerList.Clear();
+    }
+
+    private void DestroyBuilding(GameObject building) { 
+        // Click on tile
+        // If tile is occupied by a building
+        // Use occupied/available graphics to show when a building is removable?
+        // Or turn entire building sprite red and opacity down?
+        // Destroy that building
     }
 }
