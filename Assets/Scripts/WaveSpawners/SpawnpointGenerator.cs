@@ -12,15 +12,10 @@ public class SpawnpointGenerator : MonoBehaviour
     List<GameObject> fogs;
     List<GameObject> spawnpoints;
 
-    // Create empty objects at a location covered by fog
-    // Attach spawnpoint script to them
-    // ??
-
     private void Awake()
     {
         spawnpoints = new List<GameObject>();
 
-        // Place spawn points
         InstantiateSpawnpoints(amount);
     }
 
@@ -28,8 +23,6 @@ public class SpawnpointGenerator : MonoBehaviour
     {
         fogs = new List<GameObject>();
         player = GameObject.FindGameObjectWithTag("Player");
-
-        
 
         UpdateLocations();
     }
