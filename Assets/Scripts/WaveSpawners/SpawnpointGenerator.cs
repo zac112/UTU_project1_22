@@ -6,8 +6,11 @@ using UnityEngine.Tilemaps;
 public class SpawnpointGenerator : MonoBehaviour
 {
     [SerializeField] int amount = 1;
-    Tilemap tilemap; // We need the size of the world, so we do not spawn outside of it.
-    GameObject[] fogs;
+    [SerializeField] float minDistance = 1;
+    [SerializeField] float maxDistance = 1000;
+    GameObject player;
+    List<GameObject> fogs;
+    List<GameObject> spawnpoints;
 
     // Create empty objects at a location covered by fog
     // Attach spawnpoint script to them
@@ -15,37 +18,84 @@ public class SpawnpointGenerator : MonoBehaviour
 
     private void Awake()
     {
+        spawnpoints = new List<GameObject>();
+
         // Place spawn points
-        instantiateSpawnpoints(amount);
+        InstantiateSpawnpoints(amount);
     }
 
     private void Start()
     {
-        fogs = GameObject.FindGameObjectsWithTag("FogOfWar");
+        fogs = new List<GameObject>();
+
+        player = GameObject.FindGameObjectWithTag("Player");
+
+        UpdateLocations();
     }
 
-    private void instantiateSpawnpoints(int amount)
+    private void InstantiateSpawnpoints(int amount)
     {
-        GameObject spawnpoints = new GameObject("Spawnpoints");
+        GameObject spawnpointsGO = new GameObject("Spawnpoints");
 
         for (int i = 0; i < amount; i++)
         {
-            GameObject spawnpointObj = new GameObject($"Spawnpoint{i + 1}");
-            spawnpointObj.AddComponent<Spawnpoint>();
-            spawnpointObj.transform.SetParent(spawnpoints.transform);
+            GameObject spawnpointGO = new GameObject($"Spawnpoint{i + 1}");
+            spawnpointGO.AddComponent<Spawnpoint>();
+            spawnpointGO.transform.SetParent(spawnpointsGO.transform);
+            spawnpoints.Add(spawnpointGO);
         }
     }
 
-    private void updateLocations()
+    private void UpdateLocations()
     {
-        // Find all "FogOfWar(Clone)", pick a random one and place spawnpoint on same pos
-        // If too performance heavy, pick a random tile and check if it has fog?
-        // Then add logic. Perhaps only allow spawning at a set distance from border
+        fogs.Clear();
 
-        fogs = GameObject.FindGameObjectsWithTag("FogOfWar");
-        foreach (GameObject fog in fogs)
+        foreach (GameObject go in GameObject.FindObjectsOfType(typeof(GameObject)))
         {
-            Debug.Log(fog.transform.position);
+            if (go.name == "FogOfWar(Clone)")
+            {
+                fogs.Add(go);
+            }
         }
+
+        PlaceSpawnpoints(fogs, spawnpoints);
+    }
+
+    private void PlaceSpawnpoints(List<GameObject> fogs, List<GameObject> spawnpoints) {
+        float playerDistance;
+
+        List<GameObject> fogsCopy = new List<GameObject>(fogs);
+        Shuffle(fogsCopy);
+
+        for (int i = 0; i < spawnpoints.Count; i++)
+        {
+            for (int j = 0; j < fogsCopy.Count; j++)
+            {
+                // TODO: also check if buildings are enough away
+                // TODO: check if another spawnpoint is too close
+                playerDistance = Vector3.Distance(player.transform.position, fogsCopy[j].transform.position);
+                if (playerDistance >= minDistance && playerDistance <= maxDistance)
+                {
+                    // TODO: if pathfinding finds the player
+                    spawnpoints[i].transform.position = fogsCopy[j].transform.position;
+                    fogsCopy.Remove(fogsCopy[j]);
+                }
+                else
+                {
+                    Debug.Log("Could not place spawnpoint");
+                }
+            }
+        }
+    }
+
+    private static void Shuffle<T>(List<T> list) {
+        int count = list.Count;
+        int last = count - 1;
+        for (int i = 0; i < last; ++i) {
+            int random = UnityEngine.Random.Range(i, count);
+            var temp = list[i];
+            list[i] = list[random];
+            list[random] = temp;
+            }
     }
 }
