@@ -9,7 +9,7 @@ public class TileChanger : MonoBehaviour
     [SerializeField] public Tile selectedTile;
     [SerializeField] public Tile FarmTile;
     [SerializeField] public Tile RoadTile;
-    [SerializeField] public GameObject testCircle;
+    
     Vector3Int location;
     Tilemap tilemap;
     [SerializeField] GameObject plot;
