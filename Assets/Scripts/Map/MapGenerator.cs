@@ -104,8 +104,8 @@ public class MapGenerator : MonoBehaviour
     }
 
     private void GenerateGoldNode(Vector3 worldPos){
-        if (!voronoi.HasGoldNode(worldPos)) return;
-
+        float forest = voronoi.HasForest(worldPos);
+        if (!voronoi.HasGoldNode(worldPos) && forest != 0 && forest != 1) return;
         GameObject go = Instantiate<GameObject>(goldNode);
         go.transform.position = worldPos;
         go.transform.parent = parentGOgold.transform;
@@ -113,7 +113,7 @@ public class MapGenerator : MonoBehaviour
 
     private void GenerateTree(Vector3 worldPos, List<GameObject> trees){
         float forest = voronoi.HasForest(worldPos);
-        if (forest < 0 ) return;
+        if (forest < 0) return;
         int index = (int)(forest*trees.Count);
         GameObject go = Instantiate<GameObject>(trees[index]);
         go.transform.position = worldPos;
