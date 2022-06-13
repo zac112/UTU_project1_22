@@ -52,7 +52,7 @@ public class SpawnpointGenerator : MonoBehaviour
 
         foreach (GameObject go in GameObject.FindObjectsOfType(typeof(GameObject)))
         {
-            if (go.name == "FogOfWar(Clone)")
+            if (go.name == "FogOfWar(Clone)" || go.name == "FOW")
             {
                 fogs.Add(go);
             }
@@ -78,8 +78,6 @@ public class SpawnpointGenerator : MonoBehaviour
                 {
                     // TODO: if pathfinding finds the player
                     spawnpoints[i].transform.position = fogsCopy[j].transform.position;
-                    Debug.Log(spawnpoints[i].transform.position);
-                    Debug.Log(fogsCopy[j].transform.position);
                     fogsCopy.Remove(fogsCopy[j]);
                     break;
                 }
