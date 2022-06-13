@@ -9,7 +9,8 @@ public class DayNight : MonoBehaviour
     [SerializeField] public Image dayNight;
     [SerializeField] public TMP_Text DayValue;
     [SerializeField] public Gradient dayNightColor;
-
+    [SerializeField] int daylength = 200;
+    
     private int days;
 
 
@@ -22,23 +23,16 @@ public class DayNight : MonoBehaviour
 
     void Timer(int ticks)
     {     
-        // Day length --> start again if over
-        if (ticks > 500)
-        {
-            ticks = 0;
-        }
+        ticks += (int)Time.deltaTime;
 
-        // Increase day (Time when day switches --> lowest transparency)
-        if (ticks == 120)
+        // Switch DayNightFilter transparency
+        dayNight.color = dayNightColor.Evaluate((0.009f*ticks%daylength)/daylength);
+        double dayMax = dayNight.color[3];
+
+        if (dayMax == 0)
         {
             days++;
         }
-
-        ticks += (int)Time.deltaTime;
-
-        // Switch DayNightFilter transparency (24min = 0.00001f ???)
-        dayNight.color = dayNightColor.Evaluate(ticks *0.002f);
-        Debug.Log(ticks/24/24);      
     }
 
 

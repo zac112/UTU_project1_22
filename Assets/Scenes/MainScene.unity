@@ -1576,8 +1576,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Day: 0'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d263ec5eef60b0d48a84955d2bdf2c14, type: 2}
+  m_sharedMaterial: {fileID: -370211920323749733, guid: d263ec5eef60b0d48a84955d2bdf2c14, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1601,8 +1601,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2337,6 +2337,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 5
+  daylength: 200
 --- !u!114 &553656250
 MonoBehaviour:
   m_ObjectHideFlags: 0
