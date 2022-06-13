@@ -7,7 +7,7 @@ using TMPro;
 public class FarmUI : MonoBehaviour
 {
     public CropObject crop;
-    FarmingSystem fm;
+    UIManager UiManager;
 
     [SerializeField] public TMP_Text nameTxt;
     [SerializeField] TMP_Text priceTxt;
@@ -18,14 +18,14 @@ public class FarmUI : MonoBehaviour
 
     void Start()
     {
-        fm = FindObjectOfType<FarmingSystem>();
+        UiManager = FindObjectOfType<UIManager>();
         farmingPanel = GameObject.Find("FarmingPanel");
         updateUI();
     }
 
     public void BuyCrop()
     {
-        fm.SelectCrop(this);
+        UiManager.SelectCrop(this);
     }
 
     void updateUI()

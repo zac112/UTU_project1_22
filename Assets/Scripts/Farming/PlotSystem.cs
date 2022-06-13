@@ -14,7 +14,7 @@ public class PlotSystem : MonoBehaviour
 
     SpriteRenderer plot;
     CropObject selectedCrop;
-    FarmingSystem farming;
+    UIManager UiManager;
 
     public Color availableColor = Color.green;
     public Color unavailableColor = Color.red;
@@ -29,7 +29,7 @@ public class PlotSystem : MonoBehaviour
     {
         crop = transform.GetChild(0).GetComponent<SpriteRenderer>();
         cropCollider = transform.GetChild(0).GetComponent<PolygonCollider2D>();
-        farming = FindObjectOfType<FarmingSystem>();
+        UiManager = FindObjectOfType<UIManager>();
         plot = GetComponent<SpriteRenderer>();
         player = GameObject.Find("Player").GetComponent<PlayerStats>();
         bps = GameObject.Find("BuildingPlacementSystem").GetComponent<BuildingPlacementSystem>();
@@ -56,24 +56,24 @@ public class PlotSystem : MonoBehaviour
     {
         if (isPlanted)
         {
-            if (cropPhases == selectedCrop.cropPhases.Length - 1 && !farming.isPlanting)
+            if (cropPhases == selectedCrop.cropPhases.Length - 1 && !UiManager.isPlanting)
             {
                 Collect();
                 im.AddItem(selectedCrop.cropName, 1);
             }
         }
-        else if(farming.isPlanting && farming.selectCrop.crop.price <= player.GetGold())
+        else if(UiManager.isPlanting &&UiManager.selectCrop.crop.price <= player.GetGold())
         {
             {
-                Plant(farming.selectCrop.crop);
-                player.RemoveGold(farming.selectCrop.crop.price);
+                Plant(UiManager.selectCrop.crop);
+                player.RemoveGold(UiManager.selectCrop.crop.price);
             }
         }
     }
 
     private void OnMouseOver()
     {
-        if (farming.isPlanting)
+        if (UiManager.isPlanting)
         {
             if(isPlanted)
             {

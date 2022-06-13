@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour{
     public static UIManager current;
     void Awake() => current = this;
 
+    [Header("Player")]
 
     [SerializeField] TMP_Text health;
     [SerializeField] TMP_Text gold;
@@ -19,6 +20,10 @@ public class UIManager : MonoBehaviour{
     [SerializeField] GameObject inventoryPanel;
     [SerializeField] GameObject inventoryButtonPrefab;
 
+    [Header("Farming")]
+
+    [SerializeField] public FarmUI selectCrop;
+    [SerializeField] public bool isPlanting = false;
 
     GUIItemButton[] itemButtons;
 
@@ -47,6 +52,17 @@ public class UIManager : MonoBehaviour{
 
     public void UpdateItemButton(int index, InventoryItem item){
         itemButtons[index].UpdateUI(item.name, item.amount, item.sprite);
+    }
+
+    public void SelectCrop(FarmUI newCrop){
+        if(selectCrop == newCrop){
+            selectCrop = null;
+            isPlanting = false;
+        }
+        else{
+            selectCrop = newCrop;
+            isPlanting = true;
+        }
     }
 
 }
