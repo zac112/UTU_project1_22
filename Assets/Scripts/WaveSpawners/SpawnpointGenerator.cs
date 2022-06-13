@@ -30,6 +30,7 @@ public class SpawnpointGenerator : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
 
         GameEvents.current.FogSpawned += AddToFogs;
+        GameEvents.current.FogDespawned += RemoveFromFogs;
 
         UpdateLocations();
     }
@@ -102,5 +103,9 @@ public class SpawnpointGenerator : MonoBehaviour
 
     private void AddToFogs(GameObject fog) {
         fogs.Add(fog);
+    }
+
+    private void RemoveFromFogs(GameObject fog) {
+        fogs.Remove(fog);
     }
 }
