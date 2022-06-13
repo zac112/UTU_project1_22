@@ -65,12 +65,10 @@ public class BuildingPlacementSystem : MonoBehaviour
 
     void Update()
     {
-        selectBuildingHotkey();
+        if (selectBuildingHotkey()) instantiateGhost(selectedBuilding, ref buildingGhost, ghostOccupiedTiles);
 
         if (selectedBuilding != null) 
         {
-            instantiateGhost(selectedBuilding, ref buildingGhost, ghostOccupiedTiles);
-
             if (Input.GetKeyDown(rotationHotkey))
             {
                 rotateBuilding();
