@@ -190,7 +190,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 4
+  m_EdgeRadius: 1
 --- !u!114 &2861506601046818404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,7 +281,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 90
   startingGold: 2147483647
-  UIManager: {fileID: 0}
 --- !u!61 &788061082919026070
 BoxCollider2D:
   m_ObjectHideFlags: 0
