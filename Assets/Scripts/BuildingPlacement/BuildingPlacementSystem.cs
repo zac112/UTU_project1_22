@@ -55,8 +55,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         GameEvents.current.BuildingSelectedForBuilding += selectBuilding;
     }
 
-    void selectBuilding
-        (GameObject building) 
+    void selectBuilding (GameObject building) 
     {
         selectedBuilding = building.gameObject;
         instantiateGhost(selectedBuilding, ref buildingGhost, ghostOccupiedTiles);
