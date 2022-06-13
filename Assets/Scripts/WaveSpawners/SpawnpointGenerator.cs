@@ -13,31 +13,39 @@ public class SpawnpointGenerator : MonoBehaviour
     // Attach spawnpoint script to them
     // ??
 
-    private void Awake() {
+    private void Awake()
+    {
         // Place spawn points
         instantiateSpawnpoints(amount);
     }
 
-    private void Start() {
-        fogs = GameObject.FindGameObjectsWithTag("FogOfWar"); // Returns an  array, when we could use a list
-        Debug.Log(fogs.Length);
+    private void Start()
+    {
+        fogs = GameObject.FindGameObjectsWithTag("FogOfWar");
     }
 
-    private void instantiateSpawnpoints(int amount) {
+    private void instantiateSpawnpoints(int amount)
+    {
         GameObject spawnpoints = new GameObject("Spawnpoints");
 
-        for (int i = 0; i < amount; i++) {
-            GameObject spawnpointObj = new GameObject($"Spawnpoint{i+1}");
+        for (int i = 0; i < amount; i++)
+        {
+            GameObject spawnpointObj = new GameObject($"Spawnpoint{i + 1}");
             spawnpointObj.AddComponent<Spawnpoint>();
-            spawnpointObj.transform.SetParent(spawnpoints.transform);          
+            spawnpointObj.transform.SetParent(spawnpoints.transform);
         }
     }
 
-    private void updateLocation() {
+    private void updateLocations()
+    {
         // Find all "FogOfWar(Clone)", pick a random one and place spawnpoint on same pos
         // If too performance heavy, pick a random tile and check if it has fog?
         // Then add logic. Perhaps only allow spawning at a set distance from border
 
-
+        fogs = GameObject.FindGameObjectsWithTag("FogOfWar");
+        foreach (GameObject fog in fogs)
+        {
+            Debug.Log(fog.transform.position);
+        }
     }
 }
