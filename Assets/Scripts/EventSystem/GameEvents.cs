@@ -46,6 +46,6 @@ public class GameEvents : MonoBehaviour
     public void OnFogSpawned(GameObject fog) { FogSpawned?.Invoke(fog);  }
 
     public event Action<GameObject> FogDespawned;
-    public void OnFogDespawned(GameObject fog) { FogSpawned?.Invoke(fog); }
+    public void OnFogDespawned(GameObject fog) { FogDespawned?.Invoke(fog); }
 
 }
