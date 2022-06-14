@@ -50,8 +50,8 @@ public class BuildingPlacementSystem : MonoBehaviour
         ghostOccupiedTiles = new List<Vector3>();        
         playerStats = GameObject.Find("Player").GetComponent<PlayerStats>();
         visualizersParent = new GameObject("Visualizers");
-        occupiedVisualizers = InstantiateVisualizers(occupiedVisualizer, 50);
-        availableVisualizers = InstantiateVisualizers(availableVisualizer, 50);
+        occupiedVisualizers = InstantiateVisualizers(occupiedVisualizer, 1);
+        availableVisualizers = InstantiateVisualizers(availableVisualizer, 1);
 
 
         GameEvents.current.BuildingSelectedForBuilding += SelectBuilding;
@@ -403,11 +403,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         List<GameObject> visualizersList = new List<GameObject>();
 
         for (int i = 0; i < amount; i++) {
-            GameObject go = Instantiate(visualizer, Vector3.zero, Quaternion.identity);
-            go.SetActive(false);
-            go.transform.SetParent(visualizersParent.transform);
-            visualizersList.Add(go);
-
+            AddVisualizer(visualizersList, visualizer);
         }
         return visualizersList;
     }
@@ -416,6 +412,16 @@ public class BuildingPlacementSystem : MonoBehaviour
 
         int availableIndex = 0;
         int occupiedIndex = 0;
+        
+        if (ghostOccupiedTiles.Count > availableVisualizers.Count) {
+            int amount = ghostOccupiedTiles.Count - availableVisualizers.Count;
+            AddToVisualizers(availableVisualizers, availableVisualizer, amount);
+        }
+
+        if (ghostOccupiedTiles.Count > occupiedVisualizers.Count) {
+            int amount = ghostOccupiedTiles.Count - occupiedVisualizers.Count;
+            AddToVisualizers(occupiedVisualizers, occupiedVisualizer, amount);
+        }          
 
         for (int i = 0; i < ghostOccupiedTiles.Count; i++) {
 
@@ -441,6 +447,8 @@ public class BuildingPlacementSystem : MonoBehaviour
 
                 }
                 else {
+                    //Debug.Log("availableIndex " + availableIndex);
+                    //Debug.Log("Count " + availableVisualizers.Count);
                     GameObject visualizer = availableVisualizers[availableIndex];
                     visualizer.transform.position = ghostOccupiedTiles[i];
                     visualizer.SetActive(true);
@@ -468,5 +476,18 @@ public class BuildingPlacementSystem : MonoBehaviour
                 visualizer.SetActive(false);
             }
         }
+    }
+
+    private void AddVisualizer(List<GameObject> visualizersList, GameObject visualizer) {
+        GameObject go = Instantiate(visualizer, Vector3.zero, Quaternion.identity);
+        go.SetActive(false);
+        go.transform.SetParent(visualizersParent.transform);
+        visualizersList.Add(go);    
+    }
+
+    private void AddToVisualizers(List<GameObject> visualizersList, GameObject visualizer, int amount) {
+        for (int i = 0; i < amount; i++) {
+            AddVisualizer(visualizersList, visualizer);
+        }  
     }
 }
