@@ -71,30 +71,6 @@ public class PlayerCombat : MonoBehaviour{
         }
     }
 
-    public void MeleeAttack(){
-            if(Time.time > lastAttackedAt + attackCooldown){
-                transform.GetChild(0).GetComponent<PlayerSwordController>().Attack();
-                lastAttackedAt = Time.time;
-
-                //stop player movement
-                rb.velocity = Vector2.zero;
-
-
-                //offset hitbox position towards mouse
-                Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
-                Vector3 dir = Input.mousePosition - pos;
-
-                Vector3 horisontalOffset = dir.normalized;
-                Vector3 verticalOffset = new Vector3 (0f, 0f, 50f);
-                Vector3 hitboxPosition = this.gameObject.transform.position + horisontalOffset + verticalOffset;
-
-                //spawn hitbox
-                GameObject melee = Instantiate(PlayerMeleeHitbox, hitboxPosition, new Quaternion(0, 0, 0, 0));
-                melee.transform.parent = this.gameObject.transform; //make child of player
-
-            }
-    }
-
 
     public void RangedAttack(){
 
