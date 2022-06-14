@@ -82,7 +82,7 @@ public class MainCameraController : MonoBehaviour
         }
 
         // If player is building --> lock zooming
-        if (bps.selectedBuilding != null){
+        if (bps.SelectedBuilding != null){
             maxz = 7f;
             minz = 7f;
         }
@@ -129,7 +129,7 @@ public class MainCameraController : MonoBehaviour
         wasd.canMove = true;
 
         // If player is building --> lock zooming
-        if (bps.selectedBuilding != null){
+        if (bps.SelectedBuilding != null){
             maxz = 7f;
             minz = 7f;
         }
