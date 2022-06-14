@@ -12,19 +12,21 @@ public class BuildingPlacementSystem : MonoBehaviour
     [SerializeField] GameObject occupiedVisualizer;
     [SerializeField] GameObject availableVisualizer;
 
+    List<GameObject> occupiedVisualizers;
+    List<GameObject> availableVisualizers;
+    GameObject visualizersParent;
+
     [SerializeField] List<GameObject> buildableBuildings;
-    public float buildingZ = 10;
+    public float BuildingZ = 10;
     [Range(0,1)][SerializeField] float buildingGhostOpacity = 0.5f;
 
     Vector3 currentMousePositionInWorld;
     
     List<Vector3> selectedBuildingOccupiedTiles;
     List<Vector3> ghostOccupiedTiles;
-    public GameObject buildingGhost;
-    public GameObject selectedBuilding;
+    public GameObject BuildingGhost;
+    public GameObject SelectedBuilding;
     IBuildable selectedBuildingScript;
-    List<GameObject> buildingOccupiedOverlay;
-    List<GameObject> occupiedVisualizerList;
 
     Coroutine ghostCoroutine;
 
@@ -36,8 +38,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     [SerializeField] KeyCode rotationHotkey = KeyCode.R;
 
     Grid grid;
-    public Tilemap tilemap;
-    OccupiedTiles occupiedTiles;
+    Tilemap tilemap;
     PlayerStats playerStats;
     BuildCost buildCost;
 
@@ -45,37 +46,38 @@ public class BuildingPlacementSystem : MonoBehaviour
     {        
         grid = GameObject.FindGameObjectWithTag("Tilemap").GetComponent<Grid>();
         tilemap = grid.GetComponentInChildren<Tilemap>();
-        occupiedTiles = GameObject.FindObjectOfType<OccupiedTiles>();
         selectedBuildingOccupiedTiles = new List<Vector3>();
         ghostOccupiedTiles = new List<Vector3>();        
-        buildingOccupiedOverlay = new List<GameObject>();
-        occupiedVisualizerList = new List<GameObject>();
         playerStats = GameObject.Find("Player").GetComponent<PlayerStats>();
+        visualizersParent = new GameObject("Visualizers");
+        occupiedVisualizers = InstantiateVisualizers(occupiedVisualizer, 50);
+        availableVisualizers = InstantiateVisualizers(availableVisualizer, 50);
 
-        GameEvents.current.BuildingSelectedForBuilding += selectBuilding;
+
+        GameEvents.current.BuildingSelectedForBuilding += SelectBuilding;
     }
 
-    void selectBuilding (GameObject building) 
+    void SelectBuilding (GameObject building) 
     {
-        selectedBuilding = building.gameObject;
-        instantiateGhost(selectedBuilding, ref buildingGhost, ghostOccupiedTiles);
+        SelectedBuilding = building.gameObject;
+        InstantiateGhost(SelectedBuilding, ref BuildingGhost, ghostOccupiedTiles);
     }
 
 
     void Update()
     {
-        if (selectBuildingHotkey()) instantiateGhost(selectedBuilding, ref buildingGhost, ghostOccupiedTiles);
+        if (SelectBuildingHotkey()) InstantiateGhost(SelectedBuilding, ref BuildingGhost, ghostOccupiedTiles);
 
-        if (selectedBuilding != null) 
+        if (SelectedBuilding != null) 
         {
             if (Input.GetKeyDown(rotationHotkey))
             {
-                rotateBuilding();
+                RotateBuilding();
             }
 
             if (Input.GetMouseButtonDown(buildBuildingMouseButton))
             {
-                build();
+                Build();
             }
         }       
     }
@@ -99,24 +101,24 @@ public class BuildingPlacementSystem : MonoBehaviour
     }
 
     // TODO: Move to input manager. Struct with KeyCode and prefab.
-    private bool selectBuildingHotkey() 
+    private bool SelectBuildingHotkey() 
     {
         if (Input.GetKeyDown(buildingDeselect))
         {
-            selectedBuilding = null;
-            destroyGhost(buildingGhost);
+            SelectedBuilding = null;
+            DestroyGhost(BuildingGhost);
             return false;
         }
 
         else if (Input.GetKeyDown(building1Hotkey))
         {
-            selectedBuilding = buildableBuildings[0];
+            SelectedBuilding = buildableBuildings[0];
             return true;
         }
 
         else if (Input.GetKeyDown(building2Hotkey))
         {
-            selectedBuilding = buildableBuildings[1];
+            SelectedBuilding = buildableBuildings[1];
             return true;
         }
         return false;       
@@ -134,7 +136,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         return Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
-    private Vector3 calculateBuildingLocation(List<Vector3> occupiedTiles) 
+    private Vector3 CalculateBuildingLocation(List<Vector3> occupiedTiles) 
     {
         float xPosition = 0;
         float yPosition = 0;
@@ -151,7 +153,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         return new Vector3(xPosition, yPosition, 10);
     }
 
-    private void destroyGhost(GameObject ghost) 
+    private void DestroyGhost(GameObject ghost) 
     {
         if (ghost != null)
         {
@@ -160,12 +162,12 @@ public class BuildingPlacementSystem : MonoBehaviour
         }
     }
 
-    public void instantiateGhost(GameObject selectedBuilding, ref GameObject ghost, List<Vector3> ghostOccupiedTiles) 
+    public void InstantiateGhost(GameObject selectedBuilding, ref GameObject ghost, List<Vector3> ghostOccupiedTiles) 
     {
-        destroyGhost(ghost);
+        DestroyGhost(ghost);
 
         Vector3 position = GetTileLocationInWorld();
-        position.z = buildingZ;
+        position.z = BuildingZ;
         ghost = Instantiate(selectedBuilding, position, Quaternion.identity);
 
         // Turn off collider
@@ -176,10 +178,10 @@ public class BuildingPlacementSystem : MonoBehaviour
         SpriteRenderer spriteComponent = ghost.GetComponentInChildren<SpriteRenderer>();
         spriteComponent.color = new Color(spriteComponent.color.r, spriteComponent.color.g, spriteComponent.color.b, buildingGhostOpacity);
 
-        ghostCoroutine = StartCoroutine(updateGhostPosition(ghost, ghostOccupiedTiles));
+        ghostCoroutine = StartCoroutine(UpdateGhostPosition(ghost, ghostOccupiedTiles));
     }
 
-    public IEnumerator updateGhostPosition(GameObject selectedBuilding, List<Vector3> ghostOccupiedTiles) 
+    public IEnumerator UpdateGhostPosition(GameObject selectedBuilding, List<Vector3> ghostOccupiedTiles) 
     {      
         while (true){
             // Repeating code that exists in the if statement below
@@ -218,14 +220,14 @@ public class BuildingPlacementSystem : MonoBehaviour
                     widthX += 0.50f;
                     widthY += 0.25f;
 
-                    ghostOccupiedTiles.Add(new Vector3(widthX, widthY, buildingZ));
+                    ghostOccupiedTiles.Add(new Vector3(widthX, widthY, BuildingZ));
                 }
             }
 
             // Move the ghost when mouse moves
-            Vector3 position = calculateBuildingLocation(ghostOccupiedTiles);
-            position.z = buildingZ;
-            buildingGhost.transform.position = position;
+            Vector3 position = CalculateBuildingLocation(ghostOccupiedTiles);
+            position.z = BuildingZ;
+            BuildingGhost.transform.position = position;
 
             // Update allowed to build vizualization
             // Change to Vector3Int and add to list
@@ -234,37 +236,10 @@ public class BuildingPlacementSystem : MonoBehaviour
             
             if (currentMousePositionInWorld != mousePosition) 
             {
-                EmptyOccupiedVisualizerList();
+                DeactivateVisualizers(availableVisualizers, occupiedVisualizers);
 
                 currentMousePositionInWorld = mousePosition;
-                for (int i = 0; i < ghostOccupiedTiles.Count; i++)
-                {
-                    Vector3 tileWorldCoordinates = ghostOccupiedTiles[i];
-
-                    Vector3Int cellPosition = tilemap.WorldToCell(tileWorldCoordinates);
-                    cellPosition.x += 5;
-                    cellPosition.y += 5;
-                    cellPosition.z = 0;
-
-                    // Get instantiated tile GameObject
-                    GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
-
-                    if (tile != null) {
-                        // Get the script attached to the GameObject
-                        GroundTileData tileScript = tile.GetComponent<GroundTileData>();
-
-                        if (tileScript.isOccupied || !tileScript.isWalkable)
-                        {
-                            GameObject visualizer = Instantiate(occupiedVisualizer, tileWorldCoordinates, Quaternion.identity);
-                            occupiedVisualizerList.Add(visualizer);
-                        }
-                        else
-                        {
-                            GameObject visualizer = Instantiate(availableVisualizer, tileWorldCoordinates, Quaternion.identity);
-                            occupiedVisualizerList.Add(visualizer);
-                        }
-                    }
-                }
+                MoveVisualizers(ghostOccupiedTiles, availableVisualizers, occupiedVisualizers);
             }
 
             ghostOccupiedTiles.Clear();
@@ -272,26 +247,26 @@ public class BuildingPlacementSystem : MonoBehaviour
         }
     }
 
-    private void rotateBuilding() 
+    private void RotateBuilding() 
     {
-        selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
+        selectedBuildingScript = SelectedBuilding.GetComponent<IBuildable>();
 
         GameObject nextRotation = selectedBuildingScript.NextRotation;
         if (nextRotation != null)
         {
             // TODO: Same code as in instantiating ghost, except that we are instantiating nextRotation. Make it into a method.            
-            Destroy(buildingGhost);
+            Destroy(BuildingGhost);
 
             Vector3 position = GetTileLocationInWorld();
-            position.z = buildingZ;
-            buildingGhost = Instantiate(nextRotation, position, Quaternion.identity);
+            position.z = BuildingZ;
+            BuildingGhost = Instantiate(nextRotation, position, Quaternion.identity);
 
             // Turn opacity down
-            SpriteRenderer spriteComponent = buildingGhost.GetComponentInChildren<SpriteRenderer>();
+            SpriteRenderer spriteComponent = BuildingGhost.GetComponentInChildren<SpriteRenderer>();
             spriteComponent.color = new Color(spriteComponent.color.r, spriteComponent.color.g, spriteComponent.color.b, buildingGhostOpacity);
 
             // Not a part of the repeated code
-            selectedBuilding = nextRotation;
+            SelectedBuilding = nextRotation;
         }
         else
         {
@@ -299,7 +274,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         }
     }
 
-    private void build() 
+    private void Build() 
     {
         
 
@@ -310,7 +285,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         bool buildingPlacementAllowed = true;
 
         // Get selected buildings width and height
-        selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
+        selectedBuildingScript = SelectedBuilding.GetComponent<IBuildable>();
         int buildingWidth = selectedBuildingScript.Width;
         int buildingLength = selectedBuildingScript.Length;
 
@@ -342,7 +317,7 @@ public class BuildingPlacementSystem : MonoBehaviour
                 widthX += 0.50f;
                 widthY += 0.25f;
 
-                selectedBuildingOccupiedTiles.Add(new Vector3(widthX, widthY, buildingZ));
+                selectedBuildingOccupiedTiles.Add(new Vector3(widthX, widthY, BuildingZ));
             }
         }
 
@@ -375,13 +350,10 @@ public class BuildingPlacementSystem : MonoBehaviour
 
         if (buildingPlacementAllowed)
         {
-            buildCost = selectedBuilding.GetComponent<BuildCost>();
-
-            // Add tiles to occupiedTiles
-            occupiedTiles.OccupyTiles(selectedBuildingOccupiedTiles);
+            buildCost = SelectedBuilding.GetComponent<BuildCost>();
 
             // Instantiate building on tileLocation
-            GameObject buildingInstance = Instantiate(selectedBuilding, calculateBuildingLocation(selectedBuildingOccupiedTiles), Quaternion.identity);
+            GameObject buildingInstance = Instantiate(SelectedBuilding, CalculateBuildingLocation(selectedBuildingOccupiedTiles), Quaternion.identity);
             buildingInstance.layer = LayerMask.NameToLayer("Buildings");
 
             selectedBuildingScript = buildingInstance.GetComponent<IBuildable>();
@@ -413,59 +385,10 @@ public class BuildingPlacementSystem : MonoBehaviour
             GameEvents.current.OnMapChanged(buildingInstance.transform.position, selectedBuildingOccupiedTiles.Count); 
         }
 
-        destroyGhost(buildingGhost);
-        selectedBuilding = null;
-        EmptyOccupiedVisualizerList();
+        DestroyGhost(BuildingGhost);
+        DeactivateVisualizers(availableVisualizers, occupiedVisualizers);
+        SelectedBuilding = null;
         buildCost = null;
-    }
-
-    private void instantiateTestCircle(Vector3Int position) 
-    {
-        Vector3 worldPosition = tilemap.CellToWorld(position);
-        GameObject prefab = Instantiate(cubePrefab, worldPosition, Quaternion.identity);
-
-        SpriteRenderer spriteComponent = prefab.GetComponentInChildren<SpriteRenderer>();
-
-        spriteComponent.color = new Color(1, 0, 0);
-    }
-
-    private void instantiateTestCircle(Vector3 position)
-    {
-        GameObject prefab = Instantiate(cubePrefab, position, Quaternion.identity);
-
-        SpriteRenderer spriteComponent = prefab.GetComponentInChildren<SpriteRenderer>();
-
-        spriteComponent.color = new Color(1, 0, 0);
-
-    }
-
-    private List<Vector3Int> ConvertWorldToCell(List<Vector3> list) 
-    {
-        List<Vector3Int> newList = new List<Vector3Int>();
-
-        for (int i = 0; i < ghostOccupiedTiles.Count; i++)
-        {
-            // Turn from world coordinate to cell coordinate
-            Vector3Int cellPosition = tilemap.WorldToCell(ghostOccupiedTiles[i]);
-            cellPosition.x += 5;
-            cellPosition.y += 5;
-            cellPosition.z = 0;
-
-            newList.Add(cellPosition);
-        }
-
-        return newList;
-    }
-
-    private void EmptyOccupiedVisualizerList() 
-    {
-        //Destroy items in occupiedVisualizerList
-        for (int i = 0; i < occupiedVisualizerList.Count; i++)
-        {
-            Destroy(occupiedVisualizerList[i]);
-        }
-
-        occupiedVisualizerList.Clear();
     }
 
     private void DestroyBuilding(GameObject building) { 
@@ -474,5 +397,76 @@ public class BuildingPlacementSystem : MonoBehaviour
         // Use occupied/available graphics to show when a building is removable?
         // Or turn entire building sprite red and opacity down?
         // Destroy that building
+    }
+
+    private List<GameObject> InstantiateVisualizers(GameObject visualizer, int amount) {
+        List<GameObject> visualizersList = new List<GameObject>();
+
+        for (int i = 0; i < amount; i++) {
+            GameObject go = Instantiate(visualizer, Vector3.zero, Quaternion.identity);
+            go.SetActive(false);
+            go.transform.SetParent(visualizersParent.transform);
+            visualizersList.Add(go);
+
+        }
+        return visualizersList;
+    }
+
+    private void MoveVisualizers(List<Vector3> ghostOccupiedTiles, List<GameObject> availableVisualizers, List<GameObject> occupiedVisualizers) {
+
+        int availableIndex = 0;
+        int occupiedIndex = 0;
+
+        for (int i = 0; i < ghostOccupiedTiles.Count; i++) {
+
+            Vector3 occupiedTile = ghostOccupiedTiles[i];
+
+            Vector3Int cellPosition = tilemap.WorldToCell(occupiedTile);
+            cellPosition.x += 5;
+            cellPosition.y += 5;
+            cellPosition.z = 0;
+
+            // Get instantiated tile GameObject
+            GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
+
+            if (tile != null) {
+                // Get the script attached to the GameObject
+                GroundTileData tileScript = tile.GetComponent<GroundTileData>();
+
+                if (tileScript.isOccupied || !tileScript.isWalkable) {
+                    GameObject visualizer = occupiedVisualizers[occupiedIndex];
+                    visualizer.transform.position = ghostOccupiedTiles[i];
+                    visualizer.SetActive(true);
+                    occupiedIndex += 1;
+
+                }
+                else {
+                    GameObject visualizer = availableVisualizers[availableIndex];
+                    visualizer.transform.position = ghostOccupiedTiles[i];
+                    visualizer.SetActive(true);
+                    availableIndex += 1;
+                }
+            }
+        }
+    }
+
+    private void DeactivateVisualizers(List<GameObject> occupiedVisualizers, List<GameObject> availableVisualizers) {
+        for (int i = 0; i < occupiedVisualizers.Count; i++) {
+
+            GameObject visualizer = occupiedVisualizers[i];
+
+            if (visualizer.activeSelf == true) {
+                visualizer.SetActive(false);
+            }
+        }
+
+        for (int i = 0; i < availableVisualizers.Count; i++) {
+
+            GameObject visualizer = availableVisualizers[i];
+
+            if (visualizer.activeSelf == true) {
+                visualizer.SetActive(false);
+            }
+        }
     }
 }

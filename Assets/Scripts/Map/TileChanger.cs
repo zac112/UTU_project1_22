@@ -115,7 +115,7 @@ public class TileChanger : MonoBehaviour
         destroyGhost(ghost);
 
         Vector3 position = bps.GetTileLocationInWorld();
-        position.z = bps.buildingZ;
+        position.z = bps.BuildingZ;
         ghost = Instantiate(selectedBuilding, position, Quaternion.identity);
 
         // Turn opacity down
@@ -136,7 +136,7 @@ public class TileChanger : MonoBehaviour
             // Perhaps a bit redundant to first get the tile location in the tilemap and then turn it back to world position?
             Vector3 position = tilemap.GetCellCenterWorld(tileLocation);
 
-            position.z = bps.buildingZ;
+            position.z = bps.BuildingZ;
             ghost.transform.position = position;
 
             // Change to Vector3Int and add to list

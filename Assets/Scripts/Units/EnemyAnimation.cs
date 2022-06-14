@@ -13,7 +13,6 @@ public class EnemyAnimation : MonoBehaviour
     float currentSpeed;
 
 
-
     void FixedUpdate() {
 
         //calculate movement speed and send to animator
@@ -30,22 +29,24 @@ public class EnemyAnimation : MonoBehaviour
         //calculate direction and send to animator
         // BL = 1, BR = 2, FL = 3, FR = 4
         //because some enemies dont have separate animations for left and right, its easier to just flip the spriterenderer 
-        if(x!=0&&y!=0){
-            if(x>0){
-                if(y>0){
-                    anim.SetInteger("Direction",2);
-                    sr.flipX=true;
-                }else{
-                    anim.SetInteger("Direction",4);
-                    sr.flipX=true;
-                }
-            } else{
-                if(y>0){
-                    anim.SetInteger("Direction",1);
-                    sr.flipX=false;
-                }else{
-                    anim.SetInteger("Direction",3); 
-                    sr.flipX=false;
+        if(currentSpeed>0.1f){
+            if(x!=0&&y!=0){
+                if(x>0){
+                    if(y>0){
+                        anim.SetInteger("Direction",2);
+                        sr.flipX=true;
+                    }else{
+                        anim.SetInteger("Direction",4);
+                        sr.flipX=true;
+                    }
+                } else{
+                    if(y>0){
+                        anim.SetInteger("Direction",1);
+                        sr.flipX=false;
+                    }else{
+                        anim.SetInteger("Direction",3); 
+                        sr.flipX=false;
+                    }
                 }
             }
         }
