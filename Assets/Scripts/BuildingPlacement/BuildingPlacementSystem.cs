@@ -37,7 +37,6 @@ public class BuildingPlacementSystem : MonoBehaviour
 
     Grid grid;
     public Tilemap tilemap;
-    OccupiedTiles occupiedTiles;
     PlayerStats playerStats;
     BuildCost buildCost;
 
@@ -45,7 +44,6 @@ public class BuildingPlacementSystem : MonoBehaviour
     {        
         grid = GameObject.FindGameObjectWithTag("Tilemap").GetComponent<Grid>();
         tilemap = grid.GetComponentInChildren<Tilemap>();
-        occupiedTiles = GameObject.FindObjectOfType<OccupiedTiles>();
         selectedBuildingOccupiedTiles = new List<Vector3>();
         ghostOccupiedTiles = new List<Vector3>();        
         buildingOccupiedOverlay = new List<GameObject>();
@@ -376,9 +374,6 @@ public class BuildingPlacementSystem : MonoBehaviour
         if (buildingPlacementAllowed)
         {
             buildCost = selectedBuilding.GetComponent<BuildCost>();
-
-            // Add tiles to occupiedTiles
-            occupiedTiles.OccupyTiles(selectedBuildingOccupiedTiles);
 
             // Instantiate building on tileLocation
             GameObject buildingInstance = Instantiate(selectedBuilding, calculateBuildingLocation(selectedBuildingOccupiedTiles), Quaternion.identity);
