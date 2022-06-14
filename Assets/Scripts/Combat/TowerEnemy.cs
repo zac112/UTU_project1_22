@@ -60,7 +60,6 @@ public class TowerEnemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        /*
     switch (other.tag)
     {
         case "PlayerMeleeHitbox":
@@ -83,7 +82,7 @@ public class TowerEnemy : MonoBehaviour
 
         default:
             break;
-    }*/
+    }
 
     }
 
