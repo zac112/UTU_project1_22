@@ -18,6 +18,8 @@ public class TowerEnemy : MonoBehaviour
 
     private GameObject target;
     
+    public Animator anim;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -58,7 +60,7 @@ public class TowerEnemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-
+        /*
     switch (other.tag)
     {
         case "PlayerMeleeHitbox":
@@ -81,7 +83,7 @@ public class TowerEnemy : MonoBehaviour
 
         default:
             break;
-    }
+    }*/
 
     }
 
@@ -89,6 +91,7 @@ public class TowerEnemy : MonoBehaviour
         if (!target) return;
 
             if(Time.time > lastAttackedAt + attackCooldown){
+                StartCoroutine(SetAttackBool());
 
                 //stop enemy movement
                 rb.velocity = Vector2.zero;
@@ -106,4 +109,15 @@ public class TowerEnemy : MonoBehaviour
                 lastAttackedAt = Time.time;
             }
     }
+
+
+    IEnumerator SetAttackBool (){
+            anim.SetInteger("IsAttacking", 1); //not sure why, but booleans did not work in the animator so this has to be an integer
+            yield return null;
+            anim.SetInteger("IsAttacking", 0);
+
+    }
+
+
+
 }
