@@ -10,6 +10,8 @@ public class DayNight : MonoBehaviour
     [SerializeField] public TMP_Text DayValue;
     [SerializeField] public Gradient dayNightColor;
     [SerializeField] int daylength = 200;
+    [SerializeField] float filterPercentage = 1.0f;
+
     
     private int days;
 
@@ -26,7 +28,7 @@ public class DayNight : MonoBehaviour
         ticks += (int)Time.deltaTime;
 
         // Switch DayNightFilter transparency
-        dayNight.color = dayNightColor.Evaluate((0.009f*ticks%daylength)/daylength);
+        dayNight.color = dayNightColor.Evaluate((filterPercentage*ticks%daylength)/daylength);
         double dayMax = dayNight.color[3];
 
         if (dayMax == 0)
