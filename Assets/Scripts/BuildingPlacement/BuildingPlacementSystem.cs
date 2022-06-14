@@ -12,6 +12,10 @@ public class BuildingPlacementSystem : MonoBehaviour
     [SerializeField] GameObject occupiedVisualizer;
     [SerializeField] GameObject availableVisualizer;
 
+    List<GameObject> occupiedVisualizers;
+    List<GameObject> availableVisualizers;
+    GameObject visualizersParent;
+
     [SerializeField] List<GameObject> buildableBuildings;
     public float BuildingZ = 10;
     [Range(0,1)][SerializeField] float buildingGhostOpacity = 0.5f;
@@ -23,8 +27,6 @@ public class BuildingPlacementSystem : MonoBehaviour
     public GameObject BuildingGhost;
     public GameObject SelectedBuilding;
     IBuildable selectedBuildingScript;
-    List<GameObject> buildingOccupiedOverlay;
-    List<GameObject> occupiedVisualizerList;
 
     Coroutine ghostCoroutine;
 
@@ -46,9 +48,11 @@ public class BuildingPlacementSystem : MonoBehaviour
         tilemap = grid.GetComponentInChildren<Tilemap>();
         selectedBuildingOccupiedTiles = new List<Vector3>();
         ghostOccupiedTiles = new List<Vector3>();        
-        buildingOccupiedOverlay = new List<GameObject>();
-        occupiedVisualizerList = new List<GameObject>();
         playerStats = GameObject.Find("Player").GetComponent<PlayerStats>();
+        visualizersParent = new GameObject("Visualizers");
+        occupiedVisualizers = InstantiateVisualizers(occupiedVisualizer, 50);
+        availableVisualizers = InstantiateVisualizers(availableVisualizer, 50);
+
 
         GameEvents.current.BuildingSelectedForBuilding += SelectBuilding;
     }
@@ -232,37 +236,10 @@ public class BuildingPlacementSystem : MonoBehaviour
             
             if (currentMousePositionInWorld != mousePosition) 
             {
-                EmptyOccupiedVisualizerList();
+                DeactivateVisualizers(availableVisualizers, occupiedVisualizers);
 
                 currentMousePositionInWorld = mousePosition;
-                for (int i = 0; i < ghostOccupiedTiles.Count; i++)
-                {
-                    Vector3 tileWorldCoordinates = ghostOccupiedTiles[i];
-
-                    Vector3Int cellPosition = tilemap.WorldToCell(tileWorldCoordinates);
-                    cellPosition.x += 5;
-                    cellPosition.y += 5;
-                    cellPosition.z = 0;
-
-                    // Get instantiated tile GameObject
-                    GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
-
-                    if (tile != null) {
-                        // Get the script attached to the GameObject
-                        GroundTileData tileScript = tile.GetComponent<GroundTileData>();
-
-                        if (tileScript.isOccupied || !tileScript.isWalkable)
-                        {
-                            GameObject visualizer = Instantiate(occupiedVisualizer, tileWorldCoordinates, Quaternion.identity);
-                            occupiedVisualizerList.Add(visualizer);
-                        }
-                        else
-                        {
-                            GameObject visualizer = Instantiate(availableVisualizer, tileWorldCoordinates, Quaternion.identity);
-                            occupiedVisualizerList.Add(visualizer);
-                        }
-                    }
-                }
+                MoveVisualizers(ghostOccupiedTiles, availableVisualizers, occupiedVisualizers);
             }
 
             ghostOccupiedTiles.Clear();
@@ -409,58 +386,9 @@ public class BuildingPlacementSystem : MonoBehaviour
         }
 
         DestroyGhost(BuildingGhost);
+        DeactivateVisualizers(availableVisualizers, occupiedVisualizers);
         SelectedBuilding = null;
-        EmptyOccupiedVisualizerList();
         buildCost = null;
-    }
-
-    private void InstantiateTestCircle(Vector3Int position) 
-    {
-        Vector3 worldPosition = tilemap.CellToWorld(position);
-        GameObject prefab = Instantiate(cubePrefab, worldPosition, Quaternion.identity);
-
-        SpriteRenderer spriteComponent = prefab.GetComponentInChildren<SpriteRenderer>();
-
-        spriteComponent.color = new Color(1, 0, 0);
-    }
-
-    private void InstantiateTestCircle(Vector3 position)
-    {
-        GameObject prefab = Instantiate(cubePrefab, position, Quaternion.identity);
-
-        SpriteRenderer spriteComponent = prefab.GetComponentInChildren<SpriteRenderer>();
-
-        spriteComponent.color = new Color(1, 0, 0);
-
-    }
-
-    private List<Vector3Int> ConvertWorldToCell(List<Vector3> list) 
-    {
-        List<Vector3Int> newList = new List<Vector3Int>();
-
-        for (int i = 0; i < ghostOccupiedTiles.Count; i++)
-        {
-            // Turn from world coordinate to cell coordinate
-            Vector3Int cellPosition = tilemap.WorldToCell(ghostOccupiedTiles[i]);
-            cellPosition.x += 5;
-            cellPosition.y += 5;
-            cellPosition.z = 0;
-
-            newList.Add(cellPosition);
-        }
-
-        return newList;
-    }
-
-    private void EmptyOccupiedVisualizerList() 
-    {
-        //Destroy items in occupiedVisualizerList
-        for (int i = 0; i < occupiedVisualizerList.Count; i++)
-        {
-            Destroy(occupiedVisualizerList[i]);
-        }
-
-        occupiedVisualizerList.Clear();
     }
 
     private void DestroyBuilding(GameObject building) { 
@@ -469,5 +397,76 @@ public class BuildingPlacementSystem : MonoBehaviour
         // Use occupied/available graphics to show when a building is removable?
         // Or turn entire building sprite red and opacity down?
         // Destroy that building
+    }
+
+    private List<GameObject> InstantiateVisualizers(GameObject visualizer, int amount) {
+        List<GameObject> visualizersList = new List<GameObject>();
+
+        for (int i = 0; i < amount; i++) {
+            GameObject go = Instantiate(visualizer, Vector3.zero, Quaternion.identity);
+            go.SetActive(false);
+            go.transform.SetParent(visualizersParent.transform);
+            visualizersList.Add(go);
+
+        }
+        return visualizersList;
+    }
+
+    private void MoveVisualizers(List<Vector3> ghostOccupiedTiles, List<GameObject> availableVisualizers, List<GameObject> occupiedVisualizers) {
+
+        int availableIndex = 0;
+        int occupiedIndex = 0;
+
+        for (int i = 0; i < ghostOccupiedTiles.Count; i++) {
+
+            Vector3 occupiedTile = ghostOccupiedTiles[i];
+
+            Vector3Int cellPosition = tilemap.WorldToCell(occupiedTile);
+            cellPosition.x += 5;
+            cellPosition.y += 5;
+            cellPosition.z = 0;
+
+            // Get instantiated tile GameObject
+            GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
+
+            if (tile != null) {
+                // Get the script attached to the GameObject
+                GroundTileData tileScript = tile.GetComponent<GroundTileData>();
+
+                if (tileScript.isOccupied || !tileScript.isWalkable) {
+                    GameObject visualizer = occupiedVisualizers[occupiedIndex];
+                    visualizer.transform.position = ghostOccupiedTiles[i];
+                    visualizer.SetActive(true);
+                    occupiedIndex += 1;
+
+                }
+                else {
+                    GameObject visualizer = availableVisualizers[availableIndex];
+                    visualizer.transform.position = ghostOccupiedTiles[i];
+                    visualizer.SetActive(true);
+                    availableIndex += 1;
+                }
+            }
+        }
+    }
+
+    private void DeactivateVisualizers(List<GameObject> occupiedVisualizers, List<GameObject> availableVisualizers) {
+        for (int i = 0; i < occupiedVisualizers.Count; i++) {
+
+            GameObject visualizer = occupiedVisualizers[i];
+
+            if (visualizer.activeSelf == true) {
+                visualizer.SetActive(false);
+            }
+        }
+
+        for (int i = 0; i < availableVisualizers.Count; i++) {
+
+            GameObject visualizer = availableVisualizers[i];
+
+            if (visualizer.activeSelf == true) {
+                visualizer.SetActive(false);
+            }
+        }
     }
 }
