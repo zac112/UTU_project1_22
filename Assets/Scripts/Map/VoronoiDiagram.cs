@@ -59,7 +59,7 @@ public class VoronoiDiagram : MonoBehaviour
 
     private void InitForestSeeds(){
         int minForestSize = 1;
-        int maxForestSize = 5;        
+        int maxForestSize = 4;        
         int minDistance = 2;
         int maxDistance = 200;
         for (int i=0; i <numSeeds; i++){
