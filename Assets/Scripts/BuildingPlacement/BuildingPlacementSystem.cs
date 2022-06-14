@@ -14,6 +14,7 @@ public class BuildingPlacementSystem : MonoBehaviour
 
     List<GameObject> occupiedVisualizers;
     List<GameObject> availableVisualizers;
+    List<GameObject> buildings;
     GameObject visualizersParent;
 
     [SerializeField] List<GameObject> buildableBuildings;
@@ -378,6 +379,8 @@ public class BuildingPlacementSystem : MonoBehaviour
                 }
             }
 
+            buildings.Add(SelectedBuilding);
+
             // Remove gold from player
             playerStats.RemoveGold(buildCost.Cost);
 
@@ -391,12 +394,9 @@ public class BuildingPlacementSystem : MonoBehaviour
         buildCost = null;
     }
 
-    private void DestroyBuilding(GameObject building) { 
-        // Click on tile
-        // If tile is occupied by a building
-        // Use occupied/available graphics to show when a building is removable?
-        // Or turn entire building sprite red and opacity down?
-        // Destroy that building
+    private void DestroyBuilding(GameObject building, List<GameObject> buildings) {
+        Destroy(building);
+        buildings.Remove(building);
     }
 
     private List<GameObject> InstantiateVisualizers(GameObject visualizer, int amount) {
