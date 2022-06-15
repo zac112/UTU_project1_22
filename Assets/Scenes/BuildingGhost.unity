@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &2096491097
+--- !u!1 &194402237
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,38 +131,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2096491099}
-  - component: {fileID: 2096491098}
+  - component: {fileID: 194402239}
+  - component: {fileID: 194402238}
   m_Layer: 0
-  m_Name: BuildingVisualizerSystem
+  m_Name: BuildingGhostSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2096491098
+--- !u!114 &194402238
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2096491097}
+  m_GameObject: {fileID: 194402237}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3422459dcfb3db42a4626ea22c32f7a, type: 3}
+  m_Script: {fileID: 11500000, guid: 7cf9d0c9a6a180d44b893282e9de20fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  occupiedVisualizer: {fileID: 926927214805872018, guid: 9fbf29370b21aee4a848df415caa4ed9, type: 3}
-  availableVisualizer: {fileID: 8815777532811354241, guid: 733eb10ae18233a4188ee19d8d650366, type: 3}
-  occupiedVisualizers: []
-  availableVisualizers: []
---- !u!4 &2096491099
+  buildingGhostOpacity: 0.5
+  ghostOccupiedTiles: []
+  Ghost: {fileID: 0}
+--- !u!4 &194402239
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2096491097}
+  m_GameObject: {fileID: 194402237}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
