@@ -5,8 +5,8 @@ using UnityEngine.Tilemaps;
 
 public class BuildingVisualizer : MonoBehaviour
 {
-    [SerializeField] GameObject occupiedVisualizer;
-    [SerializeField] GameObject availableVisualizer;
+    public GameObject occupiedVisualizer;
+    public GameObject availableVisualizer;
     GameObject visualizersParent;
 
     public List<GameObject> occupiedVisualizers;
@@ -40,7 +40,7 @@ public class BuildingVisualizer : MonoBehaviour
         return visualizersList;
     }
 
-    public void MoveVisualizers(List<Vector3> ghostOccupiedTiles, List<GameObject> availableVisualizers, List<GameObject> occupiedVisualizers) {
+    public void MoveVisualizers(List<Vector3> ghostOccupiedTiles) {
 
         int availableIndex = 0;
         int occupiedIndex = 0;
