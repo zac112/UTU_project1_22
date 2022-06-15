@@ -466,6 +466,10 @@ PrefabInstance:
       propertyPath: bps
       value: 
       objectReference: {fileID: 813885494}
+    - target: {fileID: 902464871300106346, guid: d41b2b99c28386a43aa47a44a3b57a5f, type: 3}
+      propertyPath: plot
+      value: 
+      objectReference: {fileID: 8815777532811354241, guid: 733eb10ae18233a4188ee19d8d650366, type: 3}
     - target: {fileID: 902464871300106347, guid: d41b2b99c28386a43aa47a44a3b57a5f, type: 3}
       propertyPath: m_Name
       value: TileChanger
