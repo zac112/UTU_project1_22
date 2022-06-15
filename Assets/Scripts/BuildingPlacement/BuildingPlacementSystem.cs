@@ -12,8 +12,8 @@ public class BuildingPlacementSystem : MonoBehaviour
     [SerializeField] GameObject occupiedVisualizer;
     [SerializeField] GameObject availableVisualizer;
 
-    List<GameObject> occupiedVisualizers;
-    List<GameObject> availableVisualizers;
+    public List<GameObject> occupiedVisualizers;
+    public List<GameObject> availableVisualizers;
     List<GameObject> buildings;
     GameObject visualizersParent;
 
@@ -21,7 +21,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     public float BuildingZ = 10;
     [Range(0,1)][SerializeField] float buildingGhostOpacity = 0.5f;
 
-    Vector3 currentMousePositionInWorld;
+    public Vector3 currentMousePositionInWorld;
     
     List<Vector3> selectedBuildingOccupiedTiles;
     List<Vector3> ghostOccupiedTiles;
@@ -53,7 +53,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         visualizersParent = new GameObject("Visualizers");
         occupiedVisualizers = InstantiateVisualizers(occupiedVisualizer, 1);
         availableVisualizers = InstantiateVisualizers(availableVisualizer, 1);
-
+        buildings = new List<GameObject>();
 
         GameEvents.current.BuildingSelectedForBuilding += SelectBuilding;
     }
@@ -234,9 +234,8 @@ public class BuildingPlacementSystem : MonoBehaviour
             // Change to Vector3Int and add to list
             Vector3 mousePosition = GetTileLocationInWorld();
             mousePosition.z = 10;
-            
-            if (currentMousePositionInWorld != mousePosition) 
-            {
+
+            if (currentMousePositionInWorld != mousePosition) {
                 DeactivateVisualizers(availableVisualizers, occupiedVisualizers);
 
                 currentMousePositionInWorld = mousePosition;
@@ -277,8 +276,6 @@ public class BuildingPlacementSystem : MonoBehaviour
 
     private void Build() 
     {
-        
-
         // Empty the list of tiles
         selectedBuildingOccupiedTiles.Clear();
 
@@ -408,7 +405,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         return visualizersList;
     }
 
-    private void MoveVisualizers(List<Vector3> ghostOccupiedTiles, List<GameObject> availableVisualizers, List<GameObject> occupiedVisualizers) {
+    public void MoveVisualizers(List<Vector3> ghostOccupiedTiles, List<GameObject> availableVisualizers, List<GameObject> occupiedVisualizers) {
 
         int availableIndex = 0;
         int occupiedIndex = 0;
@@ -432,11 +429,9 @@ public class BuildingPlacementSystem : MonoBehaviour
             cellPosition.y += 5;
             cellPosition.z = 0;
 
-            // Get instantiated tile GameObject
             GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
 
             if (tile != null) {
-                // Get the script attached to the GameObject
                 GroundTileData tileScript = tile.GetComponent<GroundTileData>();
 
                 if (tileScript.isOccupied || !tileScript.isWalkable) {
@@ -447,8 +442,6 @@ public class BuildingPlacementSystem : MonoBehaviour
 
                 }
                 else {
-                    //Debug.Log("availableIndex " + availableIndex);
-                    //Debug.Log("Count " + availableVisualizers.Count);
                     GameObject visualizer = availableVisualizers[availableIndex];
                     visualizer.transform.position = ghostOccupiedTiles[i];
                     visualizer.SetActive(true);
@@ -458,7 +451,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         }
     }
 
-    private void DeactivateVisualizers(List<GameObject> occupiedVisualizers, List<GameObject> availableVisualizers) {
+    public void DeactivateVisualizers(List<GameObject> occupiedVisualizers, List<GameObject> availableVisualizers) {
         for (int i = 0; i < occupiedVisualizers.Count; i++) {
 
             GameObject visualizer = occupiedVisualizers[i];
