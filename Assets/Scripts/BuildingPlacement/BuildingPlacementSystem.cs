@@ -151,7 +151,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         xPosition /= occupiedTiles.Count;
         yPosition /= occupiedTiles.Count;
 
-        return new Vector3(xPosition, yPosition, 10);
+        return new Vector3(xPosition, yPosition, 0);
     }
 
     private void DestroyGhost(GameObject ghost) 

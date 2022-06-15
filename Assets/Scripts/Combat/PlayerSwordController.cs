@@ -5,46 +5,48 @@ using UnityEngine;
 public class PlayerSwordController : MonoBehaviour
 {
 
-    bool attackDirection = false;
-    bool attacking = false;
-    float attackWidth = 170f; //how wide the attack swing is in degrees
-    float attackTime = 0.25f; //how long the attack takes
 
-    //rotate sword toward mouse
-    void Update(){
-        if(!attacking){
-            Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
-            Vector3 dir = Input.mousePosition - pos;
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        }
+    Vector3 rotationLast;
+    Vector3 rotationDelta;
+    float AttackThreshold = 8.0f;
+
+    private float attackCooldown = 0.7f; //seconds
+    private float lastAttackedAt = 0f;
+
+    public SpriteRenderer sr;
+
+
+    void Start() {
+        rotationLast = transform.rotation.eulerAngles;
     }
 
-    public void Attack(){
-        if(attackDirection){
-            transform.Rotate(0.0f, 0.0f, attackWidth/2, Space.Self); //rotate sword 90 degrees to prepare for attack
-            StartCoroutine(SmoothRotate(Vector3.forward * -attackWidth, attackTime)); //rotate sword smoothly during attack
-            transform.Rotate(0.0f, 0.0f, -attackWidth/2, Space.Self); //reset sword position
-        }else{
-            transform.Rotate(0.0f, 0.0f, -attackWidth/2, Space.Self);
-            StartCoroutine(SmoothRotate(Vector3.forward * attackWidth, attackTime));
-            transform.Rotate(0.0f, 0.0f, attackWidth/2, Space.Self);
+    void Update () {
+        //rotate sword toward mouse
+        Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
+        Vector3 dir = Input.mousePosition - pos;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        //calculate rotation speed
+        rotationDelta = transform.rotation.eulerAngles - rotationLast;
+        rotationLast = transform.rotation.eulerAngles;
+
+        //if rotation speed > threshold and cooldown not active, enable hitbox
+        if(Mathf.Abs(rotationDelta.z)>AttackThreshold&&Time.time > lastAttackedAt + attackCooldown){
+            lastAttackedAt = Time.time;
+            StartCoroutine(EnableHitbox()); //enable hitbox for 100ms 
         }
-        attackDirection = !attackDirection; //swap attack direction after attack
+   
     }
 
-    IEnumerator SmoothRotate(Vector3 angle, float time){   
-        attacking = true; //stops sword from moving toward mouse during attack
-        var fromAngle = transform.rotation;
-        var toAngle = Quaternion.Euler(transform.eulerAngles + angle);
-    
-        for(var t = 0f; t < 1; t += Time.deltaTime/time) {
-            transform.rotation = Quaternion.Slerp(fromAngle, toAngle, t);
-            yield return null;
-        }
-        yield return new WaitForSeconds(0.2f); //cooldown after attack so the sword doesnt instantly snap back
+    IEnumerator EnableHitbox(){
+        this.gameObject.GetComponent<Collider2D>().enabled=true;
+        sr.color=new Color(1f, 0f, 0f, 1f); //change sword color to make it more obvious when you are attacking
 
-        attacking=false;
+        yield return new WaitForSeconds(0.1f);
+        this.gameObject.GetComponent<Collider2D>().enabled=false;
+        sr.color=new Color(1f, 1f, 1f, 1f);
     }
+
 
 }

@@ -8,18 +8,18 @@ public class InputListener : MonoBehaviour
     public GameObject player;
 
     //set keybinds here
-    string meleeAttackButton = "1";
-    string rangedAttackButton = "2";
-
+    string ToggleSwordMode = "1";
+    string RangedAttackButton = "2";
 
 
     //call gameobject methods here
     void Update()
     {
-        if(Input.GetKeyDown(meleeAttackButton)){
-            player.GetComponent<PlayerCombat>().MeleeAttack();
+        if(Input.GetKeyDown(ToggleSwordMode)){
+            player.transform.GetChild(0).gameObject.SetActive(!player.transform.GetChild(0).gameObject.activeSelf); 
         }
-        if(Input.GetKeyDown(rangedAttackButton)){
+
+        if(Input.GetKeyDown(RangedAttackButton)){
             player.GetComponent<PlayerCombat>().RangedAttack();
         }
         

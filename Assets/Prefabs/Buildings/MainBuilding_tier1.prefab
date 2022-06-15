@@ -14,12 +14,13 @@ GameObject:
   - component: {fileID: 4668840639054056535}
   - component: {fileID: 7303197871827455}
   - component: {fileID: -1180463877209639835}
-  m_Layer: 0
+  - component: {fileID: 3354322400188047876}
+  m_Layer: 11
   m_Name: MainBuilding_tier1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5162224154351188931
 Transform:
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: f8b91f01dba78674a9e97c552ab64711, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -166,3 +167,18 @@ PolygonCollider2D:
       - {x: 0.83242404, y: -0.54298335}
       - {x: 0.11838317, y: -0.5009323}
       - {x: -0.19956577, y: -0.5454806}
+--- !u!114 &3354322400188047876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7101299784327275876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09cdc87db62cf224ebe4c32ff0346e66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactiveUI: {fileID: 8688522844939048212, guid: 360f0896cc3475147a6ec8402ab52bac, type: 3}
+  objectName: {fileID: 0}
+  objectHealth: {fileID: 0}
