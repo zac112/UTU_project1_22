@@ -106,8 +106,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(buildingDeselect))
         {
-            SelectedBuilding = null;
-            DestroyGhost(BuildingGhost);
+            DeselectBuilding();
             return false;
         }
 
@@ -482,5 +481,10 @@ public class BuildingPlacementSystem : MonoBehaviour
         for (int i = 0; i < amount; i++) {
             AddVisualizer(visualizersList, visualizer);
         }  
+    }
+
+    public void DeselectBuilding() {
+        SelectedBuilding = null;
+        DestroyGhost(BuildingGhost);
     }
 }
