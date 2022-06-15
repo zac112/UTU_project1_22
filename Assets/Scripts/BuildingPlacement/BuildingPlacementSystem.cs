@@ -9,13 +9,9 @@ using UnityEngine.Tilemaps;
 public class BuildingPlacementSystem : MonoBehaviour
 {
     [SerializeField] GameObject cubePrefab;
-    [SerializeField] GameObject occupiedVisualizer;
-    [SerializeField] GameObject availableVisualizer;
-
-    public List<GameObject> occupiedVisualizers;
-    public List<GameObject> availableVisualizers;
+    
     List<GameObject> buildings;
-    GameObject visualizersParent;
+    
 
     [SerializeField] List<GameObject> buildableBuildings;
     public float BuildingZ = 10;
@@ -42,6 +38,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     Tilemap tilemap;
     PlayerStats playerStats;
     BuildCost buildCost;
+    BuildingVisualizer buildingVisualizer;
 
     void Start()
     {        
@@ -50,10 +47,8 @@ public class BuildingPlacementSystem : MonoBehaviour
         selectedBuildingOccupiedTiles = new List<Vector3>();
         ghostOccupiedTiles = new List<Vector3>();        
         playerStats = GameObject.Find("Player").GetComponent<PlayerStats>();
-        visualizersParent = new GameObject("Visualizers");
-        occupiedVisualizers = InstantiateVisualizers(occupiedVisualizer, 1);
-        availableVisualizers = InstantiateVisualizers(availableVisualizer, 1);
         buildings = new List<GameObject>();
+        buildingVisualizer = GameObject.Find("BuildingVisualizerSystem").GetComponent<BuildingVisualizer>();
 
         GameEvents.current.BuildingSelectedForBuilding += SelectBuilding;
     }
@@ -235,10 +230,10 @@ public class BuildingPlacementSystem : MonoBehaviour
             mousePosition.z = 10;
 
             if (currentMousePositionInWorld != mousePosition) {
-                DeactivateVisualizers(availableVisualizers, occupiedVisualizers);
+                buildingVisualizer.DeactivateVisualizers(buildingVisualizer.availableVisualizers, buildingVisualizer.occupiedVisualizers);
 
                 currentMousePositionInWorld = mousePosition;
-                MoveVisualizers(ghostOccupiedTiles, availableVisualizers, occupiedVisualizers);
+                buildingVisualizer.MoveVisualizers(ghostOccupiedTiles, buildingVisualizer.availableVisualizers, buildingVisualizer.occupiedVisualizers);
             }
 
             ghostOccupiedTiles.Clear();
@@ -385,7 +380,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         }
 
         DestroyGhost(BuildingGhost);
-        DeactivateVisualizers(availableVisualizers, occupiedVisualizers);
+        buildingVisualizer.DeactivateVisualizers(buildingVisualizer.availableVisualizers, buildingVisualizer.occupiedVisualizers);
         SelectedBuilding = null;
         buildCost = null;
     }
@@ -395,93 +390,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         buildings.Remove(building);
     }
 
-    private List<GameObject> InstantiateVisualizers(GameObject visualizer, int amount) {
-        List<GameObject> visualizersList = new List<GameObject>();
-
-        for (int i = 0; i < amount; i++) {
-            AddVisualizer(visualizersList, visualizer);
-        }
-        return visualizersList;
-    }
-
-    public void MoveVisualizers(List<Vector3> ghostOccupiedTiles, List<GameObject> availableVisualizers, List<GameObject> occupiedVisualizers) {
-
-        int availableIndex = 0;
-        int occupiedIndex = 0;
-        
-        if (ghostOccupiedTiles.Count > availableVisualizers.Count) {
-            int amount = ghostOccupiedTiles.Count - availableVisualizers.Count;
-            AddToVisualizers(availableVisualizers, availableVisualizer, amount);
-        }
-
-        if (ghostOccupiedTiles.Count > occupiedVisualizers.Count) {
-            int amount = ghostOccupiedTiles.Count - occupiedVisualizers.Count;
-            AddToVisualizers(occupiedVisualizers, occupiedVisualizer, amount);
-        }          
-
-        for (int i = 0; i < ghostOccupiedTiles.Count; i++) {
-
-            Vector3 occupiedTile = ghostOccupiedTiles[i];
-
-            Vector3Int cellPosition = tilemap.WorldToCell(occupiedTile);
-            cellPosition.x += 5;
-            cellPosition.y += 5;
-            cellPosition.z = 0;
-
-            GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
-
-            if (tile != null) {
-                GroundTileData tileScript = tile.GetComponent<GroundTileData>();
-
-                if (tileScript.isOccupied || !tileScript.isWalkable) {
-                    GameObject visualizer = occupiedVisualizers[occupiedIndex];
-                    visualizer.transform.position = ghostOccupiedTiles[i];
-                    visualizer.SetActive(true);
-                    occupiedIndex += 1;
-
-                }
-                else {
-                    GameObject visualizer = availableVisualizers[availableIndex];
-                    visualizer.transform.position = ghostOccupiedTiles[i];
-                    visualizer.SetActive(true);
-                    availableIndex += 1;
-                }
-            }
-        }
-    }
-
-    public void DeactivateVisualizers(List<GameObject> occupiedVisualizers, List<GameObject> availableVisualizers) {
-        for (int i = 0; i < occupiedVisualizers.Count; i++) {
-
-            GameObject visualizer = occupiedVisualizers[i];
-
-            if (visualizer.activeSelf == true) {
-                visualizer.SetActive(false);
-            }
-        }
-
-        for (int i = 0; i < availableVisualizers.Count; i++) {
-
-            GameObject visualizer = availableVisualizers[i];
-
-            if (visualizer.activeSelf == true) {
-                visualizer.SetActive(false);
-            }
-        }
-    }
-
-    private void AddVisualizer(List<GameObject> visualizersList, GameObject visualizer) {
-        GameObject go = Instantiate(visualizer, Vector3.zero, Quaternion.identity);
-        go.SetActive(false);
-        go.transform.SetParent(visualizersParent.transform);
-        visualizersList.Add(go);    
-    }
-
-    private void AddToVisualizers(List<GameObject> visualizersList, GameObject visualizer, int amount) {
-        for (int i = 0; i < amount; i++) {
-            AddVisualizer(visualizersList, visualizer);
-        }  
-    }
+    
 
     public void DeselectBuilding() {
         SelectedBuilding = null;
