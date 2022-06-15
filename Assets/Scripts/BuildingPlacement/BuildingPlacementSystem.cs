@@ -8,21 +8,15 @@ using UnityEngine.Tilemaps;
 
 public class BuildingPlacementSystem : MonoBehaviour
 {   
-    List<GameObject> buildings;
-    
-
     [SerializeField] List<GameObject> buildableBuildings;
     public float BuildingZ = 10;
-    
 
-    public Vector3 currentMousePositionInWorld;
-    
+    List<GameObject> buildings;
+    public Vector3 currentMousePositionInWorld;    
     List<Vector3> selectedBuildingOccupiedTiles;
     
     public GameObject SelectedBuilding;
     public IBuildable selectedBuildingScript;
-
-
 
     [Range(0,2)]
     [SerializeField] int buildBuildingMouseButton = 1;
@@ -267,8 +261,6 @@ public class BuildingPlacementSystem : MonoBehaviour
         Destroy(building);
         buildings.Remove(building);
     }
-
-    
 
     public void DeselectBuilding() {
         SelectedBuilding = null;
