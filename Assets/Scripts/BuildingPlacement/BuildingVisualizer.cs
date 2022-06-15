@@ -86,7 +86,7 @@ public class BuildingVisualizer : MonoBehaviour
         }
     }
 
-    public void DeactivateVisualizers(List<GameObject> occupiedVisualizers, List<GameObject> availableVisualizers) {
+    public void DeactivateVisualizers() {
         for (int i = 0; i < occupiedVisualizers.Count; i++) {
 
             GameObject visualizer = occupiedVisualizers[i];

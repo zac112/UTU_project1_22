@@ -252,7 +252,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         }
 
         buildingGhost.DestroyGhost(buildingGhost.Ghost);
-        buildingVisualizer.DeactivateVisualizers(buildingVisualizer.availableVisualizers, buildingVisualizer.occupiedVisualizers);
+        buildingVisualizer.DeactivateVisualizers();
         SelectedBuilding = null;
         buildCost = null;
     }

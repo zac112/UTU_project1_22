@@ -103,7 +103,7 @@ public class BuildingGhost : MonoBehaviour
             mousePosition.z = 10;
 
             if (buildingPlacementSystem.currentMousePositionInWorld != mousePosition) {
-                buildingVisualizer.DeactivateVisualizers(buildingVisualizer.availableVisualizers, buildingVisualizer.occupiedVisualizers);
+                buildingVisualizer.DeactivateVisualizers();
 
                 buildingPlacementSystem.currentMousePositionInWorld = mousePosition;
                 buildingVisualizer.MoveVisualizers(ghostOccupiedTiles);
