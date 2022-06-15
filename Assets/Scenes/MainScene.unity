@@ -285,6 +285,10 @@ PrefabInstance:
       value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 3730005422164669894, guid: 7b0ba5a96bc4ba64aa5172ac1909545e, type: 3}
+      propertyPath: cactus
+      value: 
+      objectReference: {fileID: 8403601051725073602, guid: bab99e0827d17834f8d312e6b57afaef, type: 3}
+    - target: {fileID: 3730005422164669894, guid: 7b0ba5a96bc4ba64aa5172ac1909545e, type: 3}
       propertyPath: desert
       value: 
       objectReference: {fileID: 11400000, guid: 4ff2eff9e356068439dba5326aac90b6, type: 2}
