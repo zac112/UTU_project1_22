@@ -56,6 +56,12 @@ public class PlayerStats : MonoBehaviour
         GameStats.Gold += amount;
         UIManager.current.UpdateGoldText(gold);
     }
+    public void SetGold(int amount)
+    {
+        gold = amount;
+        GameStats.Gold = amount;
+        UIManager.current.UpdateGoldText(gold);
+    }
 
     public void RemoveGold(int amount){
         gold -= amount;
