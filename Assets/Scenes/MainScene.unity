@@ -1472,7 +1472,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6609971668409792008, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
       propertyPath: startingGold
-      value: 0
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1290672779269397518, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
