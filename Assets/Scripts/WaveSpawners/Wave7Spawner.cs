@@ -5,11 +5,21 @@ using UnityEngine;
 public class Wave7Spawner : WaveSpawner
 {
     protected override void PopulateSpawns(List<UnitBase> spawns){
-        spawns.Add(UnitBase.Goblin());
-        spawns.Add(UnitBase.Goblin());
-        spawns.Add(UnitBase.Goblin());
-        spawns.Add(UnitBase.GoblinBrute());
-        spawns.Add(UnitBase.Goblin());
+       float diff = GetEnemyDifficulty(6);
+
+        for(int i=0; i<UnityEngine.Random.Range(0,diff/UnitBase.Knight().difficultyValue);i++){
+            spawns.Add(UnitBase.Knight());
+            diff = UnitBase.Knight().difficultyValue;
+        }
+
+        for(int i=0; i<UnityEngine.Random.Range(0,diff/UnitBase.GoblinBrute().difficultyValue);i++){
+            spawns.Add(UnitBase.GoblinBrute());
+            diff = UnitBase.GoblinBrute().difficultyValue;
+        }
+                
+        for (int i=0; i<diff;i++){
+            spawns.Add(UnitBase.Goblin());
+        }
     }
 
     public override void StartNextWave()

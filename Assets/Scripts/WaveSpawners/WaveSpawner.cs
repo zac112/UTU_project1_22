@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,10 @@ public abstract class WaveSpawner : MonoBehaviour
         PopulateSpawns(spawns);
 
         StartCoroutine("Spawn");
+
+        for (int i=0;i<20;i++){
+            print(GetEnemyDifficulty(i));
+        }
     }
 
     void OnEnable(){ GameEvents.current.DayChange += DayChange;}
@@ -27,6 +32,25 @@ public abstract class WaveSpawner : MonoBehaviour
     protected abstract void PopulateSpawns(List<UnitBase> spawns);
 
     public abstract void StartNextWave();
+
+    public float GetEnemyDifficulty(int day){
+        //Can be obtained from game general difficulty
+        double maxStrength = 20;
+        double startingStrength = 10;
+
+        //Compute difficulty using Richard's curve
+        double A = startingStrength;
+        double B = 10f/day;
+        double C = 1.1;
+        double Q = 20;
+        double K = maxStrength;
+        double v = 0.5;
+
+        double nominator = K-A;
+        double f1 = C+Q*Math.Pow(Math.E,-B*day);
+        double denominator = Math.Pow(f1,1/v);
+        return (float)(A+nominator/denominator);
+    }
 
     void Spawn()
     {
