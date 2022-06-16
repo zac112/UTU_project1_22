@@ -98,6 +98,8 @@ GameObject:
   - component: {fileID: 515510084250974613}
   - component: {fileID: 1820649854159306050}
   - component: {fileID: 3153903292491313075}
+  - component: {fileID: 8900091727181324728}
+  - component: {fileID: 709848789240910702}
   m_Layer: 11
   m_Name: GoldMine
   m_TagString: Untagged
@@ -210,3 +212,124 @@ MonoBehaviour:
   smithyUI: {fileID: 0}
   objectName: {fileID: 0}
   objectHealth: {fileID: 0}
+--- !u!114 &8900091727181324728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7953807960417106100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2503ec514be3c4b8eabf501843f431, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - category: 0
+    clip: {fileID: 8300000, guid: 847bc3f7a16d3bc41965c7d2d3734a5f, type: 3}
+  - category: 0
+    clip: {fileID: 8300000, guid: 2970b27a8b19da546829a531fc4b4c5b, type: 3}
+  - category: 0
+    clip: {fileID: 8300000, guid: 730e80865ce8a3e47ae962708a566401, type: 3}
+  - category: 1
+    clip: {fileID: 8300000, guid: 0567a2ce265a04944ab4491bf427e2db, type: 3}
+  - category: 1
+    clip: {fileID: 8300000, guid: 0c7d7356ebd70a04288777161215120a, type: 3}
+  - category: 1
+    clip: {fileID: 8300000, guid: 6233be5818eff164992ed3a42a7c5fda, type: 3}
+--- !u!82 &709848789240910702
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7953807960417106100}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
