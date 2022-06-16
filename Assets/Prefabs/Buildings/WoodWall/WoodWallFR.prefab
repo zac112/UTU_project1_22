@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthPoints: 0
-  _width: 3
+  _width: 1
   _length: 1
   _isRotated: 0
   _nextRotation: {fileID: 2300419187923452777, guid: aa391f734e51b334aaa10e300f23d900, type: 3}
@@ -77,10 +77,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.50790966, y: 0.39013657}
-      - {x: -0.70401746, y: 0.33988866}
-      - {x: 0.4807801, y: -0.3096167}
-      - {x: 0.69970775, y: -0.2516476}
+    - - {x: -0.21, y: 0.3}
+      - {x: -0.35, y: 0.21}
+      - {x: 0.21, y: -0.1}
+      - {x: 0.35, y: 0}
 --- !u!114 &7415459392804666292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,12 +167,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 35e693beb4d37584ebcca92f7de3c1cf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 59f9b891e236fb04bb7b20b0d824140b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
