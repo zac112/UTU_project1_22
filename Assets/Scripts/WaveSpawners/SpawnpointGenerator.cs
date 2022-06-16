@@ -74,10 +74,6 @@ public class SpawnpointGenerator : MonoBehaviour
                     fogsCopy.Remove(fogsCopy[j]);
                     break;
                 }
-                else
-                {
-                    Debug.Log("Could not place spawnpoint");
-                }
             }
         }
     }
