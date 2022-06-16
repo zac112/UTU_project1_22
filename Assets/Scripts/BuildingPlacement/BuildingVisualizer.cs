@@ -40,24 +40,24 @@ public class BuildingVisualizer : MonoBehaviour
         return visualizersList;
     }
 
-    public void MoveVisualizers(List<Vector3> ghostOccupiedTiles) {
+    public void MoveVisualizers(List<Vector3> tilesList) {
 
         int availableIndex = 0;
         int occupiedIndex = 0;
 
-        if (ghostOccupiedTiles.Count > availableVisualizers.Count) {
-            int amount = ghostOccupiedTiles.Count - availableVisualizers.Count;
+        if (tilesList.Count > availableVisualizers.Count) {
+            int amount = tilesList.Count - availableVisualizers.Count;
             AddToVisualizers(availableVisualizers, availableVisualizer, amount);
         }
 
-        if (ghostOccupiedTiles.Count > occupiedVisualizers.Count) {
-            int amount = ghostOccupiedTiles.Count - occupiedVisualizers.Count;
+        if (tilesList.Count > occupiedVisualizers.Count) {
+            int amount = tilesList.Count - occupiedVisualizers.Count;
             AddToVisualizers(occupiedVisualizers, occupiedVisualizer, amount);
         }
 
-        for (int i = 0; i < ghostOccupiedTiles.Count; i++) {
+        for (int i = 0; i < tilesList.Count; i++) {
 
-            Vector3 occupiedTile = ghostOccupiedTiles[i];
+            Vector3 occupiedTile = tilesList[i];
 
             Vector3Int cellPosition = tilemap.WorldToCell(occupiedTile);
             cellPosition.x += 5;
@@ -71,14 +71,18 @@ public class BuildingVisualizer : MonoBehaviour
 
                 if (tileScript.isOccupied || !tileScript.isWalkable) {
                     GameObject visualizer = occupiedVisualizers[occupiedIndex];
-                    visualizer.transform.position = ghostOccupiedTiles[i];
+                    Vector3 position = visualizer.transform.position;
+                    position = tilesList[i];
+                    visualizer.transform.position = new Vector3(position.x, position.y, 10);
                     visualizer.SetActive(true);
                     occupiedIndex += 1;
 
                 }
                 else {
                     GameObject visualizer = availableVisualizers[availableIndex];
-                    visualizer.transform.position = ghostOccupiedTiles[i];
+                    Vector3 position = visualizer.transform.position;
+                    position = tilesList[i];
+                    visualizer.transform.position = new Vector3(position.x, position.y, 10);
                     visualizer.SetActive(true);
                     availableIndex += 1;
                 }
