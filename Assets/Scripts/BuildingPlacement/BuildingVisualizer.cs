@@ -55,11 +55,9 @@ public class BuildingVisualizer : MonoBehaviour
             AddToVisualizers(occupiedVisualizers, occupiedVisualizer, amount);
         }
 
-        for (int i = 0; i < tilesList.Count; i++) {
+        foreach (Vector3 tilePosition in tilesList) {
 
-            Vector3 occupiedTile = tilesList[i];
-
-            Vector3Int cellPosition = tilemap.WorldToCell(occupiedTile);
+            Vector3Int cellPosition = tilemap.WorldToCell(tilePosition);
             cellPosition.x += 5;
             cellPosition.y += 5;
             cellPosition.z = 0;
@@ -72,7 +70,7 @@ public class BuildingVisualizer : MonoBehaviour
                 if (tileScript.isOccupied || !tileScript.isWalkable) {
                     GameObject visualizer = occupiedVisualizers[occupiedIndex];
                     Vector3 position = visualizer.transform.position;
-                    position = tilesList[i];
+                    position = tilePosition;
                     visualizer.transform.position = new Vector3(position.x, position.y, 10);
                     visualizer.SetActive(true);
                     occupiedIndex += 1;
@@ -81,7 +79,7 @@ public class BuildingVisualizer : MonoBehaviour
                 else {
                     GameObject visualizer = availableVisualizers[availableIndex];
                     Vector3 position = visualizer.transform.position;
-                    position = tilesList[i];
+                    position = tilePosition;
                     visualizer.transform.position = new Vector3(position.x, position.y, 10);
                     visualizer.SetActive(true);
                     availableIndex += 1;
@@ -91,23 +89,8 @@ public class BuildingVisualizer : MonoBehaviour
     }
 
     public void DeactivateVisualizers() {
-        for (int i = 0; i < occupiedVisualizers.Count; i++) {
-
-            GameObject visualizer = occupiedVisualizers[i];
-
-            if (visualizer.activeSelf == true) {
-                visualizer.SetActive(false);
-            }
-        }
-
-        for (int i = 0; i < availableVisualizers.Count; i++) {
-
-            GameObject visualizer = availableVisualizers[i];
-
-            if (visualizer.activeSelf == true) {
-                visualizer.SetActive(false);
-            }
-        }
+        foreach (GameObject visualizer in occupiedVisualizers) visualizer.SetActive(false);
+        foreach (GameObject visualizer in availableVisualizers) visualizer.SetActive(false); 
     }
 
     private void AddVisualizer(List<GameObject> visualizersList, GameObject visualizer) {
