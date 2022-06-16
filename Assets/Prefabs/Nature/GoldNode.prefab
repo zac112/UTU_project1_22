@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 4331735058532690885}
   - component: {fileID: -8637734603957305108}
   - component: {fileID: 5896942419026021622}
+  - component: {fileID: -8879821115818229091}
   m_Layer: 0
   m_Name: GoldNode
-  m_TagString: Untagged
+  m_TagString: GoldNode
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -101,8 +102,8 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.4, y: 0}
+    oldSize: {x: 0.64, y: 0.64}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -125,3 +126,17 @@ PolygonCollider2D:
       - {x: 0.40718013, y: -0.104941726}
       - {x: 0.47434586, y: -0.057834208}
       - {x: 0.41790676, y: 0.052005768}
+--- !u!114 &-8879821115818229091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2673870751815007294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eafad133c5cda046a041de31c5a226f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resource: 1
+  capacity: 250
