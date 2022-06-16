@@ -7,7 +7,14 @@ public class Building : MonoBehaviour, IBuildable
 {
 
     [SerializeField] private int _healthPoints; // building hit points, determines when it gets destroyed
-    public int HealthPoints { get => _healthPoints; set => HealthPoints = _healthPoints; }
+    public int HealthPoints { 
+        get {return _healthPoints;}
+        set {
+        HealthPoints = _healthPoints;
+        if (_healthPoints <0){
+            GetComponent<AudioPlayer>().PlayRandom(AudioType.Destroy);
+        }
+        }}
 
     [SerializeField] private int _width;
     public int Width
@@ -32,6 +39,12 @@ public class Building : MonoBehaviour, IBuildable
 
     void Awake()
     {
-        _occupiedTiles = new List<Vector3>();
+        _occupiedTiles = new List<Vector3>();        
     }
+
+    void Start(){
+        GetComponent<AudioPlayer>().PlayRandom(AudioType.Build);
+    }
+
+
 }
