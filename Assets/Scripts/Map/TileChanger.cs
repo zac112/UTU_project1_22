@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.EventSystems;
 
  
 public class TileChanger : MonoBehaviour
@@ -47,7 +48,7 @@ public class TileChanger : MonoBehaviour
         // This gets called every update, maybe change to on mouseclick
         GameObject groundTile = tilemap.GetInstantiatedObject(location);
         
-        if (groundTile != null) {
+        if (groundTile != null && !IsMouseOverUI()) {
             // Get the script attached to the GameObject
             GroundTileData tileScript = groundTile.GetComponent<GroundTileData>();
 
@@ -189,6 +190,11 @@ public class TileChanger : MonoBehaviour
         }
 
         occupiedVisualizerList.Clear();
+    }
+
+    private bool IsMouseOverUI()
+    {
+        return UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();
     }
 
     /// <summary>
