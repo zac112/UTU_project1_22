@@ -49,6 +49,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     {
         SelectedBuilding = building.gameObject;
         buildingGhost.InstantiateGhost(SelectedBuilding, ref buildingGhost.Ghost, buildingGhost.ghostOccupiedTiles);
+        buildCost = SelectedBuilding.GetComponent<BuildCost>();
     }
 
 
@@ -212,9 +213,8 @@ public class BuildingPlacementSystem : MonoBehaviour
             }
         }
 
-        if (buildingPlacementAllowed)
+        if (buildingPlacementAllowed && playerStats.GetGold() >= buildCost.Cost)
         {
-            buildCost = SelectedBuilding.GetComponent<BuildCost>();
 
             // Instantiate building on tileLocation
             GameObject buildingInstance = Instantiate(SelectedBuilding, CalculateBuildingLocation(selectedBuildingOccupiedTiles), Quaternion.identity);
