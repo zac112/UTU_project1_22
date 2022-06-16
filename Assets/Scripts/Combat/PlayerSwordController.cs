@@ -43,7 +43,7 @@ public class PlayerSwordController : MonoBehaviour
         this.gameObject.GetComponent<Collider2D>().enabled=true;
         sr.color=new Color(1f, 0f, 0f, 1f); //change sword color to make it more obvious when you are attacking
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.3f);
         this.gameObject.GetComponent<Collider2D>().enabled=false;
         sr.color=new Color(1f, 1f, 1f, 1f);
     }

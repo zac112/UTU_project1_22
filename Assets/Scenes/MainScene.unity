@@ -152,8 +152,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   res: {fileID: 0}
+  resourceInfo: {fileID: 0}
   goldGatherSpeed: 0
   woodGatherSpeed: 0
+  infoText: {fileID: 0}
 --- !u!1 &537108676 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8025742911673196345, guid: 2f55b9226f5629946be252e9a083539e, type: 3}
@@ -935,6 +937,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6732379041304871023, guid: 2f55b9226f5629946be252e9a083539e, type: 3}
       propertyPath: m_ReverseArrangement
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6873426634229174504, guid: 2f55b9226f5629946be252e9a083539e, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7113448550721596484, guid: 2f55b9226f5629946be252e9a083539e, type: 3}
