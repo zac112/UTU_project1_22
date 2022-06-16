@@ -15,8 +15,7 @@ public class PlayerSkills
     MoveSpeed_2,
     HealthMax_1,
     HealthMax_2,
-    Farming,
-    RangeAttack,
+
    }
 
 
@@ -29,11 +28,10 @@ public class PlayerSkills
 
 
    private void UnlockSkill(SkillType skillType) {
-    
+    if (!IsSkillUnlocked(skillType)) {
         unlockedSkillTypeList.Add(skillType);
-        //GameEvents.current.OnSkillUnlocked(skillType);
-
-      
+        GameEvents.current.OnSkillUnlocked(skillType);
+    }
    }
 
    public bool IsSkillUnlocked(SkillType skillType) {
@@ -43,7 +41,7 @@ public class PlayerSkills
    public bool CanUnlock(SkillType skillType) {
    SkillType skillRequirement = GetSkillRequirement(skillType);
     if (skillRequirement != SkillType.None) {
-        if (!IsSkillUnlocked(skillRequirement)) {
+        if (IsSkillUnlocked(skillRequirement)) {
             return true;
         }
         return false;
@@ -54,6 +52,7 @@ public class PlayerSkills
    public SkillType GetSkillRequirement(SkillType skillType) {
     switch (skillType) {
         case SkillType.HealthMax_2: return SkillType.HealthMax_1;
+        case SkillType.MoveSpeed_2: return SkillType.MoveSpeed_1;
     }
     return SkillType.None;
    }

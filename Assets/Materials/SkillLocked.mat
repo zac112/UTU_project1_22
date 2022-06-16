@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SkillUnlockable
+  m_Name: SkillLocked
   m_Shader: {fileID: -6465566751694194690, guid: 7dba7dab4bac61e4aba4a648ba91a037,
     type: 3}
   m_ShaderKeywords: 
@@ -20,6 +20,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_C11E6E28:
+        m_Texture: {fileID: 2800000, guid: 1dfd92251fe941f43834f029a0ced036, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 1dfd92251fe941f43834f029a0ced036, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -33,5 +37,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Alpha: 1
+    - Vector1_BBB12B76: 10
+    - _Alpha: 0.303
     m_Colors: []

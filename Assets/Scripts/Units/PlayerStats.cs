@@ -14,6 +14,8 @@ public class PlayerStats : MonoBehaviour
     
     List<Village> FriendlyVillages = new List<Village>();
     Village CurrentVillage;  // currently active village
+    private PlayerSkills playerSkills;
+    private WASDMovement movement;
        
            
     void Start(){
@@ -28,6 +30,8 @@ public class PlayerStats : MonoBehaviour
         UIManager.current.UpdateGoldText(gold);
         UIManager.current.UpdateHealthText(health);
 
+        playerSkills = new PlayerSkills();
+        GameEvents.current.OnSkillUnlockedEvent += OnSkillUnlocked;
         
     }
 
@@ -41,6 +45,10 @@ public class PlayerStats : MonoBehaviour
     {
         GameEvents.current.GameOver -= OnGameOver;
         GameEvents.current.TechnologyPurchaseAttempt -= AttemptPurchase;
+    }
+
+     public PlayerSkills GetPlayerSkills() {
+        return playerSkills;
     }
 
     private void AttemptPurchase(Technology tech) {
@@ -158,6 +166,22 @@ public class PlayerStats : MonoBehaviour
         if (t == GameOverType.OwnVillagesDestroyed)
         {
             GameOverTypeText.text = "Own villages destroyed!";
+        }
+    }
+    public void OnSkillUnlocked(PlayerSkills.SkillType skillType) {
+        switch (skillType) {
+            case PlayerSkills.SkillType.HealthMax_1:
+                AddMaxHealth(25);
+                break;
+            case PlayerSkills.SkillType.HealthMax_2:
+                AddMaxHealth(15);
+                break;
+            case PlayerSkills.SkillType.MoveSpeed_1:
+                movement.setSpeed(3.5f);
+                break;
+            case PlayerSkills.SkillType.MoveSpeed_2:
+                movement.setSpeed(4f);
+                break;
         }
     }
      

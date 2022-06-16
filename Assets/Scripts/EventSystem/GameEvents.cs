@@ -48,4 +48,7 @@ public class GameEvents : MonoBehaviour
     public event Action<GameObject> FogDespawned;
     public void OnFogDespawned(GameObject fog) { FogDespawned?.Invoke(fog); }
 
+    public event Action<PlayerSkills.SkillType> OnSkillUnlockedEvent;
+    public void OnSkillUnlocked(PlayerSkills.SkillType skillType){ OnSkillUnlockedEvent?.Invoke(skillType);}
+
 }

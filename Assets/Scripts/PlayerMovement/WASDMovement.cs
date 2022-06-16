@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WASDMovement : MonoBehaviour
 {
-    public float speed = 3.0f;
+    private float speed = 3.0f;
 
     Rigidbody2D rigidbody2d;
     float horizontal;
@@ -32,5 +32,8 @@ public class WASDMovement : MonoBehaviour
 
         rigidbody2d.MovePosition(position);
         }
+    }
+    public void setSpeed(float speed) {
+        this.speed = speed;
     }
 }
