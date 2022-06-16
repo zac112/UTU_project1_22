@@ -20,6 +20,8 @@ TagManager:
   - AllyMeleeHitbox
   - Tilemap
   - FogOfWar
+  - GoldNode
+  - Tree
   layers:
   - Default
   - TransparentFX

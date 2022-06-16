@@ -10,6 +10,8 @@ public class InputListener : MonoBehaviour
     //set keybinds here
     string ToggleSwordMode = "1";
     string RangedAttackButton = "2";
+    public string PickaxeButton = "3";
+    public string AxeButton = "4";
 
 
     //call gameobject methods here
@@ -21,6 +23,14 @@ public class InputListener : MonoBehaviour
 
         if(Input.GetKeyDown(RangedAttackButton)){
             player.GetComponent<PlayerCombat>().RangedAttack();
+        }
+
+        if(Input.GetKeyDown(PickaxeButton)){
+            player.transform.GetChild(1).gameObject.SetActive(!player.transform.GetChild(1).gameObject.activeSelf);
+        }
+
+        if(Input.GetKeyDown(AxeButton)){
+            player.transform.GetChild(2).gameObject.SetActive(!player.transform.GetChild(2).gameObject.activeSelf);
         }
         
     }

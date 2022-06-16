@@ -134,6 +134,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &118179302 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2100513054957252643, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
+  m_PrefabInstance: {fileID: 6609971669738720497}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &118179308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 118179302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c153045c0cb140b46a7af49e0069d155, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  res: {fileID: 0}
+  goldGatherSpeed: 0
+  woodGatherSpeed: 0
 --- !u!1 &537108676 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8025742911673196345, guid: 2f55b9226f5629946be252e9a083539e, type: 3}
@@ -1450,7 +1470,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6609971668409792008, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
+      propertyPath: startingGold
+      value: 1000
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1290672779269397518, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
 --- !u!1001 &7585767268025685756
 PrefabInstance:
