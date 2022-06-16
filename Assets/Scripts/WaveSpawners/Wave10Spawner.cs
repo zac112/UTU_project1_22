@@ -27,7 +27,7 @@ public class Wave10Spawner : WaveSpawner
     public override void StartNextWave()
     {
         // Game won here
-        Debug.Log("You won the game!");
+        GameEvents.current.OnGameOver(GameOverType.Victory);
         Destroy(this);
     }
 }
