@@ -18,6 +18,8 @@ public class InputListener : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(ToggleSwordMode)){
+            player.transform.GetChild(2).gameObject.SetActive(false);
+            player.transform.GetChild(1).gameObject.SetActive(false);
             player.transform.GetChild(0).gameObject.SetActive(!player.transform.GetChild(0).gameObject.activeSelf); 
         }
 
@@ -26,10 +28,14 @@ public class InputListener : MonoBehaviour
         }
 
         if(Input.GetKeyDown(PickaxeButton)){
+            player.transform.GetChild(0).gameObject.SetActive(false);
+            player.transform.GetChild(2).gameObject.SetActive(false);
             player.transform.GetChild(1).gameObject.SetActive(!player.transform.GetChild(1).gameObject.activeSelf);
         }
 
         if(Input.GetKeyDown(AxeButton)){
+            player.transform.GetChild(0).gameObject.SetActive(false);
+            player.transform.GetChild(1).gameObject.SetActive(false);
             player.transform.GetChild(2).gameObject.SetActive(!player.transform.GetChild(2).gameObject.activeSelf);
         }
         
