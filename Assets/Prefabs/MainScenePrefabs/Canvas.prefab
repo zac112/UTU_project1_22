@@ -6719,7 +6719,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Day: 0'
+  m_text: Starting day
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d263ec5eef60b0d48a84955d2bdf2c14, type: 2}
   m_sharedMaterial: {fileID: -370211920323749733, guid: d263ec5eef60b0d48a84955d2bdf2c14, type: 2}
@@ -6782,7 +6782,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -50.742058, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

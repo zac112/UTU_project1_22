@@ -21,7 +21,6 @@ public abstract class WaveSpawner : MonoBehaviour
 
     void DayChange(int day){
         StartNextWave();
-        print("day cahnge");
     }
 
     //Fills the list with units to spawn during the wave

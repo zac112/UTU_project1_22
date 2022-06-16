@@ -9,9 +9,9 @@ public class DayNight : MonoBehaviour
     [SerializeField] public Image dayNight;
     [SerializeField] public TMP_Text DayValue;
     [SerializeField] public Gradient dayNightColor;
-    [SerializeField] int daylength = 200;
-    [SerializeField] float filterPercentage = 1.0f;    
+    [SerializeField] int daylength = 20000;
     private int days;
+    private int dayPhase;
     
     void Start()
     {
@@ -21,13 +21,15 @@ public class DayNight : MonoBehaviour
 
     void Timer(int ticks)
     {   
+        dayPhase++;
         // Switch DayNightFilter transparency
-        dayNight.color = dayNightColor.Evaluate((filterPercentage*ticks%daylength)/daylength);
-        if ((ticks%daylength)+1 >= daylength)
+        dayNight.color = dayNightColor.Evaluate((0f+ticks%daylength)/daylength);
+        if (dayPhase >= daylength)
         {            
             days++;
             IntializeUI();
             GameEvents.current.OnDayChange(days);
+            dayPhase = 0;
         }
     }
 
