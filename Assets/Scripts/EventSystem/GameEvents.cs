@@ -54,4 +54,8 @@ public class GameEvents : MonoBehaviour
     public event Action<PlayerSkills.SkillType> OnSkillUnlockedEvent;
     public void OnSkillUnlocked(PlayerSkills.SkillType skillType){ OnSkillUnlockedEvent?.Invoke(skillType);}
 
+    public event Action<int> DayChange;
+    public void OnDayChange (int currentDay){ DayChange?.Invoke(currentDay); }
+
+
 }

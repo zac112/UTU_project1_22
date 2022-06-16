@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4767324223134682791}
   - component: {fileID: 4767324223134682790}
+  - component: {fileID: 7524686233045905065}
   m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: Untagged
@@ -44,4 +45,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa193b55d644614e91d3ae26ea79926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitPrefabs: []
+--- !u!114 &7524686233045905065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4767324223134682789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 565d4850c202c2143a2179a6cde49220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

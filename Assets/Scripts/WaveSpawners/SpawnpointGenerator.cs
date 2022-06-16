@@ -8,6 +8,7 @@ public class SpawnpointGenerator : MonoBehaviour
     [SerializeField] int amount = 1;
     [SerializeField] float minDistance = 1;
     [SerializeField] float maxDistance = 1000;
+    [SerializeField] GameObject spawnpointPrefab;
     GameObject player;
     List<GameObject> fogs;
     List<GameObject> spawnpoints;
@@ -33,8 +34,7 @@ public class SpawnpointGenerator : MonoBehaviour
 
         for (int i = 0; i < amount; i++)
         {
-            GameObject spawnpointGO = new GameObject($"Spawnpoint{i + 1}");
-            spawnpointGO.AddComponent<Spawnpoint>();
+            GameObject spawnpointGO = Instantiate<GameObject>(spawnpointPrefab);
             spawnpointGO.transform.SetParent(spawnpointsGO.transform);
             spawnpoints.Add(spawnpointGO);
         }

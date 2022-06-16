@@ -16,6 +16,14 @@ public abstract class WaveSpawner : MonoBehaviour
         StartCoroutine("Spawn");
     }
 
+    void OnEnable(){ GameEvents.current.DayChange += DayChange;}
+    void OnDisable(){ GameEvents.current.DayChange -= DayChange;}
+
+    void DayChange(int day){
+        StartNextWave();
+        print("day cahnge");
+    }
+
     //Fills the list with units to spawn during the wave
     protected abstract void PopulateSpawns(List<UnitBase> spawns);
 
