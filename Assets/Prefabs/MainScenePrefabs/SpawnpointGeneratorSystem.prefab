@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amount: 1
   minDistance: 1
-  maxDistance: 1000
+  maxDistance: 20
