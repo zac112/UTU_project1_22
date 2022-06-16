@@ -42,9 +42,8 @@ public class Building : MonoBehaviour, IBuildable
         _occupiedTiles = new List<Vector3>();        
     }
 
-    void Start(){
-        GetComponent<AudioPlayer>().PlayRandom(AudioType.Build);
+    public void Build(){
+        GetComponent<AudioPlayer>().PlayRandom(AudioType.Build);        
     }
-
 
 }

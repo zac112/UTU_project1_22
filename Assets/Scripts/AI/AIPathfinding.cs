@@ -13,7 +13,7 @@ public class AIPathfinding : MonoBehaviour
     [SerializeField] float nextWaypointDistance = 0.3f;
 
     Path path;
-    int currentWaypoint = 0;
+    int currentWaypoint = 1;
 
     Seeker seeker;
     Rigidbody2D rb;
@@ -49,17 +49,22 @@ public class AIPathfinding : MonoBehaviour
         {
             return;
         } 
-        Vector2 direction = ((Vector2) path.vectorPath[currentWaypoint] - rb.position).normalized;
-        Vector2 force = direction * speed * Time.deltaTime;
-
-        rb.AddForce(force);
+        
+        Move(path.vectorPath[currentWaypoint-1], path.vectorPath[currentWaypoint]);
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
-
         if (distance < nextWaypointDistance)
         {
             currentWaypoint++;
         }
+
+    }
+
+    ///Called every FixedUpdate o move the transform
+    virtual protected void Move(Vector3 from, Vector3 to){        
+        Vector2 direction = ((Vector2) to - rb.position).normalized;
+        Vector2 force = direction * speed * Time.deltaTime;
+        rb.AddForce(force);
 
         if (force.x >= 0.01f)
         {
@@ -76,7 +81,7 @@ public class AIPathfinding : MonoBehaviour
         if (!p.error)
         {
             path = p;
-            currentWaypoint = 0;
+            currentWaypoint = 1;
         }
     }
     void UpdatePath()
@@ -89,11 +94,14 @@ public class AIPathfinding : MonoBehaviour
 
     public void setTarget(Transform t){
         target=t;
+        enemyGraph = t.transform;
     }
     
     public Transform getTarget(){
         return target;
     }
 
+    public Path GetPath() => path;
+    public float GetSpeed() => speed;
 
 }

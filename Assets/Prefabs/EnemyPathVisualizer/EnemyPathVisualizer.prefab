@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3540646974387863430}
   - component: {fileID: 6698867921259779274}
   - component: {fileID: 2455512088266802771}
-  - component: {fileID: -6725096757002124328}
   - component: {fileID: -7815692068169892707}
   - component: {fileID: 8516614752474237486}
+  - component: {fileID: -3559841245317699690}
   m_Layer: 0
   m_Name: EnemyPathVisualizer
   m_TagString: Untagged
@@ -77,22 +77,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86aacfd785ed5fa4f87ec278420493f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-6725096757002124328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6187107150058087559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e092ae7eafbfcf4dacdf2131d312d90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 3540646974387863430}
-  enemyGraph: {fileID: 3540646974387863430}
-  speed: 200
-  nextWaypointDistance: 0.2
 --- !u!50 &-7815692068169892707
 Rigidbody2D:
   serializedVersion: 4
@@ -101,7 +85,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6187107150058087559}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -139,7 +123,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 0.557098}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 1
+--- !u!114 &-3559841245317699690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6187107150058087559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f5fa2b55f5f22643b30695657139d1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  enemyGraph: {fileID: 0}
+  speed: 200
+  nextWaypointDistance: 0.3
+  speedMod: 0.1
 --- !u!1 &6906492904963883976
 GameObject:
   m_ObjectHideFlags: 0

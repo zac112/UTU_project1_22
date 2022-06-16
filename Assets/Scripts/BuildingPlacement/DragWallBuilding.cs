@@ -51,7 +51,6 @@ public class DragWallBuilding : MonoBehaviour
     Vector3 SW;
 
     bool placingWalls;
-    bool placingMultipleWalls;
     bool foundCorner;
     bool buildingAllowed;
 
@@ -61,8 +60,7 @@ public class DragWallBuilding : MonoBehaviour
         bps = GameObject.Find("BuildingPlacementSystem").GetComponent<BuildingPlacementSystem>();
         wallPositions = new List<Vector3>();
         buildingVisualizer = GameObject.Find("BuildingVisualizerSystem").GetComponent<BuildingVisualizer>();
-        placingWalls = false;
-        placingMultipleWalls = false;
+        placingWalls = false;        
         foundCorner = false;
         buildingAllowed = true;
 

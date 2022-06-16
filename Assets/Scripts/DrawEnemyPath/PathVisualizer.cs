@@ -5,15 +5,11 @@ using UnityEngine;
 public class PathVisualizer : MonoBehaviour
 {
     AIPathfinding ai;
-    GameObject target;
-    Collider2D targetCollider;
+    GameObject target;    
 
     private void Start() {
         ai = GetComponent<AIPathfinding>();
-        target = GameObject.FindGameObjectWithTag("Player");
-        targetCollider = target.GetComponent<Collider2D>();
-
-        ai.setTarget(target.transform);
+        target = ai.getTarget().gameObject;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

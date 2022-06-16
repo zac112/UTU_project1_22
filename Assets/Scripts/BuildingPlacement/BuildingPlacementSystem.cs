@@ -248,7 +248,9 @@ public class BuildingPlacementSystem : MonoBehaviour
             playerStats.RemoveGold(buildCost.Cost);
 
             GameStats.BuildingsBuilt++;  // increase GameStats record of finished buildings
-            GameEvents.current.OnMapChanged(buildingInstance.transform.position, selectedBuildingOccupiedTiles.Count); 
+            GameEvents.current.OnMapChanged(buildingInstance.transform.position, selectedBuildingOccupiedTiles.Count);
+            GameEvents.current.OnBuildingBuilt(SelectedBuilding,buildingInstance);
+            buildingInstance.GetComponent<IBuildable>().Build();
         }
 
         buildingGhost.DestroyGhost(buildingGhost.Ghost);

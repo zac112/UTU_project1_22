@@ -8,38 +8,41 @@ public class DrawEnemyPath : MonoBehaviour
     GameObject enemyPathVisualizers;
 
     private Spawnpoint[] spawnpoints;
-    private List<GameObject> visualizersList;
 
     [SerializeField] float spawnTime = 2f;
-    private float currentTimeLeft;
-    
+    [SerializeField] GameObject mainBuildingPrefab;
+    private GameObject target;
 
     // Start is called before the first frame update
     void Start()
     {
         enemyPathVisualizers = new GameObject("EnemyPathVisualizers");
-        visualizersList = new List<GameObject>();
+        spawnpoints = GameObject.FindObjectsOfType<Spawnpoint>();        
+    }
 
-        spawnpoints = GameObject.FindObjectsOfType<Spawnpoint>();
-        currentTimeLeft = spawnTime;
+    void OnEnable(){
+        GameEvents.current.BuildingBuilt += WaitForMainBuilding;
+    }
+
+    void OnDisable(){
+        GameEvents.current.BuildingBuilt -= WaitForMainBuilding;
     }
 
     // Update is called once per frame
-    void Update()
+    void Spawn()
     {
-        currentTimeLeft -= Time.deltaTime;
-        if (currentTimeLeft < 0) {
-            currentTimeLeft = spawnTime + currentTimeLeft;
-
-            foreach (Spawnpoint spawnpoint in spawnpoints) {
-                GameObject go = Instantiate(pathVisualizer, spawnpoint.transform.position, Quaternion.identity);
-                go.transform.SetParent(enemyPathVisualizers.transform);
-                visualizersList.Add(go);
-            }
+        foreach (Spawnpoint spawnpoint in spawnpoints) {
+            GameObject go = Instantiate(pathVisualizer, spawnpoint.transform.position, Quaternion.identity);
+            go.transform.SetParent(enemyPathVisualizers.transform);            
+            go.GetComponent<AIPathfinding>().setTarget(target.transform);
         }
+    }
 
-        if (visualizersList.Count > 20) {
-            visualizersList.RemoveAt(0);
-        }
+    void WaitForMainBuilding(GameObject prefab, GameObject go){
+        if (prefab!=mainBuildingPrefab)return;
+
+        target = go;
+        InvokeRepeating("Spawn", 0, spawnTime);
+        OnDisable();
     }
 }

@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathVisualizer: {fileID: 6187107150058087559, guid: 976dd423b9698f245ad6aac94bd93459, type: 3}
   spawnTime: 3
+  mainBuildingPrefab: {fileID: 7101299784327275876, guid: f75f8b466b9361343ad3a1023556a061, type: 3}
 --- !u!4 &137410778
 Transform:
   m_ObjectHideFlags: 0
