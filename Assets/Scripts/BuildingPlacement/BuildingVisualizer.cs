@@ -25,12 +25,6 @@ public class BuildingVisualizer : MonoBehaviour
         availableVisualizers = InstantiateVisualizers(availableVisualizer, 20);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private List<GameObject> InstantiateVisualizers(GameObject visualizer, int amount) {
         List<GameObject> visualizersList = new List<GameObject>();
 
@@ -68,20 +62,12 @@ public class BuildingVisualizer : MonoBehaviour
                 GroundTileData tileScript = tile.GetComponent<GroundTileData>();
 
                 if (tileScript.isOccupied || !tileScript.isWalkable) {
-                    GameObject visualizer = occupiedVisualizers[occupiedIndex];
-                    Vector3 position = visualizer.transform.position;
-                    position = tilePosition;
-                    visualizer.transform.position = new Vector3(position.x, position.y, 10);
-                    visualizer.SetActive(true);
+                    ActivateVisualizer(occupiedIndex, tilePosition);
                     occupiedIndex += 1;
 
                 }
                 else {
-                    GameObject visualizer = availableVisualizers[availableIndex];
-                    Vector3 position = visualizer.transform.position;
-                    position = tilePosition;
-                    visualizer.transform.position = new Vector3(position.x, position.y, 10);
-                    visualizer.SetActive(true);
+                    ActivateVisualizer(availableIndex, tilePosition);
                     availableIndex += 1;
                 }
             }
@@ -104,5 +90,13 @@ public class BuildingVisualizer : MonoBehaviour
         for (int i = 0; i < amount; i++) {
             AddVisualizer(visualizersList, visualizer);
         }
+    }
+
+    private void ActivateVisualizer(int index, Vector3 tilePosition) {
+        GameObject visualizer = occupiedVisualizers[index];
+        Vector3 position = visualizer.transform.position;
+        position = tilePosition;
+        visualizer.transform.position = new Vector3(position.x, position.y, 10);
+        visualizer.SetActive(true);
     }
 }
