@@ -6,10 +6,10 @@ public class BuildingGhost : MonoBehaviour
 {
     [Range(0, 1)][SerializeField] float buildingGhostOpacity = 0.5f;
 
-    public List<Vector3> ghostOccupiedTiles;
+    public List<Vector3> GhostOccupiedTiles;
     public GameObject Ghost;
 
-    BuildingPlacementSystem buildingPlacementSystem;
+    BuildingPlacementSystem bps;
     BuildingVisualizer buildingVisualizer;
 
     Coroutine ghostCoroutine;
@@ -17,8 +17,8 @@ public class BuildingGhost : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ghostOccupiedTiles = new List<Vector3>();
-        buildingPlacementSystem = GameObject.Find("BuildingPlacementSystem").GetComponent<BuildingPlacementSystem>();
+        GhostOccupiedTiles = new List<Vector3>();
+        bps = GameObject.Find("BuildingPlacementSystem").GetComponent<BuildingPlacementSystem>();
         buildingVisualizer = GameObject.Find("BuildingVisualizerSystem").GetComponent<BuildingVisualizer>();
     }
 
@@ -38,8 +38,8 @@ public class BuildingGhost : MonoBehaviour
     public void InstantiateGhost(GameObject selectedBuilding, ref GameObject ghost, List<Vector3> ghostOccupiedTiles) {
         DestroyGhost(ghost);
 
-        Vector3 position = buildingPlacementSystem.GetTileLocationInWorld();
-        position.z = buildingPlacementSystem.BuildingZ;
+        Vector3 position = bps.GetTileLocationInWorld();
+        position.z = bps.BuildingZ;
         ghost = Instantiate(selectedBuilding, position, Quaternion.identity);
 
         // Turn off collider
@@ -57,14 +57,14 @@ public class BuildingGhost : MonoBehaviour
         while (true) {
             // Repeating code that exists in the if statement below
             // Make into a method
-            buildingPlacementSystem.selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
-            int buildingWidth = buildingPlacementSystem.selectedBuildingScript.Width;
-            int buildingLength = buildingPlacementSystem.selectedBuildingScript.Length;
+            bps.selectedBuildingScript = selectedBuilding.GetComponent<IBuildable>();
+            int buildingWidth = bps.selectedBuildingScript.Width;
+            int buildingLength = bps.selectedBuildingScript.Length;
 
-            Vector3 selectedTileLocationInWorld = buildingPlacementSystem.GetTileLocationInWorld();
+            Vector3 selectedTileLocationInWorld = bps.GetTileLocationInWorld();
 
             // If building is rotated, switch length and width with eachother
-            if (buildingPlacementSystem.selectedBuildingScript.IsRotated) {
+            if (bps.selectedBuildingScript.IsRotated) {
                 int temp = buildingWidth;
                 buildingWidth = buildingLength;
                 buildingLength = temp;
@@ -88,24 +88,24 @@ public class BuildingGhost : MonoBehaviour
                     widthX += 0.50f;
                     widthY += 0.25f;
 
-                    ghostOccupiedTiles.Add(new Vector3(widthX, widthY, buildingPlacementSystem.BuildingZ));
+                    ghostOccupiedTiles.Add(new Vector3(widthX, widthY, bps.BuildingZ));
                 }
             }
 
             // Move the ghost when mouse moves
-            Vector3 position = buildingPlacementSystem.CalculateBuildingLocation(ghostOccupiedTiles);
-            position.z = buildingPlacementSystem.BuildingZ;
+            Vector3 position = bps.CalculateBuildingLocation(ghostOccupiedTiles);
+            position.z = bps.BuildingZ;
             Ghost.transform.position = position;
 
             // Update allowed to build vizualization
             // Change to Vector3Int and add to list
-            Vector3 mousePosition = buildingPlacementSystem.GetTileLocationInWorld();
+            Vector3 mousePosition = bps.GetTileLocationInWorld();
             mousePosition.z = 10;
 
-            if (buildingPlacementSystem.currentMousePositionInWorld != mousePosition) {
+            if (bps.currentMousePositionInWorld != mousePosition) {
                 buildingVisualizer.DeactivateVisualizers();
 
-                buildingPlacementSystem.currentMousePositionInWorld = mousePosition;
+                bps.currentMousePositionInWorld = mousePosition;
                 buildingVisualizer.MoveVisualizers(ghostOccupiedTiles);
             }
 
@@ -115,10 +115,13 @@ public class BuildingGhost : MonoBehaviour
     }
 
     public void RotateGhost() {
-        buildingPlacementSystem.selectedBuildingScript = buildingPlacementSystem.SelectedBuilding.GetComponent<IBuildable>();
+        bps.selectedBuildingScript = bps.SelectedBuilding.GetComponent<IBuildable>();
 
-        GameObject nextRotation = buildingPlacementSystem.selectedBuildingScript.NextRotation;
+        GameObject nextRotation = bps.selectedBuildingScript.NextRotation;
         if (nextRotation != null) {
+            InstantiateGhost(bps.SelectedBuilding, ref Ghost, GhostOccupiedTiles);
+
+            /*
             // TODO: Same code as in instantiating ghost, except that we are instantiating nextRotation. Make it into a method.            
             Destroy(Ghost);
 
@@ -129,9 +132,10 @@ public class BuildingGhost : MonoBehaviour
             // Turn opacity down
             SpriteRenderer spriteComponent = Ghost.GetComponentInChildren<SpriteRenderer>();
             spriteComponent.color = new Color(spriteComponent.color.r, spriteComponent.color.g, spriteComponent.color.b, buildingGhostOpacity);
+            */
 
             // Not a part of the repeated code
-            buildingPlacementSystem.SelectedBuilding = nextRotation;
+            bps.SelectedBuilding = nextRotation;
         }
         else {
             Debug.Log("Next rotation was null (Next rotation has not been set on the prefab)");

@@ -48,14 +48,14 @@ public class BuildingPlacementSystem : MonoBehaviour
     void SelectBuilding (GameObject building) 
     {
         SelectedBuilding = building.gameObject;
-        buildingGhost.InstantiateGhost(SelectedBuilding, ref buildingGhost.Ghost, buildingGhost.ghostOccupiedTiles);
+        buildingGhost.InstantiateGhost(SelectedBuilding, ref buildingGhost.Ghost, buildingGhost.GhostOccupiedTiles);
         buildCost = SelectedBuilding.GetComponent<BuildCost>();
     }
 
 
     void Update()
     {
-        if (SelectBuildingHotkey()) buildingGhost.InstantiateGhost(SelectedBuilding, ref buildingGhost.Ghost, buildingGhost.ghostOccupiedTiles);
+        if (SelectBuildingHotkey()) buildingGhost.InstantiateGhost(SelectedBuilding, ref buildingGhost.Ghost, buildingGhost.GhostOccupiedTiles);
 
         if (SelectedBuilding != null) 
         {
@@ -212,6 +212,9 @@ public class BuildingPlacementSystem : MonoBehaviour
                 buildingPlacementAllowed = false;
             }
         }
+
+        //Update build cost
+        buildCost = SelectedBuilding.GetComponent<BuildCost>();
 
         if (buildingPlacementAllowed && playerStats.GetGold() >= buildCost.Cost)
         {
