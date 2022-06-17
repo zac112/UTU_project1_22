@@ -15,7 +15,7 @@ public class PlayerStats : MonoBehaviour
     List<Village> FriendlyVillages = new List<Village>();
     Village CurrentVillage;  // currently active village
     private PlayerSkills playerSkills;
-    private WASDMovement movement;
+    [SerializeField] WASDMovement movement;
        
            
     void Start(){
@@ -175,6 +175,9 @@ public class PlayerStats : MonoBehaviour
                 break;
             case PlayerSkills.SkillType.HealthMax_2:
                 AddMaxHealth(15);
+                break;
+            case PlayerSkills.SkillType.HealthMax_3:
+                AddMaxHealth(10);
                 break;
             case PlayerSkills.SkillType.MoveSpeed_1:
                 movement.setSpeed(3.5f);

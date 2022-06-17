@@ -31,6 +31,7 @@ public class UI_SkillTree : MonoBehaviour
         skillButtonList.Add(new SkillButton(transform.Find("moveSpeed2Btn"), playerSkills, PlayerSkills.SkillType.MoveSpeed_2, skillLockedMaterial, skillUnlockableMaterial));
         skillButtonList.Add(new SkillButton(transform.Find("healthMax1Btn"), playerSkills, PlayerSkills.SkillType.HealthMax_1, skillLockedMaterial, skillUnlockableMaterial));
         skillButtonList.Add(new SkillButton(transform.Find("healthMax2Btn"), playerSkills, PlayerSkills.SkillType.HealthMax_2, skillLockedMaterial, skillUnlockableMaterial));
+        skillButtonList.Add(new SkillButton(transform.Find("healthMax3Btn"), playerSkills, PlayerSkills.SkillType.HealthMax_3, skillLockedMaterial, skillUnlockableMaterial));
         GameEvents.current.OnSkillUnlockedEvent += PlayerSkills_OnSkillUnlocked;
         UpdateVisuals();
     }
@@ -69,6 +70,9 @@ public class UI_SkillTree : MonoBehaviour
 
     public void HealthMax2Click() {
         playerSkills.TryUnlockSkill(PlayerSkills.SkillType.HealthMax_2);
+    }
+    public void HealthMax3Click() {
+        playerSkills.TryUnlockSkill(PlayerSkills.SkillType.HealthMax_3);
     }
     public void MoveSpeed1Click() {
         playerSkills.TryUnlockSkill(PlayerSkills.SkillType.MoveSpeed_1);

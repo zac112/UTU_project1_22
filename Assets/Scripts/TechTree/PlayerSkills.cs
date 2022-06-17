@@ -15,7 +15,7 @@ public class PlayerSkills
     MoveSpeed_2,
     HealthMax_1,
     HealthMax_2,
-
+    HealthMax_3
    }
 
 
@@ -39,22 +39,27 @@ public class PlayerSkills
    }
    
    public bool CanUnlock(SkillType skillType) {
-   SkillType skillRequirement = GetSkillRequirement(skillType);
-    if (skillRequirement != SkillType.None) {
-        if (IsSkillUnlocked(skillRequirement)) {
-            return true;
+   SkillType[] skillRequirements = GetSkillRequirements(skillType);
+    if (skillRequirements[0] != SkillType.None) {
+        foreach(SkillType sr in skillRequirements) {
+            if (!IsSkillUnlocked(sr)) {
+                return false;
+            }
         }
-        return false;
     }
     return true;
    }
 
-   public SkillType GetSkillRequirement(SkillType skillType) {
+   public SkillType[] GetSkillRequirements(SkillType skillType) {
     switch (skillType) {
-        case SkillType.HealthMax_2: return SkillType.HealthMax_1;
-        case SkillType.MoveSpeed_2: return SkillType.MoveSpeed_1;
+        case SkillType.HealthMax_2: 
+            return new SkillType[] {SkillType.HealthMax_1};
+        case SkillType.HealthMax_3: 
+            return new SkillType[] {SkillType.HealthMax_1, SkillType.HealthMax_2};
+        case SkillType.MoveSpeed_2: 
+            return new SkillType[] {SkillType.MoveSpeed_1};
     }
-    return SkillType.None;
+    return new SkillType[] {SkillType.None};
    }
 
    public bool TryUnlockSkill(SkillType skillType) {
