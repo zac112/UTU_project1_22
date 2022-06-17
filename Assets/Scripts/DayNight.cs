@@ -37,4 +37,6 @@ public class DayNight : MonoBehaviour
     {
         DayValue.text = $"Day: {days}";
     }
+
+    public int getDayLength(){ return daylength; }
 }

@@ -8,7 +8,7 @@ namespace EventSystem
         // Tick values
         private float tickTimer;
         private float tickTimerMax;
-        private int currentTick = 0;
+        [SerializeField] private int currentTick = 0;
 
         public int GetCurrentTick() { return currentTick; }   // needed by GameStats for assessing game duration in the end
 
