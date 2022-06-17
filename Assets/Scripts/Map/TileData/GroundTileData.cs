@@ -6,4 +6,5 @@ public class GroundTileData : MonoBehaviour
 {
     public bool isOccupied;
     public bool isWalkable;
+    public bool isGoldNode; 
 }

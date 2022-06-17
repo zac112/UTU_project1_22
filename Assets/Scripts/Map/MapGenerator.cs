@@ -112,6 +112,11 @@ public class MapGenerator : MonoBehaviour
         GameObject go = Instantiate<GameObject>(goldNode);
         go.transform.position = worldPos;
         go.transform.parent = parentGOgold.transform;
+
+        // set isGoldNode for the appropriate tile in the tilemap, needed for defining gold mine building range etc
+        Vector3Int cellpos = tilemap.WorldToCell(worldPos);
+        GameObject tile = tilemap.GetInstantiatedObject(cellpos);
+        tile.GetComponent<GroundTileData>().isGoldNode = true;
     }
 
     private void GenerateCactusNode(Vector3 worldPos){
