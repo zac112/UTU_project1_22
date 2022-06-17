@@ -7,10 +7,12 @@ public class BuildingVisualizer : MonoBehaviour
 {
     public GameObject occupiedVisualizer;
     public GameObject availableVisualizer;
+    public GameObject goldMineRangeVisualizer;
     GameObject visualizersParent;
 
     public List<GameObject> occupiedVisualizers;
     public List<GameObject> availableVisualizers;
+    public List<GameObject> goldMineRangeVisualizers;
     
     Tilemap tilemap;
     Grid grid;
@@ -23,6 +25,7 @@ public class BuildingVisualizer : MonoBehaviour
         visualizersParent = new GameObject("Visualizers");
         occupiedVisualizers = InstantiateVisualizers(occupiedVisualizer, 20);
         availableVisualizers = InstantiateVisualizers(availableVisualizer, 20);
+        goldMineRangeVisualizers = InstantiateVisualizers(goldMineRangeVisualizer, 25);
     }
 
     private List<GameObject> InstantiateVisualizers(GameObject visualizer, int amount) {
@@ -74,9 +77,42 @@ public class BuildingVisualizer : MonoBehaviour
         }
     }
 
+    public void MoveGoldMineRangeVisualizers(List<Vector3> tilesList)
+    {
+        int goldMineRangeIndex = 0;
+
+        if (tilesList.Count > goldMineRangeVisualizers.Count)
+        {
+            int amount = tilesList.Count - goldMineRangeVisualizers.Count;
+            AddToVisualizers(goldMineRangeVisualizers, goldMineRangeVisualizer, amount);
+        }
+
+        foreach (Vector3 tilePosition in tilesList)
+        {
+            Vector3Int cellPosition = tilemap.WorldToCell(tilePosition);
+            cellPosition.x += 5;
+            cellPosition.y += 5;
+            cellPosition.z = 0;
+
+            GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
+
+            if (tile != null)
+            {
+                GroundTileData tileScript = tile.GetComponent<GroundTileData>();
+
+                if(tileScript.isWalkable)
+                {
+                    ActivateGoldMineRangeVisualizer(goldMineRangeIndex, tilePosition);
+                    goldMineRangeIndex++;
+                }
+            }
+        }
+    }
+
     public void DeactivateVisualizers() {
         foreach (GameObject visualizer in occupiedVisualizers) visualizer.SetActive(false);
-        foreach (GameObject visualizer in availableVisualizers) visualizer.SetActive(false); 
+        foreach (GameObject visualizer in availableVisualizers) visualizer.SetActive(false);
+        foreach (GameObject visualizer in goldMineRangeVisualizers) visualizer.SetActive(false);
     }
 
     private void AddVisualizer(List<GameObject> visualizersList, GameObject visualizer) {
@@ -99,4 +135,14 @@ public class BuildingVisualizer : MonoBehaviour
         visualizer.transform.position = new Vector3(position.x, position.y, 10);
         visualizer.SetActive(true);
     }
+
+    private void ActivateGoldMineRangeVisualizer(int index, Vector3 tilePosition)
+    {
+        GameObject visualizer = goldMineRangeVisualizers[index];
+        Vector3 position = visualizer.transform.position;
+        position = tilePosition;
+        visualizer.transform.position = new Vector3(position.x, position.y, 10);
+        visualizer.SetActive(true);
+    }
+
 }

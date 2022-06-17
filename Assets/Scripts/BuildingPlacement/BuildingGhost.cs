@@ -5,9 +5,12 @@ using UnityEngine;
 public class BuildingGhost : MonoBehaviour
 {
     [Range(0, 1)][SerializeField] float buildingGhostOpacity = 0.5f;
+    [SerializeField] int goldMineRange = 5;
 
     public List<Vector3> GhostOccupiedTiles;
     public GameObject Ghost;
+
+    public List<Vector3> goldMineRangeTiles;
 
     BuildingPlacementSystem bps;
     BuildingVisualizer buildingVisualizer;
@@ -18,6 +21,7 @@ public class BuildingGhost : MonoBehaviour
     void Start()
     {
         GhostOccupiedTiles = new List<Vector3>();
+        goldMineRangeTiles = new List<Vector3>();
         bps = GameObject.Find("BuildingPlacementSystem").GetComponent<BuildingPlacementSystem>();
         buildingVisualizer = GameObject.Find("BuildingVisualizerSystem").GetComponent<BuildingVisualizer>();
     }
@@ -92,6 +96,30 @@ public class BuildingGhost : MonoBehaviour
                 }
             }
 
+            if (selectedBuilding.CompareTag("GoldMine"))
+            {
+                Debug.Log("selectedBuilding.tag == GoldMine");
+
+                float goldMineRangeX;
+                float goldMineRangeY;
+
+                for (int width_range = 0; width_range < goldMineRange; width_range++)
+                {
+                    goldMineRangeX = selectedTileLocationInWorld.x - 0.50f * width_range;
+                    goldMineRangeY = selectedTileLocationInWorld.y + 0.25f * width_range;
+
+                    for (int length_range = 0; length_range < goldMineRange; length_range++)
+                    {
+                        goldMineRangeX += 0.50f;
+                        goldMineRangeY += 0.25f;
+
+                        goldMineRangeTiles.Add(new Vector3(goldMineRangeX -0.50f, goldMineRangeY -0.75f, bps.BuildingZ));  // offset two tiles SW, two tiles SE
+                    }
+                }
+
+
+            }
+
             // Move the ghost when mouse moves
             Vector3 position = bps.CalculateBuildingLocation(ghostOccupiedTiles);
             position.z = bps.BuildingZ;
@@ -107,9 +135,11 @@ public class BuildingGhost : MonoBehaviour
 
                 bps.currentMousePositionInWorld = mousePosition;
                 buildingVisualizer.MoveVisualizers(ghostOccupiedTiles);
+                if (selectedBuilding.CompareTag("GoldMine")) buildingVisualizer.MoveGoldMineRangeVisualizers(goldMineRangeTiles);
             }
 
             ghostOccupiedTiles.Clear();
+            if (selectedBuilding.CompareTag("GoldMine")) goldMineRangeTiles.Clear();
             yield return null;
         }
     }
