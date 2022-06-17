@@ -45,6 +45,7 @@ public class StartMenu : MonoBehaviour
     public void NewGame()
     {
         SceneManager.LoadScene(newGame);
+        DataManager.instance.NewGame();
     }
 
     public void LoadGame()
@@ -53,6 +54,7 @@ public class StartMenu : MonoBehaviour
         {
             loadGame = PlayerPrefs.GetString("SavedGame");
             SceneManager.LoadScene(loadGame);
+            DataManager.instance.LoadGame();
         }
         else
         {
@@ -65,6 +67,8 @@ public class StartMenu : MonoBehaviour
         Application.Quit();
     }
 
+
+    // Settings
     public void Quality(int qualityIndex)
     {
         quality = qualityIndex;

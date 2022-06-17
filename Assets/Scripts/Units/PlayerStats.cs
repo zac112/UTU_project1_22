@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerStats : MonoBehaviour
+public class PlayerStats : MonoBehaviour, IDataManager
 {
     [SerializeField] int startingHealth;
     [SerializeField] int startingGold;
@@ -34,6 +34,14 @@ public class PlayerStats : MonoBehaviour
         playerSkills = new PlayerSkills();
         GameEvents.current.OnSkillUnlockedEvent += OnSkillUnlocked;
         
+    }
+
+    public void LoadData(GameData data){
+        this.gold = data.gold;
+    }
+
+    public void SaveData(GameData data){
+        data.gold = this.gold;
     }
 
     private void OnEnable()
