@@ -22,6 +22,7 @@ TagManager:
   - FogOfWar
   - GoldNode
   - Tree
+  - GoldMine
   layers:
   - Default
   - TransparentFX

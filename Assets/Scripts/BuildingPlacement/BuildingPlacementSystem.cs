@@ -50,6 +50,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         SelectedBuilding = building.gameObject;
         buildingGhost.InstantiateGhost(SelectedBuilding, ref buildingGhost.Ghost, buildingGhost.GhostOccupiedTiles);
         buildCost = SelectedBuilding.GetComponent<BuildCost>();
+
     }
 
 

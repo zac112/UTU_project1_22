@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 709848789240910702}
   m_Layer: 11
   m_Name: GoldMine
-  m_TagString: Untagged
+  m_TagString: GoldMine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
