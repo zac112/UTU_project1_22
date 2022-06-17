@@ -16,7 +16,8 @@ public class PlayerStats : MonoBehaviour
     Village CurrentVillage;  // currently active village
     private PlayerSkills playerSkills;
     [SerializeField] WASDMovement movement;
-       
+    [SerializeField] FogRevealer fogRevealer;
+        
            
     void Start(){
         health = startingHealth;
@@ -184,6 +185,12 @@ public class PlayerStats : MonoBehaviour
                 break;
             case PlayerSkills.SkillType.MoveSpeed_2:
                 movement.setSpeed(4f);
+                break;
+            case PlayerSkills.SkillType.FogReveal_1:
+                fogRevealer.GetComponent<BoxCollider2D>().size = new Vector2(2f, 2f);
+                break;
+            case PlayerSkills.SkillType.FogReveal_2:
+                fogRevealer.GetComponent<BoxCollider2D>().size = new Vector2(3f, 3f);
                 break;
         }
     }

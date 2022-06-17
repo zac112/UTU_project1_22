@@ -15,7 +15,9 @@ public class PlayerSkills
     MoveSpeed_2,
     HealthMax_1,
     HealthMax_2,
-    HealthMax_3
+    HealthMax_3,
+    FogReveal_1,
+    FogReveal_2,
    }
 
 
@@ -58,6 +60,8 @@ public class PlayerSkills
             return new SkillType[] {SkillType.HealthMax_1, SkillType.HealthMax_2};
         case SkillType.MoveSpeed_2: 
             return new SkillType[] {SkillType.MoveSpeed_1};
+        case SkillType.FogReveal_2: 
+            return new SkillType[] {SkillType.FogReveal_1};
     }
     return new SkillType[] {SkillType.None};
    }

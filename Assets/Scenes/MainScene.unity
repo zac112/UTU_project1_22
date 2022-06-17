@@ -203,6 +203,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff2ecb43c7823f54dbbfb55b272f5630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1067832862 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2861506601046818404, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
+  m_PrefabInstance: {fileID: 6609971669738720497}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66fca17006e7a5d4baf18ec05a5b6a4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1164199616 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 902464871300106347, guid: d41b2b99c28386a43aa47a44a3b57a5f, type: 3}
@@ -1490,6 +1501,10 @@ PrefabInstance:
       propertyPath: movement
       value: 
       objectReference: {fileID: 1893350141}
+    - target: {fileID: 6609971668409792008, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
+      propertyPath: fogRevealer
+      value: 
+      objectReference: {fileID: 1067832862}
     - target: {fileID: 6609971668409792008, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
       propertyPath: startingGold
       value: 1000

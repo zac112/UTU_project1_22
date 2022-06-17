@@ -32,6 +32,8 @@ public class UI_SkillTree : MonoBehaviour
         skillButtonList.Add(new SkillButton(transform.Find("healthMax1Btn"), playerSkills, PlayerSkills.SkillType.HealthMax_1, skillLockedMaterial, skillUnlockableMaterial));
         skillButtonList.Add(new SkillButton(transform.Find("healthMax2Btn"), playerSkills, PlayerSkills.SkillType.HealthMax_2, skillLockedMaterial, skillUnlockableMaterial));
         skillButtonList.Add(new SkillButton(transform.Find("healthMax3Btn"), playerSkills, PlayerSkills.SkillType.HealthMax_3, skillLockedMaterial, skillUnlockableMaterial));
+        skillButtonList.Add(new SkillButton(transform.Find("fogReveal1Btn"), playerSkills, PlayerSkills.SkillType.FogReveal_1, skillLockedMaterial, skillUnlockableMaterial));
+        skillButtonList.Add(new SkillButton(transform.Find("fogReveal2Btn"), playerSkills, PlayerSkills.SkillType.FogReveal_2, skillLockedMaterial, skillUnlockableMaterial));
         GameEvents.current.OnSkillUnlockedEvent += PlayerSkills_OnSkillUnlocked;
         UpdateVisuals();
     }
@@ -79,6 +81,12 @@ public class UI_SkillTree : MonoBehaviour
     }
     public void MoveSpeed2Click() {
         playerSkills.TryUnlockSkill(PlayerSkills.SkillType.MoveSpeed_2);
+    }
+    public void FogReveal1Click() {
+        playerSkills.TryUnlockSkill(PlayerSkills.SkillType.FogReveal_1);
+    }
+    public void FogReveal2Click() {
+        playerSkills.TryUnlockSkill(PlayerSkills.SkillType.FogReveal_2);
     }
 
     private class SkillButton {
