@@ -53,4 +53,7 @@ public class GoldMineScript : MonoBehaviour
             playerStats.AddGold(goldToAdd); 
         }
     }
+    public void AddMiningSpeed(int speed) {
+        this.miningSpeed += speed;
+    }
 }

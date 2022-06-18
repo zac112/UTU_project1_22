@@ -25,6 +25,7 @@ TagManager:
   - GoldMine
   - Smithy
   - Library
+  - FogReveal
   layers:
   - Default
   - TransparentFX

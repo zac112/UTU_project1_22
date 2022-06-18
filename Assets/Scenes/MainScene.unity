@@ -1514,6 +1514,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2004467893124212582, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
+      propertyPath: m_TagString
+      value: FogReveal
+      objectReference: {fileID: 0}
+    - target: {fileID: 4292796600437722617, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6609971668409792002, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1562,6 +1570,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6609971668409792008, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
+      propertyPath: goldMine
+      value: 
+      objectReference: {fileID: 7953807960417106100, guid: 944dcfb610eb8274c898f34f5e5a7c98, type: 3}
     - target: {fileID: 6609971668409792008, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
       propertyPath: movement
       value: 

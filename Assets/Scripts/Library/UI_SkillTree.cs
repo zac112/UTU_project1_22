@@ -34,6 +34,8 @@ public class UI_SkillTree : MonoBehaviour
         skillButtonList.Add(new SkillButton(transform.Find("healthMax3Btn"), playerSkills, PlayerSkills.SkillType.HealthMax_3, skillLockedMaterial, skillUnlockableMaterial));
         skillButtonList.Add(new SkillButton(transform.Find("fogReveal1Btn"), playerSkills, PlayerSkills.SkillType.FogReveal_1, skillLockedMaterial, skillUnlockableMaterial));
         skillButtonList.Add(new SkillButton(transform.Find("fogReveal2Btn"), playerSkills, PlayerSkills.SkillType.FogReveal_2, skillLockedMaterial, skillUnlockableMaterial));
+        skillButtonList.Add(new SkillButton(transform.Find("goldMine1Btn"), playerSkills, PlayerSkills.SkillType.GoldMine_1, skillLockedMaterial, skillUnlockableMaterial));
+        skillButtonList.Add(new SkillButton(transform.Find("goldMine2Btn"), playerSkills, PlayerSkills.SkillType.GoldMine_2, skillLockedMaterial, skillUnlockableMaterial));
         GameEvents.current.OnSkillUnlockedEvent += PlayerSkills_OnSkillUnlocked;
         UpdateVisuals();
     }
@@ -88,6 +90,12 @@ public class UI_SkillTree : MonoBehaviour
     public void FogReveal2Click() {
         playerSkills.TryUnlockSkill(PlayerSkills.SkillType.FogReveal_2);
     }
+    public void GoldMine1Click() {
+        playerSkills.TryUnlockSkill(PlayerSkills.SkillType.GoldMine_1);
+    }
+    public void GoldMine2Click() {
+        playerSkills.TryUnlockSkill(PlayerSkills.SkillType.GoldMine_2);
+    }
 
     private class SkillButton {
 
@@ -112,7 +120,7 @@ public class UI_SkillTree : MonoBehaviour
 
         public void UpdateVisual() {
             if (playerSkills.IsSkillUnlocked(skillType)) {
-                //image.material = null;
+                image.material = null;
                 backgroundImage.material = null;
             } else {
                 if (playerSkills.CanUnlock(skillType)) {

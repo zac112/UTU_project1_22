@@ -18,6 +18,8 @@ public class PlayerSkills
     HealthMax_3,
     FogReveal_1,
     FogReveal_2,
+    GoldMine_1,
+    GoldMine_2,
    }
 
 
@@ -62,6 +64,8 @@ public class PlayerSkills
             return new SkillType[] {SkillType.MoveSpeed_1};
         case SkillType.FogReveal_2: 
             return new SkillType[] {SkillType.FogReveal_1};
+        case SkillType.GoldMine_2: 
+            return new SkillType[] {SkillType.GoldMine_1};
     }
     return new SkillType[] {SkillType.None};
    }

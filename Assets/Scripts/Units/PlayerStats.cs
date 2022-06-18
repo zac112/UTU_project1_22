@@ -17,6 +17,7 @@ public class PlayerStats : MonoBehaviour, IDataManager
     private PlayerSkills playerSkills;
     [SerializeField] WASDMovement movement;
     [SerializeField] FogRevealer fogRevealer;
+    [SerializeField] GameObject goldMine;
         
            
     void Start(){
@@ -32,6 +33,7 @@ public class PlayerStats : MonoBehaviour, IDataManager
         UIManager.current.UpdateHealthText(health);
 
         playerSkills = new PlayerSkills();
+
         GameEvents.current.OnSkillUnlockedEvent += OnSkillUnlocked;
         
     }
@@ -199,6 +201,12 @@ public class PlayerStats : MonoBehaviour, IDataManager
                 break;
             case PlayerSkills.SkillType.FogReveal_2:
                 fogRevealer.GetComponent<BoxCollider2D>().size = new Vector2(3f, 3f);
+                break;
+            case PlayerSkills.SkillType.GoldMine_1:
+                goldMine.GetComponent<GoldMineScript>().AddMiningSpeed(10);
+                break;
+            case PlayerSkills.SkillType.GoldMine_2:
+                goldMine.GetComponent<GoldMineScript>().AddMiningSpeed(10);
                 break;
         }
     }
