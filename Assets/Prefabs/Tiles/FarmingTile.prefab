@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOccupied: 1
   isWalkable: 1
+  isGoldNode: 0
 --- !u!114 &-5286048205782086599
 MonoBehaviour:
   m_ObjectHideFlags: 0

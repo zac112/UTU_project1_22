@@ -23,6 +23,8 @@ TagManager:
   - GoldNode
   - Tree
   - GoldMine
+  - Smithy
+  - Library
   layers:
   - Default
   - TransparentFX

@@ -99,3 +99,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOccupied: 0
   isWalkable: 1
+  isGoldNode: 0

@@ -680,6 +680,10 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2354877124693348495, guid: 2f55b9226f5629946be252e9a083539e, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a7bc867fb79a23e4984d758927f3f048, type: 3}
     - target: {fileID: 2399246337455405698, guid: 2f55b9226f5629946be252e9a083539e, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
