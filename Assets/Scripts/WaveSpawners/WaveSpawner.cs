@@ -31,8 +31,8 @@ public abstract class WaveSpawner : MonoBehaviour
 
     public float GetEnemyDifficulty(int day){
         //Can be obtained from game general difficulty
-        double maxStrength = 20;
-        double startingStrength = 10;
+        double maxStrength = GameSettings.Instance().enemyMaxStrength;
+        double startingStrength = GameSettings.Instance().enemyStartingStrength;
 
         //Compute difficulty using Richard's curve
         double A = startingStrength;

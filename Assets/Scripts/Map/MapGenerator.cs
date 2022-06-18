@@ -165,7 +165,7 @@ public class MapGenerator : MonoBehaviour
 
         tilemap = Instantiate(grid,Vector3.zero,Quaternion.identity).GetComponentInChildren<Tilemap>();
         voronoi = GetComponent<VoronoiDiagram>();
-        voronoi.CreateDiagram();
+        voronoi.CreateDiagram(GameSettings.Instance().gameSeed);
 
         tiles = new Dictionary<VoronoiDiagram.TileType, List<Tile>>();
         
