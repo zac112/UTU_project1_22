@@ -46,9 +46,15 @@ public class InteractiveUIManager : MonoBehaviour
             objectHealth.text = $"Health: {building.HealthPoints}";
         }
 
-            // If statemens for different interactable buldings
-        if(gameObject.name == "Smithy(Clone)" && Input.GetMouseButtonDown(0)){
+        
+        // If statemens for different interactable buldings
+        if(gameObject.tag == "Smithy" && Input.GetMouseButtonDown(0)){
                 smithyUI.SetActive(true);
+            }
+
+        // TODO: Open library UI
+        if(gameObject.tag == "Library" && Input.GetMouseButtonDown(0)){
+                return;
             }
     }
 
