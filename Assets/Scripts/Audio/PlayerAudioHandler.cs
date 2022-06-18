@@ -7,14 +7,13 @@ public class PlayerAudioHandler : MonoBehaviour
 {
     [SerializeField] AudioClip[] ambience;
     [SerializeField] AudioClip[] battle;
-    AudioSource source;
+    AudioSource[] source;
     DayNight daynight;
 
     // Start is called before the first frame update
     void Start(){
         daynight = GameObject.FindObjectOfType<DayNight>();
-        source = GetComponent<AudioSource>();
-        OnEnable();
+        source = GetComponents<AudioSource>();
     }
 
     void OnEnable(){
@@ -26,8 +25,12 @@ public class PlayerAudioHandler : MonoBehaviour
     }
 
     void Tick(int tick){
-        //float pitch = (0f+tick%daynight.getDayLength())/daynight.getDayLength();
-        float pitch = Mathf.Cos(tick*Mathf.PI/daynight.getDayLength())/4+0.5f;
-        source.pitch = pitch;
+        float d = daynight.getDayLength();
+
+        float daypitch = Mathf.Clamp01(Mathf.Cos(tick*2*Mathf.PI/d) + 0.1f);
+        float nightpitch = Mathf.Clamp01(Mathf.Cos(tick*2*Mathf.PI/d + Mathf.PI) + 0.1f);
+
+        source[0].volume = daypitch;
+        source[1].volume = nightpitch;
     }
 }

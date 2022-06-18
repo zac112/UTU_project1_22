@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[DefaultExecutionOrder(-1)]
 public class GameEvents : MonoBehaviour
 {
     // Current event manager used by the game
