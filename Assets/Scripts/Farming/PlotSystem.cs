@@ -23,6 +23,7 @@ public class PlotSystem : MonoBehaviour
 
     BuildingPlacementSystem bps;
     InventoryManager im;
+    [SerializeField] AudioSource source;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,7 @@ public class PlotSystem : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<PlayerStats>();
         bps = GameObject.Find("BuildingPlacementSystem").GetComponent<BuildingPlacementSystem>();
         im = GameObject.Find("InventorySystem").GetComponent<InventoryManager>();
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -60,6 +62,7 @@ public class PlotSystem : MonoBehaviour
             {
                 Collect();
                 im.AddItem(selectedCrop.cropName, 1);
+                GetComponent<AudioPlayer>().Play(AudioType.Build, 0);
             }
         }
         else if(UiManager.isPlanting &&UiManager.selectCrop.crop.price <= player.GetGold())

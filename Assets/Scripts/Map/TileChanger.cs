@@ -31,9 +31,12 @@ public class TileChanger : MonoBehaviour
 
     List<GameObject> occupiedVisualizerList;
 
+    //[SerializeField] AudioSource source;
+
     void Start()
     {
         updateReferences();
+      //  source = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -58,6 +61,7 @@ public class TileChanger : MonoBehaviour
                 tilemap.SetTile(location, selectedTile);
                 player.RemoveGold(hoeToolPrice);
                 tileScript.isOccupied = true;
+                GetComponent<AudioPlayer>().Play(AudioType.Build, 0);
             }
             
             // If player is building road --> can also build on water to make bridges but not on placed FarmTiles
