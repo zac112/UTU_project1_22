@@ -14,9 +14,13 @@ public class VoronoiDiagram : MonoBehaviour
     private int numSeeds = 100;
     private int minDistance = 10;
     private int maxDistance = 100;
+    RandomNoise noise;
+    System.Random random;
 
-    public void CreateDiagram()
+    public void CreateDiagram(int seed)
     {
+        noise = new RandomNoise(seed);
+        random = new System.Random(seed);
         InitGroundSeeds();
         InitGoldMineSeeds();
         InitForestSeeds();  
@@ -26,7 +30,7 @@ public class VoronoiDiagram : MonoBehaviour
 
     private void InitGoldMineSeeds(){
         for (int i = 0; i < numSeeds; i++) {
-            float r = UnityEngine.Random.Range(minDistance, maxDistance);
+            float r = (float)(random.NextDouble()*(maxDistance - minDistance) + minDistance);
             float[] pos = GetRandomPosOnMap(r);
             Vector3 vector = new Vector3(pos[0], pos[1], 0);
             goldNodeSeeds.Add(vector);  
@@ -35,7 +39,7 @@ public class VoronoiDiagram : MonoBehaviour
 
     private void InitCactusSeeds(){
         for (int i = 0; i < numSeeds; i++) {
-            float r = UnityEngine.Random.Range(minDistance, maxDistance);
+            float r = (float)(random.NextDouble() * (maxDistance - minDistance) + minDistance);
             float[] pos = GetRandomPosOnMap(r);
             Vector3 vector = new Vector3(pos[0], pos[1], 0);
             cactusSeeds.Add(vector);  
@@ -44,7 +48,7 @@ public class VoronoiDiagram : MonoBehaviour
 
     private void InitRainSeeds(){
         for (int i = 0; i < numSeeds; i++) {
-            float r = UnityEngine.Random.Range(minDistance, maxDistance);
+            float r = (float)(random.NextDouble() * (maxDistance - minDistance) + minDistance);
             float[] pos = GetRandomPosOnMap(r);
             Vector3 vector = new Vector3(pos[0], pos[1], 0);
             rainSeeds.Add(vector);  
@@ -54,13 +58,13 @@ public class VoronoiDiagram : MonoBehaviour
         seeds.Add(new Vector3(0, 0, 0), TileType.Grass);        
 
         for (int i = 0; i < numSeeds; i++) {
-            
-            float r = UnityEngine.Random.Range(minDistance, maxDistance);
+
+            float r = (float)(random.NextDouble() * (maxDistance - minDistance) + minDistance);
             float[] pos = GetRandomPosOnMap(r);
             Vector3 vector = new Vector3(pos[0], pos[1], 0);
 
             Array values = Enum.GetValues(typeof(TileType));
-            seeds.Add(vector, (TileType)values.GetValue(UnityEngine.Random.Range(0, values.Length)));
+            seeds.Add(vector, (TileType)values.GetValue(random.Next(0, values.Length)));
         }
     }
 
@@ -70,14 +74,14 @@ public class VoronoiDiagram : MonoBehaviour
         int minDistance = 2;
         int maxDistance = 200;
         for (int i=0; i <numSeeds; i++){
-            float r = UnityEngine.Random.Range(minDistance, maxDistance);
+            float r = (float)(random.NextDouble() * (maxDistance - minDistance) + minDistance);
             float[] pos = GetRandomPosOnMap(r);
-            forestSeeds.Add(new Vector3(pos[0],pos[1],0), UnityEngine.Random.Range(minForestSize,maxForestSize));            
+            forestSeeds.Add(new Vector3(pos[0],pos[1],0), random.Next(minForestSize,maxForestSize));            
         }
     }
 
     private float[] GetRandomPosOnMap(float distanceFromOrigin){
-        float angle = UnityEngine.Random.Range(0,2*Mathf.PI);        
+        float angle = (float)(random.NextDouble() * 2*Mathf.PI);
         float x = distanceFromOrigin*Mathf.Cos(angle);
         float y = distanceFromOrigin*Mathf.Sin(angle);
         return new float[]{x,y};
@@ -112,7 +116,7 @@ public class VoronoiDiagram : MonoBehaviour
     public float HasForest(Vector3 worldPos){
 
         foreach (var (pos, dist) in forestSeeds){
-            if (Vector3.Distance(worldPos,pos)<=dist) return UnityEngine.Mathf.PerlinNoise(worldPos.x,worldPos.y);
+            if (Vector3.Distance(worldPos,pos)<=dist) return noise.Noise2D(worldPos.x,worldPos.y);
         }        
         return -1;
     }
