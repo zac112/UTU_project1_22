@@ -57,5 +57,6 @@ public class GameEvents : MonoBehaviour
     public event Action<int> DayChange;
     public void OnDayChange (int currentDay){ DayChange?.Invoke(currentDay); }
 
-
+    public event Action<GameObject> PlayerSpawned;
+    public void OnPlayerSpawned(GameObject go) { PlayerSpawned?.Invoke(go); }
 }

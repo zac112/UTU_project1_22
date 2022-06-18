@@ -37,7 +37,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         grid = GameObject.FindGameObjectWithTag("Tilemap").GetComponent<Grid>();
         tilemap = grid.GetComponentInChildren<Tilemap>();
         selectedBuildingOccupiedTiles = new List<Vector3>();        
-        playerStats = GameObject.Find("Player").GetComponent<PlayerStats>();
+        //playerStats = GameObject.Find("Player").GetComponent<PlayerStats>();
         buildings = new List<GameObject>();
         buildingVisualizer = GameObject.Find("BuildingVisualizerSystem").GetComponent<BuildingVisualizer>();
         buildingGhost = GameObject.Find("BuildingGhostSystem").GetComponent<BuildingGhost>();
