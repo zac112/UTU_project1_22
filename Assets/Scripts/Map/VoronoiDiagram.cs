@@ -15,10 +15,6 @@ public class VoronoiDiagram : MonoBehaviour
     private int minDistance = 10;
     private int maxDistance = 100;
 
-    private void Awake() {
-        CreateDiagram();
-    }
-
     public void CreateDiagram()
     {
         InitGroundSeeds();

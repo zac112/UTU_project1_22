@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3730005422164669881}
-  - component: {fileID: 3730005422164669894}
   - component: {fileID: 4985507211948419731}
+  - component: {fileID: 3730005422164669894}
   m_Layer: 0
   m_Name: MapGenerator
   m_TagString: Untagged
@@ -33,6 +33,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4985507211948419731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3730005422164669892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 234aba20cb840484d9fd78d1e465d1a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3730005422164669894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51,17 +63,7 @@ MonoBehaviour:
   Offset: {x: -25, y: -25, z: 0}
   fog: {fileID: 5696099164015990282, guid: b081c5d93c3297640934e14a723d5195, type: 3}
   goldNode: {fileID: 0}
+  rain: {fileID: 0}
+  cactus: {fileID: 0}
   grassTrees: []
   desertTrees: []
---- !u!114 &4985507211948419731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3730005422164669892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 234aba20cb840484d9fd78d1e465d1a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

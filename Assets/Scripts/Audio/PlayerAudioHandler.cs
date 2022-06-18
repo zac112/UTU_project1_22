@@ -25,6 +25,11 @@ public class PlayerAudioHandler : MonoBehaviour
     }
 
     void Tick(int tick){
+        if (!daynight) {
+            daynight = GameObject.FindObjectOfType<DayNight>();
+            return; 
+        }
+
         float d = daynight.getDayLength();
 
         float daypitch = Mathf.Clamp01(Mathf.Cos(tick*2*Mathf.PI/d) + 0.1f);

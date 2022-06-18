@@ -15,10 +15,6 @@ public abstract class WaveSpawner : MonoBehaviour
         PopulateSpawns(spawns);
 
         StartCoroutine("Spawn");
-
-        for (int i=0;i<20;i++){
-            print(GetEnemyDifficulty(i));
-        }
     }
 
     void OnEnable(){ GameEvents.current.DayChange += DayChange;}

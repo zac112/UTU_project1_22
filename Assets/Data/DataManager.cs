@@ -18,9 +18,13 @@ public class DataManager : MonoBehaviour
     {
         // Checking that there are not multiple datamanager instances
         if (instance != null) 
-        {}
+        { 
+            Destroy(gameObject);
+            return;        
+        }
 
         instance = this;
+        DontDestroyOnLoad(this.gameObject);
     }
 
     private void Start() 
