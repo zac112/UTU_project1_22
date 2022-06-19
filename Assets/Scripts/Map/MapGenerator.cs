@@ -131,9 +131,9 @@ public class MapGenerator : MonoBehaviour
         float forest = voronoi.HasForest(worldPos);
         if (forest < 0) return;
         int index = (int)(forest*trees.Count);
-        int r = UnityEngine.Random.Range(0, 5);
-        int c = UnityEngine.Random.Range(0, 5);
-        Vector3 newPos = worldPos + new Vector3(r, c, 0);
+        int x = UnityEngine.Random.Range(-3, 3);
+        int y = UnityEngine.Random.Range(-3, 3);
+        Vector3 newPos = worldPos + new Vector3(x, y, 0);
         if (!ConfirmPos(newPos)) return;
         GameObject go = Instantiate<GameObject>(trees[index]);
         
@@ -145,6 +145,7 @@ public class MapGenerator : MonoBehaviour
         VoronoiDiagram.TileType type = voronoi.GetClosestSeed(pos);
         
         if (type == VoronoiDiagram.TileType.Water) return false;
+        if (tilemap.GetTile(tilemap.WorldToCell(pos)) != null) return false;
         return true;
     }
 

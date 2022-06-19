@@ -23,8 +23,8 @@ public class MainCameraController : MonoBehaviour
     private Vector3 cameraMoveDirection = Vector3.zero;
 
     // Zoom variables
-    float minz;
-    float maxz;
+    float minz = 1;
+    float maxz = 10;
 
     void Start()
     {
@@ -73,9 +73,9 @@ public class MainCameraController : MonoBehaviour
     {
         if (!IsMouseOverUI())
         {
-            //Listens to change of Scroll wheel change
-            GetComponent<Camera>().orthographicSize += 0.5f * (-Input.mouseScrollDelta.y);
-            GetComponent<Camera>().orthographicSize = Mathf.Clamp(GetComponent<Camera>().orthographicSize, minz, maxz);
+            //Listens to change of Scroll wheel change            
+            float size = GetComponent<Camera>().orthographicSize;
+            GetComponent<Camera>().orthographicSize = Mathf.Clamp(size + 0.5f*(-Input.mouseScrollDelta.y), minz, maxz);
         }
     }
 
