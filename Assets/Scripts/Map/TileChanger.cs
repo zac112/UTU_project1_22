@@ -31,12 +31,9 @@ public class TileChanger : MonoBehaviour
 
     List<GameObject> occupiedVisualizerList;
 
-    //[SerializeField] AudioSource source;
-
     void Start()
     {
         updateReferences();
-      //  source = GetComponent<AudioSource>();
     }
 
     void Update()
