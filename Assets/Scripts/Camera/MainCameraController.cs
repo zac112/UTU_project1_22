@@ -29,7 +29,12 @@ public class MainCameraController : MonoBehaviour
     void Start()
     {
         bps = FindObjectOfType<BuildingPlacementSystem>();
-        wasd = GameObject.Find("Player").GetComponent<WASDMovement>();       
+        StartCoroutine("FindPlayer");
+    }
+
+    IEnumerator FindPlayer() {
+        yield return new WaitWhile(() => GameObject.FindGameObjectWithTag("Player") == null);
+        wasd = GameObject.FindGameObjectWithTag("Player").GetComponent<WASDMovement>();
     }
     
     // Start is called before the first frame update
@@ -50,6 +55,8 @@ public class MainCameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!wasd) return;
+
         if (FreeCamera)
         {
             FreeCameraMode();
@@ -142,11 +149,13 @@ public class MainCameraController : MonoBehaviour
 
     void OnGUI()
     {
+        /*
         if (!IsMouseOverUI())
         {
         //Listens to change of Scroll wheel change
         GetComponent<Camera>().orthographicSize+=0.5f*(-Input.mouseScrollDelta.y);
         GetComponent<Camera>().orthographicSize=Mathf.Clamp(GetComponent<Camera>().orthographicSize,minz,maxz);
         }
+        */
     }
 }

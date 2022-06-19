@@ -118,4 +118,16 @@ public class StartMenu : MonoBehaviour
             ApplyGraphics();
         }
     }
+
+    public void SetPlayModeHost() {
+        GameSettings.Instance().networkMode = NetworkMode.Host;
+    }
+    public void SetPlayModeClient()
+    {
+        GameSettings.Instance().networkMode = NetworkMode.Client;
+    }
+    public void SetPlayModeOffline()
+    {
+        GameSettings.Instance().networkMode = NetworkMode.Offline;
+    }
 }

@@ -25,37 +25,41 @@ public class BuildingPlacementSystem : MonoBehaviour
     [SerializeField] KeyCode building2Hotkey;
     [SerializeField] KeyCode rotationHotkey = KeyCode.R;
 
-    Grid grid;
+    [SerializeField] BuildingGhost buildingGhost;    
+    [SerializeField] BuildingVisualizer buildingVisualizer;
     Tilemap tilemap;
     PlayerStats playerStats;
-    BuildCost buildCost;
-    BuildingVisualizer buildingVisualizer;
-    BuildingGhost buildingGhost;
 
-    void Start()
+    BuildCost buildCost;
+
+    public void Start()
     {        
-        grid = GameObject.FindGameObjectWithTag("Tilemap").GetComponent<Grid>();
-        tilemap = grid.GetComponentInChildren<Tilemap>();
         selectedBuildingOccupiedTiles = new List<Vector3>();        
-        playerStats = GameObject.Find("Player").GetComponent<PlayerStats>();
         buildings = new List<GameObject>();
-        buildingVisualizer = GameObject.Find("BuildingVisualizerSystem").GetComponent<BuildingVisualizer>();
-        buildingGhost = GameObject.Find("BuildingGhostSystem").GetComponent<BuildingGhost>();
+
+        tilemap = GameObject.FindObjectOfType<Tilemap>();
 
         GameEvents.current.BuildingSelectedForBuilding += SelectBuilding;
     }
-
+    
     void SelectBuilding (GameObject building) 
     {
         SelectedBuilding = building.gameObject;
         buildingGhost.InstantiateGhost(SelectedBuilding, ref buildingGhost.Ghost, buildingGhost.GhostOccupiedTiles);
         buildCost = SelectedBuilding.GetComponent<BuildCost>();
-
     }
-
 
     void Update()
     {
+        if (playerStats == null)
+        {
+            GameObject go = GameObject.FindGameObjectWithTag("Player");
+            if (go  != null){
+                playerStats = go.GetComponent<PlayerStats>();
+                return; 
+            }
+        }
+
         if (SelectBuildingHotkey()) buildingGhost.InstantiateGhost(SelectedBuilding, ref buildingGhost.Ghost, buildingGhost.GhostOccupiedTiles);
 
         if (SelectedBuilding != null) 
@@ -116,7 +120,7 @@ public class BuildingPlacementSystem : MonoBehaviour
     public Vector3Int GetTileCellLocation() 
     {
         // Get the location of the tile under the mouse
-        return grid.WorldToCell(GetMousePosition());
+        return tilemap.WorldToCell(GetMousePosition());
     }
 
     public Vector3 GetMousePosition() 
