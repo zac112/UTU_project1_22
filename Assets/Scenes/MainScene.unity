@@ -634,6 +634,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1715807836641296312, guid: 2f55b9226f5629946be252e9a083539e, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1745422037741828832, guid: 2f55b9226f5629946be252e9a083539e, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -1295,6 +1299,10 @@ PrefabInstance:
     - target: {fileID: 2845505524657465811, guid: ff0e7d46bdeebb04287f62a5c680dafe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463106572985264738, guid: ff0e7d46bdeebb04287f62a5c680dafe, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff0e7d46bdeebb04287f62a5c680dafe, type: 3}
