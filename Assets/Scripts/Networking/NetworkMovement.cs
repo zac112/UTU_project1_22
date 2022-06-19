@@ -4,44 +4,48 @@ using UnityEngine;
 using Unity.Netcode;
 using Unity.Netcode.Components;
 
-public class NetworkMovement : WASDMovement
+public class NetworkMovement : NetworkBehaviour
 {
     public NetworkVariable<Vector3> Position = new NetworkVariable<Vector3>();
+    private delegate void UpdateAction();
+    UpdateAction OnUpdate;
 
-    void Start()
+    public override void OnNetworkSpawn() 
     {
-        rigidbody2d = GetComponent<Rigidbody2D>();
-        Camera.main.GetComponent<MainCameraController>().target = gameObject.transform;
-    }
-
-    void FixedUpdate()
-    {
-        if (!canMove) return;
-        if (gameObject == NetworkManager.LocalClient.PlayerObject.gameObject)
+        if (IsOwner)
         {
-
-            float horizontal = Input.GetAxis("Horizontal");
-            float vertical = Input.GetAxis("Vertical");
-            Vector2 position = transform.position;
-            position.x = position.x + speed * horizontal * Time.deltaTime;
-            position.y = position.y + speed * vertical * Time.deltaTime;
-
-            SubmitPositionRequestServerRpc(position);
-            rigidbody2d.MovePosition(position);
+            OnUpdate += OwnerUpdate;
         }
-        else
+        else 
         {
-            transform.position = Position.Value;
+            OnUpdate += NotOwnerUpdate;
         }
     }
 
-    [ServerRpc(RequireOwnership = false)]
+    private void Start()
+    {
+        OnUpdate += () => { };
+    }
+
+    void Update()
+    {
+        OnUpdate();
+    }
+
+    void OwnerUpdate() 
+    {
+        SubmitPositionRequestServerRpc(transform.position);
+    }
+
+    void NotOwnerUpdate()
+    {
+        transform.position = Position.Value;
+    }
+
+    [ServerRpc]
     void SubmitPositionRequestServerRpc(Vector3 position, ServerRpcParams rpcParams = default)
     {
         Position.Value = position;
     }
 
-    void Update()
-    {
-    }
 }

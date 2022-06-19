@@ -24,7 +24,7 @@ public class WASDMovement : PlayerMovement
         }
     }
 
-    public virtual void Move() {
+    private void Move() {
         
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
