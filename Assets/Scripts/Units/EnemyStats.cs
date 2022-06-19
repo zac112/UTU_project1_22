@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class EnemyStats : MonoBehaviour
+public class EnemyStats : NetworkBehaviour
 {
 
     [SerializeField] int maxHealth = 100;
@@ -24,7 +25,7 @@ public class EnemyStats : MonoBehaviour
         //what happens when enemy dies
         //maybe enemy dying should give xp/score or resources
         if(currentHealth<=0){
-            Destroy(gameObject);
+            if (IsServer || NetworkManager.Singleton.IsHost) GetComponent<NetworkObject>().Despawn();
             GameStats.EnemiesKilled++;
         }
     }
