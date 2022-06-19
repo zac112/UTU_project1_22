@@ -1,26 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class InputListener : MonoBehaviour
+public class InputListener : NetworkBehaviour
 {
-    //add gameobjects that require inputs here
-    GameObject player;
-
     //set keybinds here
     string ToggleSwordMode = "1";
     string RangedAttackButton = "2";
     public string PickaxeButton = "3";
     public string AxeButton = "4";
 
-    void Start(){
-        player = GameObject.FindGameObjectWithTag("Player");
+    NetworkVariable<int> weapon = new NetworkVariable<int>();
+
+    void Start()
+    {
+        weapon.Value = -1;
+        weapon.OnValueChanged += ToggleWeapon;
     }
-
-
     //call gameobject methods here
     void Update()
-    {
+    {           
         if (Input.GetKeyDown(ToggleSwordMode)) ToggleSword();
         if (Input.GetKeyDown(RangedAttackButton)) ToggleBow();
         if (Input.GetKeyDown(PickaxeButton)) TogglePick();
@@ -28,33 +28,44 @@ public class InputListener : MonoBehaviour
     }
 
     public void ToggleSword() {
-        Toggle(0);        
+        Toggle(1);
     }
 
-    public void ToggleBow() {
-        player.GetComponent<PlayerCombat>().RangedAttack();
+    public void ToggleBow() {        
+        GetComponent<PlayerCombat>().RangedAttack();
     }
     public void TogglePick()
     {
-        Toggle(1);
+        Toggle(2);
     }
     public void ToggleAxe()
     {
-        Toggle(2);
+        Toggle(3);
     }
 
     private void Toggle(int child) {
-        List<GameObject> children = Children();
-        foreach (GameObject go in children) go.SetActive(false);
-        children[child].SetActive(!children[child].activeSelf);
+        if (!NetworkObject.IsLocalPlayer) return;
+        //if (!NetworkManager.IsHost) ToggleWeapon(child);
 
+        ToggleWeaponServerRpc(child==weapon.Value ? 0 : child);
     }
 
-    private List<GameObject> Children() {
+    private List<GameObject> Weapons() {
         List<GameObject> res = new List<GameObject>();
-        for (int i = 0; i < transform.childCount; i++) {
-            res.Add(transform.GetChild(i).gameObject);
+        Transform t = transform.Find("Weapons");
+        for (int i = 0; i < t.childCount; i++) {
+            res.Add(t.GetChild(i).gameObject);
         }
         return res;
+    }
+
+    void ToggleWeapon(int oldweapon, int newweapon) {
+        List<GameObject> children = Weapons();
+        foreach (GameObject go in children) go.SetActive(false);
+        children[newweapon].SetActive(true);
+    }
+    [ServerRpc]
+    public void ToggleWeaponServerRpc(int child) {
+        weapon.Value = child;
     }
 }

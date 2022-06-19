@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class PlayerSwordController : MonoBehaviour
+public class PlayerSwordController : NetworkBehaviour
 {
 
 
@@ -15,17 +16,23 @@ public class PlayerSwordController : MonoBehaviour
 
     public SpriteRenderer sr;
 
+    NetworkVariable<Quaternion> netRotation = new NetworkVariable<Quaternion>();
 
     void Start() {
         rotationLast = transform.rotation.eulerAngles;
     }
 
     void Update () {
+        if (!NetworkObject.IsLocalPlayer) {
+            transform.rotation = netRotation.Value;
+            return;
+        }
         //rotate sword toward mouse
         Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
         Vector3 dir = Input.mousePosition - pos;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        MoveSwordServerRpc(transform.rotation);
 
         //calculate rotation speed
         rotationDelta = transform.rotation.eulerAngles - rotationLast;
@@ -48,5 +55,9 @@ public class PlayerSwordController : MonoBehaviour
         sr.color=new Color(1f, 1f, 1f, 1f);
     }
 
+    [ServerRpc]
+    void MoveSwordServerRpc(Quaternion rot) {
+        netRotation.Value = rot;
+    }
 
 }

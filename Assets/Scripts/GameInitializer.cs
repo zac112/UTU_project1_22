@@ -2,32 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using Unity.Networking;
+using Unity.Netcode.Transports.UNET;
 
 public class GameInitializer : MonoBehaviour
 {
     [SerializeField] GameObject playerPrefab;
     [SerializeField] GameObject spawnpointInitializer;
-    [SerializeField] GameObject inputListener;
 
 
     void Start()
     {
         switch (GameSettings.Instance().networkMode) {
-            case NetworkMode.Offline: {
-                    Instantiate<GameObject>(playerPrefab);
-                    Instantiate(spawnpointInitializer);
-                    Instantiate(inputListener);
-                    break; }
+            
             case NetworkMode.Client: {
                     NetworkManager.Singleton.StartClient();
-                    break; }
+                    return; 
+            }
+            case NetworkMode.Offline:{
+                    NetworkManager.Singleton.GetComponent<UNetTransport>().ConnectAddress = "127.0.0.1";
+                    break;
+            }
             case NetworkMode.Host: {                    
-                    NetworkManager.Singleton.StartHost();
-                    Instantiate(spawnpointInitializer);
-                    Instantiate(inputListener);
-                    break; }
+                    break; 
+            }
             default: break;
         }
+
+        NetworkManager.Singleton.StartHost();
+        Instantiate(spawnpointInitializer);
     }
 
 }
