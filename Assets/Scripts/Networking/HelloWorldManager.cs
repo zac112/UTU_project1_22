@@ -5,6 +5,8 @@ namespace HelloWorld
 {
     public class HelloWorldManager : MonoBehaviour
     {
+        public GameObject g;
+
         void OnGUI()
         {
             GUILayout.BeginArea(new Rect(10, 10, 300, 300));
@@ -21,7 +23,7 @@ namespace HelloWorld
             GUILayout.EndArea();
         }
 
-        static void StartButtons()
+        void StartButtons()
         {
             if (GUILayout.Button("Host")) { 
                 NetworkManager.Singleton.StartHost();                 
@@ -33,7 +35,7 @@ namespace HelloWorld
                 NetworkManager.Singleton.StartServer(); }
         }
 
-        static void StatusLabels()
+        void StatusLabels()
         {
             var mode = NetworkManager.Singleton.IsHost ?
                 "Host" : NetworkManager.Singleton.IsServer ? "Server" : "Client";
@@ -41,6 +43,10 @@ namespace HelloWorld
             GUILayout.Label("Transport: " +
                 NetworkManager.Singleton.NetworkConfig.NetworkTransport.GetType().Name);
             GUILayout.Label("Mode: " + mode);
+            if (GUILayout.Button("Spawn"))
+            {
+                g.GetComponent<NetworkObject>().Spawn();
+            }
         }
 
     }
