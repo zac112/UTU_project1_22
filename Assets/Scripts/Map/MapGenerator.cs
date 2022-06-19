@@ -154,7 +154,7 @@ public class MapGenerator : MonoBehaviour
 
         GameObject go = Instantiate<GameObject>(rain);
         go.transform.position = worldPos;
-        go.transform.parent = parentGOgold.transform;
+        go.transform.parent = parentGOrain.transform;
         
     }
     public void Awake()
