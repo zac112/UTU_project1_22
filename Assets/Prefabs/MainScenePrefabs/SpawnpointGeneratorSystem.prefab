@@ -47,3 +47,4 @@ MonoBehaviour:
   amount: 1
   minDistance: 1
   maxDistance: 20
+  spawnpointPrefab: {fileID: 4767324223134682789, guid: c60c86ad3f6fa7040a8643a265f0a8ee, type: 3}

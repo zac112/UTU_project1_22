@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8436185835826409927}
   - component: {fileID: 1925708233068667896}
   - component: {fileID: -8340527853423368203}
+  - component: {fileID: 1892602609218287762}
   m_Layer: 11
   m_Name: StoneWallFL
   m_TagString: Untagged
@@ -217,6 +218,22 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 0c7d7356ebd70a04288777161215120a, type: 3}
   - category: 1
     clip: {fileID: 8300000, guid: 6233be5818eff164992ed3a42a7c5fda, type: 3}
+--- !u!114 &1892602609218287762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2300419187923452777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &9057870360101941518
 GameObject:
   m_ObjectHideFlags: 0

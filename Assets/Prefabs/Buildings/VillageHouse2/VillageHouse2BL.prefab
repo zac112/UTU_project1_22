@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -9200272741242864482}
   - component: {fileID: 46851476060577745}
   - component: {fileID: -2865838076236672916}
+  - component: {fileID: 1126537561810864492}
   m_Layer: 11
   m_Name: VillageHouse2BL
   m_TagString: Untagged
@@ -235,6 +236,22 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 0c7d7356ebd70a04288777161215120a, type: 3}
   - category: 1
     clip: {fileID: 8300000, guid: 6233be5818eff164992ed3a42a7c5fda, type: 3}
+--- !u!114 &1126537561810864492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2300419187923452777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &9057870360101941518
 GameObject:
   m_ObjectHideFlags: 0
