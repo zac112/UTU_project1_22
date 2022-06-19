@@ -66,6 +66,17 @@ public class MainCameraController : MonoBehaviour
         {
             TargetCameraMode();
         }
+
+    }
+
+    private void LateUpdate()
+    {
+        if (!IsMouseOverUI())
+        {
+            //Listens to change of Scroll wheel change
+            GetComponent<Camera>().orthographicSize += 0.5f * (-Input.mouseScrollDelta.y);
+            GetComponent<Camera>().orthographicSize = Mathf.Clamp(GetComponent<Camera>().orthographicSize, minz, maxz);
+        }
     }
 
     private bool IsMouseOverUI()
@@ -145,17 +156,5 @@ public class MainCameraController : MonoBehaviour
         offset.z = -10;
         Vector3 smoothPosition = Vector3.SmoothDamp(transform.position, goPosition, ref cameraMoveDirection, smoothTime);
         transform.position = smoothPosition;
-    }
-
-    void OnGUI()
-    {
-        /*
-        if (!IsMouseOverUI())
-        {
-        //Listens to change of Scroll wheel change
-        GetComponent<Camera>().orthographicSize+=0.5f*(-Input.mouseScrollDelta.y);
-        GetComponent<Camera>().orthographicSize=Mathf.Clamp(GetComponent<Camera>().orthographicSize,minz,maxz);
-        }
-        */
     }
 }

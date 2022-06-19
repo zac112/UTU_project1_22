@@ -30,7 +30,7 @@ public class FileData
                 loadData = JsonUtility.FromJson<GameData>(dataLoad);
             }
             catch (Exception e){
-                Debug.Log("Couldn't load");
+                Debug.Log("Couldn't load:"+e);
             }
         }
         return loadData;
@@ -50,7 +50,7 @@ public class FileData
             }
         }
         catch (Exception e){
-            Debug.Log("Couldn't save");
+            Debug.Log("Couldn't save:"+e);
         }
     }
 }
