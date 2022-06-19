@@ -44,4 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d14f0af8a4241f45ab7a88d46a98d39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 6609971668409792002, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
+  PickaxeButton: 3
+  AxeButton: 4

@@ -13,6 +13,10 @@ public class InputListener : MonoBehaviour
     public string PickaxeButton = "3";
     public string AxeButton = "4";
 
+    void Start(){
+        player = GameObject.Find("Player(Clone)");
+    }
+
 
     //call gameobject methods here
     void Update()

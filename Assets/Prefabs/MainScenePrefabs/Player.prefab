@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   res: {fileID: 0}
-  resourceInfo: {fileID: 0}
+  resourceInfo: {fileID: 725012921049537497, guid: 8261eda887531c54da3076706134dfc6, type: 3}
   goldGatherSpeed: 0
   woodGatherSpeed: 0
 --- !u!1 &1269148676507271933
@@ -398,9 +398,7 @@ GameObject:
   - component: {fileID: 7335672591324541673}
   - component: {fileID: 6228300503283614049}
   - component: {fileID: 5432635458853760104}
-  - component: {fileID: 2506631604056190281}
   - component: {fileID: 118179308}
-  - component: {fileID: 4769945762437202758}
   m_Layer: 0
   m_Name: Pickaxe
   m_TagString: Untagged
@@ -514,22 +512,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 7335672591324541673}
---- !u!114 &2506631604056190281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2100513054957252643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c153045c0cb140b46a7af49e0069d155, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  res: {fileID: 0}
-  resourceInfo: {fileID: 0}
-  goldGatherSpeed: 0
-  woodGatherSpeed: 0
 --- !u!114 &118179308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,23 +525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   res: {fileID: 0}
-  resourceInfo: {fileID: 0}
-  goldGatherSpeed: 0
-  woodGatherSpeed: 0
---- !u!114 &4769945762437202758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2100513054957252643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c153045c0cb140b46a7af49e0069d155, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  res: {fileID: 0}
-  resourceInfo: {fileID: 0}
+  resourceInfo: {fileID: 725012921049537497, guid: 8261eda887531c54da3076706134dfc6, type: 3}
   goldGatherSpeed: 0
   woodGatherSpeed: 0
 --- !u!1 &2580662099303673252

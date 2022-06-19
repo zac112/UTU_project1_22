@@ -21,7 +21,7 @@ public class ResourceGathering : MonoBehaviour
         goldGatherSpeed = 5;
         woodGatherSpeed = 2;
 
-        player = GameObject.Find("Player").GetComponent<PlayerStats>();
+        player = GameObject.Find("Player(Clone)").GetComponent<PlayerStats>();
         inventoryManager = GameObject.Find("InventorySystem").GetComponent<InventoryManager>();
         canvas = GameObject.Find("Canvas");
         resourceInfo = canvas.transform.GetChild(9).gameObject;
