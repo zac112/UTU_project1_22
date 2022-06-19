@@ -92,6 +92,7 @@ public class TileChanger : MonoBehaviour
         if (ghost == null) {
             updateReferences();
             instantiateGhost(plot, ref ghost);
+            EmptyOccupiedVisualizerList();
         } 
     }
 
@@ -100,6 +101,7 @@ public class TileChanger : MonoBehaviour
         if (ghost != null) 
         {
             destroyGhost(ghost);
+            EmptyOccupiedVisualizerList();
         }
     }
 
