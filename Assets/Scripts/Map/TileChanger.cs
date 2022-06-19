@@ -41,8 +41,8 @@ public class TileChanger : MonoBehaviour
         Vector3 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         location = tilemap.WorldToCell(mp);
         location.z = 0;
-        location.x -= 2;
-        location.y -= 2;
+        location.x -= 5;
+        location.y -= 5;
 
         // Get instantiated tile GameObject
         // This gets called every update, maybe change to on mouseclick
@@ -203,7 +203,7 @@ public class TileChanger : MonoBehaviour
     /// </summary>
     private void updateReferences() {
         tilemap = GameObject.Find("Grid(Clone)").GetComponentInChildren<Tilemap>();
-        player = GameObject.Find("Player").GetComponent<PlayerStats>();
+        player = GameObject.Find("Player(Clone)").GetComponent<PlayerStats>();
         occupiedVisualizerList = new List<GameObject>();
         ghostOccupiedTiles = new List<Vector3>();
     }

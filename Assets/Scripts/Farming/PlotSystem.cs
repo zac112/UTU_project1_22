@@ -32,7 +32,7 @@ public class PlotSystem : MonoBehaviour
         cropCollider = transform.GetChild(0).GetComponent<PolygonCollider2D>();
         UiManager = FindObjectOfType<UIManager>();
         plot = GetComponent<SpriteRenderer>();
-        player = GameObject.Find("Player").GetComponent<PlayerStats>();
+        player = GameObject.Find("Player(Clone)").GetComponent<PlayerStats>();
         bps = GameObject.Find("BuildingPlacementSystem").GetComponent<BuildingPlacementSystem>();
         im = GameObject.Find("InventorySystem").GetComponent<InventoryManager>();
         source = GetComponent<AudioSource>();
