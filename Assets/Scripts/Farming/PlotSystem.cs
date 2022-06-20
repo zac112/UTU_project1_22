@@ -6,24 +6,22 @@ public class PlotSystem : MonoBehaviour
 {
 
     bool isPlanted = false;
-    SpriteRenderer crop;
-    PolygonCollider2D cropCollider;
-
     int cropPhases = 0;
     float timer;
 
+    SpriteRenderer crop;
     SpriteRenderer plot;
+    PolygonCollider2D cropCollider;
     CropObject selectedCrop;
-    UIManager UiManager;
 
     public Color availableColor = Color.green;
     public Color unavailableColor = Color.red;
 
-    public PlayerStats player;
-
+    PlayerStats player;
+    UIManager UiManager;
     BuildingPlacementSystem bps;
     InventoryManager im;
-    [SerializeField] AudioSource source;
+    AudioSource source;
 
     // Start is called before the first frame update
     void Start()

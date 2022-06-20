@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class FarmUI : MonoBehaviour
+public class GUIFarmingButton : MonoBehaviour
 {
     public CropObject crop;
     UIManager UiManager;

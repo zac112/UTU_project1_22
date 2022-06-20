@@ -5,16 +5,16 @@ using TMPro;
 
 public class ResourceGathering : MonoBehaviour
 {
-    [SerializeField] public ResourceNode res;
-    [SerializeField] public GameObject resourceInfo;
-    [SerializeField] public int goldGatherSpeed;
-    [SerializeField] public int woodGatherSpeed;
+    [SerializeField] ResourceNode res;
+    [SerializeField] GameObject resourceInfo;
+    [SerializeField] int goldGatherSpeed;
+    [SerializeField] int woodGatherSpeed;
     
     TMP_Text infoText;
     GameObject canvas;
     InventoryManager inventoryManager;
     PlayerStats player;
-    [SerializeField] AudioSource source;
+    AudioSource source;
 
     void Start()
     {

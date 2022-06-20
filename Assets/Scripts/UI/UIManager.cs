@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour{
 
     [Header("Farming")]
 
-    [SerializeField] public FarmUI selectCrop;
+    [SerializeField] public GUIFarmingButton selectCrop;
     [SerializeField] public bool isPlanting = false;
 
     GUIItemButton[] itemButtons;
@@ -54,7 +54,7 @@ public class UIManager : MonoBehaviour{
         itemButtons[index].UpdateUI(item.name, item.amount, item.sprite);
     }
 
-    public void SelectCrop(FarmUI newCrop){
+    public void SelectCrop(GUIFarmingButton newCrop){
         if(selectCrop == newCrop){
             selectCrop = null;
             isPlanting = false;
