@@ -26,18 +26,19 @@ public class DragWallBuilding : MonoBehaviour
 
     [SerializeField] GameObject occupiedVisualizer;
     [SerializeField] GameObject availableVisualizer;
-    [SerializeField] GameObject wallTestingPrefab;
+    [SerializeField] GameObject wall;
+    [SerializeField] GameObject wallRotated;
 
     public List<Vector3> wallPositions;
 
-    public List<Vector3> startNW;
-    public List<Vector3> startNE;
-    public List<Vector3> startSE;
-    public List<Vector3> startSW;
-    public List<Vector3> targetNW;
-    public List<Vector3> targetNE;
-    public List<Vector3> targetSE;
-    public List<Vector3> targetSW;
+    List<Vector3> startNW;
+    List<Vector3> startNE;
+    List<Vector3> startSE;
+    List<Vector3> startSW;
+    List<Vector3> targetNW;
+    List<Vector3> targetNE;
+    List<Vector3> targetSE;
+    List<Vector3> targetSW;
 
     private List<List<Vector3>> startDirections;
     private List<List<Vector3>> targetDirections;
@@ -128,7 +129,6 @@ public class DragWallBuilding : MonoBehaviour
 
         else if (placingWalls == true) {
             //Get current world position of the tile the mouse is on
-            //Debug.Log("True");
             Vector3 mousePosition = bps.GetTileLocationInWorld();
             //mousePosition.z = 10;
 
@@ -142,7 +142,6 @@ public class DragWallBuilding : MonoBehaviour
 
                 foreach (List<Vector3> targetDirection in targetDirections) targetDirection.Clear();
 
-                //RemoveAllAfterIndex(wallPositions, 0);
                 buildingVisualizer.DeactivateVisualizers();
 
                 currentMousePositionInWorld = mousePosition;
@@ -172,19 +171,13 @@ public class DragWallBuilding : MonoBehaviour
 
                 wallPositions = foundPaths[0];
 
-                buildingVisualizer.MoveVisualizers(wallPositions);
-
                 // Check if tiles are occupied
                 CheckForOccupiedTiles(wallPositions);
 
+                buildingVisualizer.MoveVisualizers(wallPositions);
+
                 foundPaths.Clear();
             }
-        }
-    }
-
-    private void RemoveAllAfterIndex<T>(List<T> list, int index) {
-        for (int i = index + 1; i < list.Count; i++) {
-            list.RemoveAt(i);
         }
     }
 
@@ -221,9 +214,9 @@ public class DragWallBuilding : MonoBehaviour
                     }
 
                     List<Vector3> combinedList = new List<Vector3>();
-                    combinedList.AddRange(list1);
-                    combinedList.AddRange(list2);
                     combinedList.Add(startingPosition);
+                    combinedList.AddRange(list1);
+                    combinedList.AddRange(list2);                   
                     combinedList.Add(currentMousePositionInWorld);
                     foundPaths.Add(combinedList);
                     foundCorner = true;
@@ -257,11 +250,56 @@ public class DragWallBuilding : MonoBehaviour
 
     private void BuildWalls(List<Vector3> positionsList) {
         foreach (var p in positionsList) {
-            // Check if last piece was at NW/SW or NE/SE
-            // Turn piece according to above result
+            // Check if last piece was at NW/SW or NE/SE and turn piece according to results
+            // NW X: -0.50, Y: +0.25
+            // NE X: +0.50, Y: +0.25
+            // SE X: +0.50, Y: -0.25
+            // SW X: -0.50, Y: -0.25
+            GameObject selectedPiece = GetWallPiece(positionsList.IndexOf(p) ,positionsList);
+
             // Instantiate wall piece
             Vector3 position = new Vector3(p.x, p.y, 10); 
-            Instantiate(wallTestingPrefab, position, Quaternion.identity);
+            Instantiate(selectedPiece, position, Quaternion.identity);
+        }
+    }
+
+    // Compare instead if a tile is occupied by a wall
+    private GameObject GetWallPiece(int index, List<Vector3> positionsList) {
+        // Each position in the list should check the ones before them or after them, except first and last
+        if (index == 0) {
+            Vector3 next = positionsList[index + 1];
+            return ComparePositions(positionsList[index], next);
+        }
+        else if (index == positionsList.Count - 1) {
+            Vector3 previous = positionsList[index - 1];
+            return ComparePositions(previous, positionsList[index]);
+        }
+        else {
+            Vector3 previous = positionsList[index - 1];
+            Vector3 next = positionsList[index + 1];
+            return ComparePositions(positionsList[index], previous, next);
+        } 
+    }
+
+    private GameObject ComparePositions(Vector3 current, Vector3 compareWith) {
+        if (current - compareWith == NW || current - compareWith == SE) {
+            return wall;
+        }
+        else {
+            return wallRotated;
+        }
+    }
+
+    private GameObject ComparePositions(Vector3 current, Vector3 previous, Vector3 next) {
+        if ((current - previous == NW || current - previous == SE) && (next - current == NW || next - current == SE)) {
+            return wall;
+        }
+        else if ((current - previous == NE || current - previous == SW) && (next - current == NE || next - current == SW)) {
+            return wallRotated;
+        }
+        else {
+            // Else return corner piece
+            return wallRotated;
         }
     }
 }
