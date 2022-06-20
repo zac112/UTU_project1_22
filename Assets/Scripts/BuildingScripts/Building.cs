@@ -45,7 +45,7 @@ public class Building : NetworkBehaviour, IBuildable
     {
         _occupiedTiles = new List<Vector3>();     
     }
-
+    public void SetActive(bool enabled) { this.enabled = enabled; }
     public void Build(){}
     public void Start(){
         Tilemap tilemap = GameObject.FindObjectOfType<Tilemap>();

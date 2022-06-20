@@ -45,7 +45,7 @@ public class BuildingGhost : MonoBehaviour
         Vector3 position = bps.GetTileLocationInWorld();
         position.z = bps.BuildingZ;
         ghost = Instantiate(selectedBuilding, position, Quaternion.identity);
-
+        ghost.GetComponent<IBuildable>().SetActive(false);
         // Turn off collider
         PolygonCollider2D collider = ghost.GetComponent<PolygonCollider2D>();
         collider.enabled = !collider.enabled;

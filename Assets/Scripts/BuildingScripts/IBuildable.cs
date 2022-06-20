@@ -48,6 +48,7 @@ public interface IBuildable
     [Tooltip("List of tiles occupied by this building instance")]
     public List<Vector3> OccupiedTiles { get; }
 
+    public void SetActive(bool active);
     ///Build this building
     public void Build();
 
