@@ -13,6 +13,7 @@ public class StartMenu : MonoBehaviour
     [SerializeField] private GameObject noSavedGame = null;
     [SerializeField] private TMP_Text volumeValue = null;
     [SerializeField] private Slider slider = null;
+    [SerializeField] private TMP_InputField serverAddress;
     private int quality;
     public TMP_Dropdown resolution;
     public TMP_Dropdown qualityDrop;
@@ -124,6 +125,7 @@ public class StartMenu : MonoBehaviour
     }
     public void SetPlayModeClient()
     {
+        GameSettings.Instance().serverAddress = serverAddress.text;
         GameSettings.Instance().networkMode = NetworkMode.Client;
     }
     public void SetPlayModeOffline()

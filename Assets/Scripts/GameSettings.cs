@@ -9,6 +9,7 @@ public class GameSettings : MonoBehaviour
     public int enemyStartingStrength { get; set; }
     public int enemyMaxStrength { get; set; }
     public NetworkMode networkMode { get; set; }
+    public string serverAddress { get; set; }
 
 
     private static GameSettings _instance;
