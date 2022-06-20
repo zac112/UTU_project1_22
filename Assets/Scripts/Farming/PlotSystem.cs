@@ -70,6 +70,7 @@ public class PlotSystem : MonoBehaviour
             {
                 Plant(UiManager.selectCrop.crop);
                 player.RemoveGold(UiManager.selectCrop.crop.price);
+                GetComponent<AudioPlayer>().Play(AudioType.Build, 1);
             }
         }
     }

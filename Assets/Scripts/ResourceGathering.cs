@@ -14,6 +14,7 @@ public class ResourceGathering : MonoBehaviour
     GameObject canvas;
     InventoryManager inventoryManager;
     PlayerStats player;
+    [SerializeField] AudioSource source;
 
     void Start()
     {
@@ -26,6 +27,7 @@ public class ResourceGathering : MonoBehaviour
         canvas = GameObject.Find("Canvas");
         resourceInfo = canvas.transform.GetChild(9).gameObject;
         infoText = resourceInfo.GetComponent<TMP_Text>();
+        source = GetComponent<AudioSource>();
     }
 
     // Gather resource when inside collider
@@ -40,6 +42,7 @@ public class ResourceGathering : MonoBehaviour
             
             // Gather from node and add gold to player
             res.Gather(goldGatherSpeed);
+            GetComponent<AudioPlayer>().Play(AudioType.Build, 0);
             player.AddGold(goldGatherSpeed);
 
         }
@@ -51,6 +54,7 @@ public class ResourceGathering : MonoBehaviour
 
             // Gather from node and add to inventory
             res.Gather(woodGatherSpeed);
+            GetComponent<AudioPlayer>().Play(AudioType.Build, 0);
             inventoryManager.AddItem("Wood", goldGatherSpeed);
         }
     }

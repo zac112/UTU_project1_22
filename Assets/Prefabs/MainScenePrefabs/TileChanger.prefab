@@ -54,7 +54,6 @@ MonoBehaviour:
   buildingGhostOpacity: 0.5
   occupiedVisualizer: {fileID: 926927214805872018, guid: 9fbf29370b21aee4a848df415caa4ed9, type: 3}
   availableVisualizer: {fileID: 8815777532811354241, guid: 733eb10ae18233a4188ee19d8d650366, type: 3}
-  source: {fileID: 0}
 --- !u!82 &6602852790923477681
 AudioSource:
   m_ObjectHideFlags: 0
