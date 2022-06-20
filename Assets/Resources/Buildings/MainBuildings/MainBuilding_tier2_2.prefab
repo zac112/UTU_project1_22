@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 7246990124694170764}
   m_Layer: 11
   m_Name: MainBuilding_tier2_2
-  m_TagString: Untagged
+  m_TagString: Mainbuilding
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,7 +55,6 @@ MonoBehaviour:
   _length: 4
   _isRotated: 1
   _nextRotation: {fileID: 7162115984485016535, guid: 028ce4429c538d046bf21d77eb0cd04f, type: 3}
-  building: 0
 --- !u!114 &5875782702601234960
 MonoBehaviour:
   m_ObjectHideFlags: 0

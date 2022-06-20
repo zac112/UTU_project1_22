@@ -2,16 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Unity.Netcode;
 
-public class PlayerStats : MonoBehaviour, IDataManager
+public class PlayerStats : NetworkBehaviour, IDataManager
 {
     [SerializeField] int startingHealth;
     [SerializeField] int startingGold;
 
-    int maxHealth;
-    int health;
-    int gold;
-    
+    NetworkVariable<int> networkMaxHealth = new NetworkVariable<int>();
+    NetworkVariable<int> networkHealth = new NetworkVariable<int>();
+    NetworkVariable<int> networkGold = new NetworkVariable<int>();
+    int health => networkHealth.Value;
+    int gold => networkGold.Value;
+    int maxHealth => networkMaxHealth.Value;
+
     List<Village> FriendlyVillages = new List<Village>();
     Village CurrentVillage;  // currently active village
     private PlayerSkills playerSkills;
@@ -21,9 +25,9 @@ public class PlayerStats : MonoBehaviour, IDataManager
         
            
     void Start(){
-        health = startingHealth;
-        maxHealth = startingHealth;
-        gold = startingGold;
+        SetHealthServerRpc(startingHealth);
+        SetMaxHealthServerRpc(startingHealth);
+        SetGoldServerRpc(startingGold);
         GameStats.Gold = startingGold;
         GameStats.FriendlyVillages = FriendlyVillages;  // initialize player's villages
         CurrentVillage = new Village();
@@ -35,11 +39,31 @@ public class PlayerStats : MonoBehaviour, IDataManager
         playerSkills = new PlayerSkills();
 
         GameEvents.current.OnSkillUnlockedEvent += OnSkillUnlocked;
-        
+        if (NetworkObject.IsLocalPlayer)
+        {
+            networkMaxHealth.OnValueChanged += OnMaxHealthChange;
+            networkHealth.OnValueChanged += OnHealthChange;
+            networkGold.OnValueChanged += OnGoldChange;
+        }
+
     }
 
+    void OnMaxHealthChange(int oldVal, int newVal)
+    {
+        UIManager.current.UpdateHealthText(health);
+        UIManager.current.UpdateHealthIcon(((float)health / (float)newVal));
+    }
+    void OnHealthChange(int oldVal, int newVal) {
+        UIManager.current.UpdateHealthText(health);
+        UIManager.current.UpdateHealthIcon(((float)newVal / (float)maxHealth));
+    }
+    void OnGoldChange(int oldVal, int newVal)
+    {
+        GameStats.Gold = newVal;
+        UIManager.current.UpdateGoldText(newVal);
+    }
     public void LoadData(GameData data){
-        this.gold = data.gold;
+        this.networkGold.Value = data.gold;
     }
 
     public void SaveData(GameData data){
@@ -65,35 +89,24 @@ public class PlayerStats : MonoBehaviour, IDataManager
     private void AttemptPurchase(Technology tech) {
         if (gold > tech.cost)
         {
-            gold -= tech.cost;
+            RemoveGold(tech.cost);
             GameEvents.current.OnTechnologyUnlock(tech.unlocksPreq);
         }
     }
 
     public void AddGold(int amount){
-        gold += amount;
-        GameStats.Gold += amount;
-        UIManager.current.UpdateGoldText(gold);
+        SetGoldServerRpc(gold+amount);        
     }
-    public void SetGold(int amount)
-    {
-        gold = amount;
-        GameStats.Gold = amount;
-        UIManager.current.UpdateGoldText(gold);
+    public void RemoveGold(int amount){
+        SetGoldServerRpc(gold-amount);
     }
 
-    public void RemoveGold(int amount){
-        gold -= amount;
-        GameStats.Gold -= amount;
-        UIManager.current.UpdateGoldText(gold);
-    }
+
 
     public int GetGold(){return gold;}
 
     public void DamagePlayer(int amount){
-        health -= amount;
-        UIManager.current.UpdateHealthText(health);
-        UIManager.current.UpdateHealthIcon(((float)health/(float)maxHealth));
+        SetHealthServerRpc(health - amount);
 
         //what happens when player dies
         if(health<=0){
@@ -106,13 +119,27 @@ public class PlayerStats : MonoBehaviour, IDataManager
     }
 
     public void HealPlayer(int amount){
-        health = Mathf.Clamp(0, maxHealth, health+amount);
-        UIManager.current.UpdateHealthText(health);
-        UIManager.current.UpdateHealthIcon(((float)health/(float)maxHealth));
+        SetHealthServerRpc(Mathf.Clamp(0, maxHealth, health+amount));
     }
 
-    public void AddMaxHealth(int amount){
-        maxHealth += amount;
+    [ServerRpc(RequireOwnership = false)]
+    void SetHealthServerRpc(int health) {
+        networkHealth.Value = health;
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void SetMaxHealthServerRpc(int amount){
+        networkMaxHealth.Value = amount;
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void SetGoldServerRpc(int amount)
+    {
+        networkGold.Value = amount;
+    }
+    public void AddMaxHealth(int amount)
+    {
+        SetMaxHealthServerRpc(maxHealth+amount);
     }
 
     public int GetCurrentHealth(){return health;}

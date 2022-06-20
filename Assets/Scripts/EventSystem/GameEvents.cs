@@ -22,8 +22,8 @@ public class GameEvents : MonoBehaviour
     public event Action<Vector3,int> MapChange;
     public void OnMapChanged(Vector3 worldPos, int size){ MapChange?.Invoke(worldPos, size); }  
 
-    public event Action<GameObject,GameObject> BuildingBuilt;
-    public void OnBuildingBuilt(GameObject buildingPrefab, GameObject buildingGO){ BuildingBuilt?.Invoke(buildingPrefab,buildingGO); }  
+    public event Action<GameObject> BuildingBuilt;
+    public void OnBuildingBuilt(GameObject buildingGO){ BuildingBuilt?.Invoke(buildingGO); }  
 
     public event Action<int> Tick;
     public void OnTick(int currentTick){ Tick?.Invoke(currentTick); }

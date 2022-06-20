@@ -10,7 +10,6 @@ public class DrawEnemyPath : MonoBehaviour
     private Spawnpoint[] spawnpoints;
 
     [SerializeField] float spawnTime = 2f;
-    [SerializeField] GameObject mainBuildingPrefab;
     private GameObject target;
 
     // Start is called before the first frame update
@@ -38,8 +37,8 @@ public class DrawEnemyPath : MonoBehaviour
         }
     }
 
-    void WaitForMainBuilding(GameObject prefab, GameObject go){
-        if (prefab!=mainBuildingPrefab)return;
+    void WaitForMainBuilding(GameObject go){
+        if (!go.CompareTag("Mainbuilding")) return;
 
         target = go;
         InvokeRepeating("Spawn", 0, spawnTime);

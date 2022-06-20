@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using Unity.Netcode;
 
 public class Building : NetworkBehaviour, IBuildable
@@ -45,8 +46,34 @@ public class Building : NetworkBehaviour, IBuildable
         _occupiedTiles = new List<Vector3>();     
     }
 
-    public void Build(){ }
+    public void Build(){}
     public void Start(){
-        GetComponent<AudioPlayer>().PlayRandom(AudioType.Build);        
+        Tilemap tilemap = GameObject.FindObjectOfType<Tilemap>();
+        GetComponent<AudioPlayer>().PlayRandom(AudioType.Build);
+        IBuildable selectedBuildingScript = GetComponent<IBuildable>();
+
+        // Add occupiedTiles to the building instance
+        for (int i = 0; i < OccupiedTiles.Count; i++)
+        {
+            selectedBuildingScript.AddToOccupiedTiles(OccupiedTiles[i]);
+
+            Vector3Int cellPosition = tilemap.WorldToCell(OccupiedTiles[i]);
+            cellPosition.x += 5;
+            cellPosition.y += 5;
+            cellPosition.z = 0;
+
+            // Tile script
+            GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
+
+            if (tile != null)
+            {
+                GroundTileData tileScript = tile.GetComponent<GroundTileData>();
+                tileScript.isOccupied = true;
+            }
+        }
+
+        GameEvents.current.OnMapChanged(transform.position, OccupiedTiles.Count);
+        GameEvents.current.OnBuildingBuilt(gameObject);
+
     }
 }

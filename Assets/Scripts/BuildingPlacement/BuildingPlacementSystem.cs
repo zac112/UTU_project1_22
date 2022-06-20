@@ -31,7 +31,6 @@ public class BuildingPlacementSystem : NetworkBehaviour
     PlayerStats playerStats;
     GameObject buildingInstance;
 
-    BuildCost buildCost;
     public void Start()
     {        
         selectedBuildingOccupiedTiles = new List<Vector3>();        
@@ -46,7 +45,6 @@ public class BuildingPlacementSystem : NetworkBehaviour
     {
         SelectedBuilding = building.gameObject;
         buildingGhost.InstantiateGhost(SelectedBuilding, ref buildingGhost.Ghost, buildingGhost.GhostOccupiedTiles);
-        buildCost = SelectedBuilding.GetComponent<BuildCost>();
     }
 
     void Update()
@@ -220,47 +218,15 @@ public class BuildingPlacementSystem : NetworkBehaviour
             }
         }
 
-        //Update build cost
-        buildCost = SelectedBuilding.GetComponent<BuildCost>();
+        BuildCost buildCost = SelectedBuilding.GetComponent<BuildCost>();
 
         if (buildingPlacementAllowed && playerStats.GetGold() >= buildCost.Cost)
         {
             // Instantiate building on tileLocation
-            BuildCompleteServerRpc(SelectedBuilding.name, CalculateBuildingLocation(selectedBuildingOccupiedTiles));
-            if (NetworkManager.IsHost)
-            {
-                selectedBuildingScript = buildingInstance.GetComponent<IBuildable>();
-
-                // Add occupiedTiles to the building instance
-                for (int i = 0; i < selectedBuildingOccupiedTiles.Count; i++)
-                {
-                    selectedBuildingScript.AddToOccupiedTiles(selectedBuildingOccupiedTiles[i]);
-
-                    Vector3Int cellPosition = tilemap.WorldToCell(selectedBuildingOccupiedTiles[i]);
-                    cellPosition.x += 5;
-                    cellPosition.y += 5;
-                    cellPosition.z = 0;
-
-                    // Tile script
-                    GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
-
-                    if (tile != null)
-                    {
-                        GroundTileData tileScript = tile.GetComponent<GroundTileData>();
-                        tileScript.isOccupied = true;
-                    }
-                }
-
-                buildings.Add(SelectedBuilding);
-
-                // Remove gold from player
-                playerStats.RemoveGold(buildCost.Cost);
-
-                GameStats.BuildingsBuilt++;  // increase GameStats record of finished buildings
-                GameEvents.current.OnMapChanged(buildingInstance.transform.position, selectedBuildingOccupiedTiles.Count);
-                GameEvents.current.OnBuildingBuilt(SelectedBuilding, buildingInstance);
-                buildingInstance.GetComponent<IBuildable>().Build();
-            }
+            BuildCompleteServerRpc(SelectedBuilding.name, CalculateBuildingLocation(selectedBuildingOccupiedTiles));                        
+            playerStats.RemoveGold(buildCost.Cost);            
+            GameStats.BuildingsBuilt++;  
+            buildings.Add(SelectedBuilding);
         }
 
         buildingGhost.DestroyGhost(buildingGhost.Ghost);
@@ -279,13 +245,12 @@ public class BuildingPlacementSystem : NetworkBehaviour
         buildingGhost.DestroyGhost(buildingGhost.Ghost);
     }
 
+    
     [ServerRpc(RequireOwnership = false)]
     public void BuildCompleteServerRpc(string prefabName, Vector3 pos, ServerRpcParams rpcParams = default)
     {
-        print(prefabName);
         GameObject[] buildings = Resources.LoadAll<GameObject>("Buildings");
         foreach (GameObject go in buildings) {
-            print(go.name);
             if (go.name.Equals(prefabName)){
                 buildingInstance = Instantiate(go, pos, Quaternion.identity);
                 buildingInstance.GetComponent<NetworkObject>().Spawn();
