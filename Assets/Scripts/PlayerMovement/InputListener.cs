@@ -15,7 +15,6 @@ public class InputListener : NetworkBehaviour
 
     void Start()
     {
-        weapon.Value = -1;
         weapon.OnValueChanged += ToggleWeapon;
     }
     //call gameobject methods here

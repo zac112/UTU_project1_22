@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Unity.Netcode;
 
 
-
-public class BuildingPlacementSystem : MonoBehaviour
+public class BuildingPlacementSystem : NetworkBehaviour
 {   
     [SerializeField] List<GameObject> buildableBuildings;
     public float BuildingZ = 10;
@@ -29,9 +29,9 @@ public class BuildingPlacementSystem : MonoBehaviour
     [SerializeField] BuildingVisualizer buildingVisualizer;
     Tilemap tilemap;
     PlayerStats playerStats;
+    GameObject buildingInstance;
 
     BuildCost buildCost;
-
     public void Start()
     {        
         selectedBuildingOccupiedTiles = new List<Vector3>();        
@@ -58,6 +58,7 @@ public class BuildingPlacementSystem : MonoBehaviour
                 playerStats = go.GetComponent<PlayerStats>();
                 return; 
             }
+            
         }
 
         if (SelectBuildingHotkey()) buildingGhost.InstantiateGhost(SelectedBuilding, ref buildingGhost.Ghost, buildingGhost.GhostOccupiedTiles);
@@ -146,6 +147,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         return new Vector3(xPosition, yPosition, 0);
     }
 
+
     private void Build() 
     {
         // Empty the list of tiles
@@ -223,42 +225,42 @@ public class BuildingPlacementSystem : MonoBehaviour
 
         if (buildingPlacementAllowed && playerStats.GetGold() >= buildCost.Cost)
         {
-
             // Instantiate building on tileLocation
-            GameObject buildingInstance = Instantiate(SelectedBuilding, CalculateBuildingLocation(selectedBuildingOccupiedTiles), Quaternion.identity);
-            buildingInstance.layer = LayerMask.NameToLayer("Buildings");
-
-            selectedBuildingScript = buildingInstance.GetComponent<IBuildable>();
-
-            // Add occupiedTiles to the building instance
-            for (int i = 0; i < selectedBuildingOccupiedTiles.Count; i++)
+            BuildCompleteServerRpc(SelectedBuilding.name, CalculateBuildingLocation(selectedBuildingOccupiedTiles));
+            if (NetworkManager.IsHost)
             {
-                selectedBuildingScript.AddToOccupiedTiles(selectedBuildingOccupiedTiles[i]);
+                selectedBuildingScript = buildingInstance.GetComponent<IBuildable>();
 
-                Vector3Int cellPosition = tilemap.WorldToCell(selectedBuildingOccupiedTiles[i]);
-                cellPosition.x += 5;
-                cellPosition.y += 5;
-                cellPosition.z = 0;
-
-                // Tile script
-                GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
-
-                if (tile != null) 
+                // Add occupiedTiles to the building instance
+                for (int i = 0; i < selectedBuildingOccupiedTiles.Count; i++)
                 {
-                    GroundTileData tileScript = tile.GetComponent<GroundTileData>();
-                    tileScript.isOccupied = true;
+                    selectedBuildingScript.AddToOccupiedTiles(selectedBuildingOccupiedTiles[i]);
+
+                    Vector3Int cellPosition = tilemap.WorldToCell(selectedBuildingOccupiedTiles[i]);
+                    cellPosition.x += 5;
+                    cellPosition.y += 5;
+                    cellPosition.z = 0;
+
+                    // Tile script
+                    GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
+
+                    if (tile != null)
+                    {
+                        GroundTileData tileScript = tile.GetComponent<GroundTileData>();
+                        tileScript.isOccupied = true;
+                    }
                 }
+
+                buildings.Add(SelectedBuilding);
+
+                // Remove gold from player
+                playerStats.RemoveGold(buildCost.Cost);
+
+                GameStats.BuildingsBuilt++;  // increase GameStats record of finished buildings
+                GameEvents.current.OnMapChanged(buildingInstance.transform.position, selectedBuildingOccupiedTiles.Count);
+                GameEvents.current.OnBuildingBuilt(SelectedBuilding, buildingInstance);
+                buildingInstance.GetComponent<IBuildable>().Build();
             }
-
-            buildings.Add(SelectedBuilding);
-
-            // Remove gold from player
-            playerStats.RemoveGold(buildCost.Cost);
-
-            GameStats.BuildingsBuilt++;  // increase GameStats record of finished buildings
-            GameEvents.current.OnMapChanged(buildingInstance.transform.position, selectedBuildingOccupiedTiles.Count);
-            GameEvents.current.OnBuildingBuilt(SelectedBuilding,buildingInstance);
-            buildingInstance.GetComponent<IBuildable>().Build();
         }
 
         buildingGhost.DestroyGhost(buildingGhost.Ghost);
@@ -266,7 +268,7 @@ public class BuildingPlacementSystem : MonoBehaviour
         SelectedBuilding = null;
         buildCost = null;
     }
-
+        
     private void DestroyBuilding(GameObject building, List<GameObject> buildings) {
         Destroy(building);
         buildings.Remove(building);
@@ -275,5 +277,20 @@ public class BuildingPlacementSystem : MonoBehaviour
     public void DeselectBuilding() {
         SelectedBuilding = null;
         buildingGhost.DestroyGhost(buildingGhost.Ghost);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void BuildCompleteServerRpc(string prefabName, Vector3 pos, ServerRpcParams rpcParams = default)
+    {
+        print(prefabName);
+        GameObject[] buildings = Resources.LoadAll<GameObject>("Buildings");
+        foreach (GameObject go in buildings) {
+            print(go.name);
+            if (go.name.Equals(prefabName)){
+                buildingInstance = Instantiate(go, pos, Quaternion.identity);
+                buildingInstance.GetComponent<NetworkObject>().Spawn();
+                break;
+            }
+        }
     }
 }

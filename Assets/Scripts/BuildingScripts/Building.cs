@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class Building : MonoBehaviour, IBuildable
+public class Building : NetworkBehaviour, IBuildable
 {
 
     [SerializeField] private int _healthPoints; // building hit points, determines when it gets destroyed
@@ -36,14 +37,16 @@ public class Building : MonoBehaviour, IBuildable
 
     private List<Vector3> _occupiedTiles;
     public List<Vector3> OccupiedTiles { get => _occupiedTiles; }
+        
+    NetworkVariable<Vector3> networkBuildingPos = new NetworkVariable<Vector3>();
 
     void Awake()
     {
-        _occupiedTiles = new List<Vector3>();        
+        _occupiedTiles = new List<Vector3>();     
     }
 
-    public void Build(){
+    public void Build(){ }
+    public void Start(){
         GetComponent<AudioPlayer>().PlayRandom(AudioType.Build);        
     }
-
 }

@@ -8,12 +8,17 @@ public class NetworkSpawn : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print(IsServer);
-        print(IsHost);
-        print(NetworkManager.Singleton.IsHost);
-        if (IsServer || NetworkManager.Singleton.IsHost) {
+        if (IsServer || NetworkManager.Singleton.IsHost)
+        {
             GetComponent<NetworkObject>().Spawn();
+        }
+        else {
+            BuildServerRpc();
         }
     }
 
+    [ServerRpc(RequireOwnership = false)]
+    void BuildServerRpc() {
+        GetComponent<NetworkObject>().Spawn();
+    }
 }

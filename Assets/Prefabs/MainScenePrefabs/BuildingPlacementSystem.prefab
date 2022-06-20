@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6574387780565919031}
   - component: {fileID: 6574387780565919030}
+  - component: {fileID: 6574387780842818818}
   m_Layer: 0
   m_Name: BuildingPlacementSystem
   m_TagString: Untagged
@@ -44,19 +45,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff2ecb43c7823f54dbbfb55b272f5630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubePrefab: {fileID: 7849311793634478279, guid: 67b6652d2a52e6e45bb38574b11f933f, type: 3}
-  occupiedVisualizer: {fileID: 926927214805872018, guid: 9fbf29370b21aee4a848df415caa4ed9, type: 3}
-  availableVisualizer: {fileID: 8815777532811354241, guid: 733eb10ae18233a4188ee19d8d650366, type: 3}
   buildableBuildings:
   - {fileID: 2300419187923452777, guid: 91da41f5a38724748bd567ca8f44502f, type: 3}
   - {fileID: 2300419187923452777, guid: f623742f1fd508846b6b2960c6a957b3, type: 3}
-  buildingZ: 10
-  buildingGhostOpacity: 0.5
-  buildingGhost: {fileID: 0}
-  selectedBuilding: {fileID: 0}
+  BuildingZ: 10
+  currentMousePositionInWorld: {x: 0, y: 0, z: 0}
+  SelectedBuilding: {fileID: 0}
   buildBuildingMouseButton: 1
   buildingDeselect: 106
   building1Hotkey: 107
   building2Hotkey: 108
   rotationHotkey: 114
-  tilemap: {fileID: 0}
+  buildingGhost: {fileID: 0}
+  buildingVisualizer: {fileID: 0}
+--- !u!114 &6574387780842818818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6574387780565919029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
