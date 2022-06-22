@@ -22,7 +22,7 @@ public class ResourceGathering : MonoBehaviour
         goldGatherSpeed = 5;
         woodGatherSpeed = 2;
 
-        player = GameObject.Find("Player(Clone)").GetComponent<PlayerStats>();
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerStats>();
         inventoryManager = GameObject.Find("InventorySystem").GetComponent<InventoryManager>();
         canvas = GameObject.Find("Canvas");
         resourceInfo = canvas.transform.GetChild(7).gameObject;
@@ -55,7 +55,7 @@ public class ResourceGathering : MonoBehaviour
             // Gather from node and add to inventory
             res.Gather(woodGatherSpeed);
             GetComponent<AudioPlayer>().Play(AudioType.Build, 0);
-            inventoryManager.AddItem("Wood", goldGatherSpeed);
+            player.AddWood(woodGatherSpeed);
         }
     }
     

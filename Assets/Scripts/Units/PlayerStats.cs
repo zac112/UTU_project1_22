@@ -8,12 +8,16 @@ public class PlayerStats : NetworkBehaviour, IDataManager
 {
     [SerializeField] int startingHealth;
     [SerializeField] int startingGold;
+    [SerializeField] int startingWood;
 
     NetworkVariable<int> networkMaxHealth = new NetworkVariable<int>();
     NetworkVariable<int> networkHealth = new NetworkVariable<int>();
     NetworkVariable<int> networkGold = new NetworkVariable<int>();
+    NetworkVariable<int> networkWood = new NetworkVariable<int>();
+
     int health => networkHealth.Value;
     int gold => networkGold.Value;
+    int wood => networkWood.Value;
     int maxHealth => networkMaxHealth.Value;
 
     List<Village> FriendlyVillages = new List<Village>();
@@ -28,12 +32,15 @@ public class PlayerStats : NetworkBehaviour, IDataManager
         SetHealthServerRpc(startingHealth);
         SetMaxHealthServerRpc(startingHealth);
         SetGoldServerRpc(startingGold);
+        SetWoodServerRpc(startingWood);
         GameStats.Gold = startingGold;
+        GameStats.Wood = startingWood;
         GameStats.FriendlyVillages = FriendlyVillages;  // initialize player's villages
         CurrentVillage = new Village();
         FriendlyVillages.Add(CurrentVillage);
 
         UIManager.current.UpdateGoldText(gold);
+        UIManager.current.UpdateWoodText(wood);
         UIManager.current.UpdateHealthText(health);
 
         playerSkills = new PlayerSkills();
@@ -44,6 +51,7 @@ public class PlayerStats : NetworkBehaviour, IDataManager
             networkMaxHealth.OnValueChanged += OnMaxHealthChange;
             networkHealth.OnValueChanged += OnHealthChange;
             networkGold.OnValueChanged += OnGoldChange;
+            networkWood.OnValueChanged += OnWoodChange;
         }
 
     }
@@ -62,6 +70,13 @@ public class PlayerStats : NetworkBehaviour, IDataManager
         GameStats.Gold = newVal;
         UIManager.current.UpdateGoldText(newVal);
     }
+
+    void OnWoodChange(int oldVal, int newVal)
+    {
+        GameStats.Wood = newVal;
+        UIManager.current.UpdateWoodText(newVal);
+    }
+
     public void LoadData(GameData data){
         this.networkGold.Value = data.gold;
     }
@@ -101,6 +116,13 @@ public class PlayerStats : NetworkBehaviour, IDataManager
         SetGoldServerRpc(gold-amount);
     }
 
+    public void AddWood(int amount){
+        SetWoodServerRpc(wood+amount);        
+    }
+    public void RemoveWood(int amount){
+        SetWoodServerRpc(wood-amount);
+    }
+
 
 
     public int GetGold(){return gold;}
@@ -136,6 +158,11 @@ public class PlayerStats : NetworkBehaviour, IDataManager
     public void SetGoldServerRpc(int amount)
     {
         networkGold.Value = amount;
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    void SetWoodServerRpc(int amount) {
+        networkWood.Value = amount;
     }
     public void AddMaxHealth(int amount)
     {

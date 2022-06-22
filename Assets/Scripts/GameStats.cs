@@ -25,6 +25,11 @@ public static class GameStats
     public static int Gold { get; set; }
 
     /// <summary>
+    /// How much wood
+    /// </summary>
+    public static int Wood { get; set; }
+
+    /// <summary>
     /// How many buildings destroyed during the game
     /// </summary>
     public static int BuildingsDestroyed { get; set; }

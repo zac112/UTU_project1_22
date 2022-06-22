@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour{
 
     [SerializeField] TMP_Text health;
     [SerializeField] TMP_Text gold;
+    [SerializeField] TMP_Text wood;
     [SerializeField] PlayerStats stats;
     [SerializeField] HealthIcon healthIcon;
 
@@ -29,14 +30,16 @@ public class UIManager : MonoBehaviour{
 
 
     public void UpdateHealthText(int amount){
-        health.text = $"Health: {amount}";
+        health.text = $"{amount}";
     }
 
     public void UpdateHealthIcon(float percentage){
         healthIcon.UpdateIcon(percentage);
     }
 
-    public void UpdateGoldText(int amount) => gold.text = $"Gold: {amount}";
+    public void UpdateGoldText(int amount) => gold.text = $"{amount}";
+
+    public void UpdateWoodText(int amount) => wood.text = $"{amount}";
 
 
 
