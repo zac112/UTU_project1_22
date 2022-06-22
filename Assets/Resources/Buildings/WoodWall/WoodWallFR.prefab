@@ -55,7 +55,6 @@ MonoBehaviour:
   _length: 1
   _isRotated: 0
   _nextRotation: {fileID: 2300419187923452777, guid: aa391f734e51b334aaa10e300f23d900, type: 3}
-  building: 0
 --- !u!60 &8892011639983444833
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -97,7 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dea9b79c3925c0546a8a93e3f5473e1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cost: 0
+  Cost: 150
+  Wood: 100
 --- !u!82 &2885486011373094969
 AudioSource:
   m_ObjectHideFlags: 0

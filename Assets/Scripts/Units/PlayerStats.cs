@@ -126,6 +126,7 @@ public class PlayerStats : NetworkBehaviour, IDataManager
 
 
     public int GetGold(){return gold;}
+    public int GetWood(){return wood;}
 
     public void DamagePlayer(int amount){
         SetHealthServerRpc(health - amount);

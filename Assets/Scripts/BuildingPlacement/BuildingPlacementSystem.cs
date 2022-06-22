@@ -220,11 +220,12 @@ public class BuildingPlacementSystem : NetworkBehaviour
 
         BuildCost buildCost = SelectedBuilding.GetComponent<BuildCost>();
 
-        if (buildingPlacementAllowed && playerStats.GetGold() >= buildCost.Cost)
+        if (buildingPlacementAllowed && playerStats.GetGold() >= buildCost.Cost && playerStats.GetWood() >= buildCost.Wood)
         {
             // Instantiate building on tileLocation
             BuildCompleteServerRpc(SelectedBuilding.name, CalculateBuildingLocation(selectedBuildingOccupiedTiles));                        
-            playerStats.RemoveGold(buildCost.Cost);            
+            playerStats.RemoveGold(buildCost.Cost);  
+            playerStats.RemoveWood(buildCost.Wood);          
             GameStats.BuildingsBuilt++;  
             buildings.Add(SelectedBuilding);
         }
