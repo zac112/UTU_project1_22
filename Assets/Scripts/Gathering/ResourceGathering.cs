@@ -25,7 +25,7 @@ public class ResourceGathering : MonoBehaviour
         player = GameObject.Find("Player(Clone)").GetComponent<PlayerStats>();
         inventoryManager = GameObject.Find("InventorySystem").GetComponent<InventoryManager>();
         canvas = GameObject.Find("Canvas");
-        resourceInfo = canvas.transform.GetChild(9).gameObject;
+        resourceInfo = canvas.transform.GetChild(7).gameObject;
         infoText = resourceInfo.GetComponent<TMP_Text>();
         source = GetComponent<AudioSource>();
     }

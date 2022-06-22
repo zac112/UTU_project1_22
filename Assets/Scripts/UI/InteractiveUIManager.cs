@@ -13,6 +13,7 @@ public class InteractiveUIManager : MonoBehaviour
     [SerializeField] TMP_Text objectHealth;
     Building building;
     BuildingPlacementSystem bps;
+    GameObject player;
     string new_name;
 
     // Start is called before the first frame update
@@ -21,14 +22,16 @@ public class InteractiveUIManager : MonoBehaviour
         // Find a Better way to find the UI object here ???
         // Now it's hardcoded
         canvas = GameObject.Find("Canvas");
-        interactiveUI = canvas.transform.GetChild(8).gameObject;
-        smithyUI = canvas.transform.GetChild(7).gameObject;
+        interactiveUI = canvas.transform.GetChild(6).gameObject;
+        smithyUI = canvas.transform.GetChild(10).gameObject;
         objectName = interactiveUI.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
         objectHealth = interactiveUI.transform.GetChild(1).gameObject.GetComponent<TMP_Text>();
+        player = GameObject.Find("Player(Clone)");
 
         // Acessing other scripts
         building = gameObject.GetComponent<Building>();
         bps = GameObject.Find("BuildingPlacementSystem").GetComponent<BuildingPlacementSystem>();
+
     }
 
     void OnMouseOver(){
