@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -8655984105826807879}
   - component: {fileID: -5390065850071515499}
   - component: {fileID: -8757858189206128006}
+  - component: {fileID: -4825020649857450390}
   m_Layer: 11
   m_Name: MainBuilding_tier3_2
   m_TagString: Mainbuilding
@@ -149,6 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cost: 0
+  Wood: 0
 --- !u!82 &-8655984105826807879
 AudioSource:
   m_ObjectHideFlags: 0
@@ -274,3 +276,16 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &-4825020649857450390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5960745666499655521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66813d74178c8084eaac43d16b1b103b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextTier: {fileID: 0}

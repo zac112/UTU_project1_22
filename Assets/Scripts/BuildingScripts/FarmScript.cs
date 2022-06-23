@@ -34,6 +34,11 @@ public class FarmScript : MonoBehaviour
     public void RegisterHouse(House house)
     {
         if(IsEligible(house.transform)) houses.Add(house);
+        if (houses.Count >= 5)
+        {
+            TechnologyUnlocker t = gameObject.AddComponent<TechnologyUnlocker>();
+            t.SetUnlock(TechnologyPrerequisite.People5);
+        }
     }
 
     public void UnRegisterHouse(House house)

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43366a9be443a3146b01ff8afb88196b, type: 3}
-  m_Name: Tier2MainBuilding
+  m_Name: Tier3MainBuilding
   m_EditorClassIdentifier: 
-  prereqs: 0600000005000000
-  unlocksPreq: 2
-  techName: HeadQuarters2
+  prereqs: 0200000008000000
+  unlocksPreq: 3
+  techName: HeadQuarters3
   cost: 500
   image: {fileID: 0}

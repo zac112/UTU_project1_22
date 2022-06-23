@@ -10,4 +10,8 @@ public class TechnologyUnlocker : MonoBehaviour
     {
         GameEvents.current.OnTechnologyUnlock(unlocks);
     }
+
+    public void SetUnlock(TechnologyPrerequisite prereq) {
+        unlocks = prereq;
+    }
 }

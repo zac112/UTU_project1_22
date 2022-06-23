@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -4612996752487619823}
   - component: {fileID: 4389055471614594414}
   - component: {fileID: 7246990124694170764}
+  - component: {fileID: 4834425609082007800}
   m_Layer: 11
   m_Name: MainBuilding_tier2_2
   m_TagString: Mainbuilding
@@ -68,6 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cost: 0
+  Wood: 0
 --- !u!212 &2268524814343166377
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -278,3 +280,17 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &4834425609082007800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715474752616495915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66813d74178c8084eaac43d16b1b103b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextTier: {fileID: 5960745666499655521, guid: 6433b11723fefdf428ad9469403c8e2c, type: 3}
+  requirement: 3

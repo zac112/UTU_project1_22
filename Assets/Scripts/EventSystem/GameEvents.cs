@@ -59,4 +59,8 @@ public class GameEvents : MonoBehaviour
 
     public event Action<GameObject> PlayerSpawned;
     public void OnPlayerSpawned(GameObject go) { PlayerSpawned?.Invoke(go); }
+
+    public event Action HeadquartersBuilt;
+    public void OnHeadquartersBuilt() { HeadquartersBuilt?.Invoke(); }
+
 }
