@@ -9389,6 +9389,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2497424052543646935}
     m_Modifications:
+    - target: {fileID: -2771741638270154712, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: unlocksOn
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: cost
       value: 100
@@ -9899,7 +9903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5605164414762312911, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Name
-      value: BuildingButton (6)
+      value: WoodGate
       objectReference: {fileID: 0}
     - target: {fileID: 5605164414762312911, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_IsActive
@@ -9926,7 +9930,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2771741638270154712, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: unlocksOn
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: cost
@@ -10058,7 +10062,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5605164414762312911, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Name
-      value: BuildingButton (5)
+      value: House
       objectReference: {fileID: 0}
     - target: {fileID: 5605164414762312911, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_IsActive
@@ -10217,7 +10221,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5605164414762312911, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Name
-      value: BuildingButton (2)
+      value: Smithy
       objectReference: {fileID: 0}
     - target: {fileID: 5605164414762312911, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_IsActive
@@ -10376,7 +10380,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5605164414762312911, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Name
-      value: BuildingButton (7)
+      value: Woodwall
       objectReference: {fileID: 0}
     - target: {fileID: 5605164414762312911, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_IsActive
@@ -10403,7 +10407,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2771741638270154712, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: unlocksOn
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: cost
@@ -10535,7 +10539,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5605164414762312911, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Name
-      value: BuildingButton (9)
+      value: Stonewall
       objectReference: {fileID: 0}
     - target: {fileID: 5605164414762312911, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_IsActive
@@ -10694,7 +10698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5605164414762312911, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Name
-      value: BuildingButton (4)
+      value: Goldmine
       objectReference: {fileID: 0}
     - target: {fileID: 5605164414762312911, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_IsActive
@@ -10850,7 +10854,7 @@ PrefabInstance:
     - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 11500000, guid: 90ec1fa4f49535147bd61afb6288a801, type: 3}
+      objectReference: {fileID: 6852260512427478106}
     - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -10877,7 +10881,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: Toggle
       objectReference: {fileID: 0}
     - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -10893,7 +10897,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: ToggleButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -10925,7 +10929,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: 
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4942986322222099751, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -10981,28 +10985,12 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
-      propertyPath: cost
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: name
       value: Testi1
       objectReference: {fileID: 0}
     - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
-      propertyPath: sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 564e1b63b35f2b74cae8b212c6e929b3, type: 3}
-    - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
-      propertyPath: building
-      value: 
-      objectReference: {fileID: 5361643511454176902, guid: 3604ba868f008b74e94996d556d8fba7, type: 3}
-    - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: unlocksOn
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
-      propertyPath: buildingName
-      value: Roadtile
       objectReference: {fileID: 0}
     - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: spriteOverride
@@ -11465,7 +11453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2771741638270154712, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: unlocksOn
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: cost
@@ -11597,7 +11585,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5605164414762312911, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Name
-      value: BuildingButton (8)
+      value: StoneGate
       objectReference: {fileID: 0}
     - target: {fileID: 5605164414762312911, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_IsActive
@@ -11641,7 +11629,7 @@ PrefabInstance:
     - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: building
       value: 
-      objectReference: {fileID: 2300419187923452777, guid: 95063e27de48f164ba6ea8493ab10de3, type: 3}
+      objectReference: {fileID: 6461836574929623103, guid: 824d83afbae99c64b9ec95fada02669a, type: 3}
     - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: unlocksOn
       value: 1
@@ -11756,7 +11744,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5605164414762312911, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Name
-      value: BuildingButton (1)
+      value: Tower
       objectReference: {fileID: 0}
     - target: {fileID: 5605164414762312911, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_IsActive
@@ -11786,10 +11774,6 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
-      propertyPath: cost
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: name
       value: Testi4
       objectReference: {fileID: 0}
@@ -11807,7 +11791,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: buildingName
-      value: Farm House
+      value: Farm
       objectReference: {fileID: 0}
     - target: {fileID: 1978710028388150698, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Pivot.x
@@ -11915,7 +11899,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5605164414762312911, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Name
-      value: BuildingButton (3)
+      value: Farm
       objectReference: {fileID: 0}
     - target: {fileID: 5605164414762312911, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_IsActive
@@ -12681,6 +12665,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2497424052543646935}
     m_Modifications:
+    - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 08a722f5548b9ea48ab5ecaa2aac7842, type: 3}
+    - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: building
+      value: 
+      objectReference: {fileID: 4805824152646546386, guid: 30c67a5e725d06b4da341046b0ab84cf, type: 3}
+    - target: {fileID: 145968644441189926, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
+      propertyPath: buildingName
+      value: Library
+      objectReference: {fileID: 0}
     - target: {fileID: 1978710028388150698, guid: 7a83de88a819b3a45a4a55727a1d8c30, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

@@ -342,10 +342,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 927320372cfd04e41808f6973ea2efa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingName: Library
-  building: {fileID: 4805824152646546386, guid: 30c67a5e725d06b4da341046b0ab84cf, type: 3}
-  cost: 500
-  sprite: {fileID: 21300000, guid: 08a722f5548b9ea48ab5ecaa2aac7842, type: 3}
+  buildingName: Roadtile
+  building: {fileID: 5361643511454176902, guid: 3604ba868f008b74e94996d556d8fba7, type: 3}
+  cost: 100
+  sprite: {fileID: 21300000, guid: 564e1b63b35f2b74cae8b212c6e929b3, type: 3}
   UIName: {fileID: 30902850291037297}
   UICost: {fileID: 1776905829944412992}
   UIImage: {fileID: 3166025521365639172}

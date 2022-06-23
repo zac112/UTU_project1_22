@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 679658133557009505}
   - component: {fileID: 8368938870191872026}
   - component: {fileID: 8857304580066242175}
+  - component: {fileID: 599760319127410473}
   m_Layer: 11
   m_Name: FarmHouse
   m_TagString: Untagged
@@ -56,7 +57,6 @@ MonoBehaviour:
   _length: 4
   _isRotated: 0
   _nextRotation: {fileID: 300343399489410095, guid: 8f8fea8d22d375748be2c37ec6f4cbd1, type: 3}
-  building: 0
 --- !u!60 &8807639823351591623
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cost: 0
+  Wood: 0
 --- !u!114 &8783795713269358399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,3 +308,17 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &599760319127410473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4042910844310544467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1b38760fdcc144ba19f49a275e3416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  houses: []
+  plots: []

@@ -34,6 +34,11 @@ public class PlotSystem : MonoBehaviour
         bps = GameObject.Find("BuildingPlacementSystem").GetComponent<BuildingPlacementSystem>();
         im = GameObject.Find("InventorySystem").GetComponent<InventoryManager>();
         source = GetComponent<AudioSource>();
+
+        foreach (FarmScript farm in FindObjectsOfType<FarmScript>())
+        {
+            farm.RegisterPlot(this);
+        }
     }
 
     // Update is called once per frame
