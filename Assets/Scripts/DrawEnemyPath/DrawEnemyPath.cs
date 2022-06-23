@@ -16,7 +16,8 @@ public class DrawEnemyPath : MonoBehaviour
     void Start()
     {
         enemyPathVisualizers = new GameObject("EnemyPathVisualizers");
-        spawnpoints = GameObject.FindObjectsOfType<Spawnpoint>();        
+        spawnpoints = GameObject.FindObjectsOfType<Spawnpoint>();
+        InvokeRepeating("Spawn", 0, spawnTime);
     }
 
     void OnEnable(){
@@ -30,6 +31,7 @@ public class DrawEnemyPath : MonoBehaviour
     // Update is called once per frame
     void Spawn()
     {
+        if (!target) return;
         foreach (Spawnpoint spawnpoint in spawnpoints) {
             GameObject go = Instantiate(pathVisualizer, spawnpoint.transform.position, Quaternion.identity);
             go.transform.SetParent(enemyPathVisualizers.transform);            
@@ -40,8 +42,6 @@ public class DrawEnemyPath : MonoBehaviour
     void WaitForMainBuilding(GameObject go){
         if (!go.CompareTag("Mainbuilding")) return;
 
-        target = go;
-        InvokeRepeating("Spawn", 0, spawnTime);
-        OnDisable();
+        target = go;        
     }
 }
