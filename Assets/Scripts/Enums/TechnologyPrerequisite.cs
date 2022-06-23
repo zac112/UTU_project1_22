@@ -4,5 +4,5 @@ using UnityEngine;
 
 public enum TechnologyPrerequisite
 {
-    None, Tier1MainBuilding, Tier2MainBuilding, Tier3MainBuilding, BuildingTech, Smithy, Farming
+    None, Tier1MainBuilding, Tier2MainBuilding, Tier3MainBuilding, BuildingTech, Smithy, Farming, Library
 }
