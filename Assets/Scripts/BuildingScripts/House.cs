@@ -14,6 +14,7 @@ public class House : MonoBehaviour
         {
             farm.RegisterHouse(this);
         }
+        GameStats.BuildingsBuilt += 1;
         StartCoroutine(Eat());    
     }
 
@@ -22,6 +23,7 @@ public class House : MonoBehaviour
         foreach (FarmScript farm in FindObjectsOfType<FarmScript>())
         {
             farm.UnRegisterHouse(this);
+            GameStats.BuildingsDestroyed += 1;
         }
     }
     public void Feed()
