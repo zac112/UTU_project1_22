@@ -16,6 +16,7 @@ public class InputListener : NetworkBehaviour
     void Start()
     {
         weapon.OnValueChanged += ToggleWeapon;
+        GameObject.FindObjectOfType<UIManager>().RegisterWeaponChanges(this);
     }
     //call gameobject methods here
     void Update()

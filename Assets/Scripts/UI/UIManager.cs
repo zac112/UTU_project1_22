@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class UIManager : MonoBehaviour{
@@ -68,4 +69,13 @@ public class UIManager : MonoBehaviour{
         }
     }
 
+    public void RegisterWeaponChanges(InputListener player)
+    {
+        Transform bar = transform.Find("Sidebar");
+        bar.Find("SwordButton").GetComponent<Button>().onClick.AddListener(player.ToggleSword);
+        bar.Find("BowButton").GetComponent<Button>().onClick.AddListener(player.ToggleBow);
+        bar.Find("PickaxeButton").GetComponent<Button>().onClick.AddListener(player.TogglePick);
+        bar.Find("AxeButton").GetComponent<Button>().onClick.AddListener(player.ToggleAxe);
+        
+    }
 }
