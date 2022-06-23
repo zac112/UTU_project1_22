@@ -16,6 +16,7 @@ public class GameInitializer : MonoBehaviour
         switch (GameSettings.Instance().networkMode) {
             
             case NetworkMode.Client: {
+                    NetworkManager.Singleton.GetComponent<UNetTransport>().ConnectAddress = GameSettings.Instance().serverAddress;
                     NetworkManager.Singleton.StartClient();
                     return; 
             }
