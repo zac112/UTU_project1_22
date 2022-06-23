@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2845505524657465811}
   - component: {fileID: 2845505524657465644}
-  - component: {fileID: 2845505524657465810}
+  - component: {fileID: 3572282127974274661}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -77,7 +77,7 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &2845505524657465810
+--- !u!114 &3572282127974274661
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,14 +89,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b285d61a57474b4ab77e2432601335e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraSpeed: 15
-  MouseCameraIgnoreRadius: 0.65
   TargetCamera: 1
   FreeCamera: 0
+  CameraSpeed: 1
+  MouseCameraIgnoreRadius: 1
   target: {fileID: 0}
   smoothTime: 0.5
   offset: {x: 0, y: 0, z: 0}
   bps: {fileID: 0}
+  currentZoom: 10
 --- !u!1 &8725804917150755959
 GameObject:
   m_ObjectHideFlags: 0
