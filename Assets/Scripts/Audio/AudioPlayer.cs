@@ -27,7 +27,7 @@ public class AudioPlayer : MonoBehaviour
     //Plays the clip at the given index or nothing
     public void Play(AudioType category, int clip)
     {
-        if (GetCategory(category).Count < clip) return;
+        if (GetCategory(category).Count <= clip) return;
         source.PlayOneShot(clips[clip].clip);
     }
 
