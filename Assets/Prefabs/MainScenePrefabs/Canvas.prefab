@@ -761,19 +761,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8932512339627840721}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2153363597973973829, guid: bee2fec38685c894c8e56d4a16113cd4, type: 3}
-        m_TargetAssemblyTypeName: InputListener, Assembly-CSharp
-        m_MethodName: ToggleAxe
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1689724540466539366
 GameObject:
   m_ObjectHideFlags: 0
@@ -7566,19 +7554,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8072201889470693860}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2153363597973973829, guid: bee2fec38685c894c8e56d4a16113cd4, type: 3}
-        m_TargetAssemblyTypeName: InputListener, Assembly-CSharp
-        m_MethodName: ToggleBow
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &4397963464733132619
 GameObject:
   m_ObjectHideFlags: 0
@@ -7835,19 +7811,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5961005719662934647}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2153363597973973829, guid: bee2fec38685c894c8e56d4a16113cd4, type: 3}
-        m_TargetAssemblyTypeName: InputListener, Assembly-CSharp
-        m_MethodName: TogglePick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &4571813810466720993
 GameObject:
   m_ObjectHideFlags: 0
@@ -8668,19 +8632,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6537307369498922924}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2153363597973973829, guid: bee2fec38685c894c8e56d4a16113cd4, type: 3}
-        m_TargetAssemblyTypeName: InputListener, Assembly-CSharp
-        m_MethodName: ToggleSword
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &7114057281977526006
 GameObject:
   m_ObjectHideFlags: 0

@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 6609971668409792002, guid: 92c579a2922941744a1c76d8b1677dfc, type: 3}
+  spawnpointInitializer: {fileID: 9150521850429231413, guid: 434377870a0969145907dcb3f0b57a23, type: 3}

@@ -269,7 +269,6 @@ MonoBehaviour:
   resourceInfo: {fileID: 725012921049537497, guid: 8261eda887531c54da3076706134dfc6, type: 3}
   goldGatherSpeed: 0
   woodGatherSpeed: 0
-  source: {fileID: 0}
 --- !u!82 &5874453712941746139
 AudioSource:
   m_ObjectHideFlags: 0
@@ -644,7 +643,6 @@ MonoBehaviour:
   resourceInfo: {fileID: 725012921049537497, guid: 8261eda887531c54da3076706134dfc6, type: 3}
   goldGatherSpeed: 0
   woodGatherSpeed: 0
-  source: {fileID: 0}
 --- !u!82 &7803621916089464668
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1215,6 +1213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 90
   startingGold: 1000
+  startingWood: 0
   movement: {fileID: 0}
   fogRevealer: {fileID: 2861506601046818404}
   goldMine: {fileID: 7953807960417106100, guid: 944dcfb610eb8274c898f34f5e5a7c98, type: 3}
