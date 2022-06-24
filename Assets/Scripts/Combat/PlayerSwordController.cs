@@ -14,7 +14,8 @@ public class PlayerSwordController : NetworkBehaviour
     protected float attackCooldown = 0.7f; //seconds
     private float lastAttackedAt = 0f;
 
-    public SpriteRenderer sr;
+    [SerializeField] protected SpriteRenderer sr;
+    [SerializeField] Collider2D col;
 
     NetworkVariable<Quaternion> netRotation = new NetworkVariable<Quaternion>();
 
@@ -55,11 +56,11 @@ public class PlayerSwordController : NetworkBehaviour
         return Quaternion.AngleAxis(angle, Vector3.forward);
     }
     IEnumerator EnableHitbox(){
-        this.gameObject.GetComponent<Collider2D>().enabled=true;
+        col.enabled=true;
         sr.color=new Color(1f, 0f, 0f, 1f); //change sword color to make it more obvious when you are attacking
 
         yield return new WaitForSeconds(0.3f);
-        this.gameObject.GetComponent<Collider2D>().enabled=false;
+        col.enabled=false;
         sr.color=new Color(1f, 1f, 1f, 1f);
     }
 

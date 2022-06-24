@@ -31,21 +31,20 @@ public class InputListener : NetworkBehaviour
         Toggle(1);
     }
 
-    public void ToggleBow() {        
-        
+    public void ToggleBow() {
+        Toggle(2);
     }
     public void TogglePick()
     {
-        Toggle(2);
+        Toggle(3);
     }
     public void ToggleAxe()
     {
-        Toggle(3);
+        Toggle(4);
     }
 
     private void Toggle(int child) {
         if (!NetworkObject.IsLocalPlayer) return;
-        //if (!NetworkManager.IsHost) ToggleWeapon(child);
 
         ToggleWeaponServerRpc(child==weapon.Value ? 0 : child);
     }
@@ -64,6 +63,7 @@ public class InputListener : NetworkBehaviour
         foreach (GameObject go in children) go.SetActive(false);
         children[newweapon].SetActive(true);
     }
+
     [ServerRpc]
     public void ToggleWeaponServerRpc(int child) {
         weapon.Value = child;
