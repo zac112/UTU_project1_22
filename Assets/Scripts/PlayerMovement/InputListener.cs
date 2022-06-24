@@ -32,7 +32,7 @@ public class InputListener : NetworkBehaviour
     }
 
     public void ToggleBow() {        
-        GetComponent<PlayerCombat>().RangedAttack();
+        
     }
     public void TogglePick()
     {

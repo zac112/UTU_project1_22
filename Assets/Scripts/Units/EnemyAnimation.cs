@@ -50,10 +50,18 @@ public class EnemyAnimation : MonoBehaviour
                 }
             }
         }
-
-
     }
 
+    public void AttackAnimation() {
+        StartCoroutine(SetAttackBool());
+    }
 
+    IEnumerator SetAttackBool()
+    {
+        anim.SetInteger("IsAttacking", 1); //not sure why, but booleans did not work in the animator so this has to be an integer
+        yield return new WaitForSeconds(1f);
+        anim.SetInteger("IsAttacking", 0);
+
+    }
 
 }

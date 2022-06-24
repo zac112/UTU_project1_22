@@ -11,13 +11,12 @@ public class Spawnpoint : MonoBehaviour
     int spawntime = 1;
     
     List<GameObject> unitPrefabs = new List<GameObject>();
-    GameObject player;
+    
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
 
-        foreach(String t in Enum.GetNames(typeof(EnemyType))){
+        foreach (String t in Enum.GetNames(typeof(EnemyType))){
             GameObject go = Resources.Load<GameObject>("Units/"+t);
             unitPrefabs.Add(go);
         }
@@ -31,6 +30,9 @@ public class Spawnpoint : MonoBehaviour
             yield return new WaitWhile(() => unitsToSpawn.Count == 0);
             yield return new WaitForSeconds(spawntime); 
              
+            GameObject player = GameObject.FindGameObjectWithTag("Mainbuilding");
+            if(!player) player = GameObject.FindGameObjectWithTag("Player");
+
             UnitBase unit = unitsToSpawn[0];
             unitsToSpawn.RemoveAt(0);
             
