@@ -55,8 +55,8 @@ public class BuildingVisualizer : MonoBehaviour
         foreach (Vector3 tilePosition in tilesList) {
 
             Vector3Int cellPosition = tilemap.WorldToCell(tilePosition);
-            cellPosition.x += 5;
-            cellPosition.y += 5;
+            //cellPosition.x += 6;
+            //cellPosition.y += 6;
             cellPosition.z = 0;
 
             GameObject tile = tilemap.GetInstantiatedObject(cellPosition);

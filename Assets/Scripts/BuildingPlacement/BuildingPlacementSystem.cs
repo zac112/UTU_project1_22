@@ -87,8 +87,8 @@ public class BuildingPlacementSystem : NetworkBehaviour
          * Currently, clicking a tile returns the next tile towards NE, but subtracting
          * 0.50 from x and 0.25 from y fixes it.
          */
-        tileLocationInWorld.x -= 0.50f;
-        tileLocationInWorld.y -= 0.25f;
+        //tileLocationInWorld.x -= 0.50f;
+        //tileLocationInWorld.y -= 0.25f;
 
         return tileLocationInWorld;
     }

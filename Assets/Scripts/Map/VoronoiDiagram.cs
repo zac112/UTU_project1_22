@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class VoronoiDiagram : MonoBehaviour
 {
-    public enum TileType { Grass, Water, Desert};
+    public enum TileType { Grass, Water, Desert, Beach};
     private Dictionary<Vector3, TileType> seeds = new Dictionary<Vector3, TileType>();
     private Dictionary<Vector3,int> forestSeeds = new Dictionary<Vector3,int>();
     private List<Vector3> goldNodeSeeds = new List<Vector3>();
     private List<Vector3> rainSeeds = new List<Vector3>();
     private List<Vector3> cactusSeeds = new List<Vector3>();
+    private List<TileType> spawnableGroundSeeds = new List<TileType> { TileType.Grass, TileType.Water, TileType.Desert };
     private int numSeeds = 100;
     private int minDistance = 10;
     private int maxDistance = 100;
@@ -63,8 +64,8 @@ public class VoronoiDiagram : MonoBehaviour
             float[] pos = GetRandomPosOnMap(r);
             Vector3 vector = new Vector3(pos[0], pos[1], 0);
 
-            Array values = Enum.GetValues(typeof(TileType));
-            seeds.Add(vector, (TileType)values.GetValue(random.Next(0, values.Length)));
+            
+            seeds.Add(vector, spawnableGroundSeeds[random.Next(0, spawnableGroundSeeds.Count)]);
         }
     }
 

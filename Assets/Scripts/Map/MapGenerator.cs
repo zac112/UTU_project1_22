@@ -39,6 +39,8 @@ public class MapGenerator : MonoBehaviour
     [SerializeField]List<GameObject> grassTrees = new List<GameObject>();
     [SerializeField]List<GameObject> desertTrees = new List<GameObject>();
 
+    RandomNoise random;
+
     void Generate(int width, int height, Vector3Int offset)
     {
         for (int i = 0; i < width; i++)
@@ -72,8 +74,9 @@ public class MapGenerator : MonoBehaviour
         Vector3 worldPos = tilemap.CellToWorld(position);
         VoronoiDiagram.TileType type = voronoi.GetClosestSeed(worldPos);
 
+        type = DetermineMidtile(position, type);
         tiles.TryGetValue(type, out tileOptions);
-        tilemap.SetTile(position, tileOptions[UnityEngine.Random.Range(0,tileOptions.Count)]);       
+        tilemap.SetTile(position, tileOptions[UnityEngine.Random.Range(0,tileOptions.Count)]);
 
         switch(type){
             case VoronoiDiagram.TileType.Desert: {
@@ -82,7 +85,7 @@ public class MapGenerator : MonoBehaviour
                 GenerateTree(worldPos, desertTrees); 
                 break;
                 }
-            case VoronoiDiagram.TileType.Grass: {
+            case VoronoiDiagram.TileType.Grass: {                
                 GenerateTree(worldPos, grassTrees);
                 GenerateRain(worldPos);
                 break;
@@ -93,6 +96,26 @@ public class MapGenerator : MonoBehaviour
 
         GameEvents.current?.OnMapChanged(worldPos, 1); 
         return true;
+    }
+    
+    private VoronoiDiagram.TileType DetermineMidtile(Vector3Int position, VoronoiDiagram.TileType currTile)
+    {
+        if (currTile == VoronoiDiagram.TileType.Water) return currTile;
+
+        for (int i = -1; i < 2; i++)
+        {
+            for (int j = -1; j < 2; j++)
+            {
+                Vector3 worldPos = tilemap.CellToWorld(new Vector3Int(position.x + i, position.y + j, 0));
+                if (voronoi.GetClosestSeed(worldPos) == VoronoiDiagram.TileType.Water)
+                {
+                    if (random.Noise2D(worldPos.x, worldPos.y) < -0.5f)
+                        return VoronoiDiagram.TileType.Beach;
+                }
+            }
+        }
+
+        return currTile;
     }
 
     /**
@@ -159,6 +182,7 @@ public class MapGenerator : MonoBehaviour
     }
     public void Awake()
     {
+        random = new RandomNoise(GameSettings.Instance().gameSeed);
         parentGOfow = new GameObject("Fog of War");
         parentGOtree = new GameObject("Trees");
         parentGOgold = new GameObject("Gold");
@@ -175,6 +199,9 @@ public class MapGenerator : MonoBehaviour
         });
         tiles.Add(VoronoiDiagram.TileType.Water, new List<Tile>{
             Resources.Load<Tile>("TilesSO/WaterTile")
+        });
+        tiles.Add(VoronoiDiagram.TileType.Beach, new List<Tile>{
+            Resources.Load<Tile>("TilesSO/BeachTile")
         });
         tiles.Add(VoronoiDiagram.TileType.Grass, new List<Tile>{
             Resources.Load<Tile>("TilesSO/GrassTile"),
