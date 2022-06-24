@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -7165183740345885984}
   - component: {fileID: -6961573940540586513}
   - component: {fileID: -2326887722762681365}
+  - component: {fileID: 3493873034658695935}
   m_Layer: 11
   m_Name: WoodWallFL
   m_TagString: Untagged
@@ -235,6 +236,20 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &3493873034658695935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2300419187923452777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1234cd5779965e04ab094803ea50410a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetType: 3
+  targettableObject: {fileID: 0}
 --- !u!1 &9057870360101941518
 GameObject:
   m_ObjectHideFlags: 0

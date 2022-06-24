@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 4774747632639905328}
   - component: {fileID: -5489188772163847126}
   - component: {fileID: -9213367324782691837}
+  - component: {fileID: 1696346459605317705}
   m_Layer: 11
   m_Name: MainBuilding_tier1
   m_TagString: Mainbuilding
@@ -340,3 +341,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextTier: {fileID: 7162115984485016535, guid: 028ce4429c538d046bf21d77eb0cd04f, type: 3}
   requirement: 2
+--- !u!114 &1696346459605317705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7101299784327275876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1234cd5779965e04ab094803ea50410a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetType: 1
+  targettableObject: {fileID: 7101299784327275876}

@@ -261,8 +261,8 @@ GameObject:
   - component: {fileID: 3572751020664101907}
   - component: {fileID: 3572751020664101908}
   - component: {fileID: 3572751020664101909}
+  - component: {fileID: -8156957335404797329}
   - component: {fileID: 3572751020664101910}
-  - component: {fileID: 3572751020664101911}
   - component: {fileID: 3572751020664101912}
   - component: {fileID: 3572751020664101913}
   - component: {fileID: 3572751020664101904}
@@ -341,6 +341,19 @@ MonoBehaviour:
   enemyGraph: {fileID: 3572751019624545054}
   speed: 200
   nextWaypointDistance: 3
+--- !u!114 &-8156957335404797329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3572751020664101914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0630e39a8bf21f04f9726fab094dc8c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatType: []
 --- !u!50 &3572751020664101910
 Rigidbody2D:
   serializedVersion: 4
@@ -362,22 +375,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3572751020664101911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3572751020664101914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1924674544962e54c8085a5f32c24d42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats: {fileID: 3572751020664101913}
-  ai: {fileID: 3572751020664101909}
-  hitbox: {fileID: 6286591741058424022, guid: 92945cbc34abf1244b5e0909305e3f13, type: 3}
-  projectile: {fileID: 7389375861155235134, guid: cba876b7c24ed104a872d491e80c1687, type: 3}
 --- !u!70 &3572751020664101912
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -407,7 +404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 0
+  currentHealth: 100
   healthBar: {fileID: 3572751021488228569}
 --- !u!95 &3572751020664101904
 Animator:

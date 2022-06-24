@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3876808051762879575}
   - component: {fileID: -2088757300083063461}
   - component: {fileID: 9205530588165116515}
+  - component: {fileID: 2994100866390040353}
   m_Layer: 11
   m_Name: VillageHouse2BR
   m_TagString: Untagged
@@ -268,6 +269,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   food: 2
   maxFood: 10
+--- !u!114 &2994100866390040353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2300419187923452777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1234cd5779965e04ab094803ea50410a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetType: 3
+  targettableObject: {fileID: 0}
 --- !u!1 &9057870360101941518
 GameObject:
   m_ObjectHideFlags: 0

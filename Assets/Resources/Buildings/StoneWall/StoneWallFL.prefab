@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1925708233068667896}
   - component: {fileID: -8340527853423368203}
   - component: {fileID: 1892602609218287762}
+  - component: {fileID: -9016089498614897717}
   m_Layer: 11
   m_Name: StoneWallFL
   m_TagString: Untagged
@@ -55,7 +56,6 @@ MonoBehaviour:
   _length: 1
   _isRotated: 0
   _nextRotation: {fileID: 2300419187923452777, guid: 3f562078f8615af4082e47b7214cafc5, type: 3}
-  building: 0
 --- !u!60 &2533162924721199356
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cost: 0
+  Wood: 0
 --- !u!82 &1925708233068667896
 AudioSource:
   m_ObjectHideFlags: 0
@@ -235,6 +236,20 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &-9016089498614897717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2300419187923452777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1234cd5779965e04ab094803ea50410a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetType: 3
+  targettableObject: {fileID: 0}
 --- !u!1 &9057870360101941518
 GameObject:
   m_ObjectHideFlags: 0

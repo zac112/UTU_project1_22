@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 356439239847366129}
   - component: {fileID: 9213481232845655350}
   - component: {fileID: -2186476832132102845}
+  - component: {fileID: 6475051863148118438}
   m_Layer: 11
   m_Name: Library_2
   m_TagString: Library
@@ -55,7 +56,6 @@ MonoBehaviour:
   _length: 3
   _isRotated: 1
   _nextRotation: {fileID: 4805824152646546386, guid: 30c67a5e725d06b4da341046b0ab84cf, type: 3}
-  building: 0
 --- !u!114 &-2155733581748122840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cost: 0
+  Wood: 0
 --- !u!60 &5890048182084798746
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -275,3 +276,17 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &6475051863148118438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358814491382981149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1234cd5779965e04ab094803ea50410a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetType: 2
+  targettableObject: {fileID: 0}

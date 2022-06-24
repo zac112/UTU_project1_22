@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 8368938870191872026}
   - component: {fileID: 8857304580066242175}
   - component: {fileID: 599760319127410473}
+  - component: {fileID: 7083503532606244281}
   m_Layer: 11
   m_Name: FarmHouse
   m_TagString: Untagged
@@ -322,3 +323,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   houses: []
   plots: []
+--- !u!114 &7083503532606244281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4042910844310544467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1234cd5779965e04ab094803ea50410a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetType: 2
+  targettableObject: {fileID: 0}

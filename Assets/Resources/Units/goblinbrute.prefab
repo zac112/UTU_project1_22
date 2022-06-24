@@ -342,13 +342,13 @@ GameObject:
   - component: {fileID: 380150695690948846}
   - component: {fileID: 380150695690948841}
   - component: {fileID: 380150695690948840}
+  - component: {fileID: -2766543862238793605}
   - component: {fileID: 380150695690948843}
   - component: {fileID: 380150695690948837}
   - component: {fileID: 380150695690948836}
   - component: {fileID: 380150695690948845}
   - component: {fileID: 380150695690948850}
   - component: {fileID: 380150695690948847}
-  - component: {fileID: 6705606705222795523}
   - component: {fileID: -4572480637173325220}
   - component: {fileID: -8389037314757710261}
   - component: {fileID: 4745154852914801176}
@@ -422,6 +422,21 @@ MonoBehaviour:
   enemyGraph: {fileID: 380150696801826787}
   speed: 200
   nextWaypointDistance: 3
+--- !u!114 &-2766543862238793605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380150695690948839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0630e39a8bf21f04f9726fab094dc8c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatType:
+  - combatType: 1
+    targetType: 000000000100000007000000030000000200000006000000
 --- !u!50 &380150695690948843
 Rigidbody2D:
   serializedVersion: 4
@@ -472,7 +487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 0
+  currentHealth: 100
   healthBar: {fileID: 380150695441433636}
 --- !u!95 &380150695690948845
 Animator:
@@ -560,22 +575,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6705606705222795523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 380150695690948839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf317e33e092bc1408db515fc24e0ea7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats: {fileID: 380150695690948836}
-  speed: 3
-  hitbox: {fileID: 6286591741058424022, guid: 92945cbc34abf1244b5e0909305e3f13, type: 3}
-  anim: {fileID: 380150695690948845}
 --- !u!114 &-4572480637173325220
 MonoBehaviour:
   m_ObjectHideFlags: 0

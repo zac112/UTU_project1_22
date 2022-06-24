@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6227486813438529557}
   - component: {fileID: -6602796382704950941}
   - component: {fileID: 1356894439026507992}
+  - component: {fileID: -4415798117358250783}
   m_Layer: 11
   m_Name: Smithy_2
   m_TagString: Smithy
@@ -295,3 +296,17 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &-4415798117358250783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5606056848571291191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1234cd5779965e04ab094803ea50410a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetType: 2
+  targettableObject: {fileID: 5606056848571291191}
