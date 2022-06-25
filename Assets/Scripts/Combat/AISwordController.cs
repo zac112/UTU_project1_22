@@ -37,14 +37,14 @@ public class AISwordController : PlayerSwordController
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 90;
             rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-            while (Vector2.Distance(thispos, targetpos) < 70)
+            while (target && Vector2.Distance(thispos, targetpos) < 70)
             {
 
                 CalculatePositions();                
                 transform.Rotate(transform.forward, angle);
 
                 angle += 10;
-                bool enabled = Vector3.Dot(dir, transform.right) < 0;
+                bool enabled = Vector2.Dot(dir, transform.parent.right) == Vector2.Dot(transform.right, transform.parent.right);
                 sr.enabled = enabled;
                 gameObject.GetComponent<Collider2D>().enabled = enabled;
                 yield return null;
@@ -56,6 +56,7 @@ public class AISwordController : PlayerSwordController
     }
 
     private void CalculatePositions() {
+        if (!target) return;
         thispos = Camera.main.WorldToScreenPoint(transform.position);
         targetpos = Camera.main.WorldToScreenPoint(target.transform.position);
         dir = (targetpos - thispos).normalized;

@@ -4,21 +4,18 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Unity.Netcode;
 
-public class PlayerStats : NetworkBehaviour, IDataManager
-{
-    [SerializeField] int startingHealth;
+public class PlayerStats : Stats, IDataManager
+{    
     [SerializeField] int startingGold;
     [SerializeField] int startingWood;
 
-    NetworkVariable<int> networkMaxHealth = new NetworkVariable<int>();
-    NetworkVariable<int> networkHealth = new NetworkVariable<int>();
+
     NetworkVariable<int> networkGold = new NetworkVariable<int>();
     NetworkVariable<int> networkWood = new NetworkVariable<int>();
 
-    int health => networkHealth.Value;
+    int health => currentHealth;
     int gold => networkGold.Value;
-    int wood => networkWood.Value;
-    int maxHealth => networkMaxHealth.Value;
+    int wood => networkWood.Value;    
 
     List<Village> FriendlyVillages = new List<Village>();
     Village CurrentVillage;  // currently active village
@@ -26,11 +23,9 @@ public class PlayerStats : NetworkBehaviour, IDataManager
     [SerializeField] WASDMovement movement;
     [SerializeField] FogRevealer fogRevealer;
     [SerializeField] GameObject goldMine;
-        
+    
            
-    void Start(){
-        SetHealthServerRpc(startingHealth);
-        SetMaxHealthServerRpc(startingHealth);
+    protected override void PostStart(){        
         SetGoldServerRpc(startingGold);
         SetWoodServerRpc(startingWood);
         GameStats.Gold = startingGold;
@@ -127,32 +122,16 @@ public class PlayerStats : NetworkBehaviour, IDataManager
 
     public int GetGold(){return gold;}
     public int GetWood(){return wood;}
+    
+    protected override void ActOnDeath()
+    {
+        Destroy(gameObject);
+        Debug.Log("YOU DIED");
 
-    public void DamagePlayer(int amount){
-        SetHealthServerRpc(health - amount);
-
-        //what happens when player dies
-        if(health<=0){
-            Destroy(gameObject);
-            Debug.Log("YOU DIED");
-
-            GameEvents.current.OnGameOver(GameOverType.PlayerDied);  // launch game over screen through event system
-
-        }
+        GameEvents.current.OnGameOver(GameOverType.PlayerDied);  // launch game over screen through event system
     }
-
     public void HealPlayer(int amount){
         SetHealthServerRpc(Mathf.Clamp(0, maxHealth, health+amount));
-    }
-
-    [ServerRpc(RequireOwnership = false)]
-    void SetHealthServerRpc(int health) {
-        networkHealth.Value = health;
-    }
-
-    [ServerRpc(RequireOwnership = false)]
-    public void SetMaxHealthServerRpc(int amount){
-        networkMaxHealth.Value = amount;
     }
 
     [ServerRpc(RequireOwnership = false)]

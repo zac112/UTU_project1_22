@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 public class UnitBase
 {
-    public int hp {get; private set;}
-    public int attack {get; private set;}
-    public int difficultyValue {get; private set;}
+    public int hp {get; set;}
+    public int attack {get; set;}
+    public int difficultyValue {get; set;}
 
     public readonly EnemyType type;
 

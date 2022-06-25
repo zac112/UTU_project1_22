@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FighterMelee : MonoBehaviour, IFighter
 {
-        
+    
     [SerializeField] List<CombatTarget> targets = new List<CombatTarget>();
     [SerializeField] List<CombatTargetType> preferredTargets = new List<CombatTargetType>();
     AISwordController swordController;
@@ -38,6 +38,14 @@ public class FighterMelee : MonoBehaviour, IFighter
             weapon.transform.SetParent(gameObject.transform);
             weapon.transform.localPosition = Vector3.zero;
             swordController = weapon.AddComponent<AISwordController>();
+            swordController.SetCollider(weapon.GetComponent<Collider2D>());
+            DamageInflicter df = weapon.AddComponent<DamageInflicter>();
+            df.SetStats(GetComponent<Stats>());
+            df.SetDamager(CombatTargetType.Enemy);
+        }
+        else
+        {
+            swordController = gameObject.AddComponent<BruteSwordController>();
         }
 
         //StartCoroutine(Toggle(targetCollider));
@@ -60,13 +68,13 @@ public class FighterMelee : MonoBehaviour, IFighter
             {
                 GetComponent<AIPathfinding>().setTarget(sortedTargets[0].GetTarget().transform);
                 swordController.SetTarget(sortedTargets[0]);
-                if(!usesWeapon) StartCoroutine(GetDistance(sortedTargets[0]));
+                StartCoroutine(GetDistance(sortedTargets[0]));
             }
             
             yield return new WaitWhile(() => targets.Count > 0);
             GetComponent<AIPathfinding>().setTarget(oldTarget);
             swordController.SetTarget(null);
-            if (!usesWeapon) StopCoroutine(GetDistance(null));
+            StopCoroutine(GetDistance(null));
 
         }
     }

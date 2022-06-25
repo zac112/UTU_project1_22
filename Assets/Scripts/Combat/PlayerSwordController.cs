@@ -59,7 +59,7 @@ public class PlayerSwordController : NetworkBehaviour
         col.enabled=true;
         sr.color=new Color(1f, 0f, 0f, 1f); //change sword color to make it more obvious when you are attacking
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(1f);
         col.enabled=false;
         sr.color=new Color(1f, 1f, 1f, 1f);
     }
@@ -69,4 +69,5 @@ public class PlayerSwordController : NetworkBehaviour
         netRotation.Value = rot;
     }
 
+    public void SetCollider(Collider2D col) { this.col = col; }
 }

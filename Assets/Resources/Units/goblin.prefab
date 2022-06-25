@@ -1,5 +1,69 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4518609725898333278
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6630152492310795598}
+  - component: {fileID: 803958604731605923}
+  - component: {fileID: 6807139296894087160}
+  m_Layer: 8
+  m_Name: CombatTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6630152492310795598
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4518609725898333278}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6361766368815121272}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &803958604731605923
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4518609725898333278}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &6807139296894087160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4518609725898333278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1234cd5779965e04ab094803ea50410a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetType: 5
+  thisUnit: {fileID: 6361766368815121266}
+  canBeDamagedBy: 000000000700000004000000
 --- !u!1 &6361766367091648179
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,6 +492,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6361766368312943004}
+  - {fileID: 6630152492310795598}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -472,7 +537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 6361766368815121272}
-  enemyGraph: {fileID: 0}
+  enemyGraph: {fileID: 6361766368815121272}
   speed: 200
   nextWaypointDistance: 3
 --- !u!114 &-8672845128490483070
@@ -492,6 +557,7 @@ MonoBehaviour:
     targetType: 000000000100000002000000030000000700000006000000
   - combatType: 2
     targetType: 00000000
+  usesWeapon: 1
 --- !u!50 &6361766368815121277
 Rigidbody2D:
   serializedVersion: 4
@@ -541,8 +607,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c058c581902ee5749b627adc66308b49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 100
+  attack: 5
+  startingHealth: 20
   healthBar: {fileID: 6361766368565647282}
 --- !u!95 &6361766368815121275
 Animator:
