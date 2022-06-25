@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1816482925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,16 +154,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   occupiedVisualizer: {fileID: 926927214805872018, guid: 9fbf29370b21aee4a848df415caa4ed9, type: 3}
   availableVisualizer: {fileID: 8815777532811354241, guid: 733eb10ae18233a4188ee19d8d650366, type: 3}
-  wallTestingPrefab: {fileID: 7849311793634478279, guid: a670157633abcfb40b5ad46fd1cbcd5f, type: 3}
+  wall: {fileID: 0}
+  wallRotated: {fileID: 0}
   wallPositions: []
-  startNW: []
-  startNE: []
-  startSE: []
-  startSW: []
-  targetNW: []
-  targetNE: []
-  targetSE: []
-  targetSW: []
 --- !u!4 &1816482926
 Transform:
   m_ObjectHideFlags: 0

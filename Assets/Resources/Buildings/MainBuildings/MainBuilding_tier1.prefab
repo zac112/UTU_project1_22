@@ -106,6 +106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd2a9604af6fe4686022a0f905fcba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attack: 0
+  startingHealth: 10
+  healthBar: {fileID: 0}
   _healthPoints: 20
   _width: 2
   _length: 2
@@ -354,4 +357,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetType: 1
-  targettableObject: {fileID: 7101299784327275876}
+  thisUnit: {fileID: 0}
+  canBeDamagedBy: 05000000

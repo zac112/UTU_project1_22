@@ -17,6 +17,10 @@ public abstract class Stats : NetworkBehaviour
      
     private void Start()
     {
+        GameObject hb = Instantiate<GameObject>(Resources.Load<GameObject>("Healthbar"), transform);
+        healthBar = hb.transform.GetComponentInChildren<HealthBar>();
+        healthBar.gameObject.SetActive(false);
+
         if (NetworkManager.IsHost) {
             networkMaxHealth.Value = startingHealth;
             networkHealth.Value = startingHealth;
@@ -25,7 +29,7 @@ public abstract class Stats : NetworkBehaviour
         SetHealthServerRpc(startingHealth);
         SetMaxHealthServerRpc(startingHealth);
         healthBar.SetMaxHealth(startingHealth);
-        
+
         PostStart();
     }
 
@@ -33,17 +37,20 @@ public abstract class Stats : NetworkBehaviour
 
     public int GetAttack() { return attack; }
     public int GetHP() { return currentHealth; }
-
-    public void ReceiveDamage(int amount)
-    {
+    
+    protected void SetHP(int amount) {
         healthBar.gameObject.SetActive(true);
-        SetHealthServerRpc (currentHealth - amount);
+        SetHealthServerRpc (amount);        
         healthBar.SetHealth(currentHealth);
         if (currentHealth <= 0)
         {
             ActOnDeath();
         }
         StartCoroutine(HideHealthBar());
+    }
+    public void ReceiveDamage(int amount)
+    {
+        SetHP(currentHealth-amount);
     }
 
     private IEnumerator HideHealthBar() {

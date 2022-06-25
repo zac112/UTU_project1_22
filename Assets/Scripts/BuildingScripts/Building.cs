@@ -5,18 +5,14 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Unity.Netcode;
 
-public class Building : NetworkBehaviour, IBuildable
+public class Building : Stats, IBuildable
 {
 
-    [SerializeField] private int _healthPoints; // building hit points, determines when it gets destroyed
+    
     public int HealthPoints { 
-        get {return _healthPoints;}
-        set {
-        HealthPoints = _healthPoints;
-        if (_healthPoints <0){
-            GetComponent<AudioPlayer>().PlayRandom(AudioType.Destroy);
-        }
-        }}
+        get {return currentHealth;}
+        set { SetHP(value); }
+    }
 
     [SerializeField] private int _width;
     public int Width
@@ -47,7 +43,7 @@ public class Building : NetworkBehaviour, IBuildable
     }
     public void SetActive(bool enabled) { this.enabled = enabled; }
     public void Build(){}
-    public void Start(){
+    protected override void PostStart(){
         Tilemap tilemap = GameObject.FindObjectOfType<Tilemap>();
         GetComponent<AudioPlayer>().PlayRandom(AudioType.Build);
         IBuildable selectedBuildingScript = GetComponent<IBuildable>();
@@ -75,5 +71,15 @@ public class Building : NetworkBehaviour, IBuildable
         GameEvents.current.OnMapChanged(transform.position, OccupiedTiles.Count);
         GameEvents.current.OnBuildingBuilt(gameObject);
 
+    }
+
+    protected override void ActOnDeath()
+    {
+        GetComponent<AudioPlayer>().PlayRandom(AudioType.Destroy);
+        if (NetworkManager.IsHost)
+        {
+            NetworkObject.Despawn();
+            Destroy(gameObject);
+        }
     }
 }

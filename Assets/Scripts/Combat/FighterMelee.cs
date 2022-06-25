@@ -70,8 +70,8 @@ public class FighterMelee : MonoBehaviour, IFighter
                 swordController.SetTarget(sortedTargets[0]);
                 StartCoroutine(GetDistance(sortedTargets[0]));
             }
-            
-            yield return new WaitWhile(() => targets.Count > 0);
+            int targetCount = targets.Count;
+            yield return new WaitWhile(() => targets.Count == targetCount);
             GetComponent<AIPathfinding>().setTarget(oldTarget);
             swordController.SetTarget(null);
             StopCoroutine(GetDistance(null));
@@ -84,6 +84,8 @@ public class FighterMelee : MonoBehaviour, IFighter
         Animator anim = GetComponent<Animator>();
         while (true)
         {
+            if(!target) yield break;
+
             if (Vector3.Distance(transform.position, target.transform.position) < 2)
             {
                 anim.SetInteger("IsAttacking", 1); //not sure why, but booleans did not work in the animator so this has to be an integer

@@ -171,4 +171,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetType: 2
-  targettableObject: {fileID: 0}
+  thisUnit: {fileID: 0}
+  canBeDamagedBy: 05000000

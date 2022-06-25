@@ -12,6 +12,10 @@ public class CombatTarget : MonoBehaviour
     public GameObject GetTarget() => gameObject;
     public CombatTargetType GetTargetType() => targetType;
 
+    private void Start()
+    {
+        if (!thisUnit) thisUnit = GetComponent<Stats>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         DamageInflicter other = collision.GetComponent<DamageInflicter>();

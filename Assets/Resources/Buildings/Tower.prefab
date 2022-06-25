@@ -445,7 +445,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6461836574929623097}
   - component: {fileID: 6461836574929623096}
-  - component: {fileID: 6461836574929623098}
   - component: {fileID: 6461836574929623108}
   - component: {fileID: 6461836574929623109}
   - component: {fileID: 6698852510273116975}
@@ -533,22 +532,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6461836574929623098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6461836574929623103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfbfdfcf273144244a96cd1d1fa91876, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackCooldown: 1
-  projectile: {fileID: 63389239456623083, guid: 714141129911cf84b8abb39f3b45d782, type: 3}
-  projectileSpeed: 250
-  stats: {fileID: 6461836574929623108}
 --- !u!114 &6461836574929623108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,8 +544,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c058c581902ee5749b627adc66308b49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 100
+  attack: 0
+  startingHealth: 10
   healthBar: {fileID: 6461836574701114927}
 --- !u!50 &6461836574929623109
 Rigidbody2D:
@@ -597,6 +580,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd2a9604af6fe4686022a0f905fcba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attack: 0
+  startingHealth: 10
+  healthBar: {fileID: 0}
   _healthPoints: 0
   _width: 2
   _length: 2
@@ -840,3 +826,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetType: 7
+  thisUnit: {fileID: 0}
+  canBeDamagedBy: 05000000

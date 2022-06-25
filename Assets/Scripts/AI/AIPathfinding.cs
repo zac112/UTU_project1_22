@@ -65,7 +65,7 @@ public class AIPathfinding : MonoBehaviour
         Vector2 direction = ((Vector2) to - rb.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime;
         rb.AddForce(force);
-
+        /*
         if (force.x >= 0.01f)
         {
             enemyGraph.localScale = new Vector3(-1f, 1f, 1f);
@@ -73,7 +73,7 @@ public class AIPathfinding : MonoBehaviour
         else if (force.y >= 0.01f)
         {
             enemyGraph.localScale = new Vector3(1f, 1f, 1f);
-        }
+        }*/
     }
 
     void OnPathComplete(Path p)
@@ -86,7 +86,7 @@ public class AIPathfinding : MonoBehaviour
     }
     void UpdatePath()
     {
-        if (seeker.IsDone())
+        if (target && seeker.IsDone())
         {
             seeker.StartPath(rb.position, target.position, OnPathComplete);
         }
