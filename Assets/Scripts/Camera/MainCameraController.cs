@@ -79,7 +79,7 @@ public class MainCameraController : MonoBehaviour
         yield return new WaitWhile(() => !wasd);
         wasd.canMove = true;
 
-        while (true)
+        while (target)
         {
             Vector3 goPosition = transform.position = target.position + offset;
             offset.z = -10;

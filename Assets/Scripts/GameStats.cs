@@ -55,7 +55,7 @@ public static class GameStats
     /// </summary>
     public static float GameDuration { get; set; }
 
-
+    public static GameOverType GameOverReason { get; set; }
     public static List<Village> FriendlyVillages { get; set; }
 
     public static void CollectEndStats()

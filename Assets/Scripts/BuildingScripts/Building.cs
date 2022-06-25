@@ -65,7 +65,6 @@ public class Building : Stats, IBuildable
                 tileScript.isOccupied = true;
             }
         }
-
         GameEvents.current.OnMapChanged(transform.position, OccupiedTiles.Count);
         GameEvents.current.OnBuildingBuilt(gameObject);
 

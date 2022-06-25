@@ -46,7 +46,7 @@ public abstract class Stats : NetworkBehaviour
         {
             ActOnDeath();
         }
-        StartCoroutine(HideHealthBar());
+        if(gameObject.activeSelf) StartCoroutine(HideHealthBar());
     }
     public void ReceiveDamage(int amount)
     {
