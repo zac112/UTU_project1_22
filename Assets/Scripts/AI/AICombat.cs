@@ -14,7 +14,7 @@ public class AICombat : MonoBehaviour
 
     [SerializeField] List<CombatPreference> combatType;
     [SerializeField] bool usesWeapon;
-    
+    [SerializeField] GameObject projectilePrefab;
     void Start()
     {
         foreach (CombatPreference t in combatType) {
@@ -26,6 +26,7 @@ public class AICombat : MonoBehaviour
                     break;
                 case EnemyCombatType.Ranged:
                     FighterRanged fr = gameObject.AddComponent<FighterRanged>();
+                    fr.Init(t.targetType, 5, projectilePrefab);
                     break;
             }
         }

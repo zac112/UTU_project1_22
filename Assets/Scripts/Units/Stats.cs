@@ -11,7 +11,7 @@ public abstract class Stats : NetworkBehaviour
     protected int currentHealth => networkHealth.Value;
     protected int maxHealth => networkMaxHealth.Value;
 
-    [SerializeField] protected int attack;
+    [SerializeField] protected int attack = 2;
     [SerializeField] protected int startingHealth = 10;
     [SerializeField] protected HealthBar healthBar;
      

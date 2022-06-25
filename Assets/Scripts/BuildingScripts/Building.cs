@@ -7,8 +7,6 @@ using Unity.Netcode;
 
 public class Building : Stats, IBuildable
 {
-
-    
     public int HealthPoints { 
         get {return currentHealth;}
         set { SetHP(value); }

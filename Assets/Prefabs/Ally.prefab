@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2363805482886715385}
   - component: {fileID: 2363805482886715386}
   - component: {fileID: 2363805482886715387}
-  - component: {fileID: 2363805482886715381}
   - component: {fileID: 2363805482886715380}
   m_Layer: 3
   m_Name: Ally
@@ -121,22 +120,6 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   healthBar: {fileID: 2363805484787261967}
---- !u!114 &2363805482886715381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2363805482886715388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01cef9915b073a3448a1deb369039fd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats: {fileID: 2363805482886715387}
-  ai: {fileID: 2363805482886715380}
-  hitbox: {fileID: 7117890202870143421, guid: 10079be8cd22ca444ac2b93c3fdf5391, type: 3}
-  projectile: {fileID: 63389239456623083, guid: 714141129911cf84b8abb39f3b45d782, type: 3}
 --- !u!114 &2363805482886715380
 MonoBehaviour:
   m_ObjectHideFlags: 0

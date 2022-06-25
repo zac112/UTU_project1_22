@@ -23,6 +23,5 @@ public class CombatTarget : MonoBehaviour
         if (!canBeDamagedBy.Contains(other.GetDamager())) return;
 
         thisUnit.ReceiveDamage(other.GetStats().GetAttack());
-        print("Received damage "+ other.GetStats().GetAttack());
     }
 }

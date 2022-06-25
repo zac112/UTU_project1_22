@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8305479616917028374}
   - component: {fileID: 3262881979734546027}
   - component: {fileID: 4248762127125410151}
-  - component: {fileID: 5974183453324780048}
+  - component: {fileID: 2884824175242249749}
+  - component: {fileID: 2535793497396928171}
   m_Layer: 6
-  m_Name: enemyProjectile
+  m_Name: EnemyProjectile
   m_TagString: EnemyRangedHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,7 +105,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -128,13 +129,13 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5974183453324780048
+--- !u!114 &2884824175242249749
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,6 +144,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 7389375861155235134}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bee2df004722b24c9af4d954075b8e4, type: 3}
+  m_Script: {fileID: 11500000, guid: e81cdeade6f9a334bb7548b486378b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2535793497396928171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7389375861155235134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db99f66d08b9bba41a1cf5cdec15b3b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}
+  typeOfDamage: 5

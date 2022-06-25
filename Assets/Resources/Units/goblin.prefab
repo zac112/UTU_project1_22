@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6630152492310795598}
   - component: {fileID: 803958604731605923}
   - component: {fileID: 6807139296894087160}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: CombatTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,9 +167,8 @@ MonoBehaviour:
   combatType:
   - combatType: 1
     targetType: 000000000100000002000000030000000700000006000000
-  - combatType: 2
-    targetType: 00000000
   usesWeapon: 1
+  projectilePrefab: {fileID: 0}
 --- !u!50 &6361766368815121277
 Rigidbody2D:
   serializedVersion: 4
