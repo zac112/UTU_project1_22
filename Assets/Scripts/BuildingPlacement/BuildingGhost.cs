@@ -5,7 +5,7 @@ using UnityEngine;
 public class BuildingGhost : MonoBehaviour
 {
     [Range(0, 1)][SerializeField] float buildingGhostOpacity = 0.5f;
-    [SerializeField] int goldMineRange = 5;
+    int goldMineRange;
 
     public List<Vector3> GhostOccupiedTiles;
     public GameObject Ghost;
@@ -24,6 +24,7 @@ public class BuildingGhost : MonoBehaviour
         goldMineRangeTiles = new List<Vector3>();
         bps = GameObject.Find("BuildingPlacementSystem").GetComponent<BuildingPlacementSystem>();
         buildingVisualizer = GameObject.Find("BuildingVisualizerSystem").GetComponent<BuildingVisualizer>();
+        goldMineRange = bps.GetGoldMineMiningRange();
     }
 
     // Update is called once per frame
@@ -98,7 +99,6 @@ public class BuildingGhost : MonoBehaviour
 
             if (selectedBuilding.CompareTag("GoldMine"))
             {
-                Debug.Log("selectedBuilding.tag == GoldMine");
 
                 float goldMineRangeX;
                 float goldMineRangeY;

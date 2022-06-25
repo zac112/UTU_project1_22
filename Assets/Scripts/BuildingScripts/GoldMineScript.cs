@@ -17,10 +17,10 @@ public class GoldMineScript : MonoBehaviour
     private Tick tickComponent;
     private int tickSpeed;
 
+
     private void Start()
     {
         GameEvents.current.Tick += Tick;
-
         playerStats = GameObject.FindWithTag("Player").GetComponent<PlayerStats>();
         if (playerStats == null) { Debug.Log("GoldMineScript: PlayerStats component not found"); }
 
@@ -40,9 +40,14 @@ public class GoldMineScript : MonoBehaviour
         GameEvents.current.Tick -= Tick;
     }
 
+    public void StartMining()
+    {
+        GameEvents.current.Tick += Tick;
+    }
+
     private void Tick(int tick)
     {
-        float goldPerTick = miningSpeed / 60f / tickSpeed;    // Assuming tick speed is 20. TODO: implement getter for tick speed
+        float goldPerTick = miningSpeed / 60f / tickSpeed;
         goldProgress += goldPerTick;
         
         // If one whole unit of gold has been generated, add it to player statistics
