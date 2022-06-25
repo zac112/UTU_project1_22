@@ -12,7 +12,7 @@ public class PlayerSwordController : NetworkBehaviour
     float AttackThreshold = 8.0f;
 
     protected float attackCooldown = 0.7f; //seconds
-    private float lastAttackedAt = 0f;
+    protected float lastAttackedAt = 0f;
 
     [SerializeField] protected SpriteRenderer sr;
     [SerializeField] Collider2D col;
@@ -42,12 +42,17 @@ public class PlayerSwordController : NetworkBehaviour
         rotationLast = transform.rotation.eulerAngles;
 
         //if rotation speed > threshold and cooldown not active, enable hitbox
-        if (Mathf.Abs(rotationDelta.z) > AttackThreshold && Time.time > lastAttackedAt + attackCooldown)
+        if (ShouldEnableHitbox())
         {
             lastAttackedAt = Time.time;
             StartCoroutine(EnableHitbox()); //enable hitbox for 100ms 
         }
     }
+    protected virtual bool ShouldEnableHitbox() 
+    {
+        return Mathf.Abs(rotationDelta.z) > AttackThreshold && Time.time > lastAttackedAt + attackCooldown;
+    }
+
     protected virtual Quaternion GetRotation() {
         //rotate sword toward mouse
         Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);

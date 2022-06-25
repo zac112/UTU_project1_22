@@ -175,6 +175,10 @@ PrefabInstance:
       propertyPath: buildingVisualizer
       value: 
       objectReference: {fileID: 970776231}
+    - target: {fileID: 6574387780565919030, guid: 87961191ec63bff4a992b111159971d4, type: 3}
+      propertyPath: goldMineMiningRange
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6574387780565919031, guid: 87961191ec63bff4a992b111159971d4, type: 3}
       propertyPath: m_RootOrder
       value: 2

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AISwordController : PlayerSwordController
 {
-    CombatTarget target;
+    protected CombatTarget target;
 
     Quaternion rotation = Quaternion.identity;
     Vector2 thispos;

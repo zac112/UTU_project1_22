@@ -32,22 +32,25 @@ public class FighterMelee : MonoBehaviour, IFighter
         AITargetFinder targetFinder = targetCollider.AddComponent<AITargetFinder>();
         targetFinder.Init(this, preferredTargets);
 
+
+        GameObject weapon;
         if (usesWeapon)
         {
-            GameObject weapon = Instantiate(Resources.Load<GameObject>("Weapon"));
-            weapon.transform.SetParent(gameObject.transform);
-            weapon.transform.localPosition = Vector3.zero;
+            weapon = Instantiate(Resources.Load<GameObject>("Weapon"));
             swordController = weapon.AddComponent<AISwordController>();
-            swordController.SetCollider(weapon.GetComponent<Collider2D>());
-            DamageInflicter df = weapon.AddComponent<DamageInflicter>();
-            df.SetStats(GetComponent<Stats>());
-            df.SetDamager(CombatTargetType.Enemy);
         }
         else
         {
-            swordController = gameObject.AddComponent<BruteSwordController>();
+            weapon = Instantiate(Resources.Load<GameObject>("AoEAttack"));
+            swordController = weapon.AddComponent<BruteSwordController>();
         }
-
+        weapon.transform.SetParent(gameObject.transform);
+        weapon.transform.localPosition = Vector3.zero;
+        swordController.SetCollider(weapon.GetComponent<Collider2D>());
+        DamageInflicter df = weapon.GetComponent<DamageInflicter>();
+        df.SetStats(GetComponent<Stats>());
+        df.SetDamager(CombatTargetType.Enemy);
+        
         //StartCoroutine(Toggle(targetCollider));
         StartCoroutine(SelectTarget());
     }
@@ -68,31 +71,12 @@ public class FighterMelee : MonoBehaviour, IFighter
             {
                 GetComponent<AIPathfinding>().setTarget(sortedTargets[0].GetTarget().transform);
                 swordController.SetTarget(sortedTargets[0]);
-                StartCoroutine(GetDistance(sortedTargets[0]));
             }
             int targetCount = targets.Count;
             yield return new WaitWhile(() => targets.Count == targetCount);
-            GetComponent<AIPathfinding>().setTarget(oldTarget);
+            GetComponent<AIPathfinding>().setTarget(oldTarget ? oldTarget : null);
             swordController.SetTarget(null);
-            StopCoroutine(GetDistance(null));
 
-        }
-    }
-
-    private IEnumerator GetDistance(CombatTarget target)
-    {
-        Animator anim = GetComponent<Animator>();
-        while (true)
-        {
-            if(!target) yield break;
-
-            if (Vector3.Distance(transform.position, target.transform.position) < 2)
-            {
-                anim.SetInteger("IsAttacking", 1); //not sure why, but booleans did not work in the animator so this has to be an integer
-                yield return new WaitForSeconds(2f);
-                anim.SetInteger("IsAttacking", 0);
-            }
-            yield return null;
         }
     }
 
