@@ -53,7 +53,7 @@ public class MapGenerator : MonoBehaviour
                     j == 0 ||
                     i == 0 ||
                     i == width - 1 ) {
-                    Vector3 worldPos = tilemap.CellToWorld(position);
+                    Vector3 worldPos = tilemap.CellToWorld(position);                    
                     GameObject go = Instantiate(fog, worldPos, Quaternion.identity, parentGOfow.transform);
                     go.GetComponentInChildren<TileSpawner>().Init(tilemap, this, parentGOfow);
                 }

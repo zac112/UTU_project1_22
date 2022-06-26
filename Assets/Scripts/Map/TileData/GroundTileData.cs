@@ -6,5 +6,7 @@ public class GroundTileData : MonoBehaviour
 {
     public bool isOccupied;
     public bool isWalkable;
-    public bool isGoldNode; 
+    public bool isGoldNode;
+    [HideInInspector] public GameObject fog;
+
 }
