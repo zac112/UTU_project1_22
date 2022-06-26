@@ -79,9 +79,9 @@ public class GoldMineScript : MonoBehaviour
 
             foreach (GameObject mine in attachedMines)
             {
-                if (!neighboringMines.Contains(mine)) neighboringMines.Add(mine);
+                if (!neighboringMines.Contains(mine) && !ReferenceEquals(gameObject, mine)) neighboringMines.Add(mine);
             }
-        }
+        }            
 
         /*
          * Mining efficiency grows as a square root function of nearby gold nodes
@@ -90,7 +90,17 @@ public class GoldMineScript : MonoBehaviour
          * If the amount of nearby gold nodes and the amount of attached gold mines (including this one)
          * are the same, the resulting mining efficiency coefficient will be 1.00.
          */
-        miningEfficiency = (float)Math.Sqrt(attachedGoldNodes.Count) * (float)Math.Sqrt(1 / (neighboringMines.Count +1));
+        miningEfficiency = (float)Math.Sqrt((float)attachedGoldNodes.Count) * (float)Math.Sqrt(1.0f / ((float)neighboringMines.Count + 1.0f));
+
+    }
+
+    /// <summary>
+    /// Adds to the attached gold nodes of this gold mine
+    /// </summary>
+    /// <param name="goldnode_as_tile">Goldnode as a tile object (not GoldMine prefab) that contains the GoldNodeScript component</param>
+    public void AddToAttachedGoldNodes(GameObject goldnode_as_tile)
+    {
+        if (!attachedGoldNodes.Contains(goldnode_as_tile)) attachedGoldNodes.Add(goldnode_as_tile);
     }
 
 

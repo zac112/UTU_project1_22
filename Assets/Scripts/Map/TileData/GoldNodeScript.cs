@@ -8,4 +8,19 @@ public class GoldNodeScript : MonoBehaviour
 
     public List<GameObject> GetAttachedGoldMines() { return attachedGoldMines; }
 
+    public void AddToAttachedGoldMines(GameObject goldmine)
+    {
+        if (!attachedGoldMines.Contains(goldmine)) attachedGoldMines.Add(goldmine);
+    }
+
+    public void UpdateAttachedGoldMinesEfficiency()
+    {
+        foreach (GameObject goldmine in attachedGoldMines)
+        {
+            GoldMineScript gms = goldmine.GetComponent<GoldMineScript>();
+            gms.DefineMiningEfficiency();
+        }
+    }
+
+
 }

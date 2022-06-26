@@ -357,9 +357,12 @@ public class BuildingPlacementSystem : NetworkBehaviour
 
     /// <summary>
     /// Gold nodes keep record of which gold mines use them. Needed for calculating gold mining efficiency.
+    /// Also updates the mining efficiencies of gold mines that are linked to nearby gold nodes.
     /// </summary>
     void AddToGoldNodesWithinRange (List<Vector3> tileList, GameObject building)
     {
+        List<GameObject> goldNodesToUpdate = new();
+
         foreach (Vector3 tileposition in tileList)
         {
             Vector3Int cellPosition = GetGoldNodeCellPosition(tileposition);
@@ -369,12 +372,20 @@ public class BuildingPlacementSystem : NetworkBehaviour
             {
                 GroundTileData tileScript = tile.GetComponent<GroundTileData>();
                 if (tileScript.isGoldNode)
-                {                    
+                {                 
                     GoldNodeScript goldNodeScript = tile.GetComponent<GoldNodeScript>();
-                    List<GameObject> minelist = goldNodeScript.GetAttachedGoldMines();
-                    minelist.Add(building);
+                    goldNodeScript.AddToAttachedGoldMines(building);
+                    GoldMineScript minescript = building.GetComponent<GoldMineScript>();
+                    minescript.AddToAttachedGoldNodes(tile);  // also add to gold mine record of attached gold nodes
+                    goldNodesToUpdate.Add(tile);  // update mining efficiencies for gold mines attached to nearby gold nodes
                 }
             }
+        }
+
+        foreach (GameObject node in goldNodesToUpdate)
+        {
+            GoldNodeScript gns = node.GetComponent<GoldNodeScript>();
+            gns.UpdateAttachedGoldMinesEfficiency();
         }
     }
 
