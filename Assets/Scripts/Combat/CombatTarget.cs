@@ -21,6 +21,7 @@ public class CombatTarget : MonoBehaviour
         DamageInflicter other = collision.GetComponent<DamageInflicter>();
         if (!other) return;
         if (!canBeDamagedBy.Contains(other.GetDamager())) return;
+        if (Vector3.Distance(collision.transform.position, transform.position) > 3) return;
 
         thisUnit.ReceiveDamage(other.GetStats().GetAttack());
     }

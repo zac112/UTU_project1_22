@@ -5,7 +5,7 @@ using UnityEngine;
 public class BruteSwordController : AISwordController
 {
     [SerializeField] bool attacking = false;
-    [SerializeField] float range = 1;
+    [SerializeField] float range = 3;
 
     private void Start()
     {
@@ -27,7 +27,7 @@ public class BruteSwordController : AISwordController
             {
                 print("Attacking");
                 attacking = true;
-                anim.SetInteger("IsAttacking", 1); //not sure why, but booleans did not work in the animator so this has to be an integer                
+                anim.SetInteger("IsAttacking", 1);
                 yield return new WaitForSeconds(attackCooldown);
                 anim.SetInteger("IsAttacking", 0);
                 attacking = false;

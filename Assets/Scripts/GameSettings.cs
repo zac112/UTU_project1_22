@@ -21,7 +21,7 @@ public class GameSettings : MonoBehaviour
             GameObject go = new GameObject("GameSettings");
             DontDestroyOnLoad(go);
             _instance = go.AddComponent<GameSettings>();
-            _instance.enemyStartingStrength = 2;
+            _instance.enemyStartingStrength = 1;
             _instance.enemyStartingStrength = 20;
             _instance.networkMode = NetworkMode.Offline;
         }
