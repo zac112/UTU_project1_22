@@ -156,7 +156,7 @@ public class BuildingPlacementSystem : NetworkBehaviour
     }
 
 
-    private void Build() 
+    public void Build() 
     {
         // Empty the list of tiles
         selectedBuildingOccupiedTiles.Clear();
@@ -260,7 +260,7 @@ public class BuildingPlacementSystem : NetworkBehaviour
         }
         return buildingPlacementAllowed;
     }
-    public void BuildBuilding(bool buildingPlacementAllowed, BuildCost buildCost) 
+    private void BuildBuilding(bool buildingPlacementAllowed, BuildCost buildCost) 
     {
         if (buildingPlacementAllowed && playerStats.GetGold() >= buildCost.Cost && playerStats.GetWood() >= buildCost.Wood)
         {
@@ -312,6 +312,14 @@ public class BuildingPlacementSystem : NetworkBehaviour
         }
     }
 
+    [ServerRpc(RequireOwnership = false)]
+    public void BuildDragWallServerRpc(Vector3 position, string name)
+    {
+        buildingInstance = Resources.Load<GameObject>($"Buildings/Wall/{name}");
+        buildingInstance = Instantiate(buildingInstance, position, Quaternion.identity);
+        buildingInstance.GetComponent<NetworkObject>().Spawn();
+        
+    }
     /// <summary>
     /// For gold mines, check whether gold nodes exist within range 
     /// </summary>

@@ -14,7 +14,8 @@ public abstract class Stats : NetworkBehaviour
     [SerializeField] protected int attack = 2;
     [SerializeField] protected int startingHealth = 10;
     [SerializeField] protected HealthBar healthBar;
-     
+
+    float sinceLastAttacked = 0;
     private void Start()
     {
         GameObject hb = Instantiate<GameObject>(Resources.Load<GameObject>("Healthbar"), transform);
@@ -30,6 +31,8 @@ public abstract class Stats : NetworkBehaviour
         SetMaxHealthServerRpc(startingHealth);
         healthBar.SetMaxHealth(startingHealth);
 
+        StartCoroutine(HideHealthBar());
+
         PostStart();
     }
 
@@ -40,13 +43,13 @@ public abstract class Stats : NetworkBehaviour
     
     protected void SetHP(int amount) {
         healthBar.gameObject.SetActive(true);
-        SetHealthServerRpc (amount);        
+        SetHealthServerRpc (amount);
+        sinceLastAttacked = 0;
         healthBar.SetHealth(currentHealth);
         if (currentHealth <= 0)
         {
             ActOnDeath();
         }
-        if(gameObject.activeSelf) StartCoroutine(HideHealthBar());
     }
     public void ReceiveDamage(int amount)
     {
@@ -54,8 +57,16 @@ public abstract class Stats : NetworkBehaviour
     }
 
     private IEnumerator HideHealthBar() {
-        yield return new WaitForSeconds(5);
-        healthBar.gameObject.SetActive(false); 
+        while (true)
+        {
+            if (sinceLastAttacked > 5)
+            {
+                healthBar.gameObject.SetActive(false);                
+                yield return new WaitUntil(()=>sinceLastAttacked < 1);
+            }
+            sinceLastAttacked += Time.deltaTime;
+            yield return null;
+        }
     }
 
     protected abstract void ActOnDeath();

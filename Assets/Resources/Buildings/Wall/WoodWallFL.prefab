@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -6961573940540586513}
   - component: {fileID: -2326887722762681365}
   - component: {fileID: 3493873034658695935}
+  - component: {fileID: 1396651381230022341}
   m_Layer: 11
   m_Name: WoodWallFL
   m_TagString: Untagged
@@ -253,6 +254,22 @@ MonoBehaviour:
   targetType: 2
   thisUnit: {fileID: 0}
   canBeDamagedBy: 05000000
+--- !u!58 &1396651381230022341
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2300419187923452777}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.2
 --- !u!1 &9057870360101941518
 GameObject:
   m_ObjectHideFlags: 0

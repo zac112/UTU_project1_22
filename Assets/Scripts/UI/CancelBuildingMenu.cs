@@ -6,8 +6,6 @@ public class CancelBuildingMenu : MonoBehaviour
 {
     Vector3 start = new Vector3(0,1500,0);
     Vector3 end = new Vector3(0,1300,0);
-
-    RectTransform t = new RectTransform();
     
     private void OnEnable()
     {

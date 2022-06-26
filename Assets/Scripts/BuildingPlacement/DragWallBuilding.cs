@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Unity.Netcode;
 
 public class DragWallBuilding : MonoBehaviour
 {
@@ -250,6 +251,9 @@ public class DragWallBuilding : MonoBehaviour
     }
 
     private void BuildWalls(List<Vector3> positionsList) {
+        List<string> names = new List<string>();
+        List<Vector3> pos = new List<Vector3>();
+
         foreach (var p in positionsList) {
             // Check if last piece was at NW/SW or NE/SE and turn piece according to results
             // NW X: -0.50, Y: +0.25
@@ -257,10 +261,10 @@ public class DragWallBuilding : MonoBehaviour
             // SE X: +0.50, Y: -0.25
             // SW X: -0.50, Y: -0.25
             GameObject selectedPiece = GetWallPiece(positionsList.IndexOf(p) ,positionsList);
-
+            bps.SelectedBuilding = selectedPiece;
             // Instantiate wall piece
-            Vector3 position = new Vector3(p.x, p.y, 10); 
-            Instantiate(selectedPiece, position, Quaternion.identity);
+            bps.BuildDragWallServerRpc(new Vector3(p.x, p.y, 10), selectedPiece.name);
+            //Instantiate(selectedPiece, position, Quaternion.identity);
         }
     }
 
