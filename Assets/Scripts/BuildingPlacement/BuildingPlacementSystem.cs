@@ -11,7 +11,7 @@ public class BuildingPlacementSystem : NetworkBehaviour
     [SerializeField] List<GameObject> buildableBuildings;
     public float BuildingZ = 10;
 
-    List<GameObject> buildings;
+    List<GameObject> buildings;  // instantiated GameObjects (not abstract prefabs)
     public Vector3 currentMousePositionInWorld;    
     List<Vector3> selectedBuildingOccupiedTiles;
     List<Vector3> goldMineRangeTiles;
@@ -280,8 +280,6 @@ public class BuildingPlacementSystem : NetworkBehaviour
             playerStats.RemoveGold(buildCost.Cost);  
             playerStats.RemoveWood(buildCost.Wood);          
             GameStats.BuildingsBuilt++;  
-            buildings.Add(SelectedBuilding);
-
            }
 
         buildingGhost.DestroyGhost(buildingGhost.Ghost);
@@ -305,11 +303,21 @@ public class BuildingPlacementSystem : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void BuildCompleteServerRpc(string prefabName, Vector3 pos, ServerRpcParams rpcParams = default)
     {
-        GameObject[] buildings = Resources.LoadAll<GameObject>("Buildings");
-        foreach (GameObject go in buildings) {
+        GameObject[] buildings_prefabs = Resources.LoadAll<GameObject>("Buildings");
+        foreach (GameObject go in buildings_prefabs) {
             if (go.name.Equals(prefabName)){
                 buildingInstance = Instantiate(go, pos, Quaternion.identity);
                 buildingInstance.GetComponent<NetworkObject>().Spawn();
+
+                // start generating gold when the gold mine is instantiated
+                if (buildingInstance.CompareTag("GoldMine"))
+                {
+                    GoldMineScript minescript = buildingInstance.GetComponent<GoldMineScript>();
+                    minescript.enabled = true;
+                }
+
+                buildings.Add(buildingInstance);
+
                 break;
             }
         }

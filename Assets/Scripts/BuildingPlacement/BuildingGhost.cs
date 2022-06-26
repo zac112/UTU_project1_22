@@ -51,6 +51,13 @@ public class BuildingGhost : MonoBehaviour
         PolygonCollider2D collider = ghost.GetComponent<PolygonCollider2D>();
         collider.enabled = !collider.enabled;
 
+        // fixes bug where gold mine ghost generated gold
+        if (selectedBuilding.CompareTag("GoldMine"))
+        {
+            GoldMineScript minescript = selectedBuilding.GetComponent<GoldMineScript>();
+            minescript.enabled = false; 
+        }
+
         // Turn opacity down
         SpriteRenderer spriteComponent = ghost.GetComponentInChildren<SpriteRenderer>();
         spriteComponent.color = new Color(spriteComponent.color.r, spriteComponent.color.g, spriteComponent.color.b, buildingGhostOpacity);

@@ -20,7 +20,6 @@ public class GoldMineScript : MonoBehaviour
 
     private void Start()
     {
-        GameEvents.current.Tick += Tick;
         playerStats = GameObject.FindWithTag("Player").GetComponent<PlayerStats>();
         if (playerStats == null) { Debug.Log("GoldMineScript: PlayerStats component not found"); }
 
@@ -38,11 +37,6 @@ public class GoldMineScript : MonoBehaviour
     private void OnDisable()
     {
         GameEvents.current.Tick -= Tick;
-    }
-
-    public void StartMining()
-    {
-        GameEvents.current.Tick += Tick;
     }
 
     private void Tick(int tick)
