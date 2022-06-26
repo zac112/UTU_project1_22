@@ -73,10 +73,5 @@ public class Building : Stats, IBuildable
     protected override void ActOnDeath()
     {
         GetComponent<AudioPlayer>().PlayRandom(AudioType.Destroy);
-        if (NetworkManager.IsHost)
-        {
-            NetworkObject.Despawn();
-            Destroy(gameObject);
-        }
     }
 }

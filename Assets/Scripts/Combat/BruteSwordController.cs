@@ -23,9 +23,8 @@ public class BruteSwordController : AISwordController
         Animator anim = transform.parent.GetComponent<Animator>();
         while (true)
         {
-            if (target && Vector3.Distance(transform.position, target.transform.position) < range)
+            if (target && Vector2.Distance(transform.position, target.transform.position) < range)
             {
-                print("Attacking");
                 attacking = true;
                 anim.SetInteger("IsAttacking", 1);
                 yield return new WaitForSeconds(attackCooldown);

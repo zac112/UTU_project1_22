@@ -146,8 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dea9b79c3925c0546a8a93e3f5473e1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cost: 0
-  Wood: 0
+  Cost: 100
+  Wood: 25
 --- !u!114 &-7381378522967279371
 MonoBehaviour:
   m_ObjectHideFlags: 0

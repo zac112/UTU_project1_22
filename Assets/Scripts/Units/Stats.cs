@@ -49,6 +49,12 @@ public abstract class Stats : NetworkBehaviour
         if (currentHealth <= 0)
         {
             ActOnDeath();
+            if (NetworkManager.IsHost)
+            {
+                NetworkObject.Despawn();
+                Destroy(gameObject,1);
+                gameObject.SetActive(false);
+            }
         }
     }
     public void ReceiveDamage(int amount)
@@ -69,6 +75,10 @@ public abstract class Stats : NetworkBehaviour
         }
     }
 
+    /*
+     * Do what the GameOhject needs to do on death. 
+     * Despawning and destroying is handled in the base class.
+     */
     protected abstract void ActOnDeath();
 
     [ServerRpc(RequireOwnership = false)]

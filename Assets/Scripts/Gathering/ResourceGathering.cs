@@ -18,10 +18,6 @@ public class ResourceGathering : MonoBehaviour
 
     void Start()
     {
-        // For now lets give some exmaple values for gathering
-        goldGatherSpeed = 5;
-        woodGatherSpeed = 2;
-
         player = GameObject.FindWithTag("Player").GetComponent<PlayerStats>();
         inventoryManager = GameObject.Find("InventorySystem").GetComponent<InventoryManager>();
         canvas = GameObject.Find("Canvas");

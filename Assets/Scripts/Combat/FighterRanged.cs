@@ -5,7 +5,7 @@ using UnityEngine;
 public class FighterRanged : MonoBehaviour, IFighter
 {
     [SerializeField] float attackCooldown = 3;
-    [SerializeField] float projectileSpeed = 2;
+    [SerializeField] float projectileSpeed = 0.5f;
     [SerializeField] GameObject projectile;
     [SerializeField] GameObject target;
     [SerializeField] List<CombatTarget> targets = new List<CombatTarget>();
@@ -26,6 +26,7 @@ public class FighterRanged : MonoBehaviour, IFighter
         GameObject targetCollider = new GameObject("RangedTargetFinder");
         targetCollider.transform.SetParent(transform);
         targetCollider.transform.localPosition = Vector3.zero;
+        targetCollider.layer = LayerMask.NameToLayer("Ignore Raycast");
 
         CircleCollider2D col = targetCollider.AddComponent<CircleCollider2D>();
         col.radius = range;
@@ -82,9 +83,10 @@ public class FighterRanged : MonoBehaviour, IFighter
             DamageInflicter df = proj.GetComponent<DamageInflicter>();
             df.SetStats(gameObject.GetComponent<Stats>());
 
-            Projectile p = proj.GetComponent<Projectile>();            
-            Vector3 dir = (target.transform.position - transform.position).normalized;
-            dir.z = 0;
+            Projectile p = proj.GetComponent<Projectile>();
+            Vector2 dir = target.transform.position - transform.position;
+            dir = dir.normalized;
+            
             p.direction = dir;
             p.speed = projectileSpeed;
             yield return new WaitForSeconds(attackCooldown);

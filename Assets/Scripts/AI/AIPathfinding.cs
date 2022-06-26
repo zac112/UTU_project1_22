@@ -7,8 +7,6 @@ public class AIPathfinding : MonoBehaviour
 {
 
     [SerializeField] Transform target;
-    [SerializeField] Transform enemyGraph;
-
     [SerializeField] float speed = 200f;
     [SerializeField] float nextWaypointDistance = 0.3f;
 
@@ -94,11 +92,10 @@ public class AIPathfinding : MonoBehaviour
 
     public void setTarget(Transform t){
         target=t;
-        enemyGraph = t.transform;
     }
     
     public Transform getTarget(){
-        return target;
+        return target ? target : null;
     }
 
     public Path GetPath() => path;

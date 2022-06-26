@@ -12,7 +12,6 @@ public class EnemyStats : Stats
 
     protected override void ActOnDeath()
     {
-        if (IsServer || NetworkManager.Singleton.IsHost) GetComponent<NetworkObject>().Despawn();
         GameStats.EnemiesKilled++;
     }
 
