@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: 25}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 250, y: 25}
+  m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &574916000986452216
 CanvasRenderer:
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Warhammer
+  m_text: 'Name:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d263ec5eef60b0d48a84955d2bdf2c14, type: 2}
   m_sharedMaterial: {fileID: -370211920323749733, guid: d263ec5eef60b0d48a84955d2bdf2c14, type: 2}
@@ -277,7 +277,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 14f085288c9b826439f6eda509c96927, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -375,22 +375,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GUIBuildingButton, Assembly-CSharp
-        m_MethodName: OnButtonDown
+      - m_Target: {fileID: 733195559939093247}
+        m_TargetAssemblyTypeName: SwordButton, Assembly-CSharp
+        m_MethodName: BuySword
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -428,6 +416,7 @@ MonoBehaviour:
   UIName: {fileID: 6214200369036050089}
   UICost: {fileID: 5690396832504611224}
   UIDamage: {fileID: 6982789982929056307}
+  weapon: {fileID: 0}
 --- !u!1 &3650756517482356936
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,7 +618,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Cost: 1200'
+  m_text: 'Cost: '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d263ec5eef60b0d48a84955d2bdf2c14, type: 2}
   m_sharedMaterial: {fileID: -370211920323749733, guid: d263ec5eef60b0d48a84955d2bdf2c14, type: 2}

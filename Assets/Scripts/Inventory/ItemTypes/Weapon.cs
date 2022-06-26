@@ -6,5 +6,6 @@ using UnityEngine;
 public class Weapon : InventoryItem{
 
     public int damage;
+    public int cost;
 
 }
