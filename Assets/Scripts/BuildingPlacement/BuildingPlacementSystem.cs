@@ -226,49 +226,8 @@ public class BuildingPlacementSystem : NetworkBehaviour
         // for gold mines, check whether gold nodes exist within range
         if (SelectedBuilding.CompareTag("GoldMine"))
         {
-            goldNodeWithinRange = false;
-
-            float goldRangeWidthX;
-            float goldRangeWidthY;
-
-            for (int width = 0; width < goldMineMiningRange; width++)
-            {
-                goldRangeWidthX = selectedTileLocationInWorld.x - 0.50f * width;
-                goldRangeWidthY = selectedTileLocationInWorld.y + 0.25f * width;
-
-                for (int length = 0; length < goldMineMiningRange; length++)
-                {
-                    goldRangeWidthX += 0.50f;
-                    goldRangeWidthY += 0.25f;
-
-                    goldMineRangeTiles.Add(new Vector3(goldRangeWidthX, goldRangeWidthY, BuildingZ));
-                }
-            }
-
-            // check for all tiles within mining range whether there is a gold node
-            foreach (Vector3 tileposition in goldMineRangeTiles)
-            {
-                Vector3Int cellPosition = tilemap.WorldToCell(tileposition);
-                cellPosition.x += 5;
-                cellPosition.y += 5;
-                cellPosition.z = 0;
-
-                // had to correct x and y offsets here, left the default x and y assignments above as reference points
-                cellPosition.x -= 2;
-                cellPosition.y -= 1;
-
-                GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
-
-                if (tile != null)
-                {
-                    GroundTileData tileScript = tile.GetComponent<GroundTileData>();
-
-                    if (tileScript.isGoldNode) goldNodeWithinRange = true;
-                }
-            }
-
+            goldNodeWithinRange = CheckGoldNodes(selectedTileLocationInWorld);
             if (!goldNodeWithinRange) buildingPlacementAllowed = false;
-
         }
 
         BuildCost buildCost = SelectedBuilding.GetComponent<BuildCost>();
@@ -279,8 +238,8 @@ public class BuildingPlacementSystem : NetworkBehaviour
             BuildCompleteServerRpc(SelectedBuilding.name, CalculateBuildingLocation(selectedBuildingOccupiedTiles));                        
             playerStats.RemoveGold(buildCost.Cost);  
             playerStats.RemoveWood(buildCost.Wood);          
-            GameStats.BuildingsBuilt++;  
-           }
+            GameStats.BuildingsBuilt++;
+            }
 
         buildingGhost.DestroyGhost(buildingGhost.Ghost);
         buildingVisualizer.DeactivateVisualizers();
@@ -314,6 +273,8 @@ public class BuildingPlacementSystem : NetworkBehaviour
                 {
                     GoldMineScript minescript = buildingInstance.GetComponent<GoldMineScript>();
                     minescript.enabled = true;
+
+                    AddToGoldNodesWithinRange(goldMineRangeTiles, buildingInstance);
                 }
 
                 buildings.Add(buildingInstance);
@@ -323,6 +284,59 @@ public class BuildingPlacementSystem : NetworkBehaviour
         }
     }
 
+    /// <summary>
+    /// For gold mines, check whether gold nodes exist within range 
+    /// </summary>
+    bool CheckGoldNodes(Vector3 selectedTileLocationInWorld)
+    {
+        goldNodeWithinRange = false;
+
+        float goldRangeWidthX;
+        float goldRangeWidthY;
+
+        for (int width = 0; width < goldMineMiningRange; width++)
+        {
+            goldRangeWidthX = selectedTileLocationInWorld.x - 0.50f * width;
+            goldRangeWidthY = selectedTileLocationInWorld.y + 0.25f * width;
+
+            for (int length = 0; length < goldMineMiningRange; length++)
+            {
+                goldRangeWidthX += 0.50f;
+                goldRangeWidthY += 0.25f;
+
+                goldMineRangeTiles.Add(new Vector3(goldRangeWidthX, goldRangeWidthY, BuildingZ));
+            }
+        }
+
+        // check for all tiles within mining range whether there is a gold node
+        foreach (Vector3 tileposition in goldMineRangeTiles)
+        {
+            Vector3Int cellPosition = tilemap.WorldToCell(tileposition);
+            cellPosition.x += 5;
+            cellPosition.y += 5;
+            cellPosition.z = 0;
+
+            // had to correct x and y offsets here, left the default x and y assignments above as reference points
+            cellPosition.x -= 2;
+            cellPosition.y -= 1;
+
+            GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
+
+            if (tile != null)
+            {
+                GroundTileData tileScript = tile.GetComponent<GroundTileData>();
+
+                if (tileScript.isGoldNode) goldNodeWithinRange = true;
+            }
+        }
+        return goldNodeWithinRange;
+    }
+
     public int GetGoldMineMiningRange() { return goldMineMiningRange; }
+
+    void AddToGoldNodesWithinRange (List<Vector3> tileList, GameObject building)
+    {
+
+    }
 
 }
