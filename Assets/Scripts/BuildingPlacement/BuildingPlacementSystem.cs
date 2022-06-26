@@ -28,6 +28,7 @@ public class BuildingPlacementSystem : NetworkBehaviour
 
     [SerializeField] BuildingGhost buildingGhost;    
     [SerializeField] BuildingVisualizer buildingVisualizer;
+    [SerializeField] DragWallBuilding buildingDrag;
     Tilemap tilemap;
     PlayerStats playerStats;
     GameObject buildingInstance;
@@ -49,7 +50,10 @@ public class BuildingPlacementSystem : NetworkBehaviour
     void SelectBuilding (GameObject building) 
     {
         SelectedBuilding = building.gameObject;
-        buildingGhost.InstantiateGhost(SelectedBuilding, ref buildingGhost.Ghost, buildingGhost.GhostOccupiedTiles);
+        if (SelectedBuilding.name.Contains("Wall")) 
+            buildingDrag.gameObject.SetActive(true);
+        else 
+            buildingGhost.InstantiateGhost(SelectedBuilding, ref buildingGhost.Ghost, buildingGhost.GhostOccupiedTiles);
     }
 
     void Update()
@@ -155,10 +159,22 @@ public class BuildingPlacementSystem : NetworkBehaviour
     {
         // Empty the list of tiles
         selectedBuildingOccupiedTiles.Clear();
+        AddToOccupiedTiles();
 
-        // Used to check if building placement should be aborted
         bool buildingPlacementAllowed = true;
+        buildingPlacementAllowed &= CheckIfTilesOccupied();
+        buildingPlacementAllowed &= CheckGoldMine();
 
+        BuildBuilding(buildingPlacementAllowed, SelectedBuilding.GetComponent<BuildCost>());
+
+        buildingGhost.DestroyGhost(buildingGhost.Ghost);
+        buildingVisualizer.DeactivateVisualizers();
+        SelectedBuilding = null;
+        goldMineRangeTiles.Clear();
+    }
+
+    private void AddToOccupiedTiles()
+    {
         // Get selected buildings width and height
         selectedBuildingScript = SelectedBuilding.GetComponent<IBuildable>();
         int buildingWidth = selectedBuildingScript.Width;
@@ -195,6 +211,11 @@ public class BuildingPlacementSystem : NetworkBehaviour
                 selectedBuildingOccupiedTiles.Add(new Vector3(widthX, widthY, BuildingZ));
             }
         }
+    }
+
+    private bool CheckIfTilesOccupied()
+    {
+        bool buildingPlacementAllowed = true;
 
         // Check for each tile, if tile is occupied
         for (int i = 0; i < selectedBuildingOccupiedTiles.Count; i++)
@@ -218,10 +239,17 @@ public class BuildingPlacementSystem : NetworkBehaviour
                     buildingPlacementAllowed = false;
                 }
             }
-            else {
+            else
+            {
                 buildingPlacementAllowed = false;
             }
         }
+        return buildingPlacementAllowed;
+    }
+    private bool CheckGoldMine()
+    {
+        bool buildingPlacementAllowed = true;
+        Vector3 selectedTileLocationInWorld = GetTileLocationInWorld();
 
         // for gold mines, check whether gold nodes exist within range
         if (SelectedBuilding.CompareTag("GoldMine"))
@@ -270,27 +298,22 @@ public class BuildingPlacementSystem : NetworkBehaviour
             if (!goldNodeWithinRange) buildingPlacementAllowed = false;
 
         }
-
-        BuildCost buildCost = SelectedBuilding.GetComponent<BuildCost>();
-
+        return buildingPlacementAllowed;
+    }
+    public void BuildBuilding(bool buildingPlacementAllowed, BuildCost buildCost) 
+    {
         if (buildingPlacementAllowed && playerStats.GetGold() >= buildCost.Cost && playerStats.GetWood() >= buildCost.Wood)
         {
             // Instantiate building on tileLocation
             BuildCompleteServerRpc(SelectedBuilding.name, CalculateBuildingLocation(selectedBuildingOccupiedTiles));                        
             playerStats.RemoveGold(buildCost.Cost);  
+        
             playerStats.RemoveWood(buildCost.Wood);          
             GameStats.BuildingsBuilt++;  
             buildings.Add(SelectedBuilding);
 
-           }
-
-        buildingGhost.DestroyGhost(buildingGhost.Ghost);
-        buildingVisualizer.DeactivateVisualizers();
-        SelectedBuilding = null;
-        buildCost = null;
-        goldMineRangeTiles.Clear();
+        }
     }
-        
     private void DestroyBuilding(GameObject building, List<GameObject> buildings) {
         Destroy(building);
         buildings.Remove(building);
