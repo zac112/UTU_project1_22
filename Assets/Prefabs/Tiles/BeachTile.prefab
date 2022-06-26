@@ -106,6 +106,7 @@ MonoBehaviour:
   isOccupied: 0
   isWalkable: 1
   isGoldNode: 0
+  fog: {fileID: 0}
 --- !u!114 &6014528108454583023
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GoldNodeScript : MonoBehaviour
 {
-    public List<GameObject> attachedGoldMines { get; set; }
+    private List<GameObject> attachedGoldMines = new List<GameObject>();
+
+    public List<GameObject> GetAttachedGoldMines() { return attachedGoldMines; }
 
 }

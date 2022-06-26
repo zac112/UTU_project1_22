@@ -140,6 +140,7 @@ public class MapGenerator : MonoBehaviour
         Vector3Int cellpos = tilemap.WorldToCell(worldPos);
         GameObject tile = tilemap.GetInstantiatedObject(cellpos);
         tile.GetComponent<GroundTileData>().isGoldNode = true;
+        tile.AddComponent<GoldNodeScript>();  // needed for recording which gold mines use this gold node
     }
 
     private void GenerateCactusNode(Vector3 worldPos){

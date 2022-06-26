@@ -311,14 +311,7 @@ public class BuildingPlacementSystem : NetworkBehaviour
         // check for all tiles within mining range whether there is a gold node
         foreach (Vector3 tileposition in goldMineRangeTiles)
         {
-            Vector3Int cellPosition = tilemap.WorldToCell(tileposition);
-            cellPosition.x += 5;
-            cellPosition.y += 5;
-            cellPosition.z = 0;
-
-            // had to correct x and y offsets here, left the default x and y assignments above as reference points
-            cellPosition.x -= 2;
-            cellPosition.y -= 1;
+            Vector3Int cellPosition = GetGoldNodeCellPosition(tileposition);
 
             GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
 
@@ -334,9 +327,41 @@ public class BuildingPlacementSystem : NetworkBehaviour
 
     public int GetGoldMineMiningRange() { return goldMineMiningRange; }
 
+    /// <summary>
+    /// Gold nodes keep record of which gold mines use them. Needed for calculating gold mining efficiency.
+    /// </summary>
     void AddToGoldNodesWithinRange (List<Vector3> tileList, GameObject building)
     {
+        foreach (Vector3 tileposition in tileList)
+        {
+            Vector3Int cellPosition = GetGoldNodeCellPosition(tileposition);
+            GameObject tile = tilemap.GetInstantiatedObject(cellPosition);
 
+            if (tile != null)
+            {
+                GroundTileData tileScript = tile.GetComponent<GroundTileData>();
+                if (tileScript.isGoldNode)
+                {                    
+                    GoldNodeScript goldNodeScript = tile.GetComponent<GoldNodeScript>();
+                    List<GameObject> minelist = goldNodeScript.GetAttachedGoldMines();
+                    minelist.Add(building);
+                }
+            }
+        }
+    }
+
+    Vector3Int GetGoldNodeCellPosition(Vector3 pos)
+    {
+        Vector3Int cellPosition = tilemap.WorldToCell(pos);
+        cellPosition.x += 5;
+        cellPosition.y += 5;
+        cellPosition.z = 0;
+
+        // had to correct x and y offsets here for some reason, left the default x and y assignments above as reference points
+        cellPosition.x -= 2;
+        cellPosition.y -= 1;
+
+        return cellPosition;
     }
 
 }
