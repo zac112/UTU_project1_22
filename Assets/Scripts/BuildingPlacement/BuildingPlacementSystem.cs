@@ -45,6 +45,7 @@ public class BuildingPlacementSystem : NetworkBehaviour
         tilemap = GameObject.FindObjectOfType<Tilemap>();
 
         GameEvents.current.BuildingSelectedForBuilding += SelectBuilding;
+        GameEvents.current.BuildingSelectedCancelled += DeselectBuilding;
     }
     
     void SelectBuilding (GameObject building) 
@@ -270,11 +271,8 @@ public class BuildingPlacementSystem : NetworkBehaviour
             GameStats.BuildingsBuilt++;  
             buildings.Add(SelectedBuilding);
 
-        }        
-        buildingGhost.DestroyGhost(buildingGhost.Ghost);
-        buildingVisualizer.DeactivateVisualizers();
-        SelectedBuilding = null;
-        goldMineRangeTiles.Clear();
+        }
+        DeselectBuilding();
     }
     private void DestroyBuilding(GameObject building, List<GameObject> buildings) {
         Destroy(building);
@@ -282,8 +280,10 @@ public class BuildingPlacementSystem : NetworkBehaviour
     }
 
     public void DeselectBuilding() {
-        SelectedBuilding = null;
         buildingGhost.DestroyGhost(buildingGhost.Ghost);
+        buildingVisualizer.DeactivateVisualizers();
+        SelectedBuilding = null;
+        goldMineRangeTiles.Clear();
     }
 
     

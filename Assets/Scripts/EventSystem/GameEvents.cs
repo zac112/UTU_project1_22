@@ -19,6 +19,9 @@ public class GameEvents : MonoBehaviour
     public event Action<GameObject> BuildingSelectedForBuilding;
     public void OnBuildingSelected(GameObject building){ BuildingSelectedForBuilding?.Invoke(building); }
 
+    public event Action BuildingSelectedCancelled;
+    public void OnBuildingCancelled() { BuildingSelectedCancelled?.Invoke(); }
+
     public event Action<Vector3,int> MapChange;
     public void OnMapChanged(Vector3 worldPos, int size){ MapChange?.Invoke(worldPos, size); }  
 
