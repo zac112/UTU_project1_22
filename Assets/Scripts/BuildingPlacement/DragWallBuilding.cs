@@ -110,6 +110,7 @@ public class DragWallBuilding : MonoBehaviour
             placingWalls = false;
             wallPositions.Clear();
             buildingVisualizer.DeactivateVisualizers();
+            gameObject.SetActive(false);
         }
 
         else if (Input.GetMouseButtonDown(1) && !placingWalls) {

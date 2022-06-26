@@ -54,7 +54,6 @@ MonoBehaviour:
   attack: 0
   startingHealth: 10
   healthBar: {fileID: 0}
-  _healthPoints: 0
   _width: 1
   _length: 1
   _isRotated: 0
@@ -100,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dea9b79c3925c0546a8a93e3f5473e1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cost: 150
+  Cost: 50
   Wood: 100
 --- !u!82 &2885486011373094969
 AudioSource:
