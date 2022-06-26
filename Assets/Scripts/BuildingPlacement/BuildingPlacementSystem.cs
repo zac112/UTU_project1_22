@@ -166,7 +166,8 @@ public class BuildingPlacementSystem : NetworkBehaviour
         buildingPlacementAllowed &= CheckIfTilesOccupied();
         buildingPlacementAllowed &= CheckGoldMine();
 
-        BuildBuilding(buildingPlacementAllowed, SelectedBuilding.GetComponent<BuildCost>());
+        if(buildingPlacementAllowed) 
+            BuildBuilding(SelectedBuilding.GetComponent<BuildCost>(), CalculateBuildingLocation(selectedBuildingOccupiedTiles));
 
         buildingGhost.DestroyGhost(buildingGhost.Ghost);
         buildingVisualizer.DeactivateVisualizers();
@@ -260,12 +261,12 @@ public class BuildingPlacementSystem : NetworkBehaviour
         }
         return buildingPlacementAllowed;
     }
-    private void BuildBuilding(bool buildingPlacementAllowed, BuildCost buildCost) 
+    private void BuildBuilding(BuildCost buildCost, Vector3 pos) 
     {
-        if (buildingPlacementAllowed && playerStats.GetGold() >= buildCost.Cost && playerStats.GetWood() >= buildCost.Wood)
+        if ( playerStats.GetGold() >= buildCost.Cost && playerStats.GetWood() >= buildCost.Wood)
         {
             // Instantiate building on tileLocation
-            BuildCompleteServerRpc(SelectedBuilding.name, CalculateBuildingLocation(selectedBuildingOccupiedTiles));                        
+            BuildCompleteServerRpc(SelectedBuilding.name, pos);                        
             playerStats.RemoveGold(buildCost.Cost);          
             playerStats.RemoveWood(buildCost.Wood);          
             GameStats.BuildingsBuilt++;  
@@ -274,6 +275,14 @@ public class BuildingPlacementSystem : NetworkBehaviour
         }
         DeselectBuilding();
     }
+
+    public void BuildDragWall(Vector3 position, string name)
+    {
+        SelectedBuilding = Resources.Load<GameObject>($"Buildings/Wall/{name}");
+        BuildCost buildCost = SelectedBuilding.GetComponent<BuildCost>();
+        BuildBuilding(buildCost, position);
+    }
+
     private void DestroyBuilding(GameObject building, List<GameObject> buildings) {
         Destroy(building);
         buildings.Remove(building);
@@ -312,14 +321,6 @@ public class BuildingPlacementSystem : NetworkBehaviour
         }
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    public void BuildDragWallServerRpc(Vector3 position, string name)
-    {
-        buildingInstance = Resources.Load<GameObject>($"Buildings/Wall/{name}");
-        buildingInstance = Instantiate(buildingInstance, position, Quaternion.identity);
-        buildingInstance.GetComponent<NetworkObject>().Spawn();
-        
-    }
     /// <summary>
     /// For gold mines, check whether gold nodes exist within range 
     /// </summary>
@@ -369,7 +370,7 @@ public class BuildingPlacementSystem : NetworkBehaviour
     /// </summary>
     void AddToGoldNodesWithinRange (List<Vector3> tileList, GameObject building)
     {
-        List<GameObject> goldNodesToUpdate = new();
+        List<GameObject> goldNodesToUpdate = new List<GameObject>();
 
         foreach (Vector3 tileposition in tileList)
         {

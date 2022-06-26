@@ -263,7 +263,7 @@ public class DragWallBuilding : MonoBehaviour
             GameObject selectedPiece = GetWallPiece(positionsList.IndexOf(p) ,positionsList);
             bps.SelectedBuilding = selectedPiece;
             // Instantiate wall piece
-            bps.BuildDragWallServerRpc(new Vector3(p.x, p.y, 10), selectedPiece.name);
+            bps.BuildDragWall(new Vector3(p.x, p.y, 10), selectedPiece.name);
             //Instantiate(selectedPiece, position, Quaternion.identity);
         }
     }
