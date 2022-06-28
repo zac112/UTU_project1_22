@@ -10594,17 +10594,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Producer
-
-    Programming
-
-    Audio
-	
-	Ábel Egri
-	
-	Animation
-
-    Design/Graphics'
+  m_text: "Producer\nProgramming\nTeemu Lehtonen\nAudio\n\xC1bel Egri\nAnimation\nDesign/Graphics"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d263ec5eef60b0d48a84955d2bdf2c14, type: 2}
   m_sharedMaterial: {fileID: -370211920323749733, guid: d263ec5eef60b0d48a84955d2bdf2c14, type: 2}
