@@ -10594,9 +10594,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Producer\nErno Lokkila\n\nProgramming\nTeemu Lehtonen\nErno Lokkila\n\nAudio\n\xC1bel
-    Egri\n\nAnimation\n\nDesign/Graphics\n\nAdditional thanks to\nAaron Granberg
-    for the A* pathfinding project"
+  m_text: "Producer\nErno Lokkila\n\nProgramming\nTeemu Lehtonen\nErno Lokkila\nDaniel
+    Bergman\n\nAudio\n\xC1bel Egri\n\nAnimation\n\nDesign/Graphics\n\nAdditional
+    thanks to\nAaron Granberg for the A* pathfinding project"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d263ec5eef60b0d48a84955d2bdf2c14, type: 2}
   m_sharedMaterial: {fileID: -370211920323749733, guid: d263ec5eef60b0d48a84955d2bdf2c14, type: 2}
