@@ -92,6 +92,8 @@ public class GoldMineScript : MonoBehaviour
          */
         miningEfficiency = (float)Math.Sqrt((float)attachedGoldNodes.Count) * (float)Math.Sqrt(1.0f / ((float)neighboringMines.Count + 1.0f));
 
+        Debug.Log(this.ToString() + ": attachedGoldNodes is " + attachedGoldNodes.Count + ", neighboringMines is " + neighboringMines.Count + ", mining efficiency is: " + miningEfficiency);
+
     }
 
     /// <summary>
