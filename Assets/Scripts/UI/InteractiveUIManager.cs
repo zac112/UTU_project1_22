@@ -17,7 +17,6 @@ public class InteractiveUIManager : MonoBehaviour
     BuildingPlacementSystem bps;
     GameObject player;
     string new_name;
-    Transform goldHeight;
 
     // Start is called before the first frame update
     void Start(){
@@ -47,13 +46,6 @@ public class InteractiveUIManager : MonoBehaviour
             interactiveUI.SetActive(true);
             interactiveUI.transform.position = Input.mousePosition;
 
-            if (gameObject.tag == "GoldMine")
-            {
-                objectMiningEfficiencyGO.SetActive(true);
-                string efficiency = (System.Math.Round(building.GetComponent<GoldMineScript>().GetMiningEfficiency(), 2) * 100).ToString() + " %";               
-                objectMiningEfficiency.text = $"Mining efficiency: {efficiency}";               
-            }
-
             // Removing (Clone) from the name
             new_name = gameObject.name.Remove((gameObject.name.Length-7),7);
 
@@ -61,20 +53,22 @@ public class InteractiveUIManager : MonoBehaviour
             objectName.text = $"Name: {new_name}";
             objectHealth.text = $"Health: {building.HealthPoints}";
         }
-
         
         // If statemens for different interactable buldings
         if(gameObject.tag == "Smithy" && Input.GetMouseButtonDown(0)){
                 smithyUI.SetActive(true);
             }
 
+        if (gameObject.tag == "GoldMine") DisplayMiningEfficiency();
+
         // TODO: Open library UI
-        if(gameObject.tag == "Library" && Input.GetMouseButtonDown(0)){
+        if (gameObject.tag == "Library" && Input.GetMouseButtonDown(0)){
                 return;
             }
     }
 
     void OnMouseExit(){
+        objectMiningEfficiencyGO.SetActive(false);
         interactiveUI.SetActive(false);
     }
 
@@ -82,5 +76,13 @@ public class InteractiveUIManager : MonoBehaviour
     {
         return UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();
     }
+
+    void DisplayMiningEfficiency()
+    {
+        objectMiningEfficiencyGO.SetActive(true);
+        string efficiency = (System.Math.Round(building.GetComponent<GoldMineScript>().GetMiningEfficiency(), 2) * 100).ToString() + " %";
+        objectMiningEfficiency.text = $"Mining efficiency: {efficiency}";
+    }
+
 }
 
