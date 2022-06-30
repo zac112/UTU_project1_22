@@ -10,17 +10,26 @@ public class GoldNodeScript : MonoBehaviour
 
     public void AddToAttachedGoldMines(GameObject goldmine)
     {
-        if (!attachedGoldMines.Contains(goldmine)) attachedGoldMines.Add(goldmine);
+        if (!attachedGoldMines.Contains(goldmine) && goldmine != null) attachedGoldMines.Add(goldmine);
+    }
+
+    public void RemoveFromAttachedGoldmines(GameObject goldmine)
+    {
+        attachedGoldMines.Remove(goldmine);
     }
 
     public void UpdateAttachedGoldMinesEfficiency()
     {
         foreach (GameObject goldmine in attachedGoldMines)
         {
+            if (goldmine == null)  // nullcheck for destroyed mines
+            {
+                attachedGoldMines.Remove(goldmine);
+                continue;
+            }
             GoldMineScript gms = goldmine.GetComponent<GoldMineScript>();
             gms.DefineMiningEfficiency();
         }
     }
-
 
 }

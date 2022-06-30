@@ -321,6 +321,8 @@ public class BuildingPlacementSystem : NetworkBehaviour
         }
     }
 
+
+
     /// <summary>
     /// For gold mines, check whether gold nodes exist within range 
     /// </summary>

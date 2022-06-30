@@ -79,7 +79,7 @@ public class GoldMineScript : MonoBehaviour
 
             foreach (GameObject mine in attachedMines)
             {
-                if (!neighboringMines.Contains(mine) && !ReferenceEquals(gameObject, mine)) neighboringMines.Add(mine);
+                if (!neighboringMines.Contains(mine) && !ReferenceEquals(gameObject, mine) && mine != null) neighboringMines.Add(mine);
             }
         }            
 
@@ -92,8 +92,6 @@ public class GoldMineScript : MonoBehaviour
          */
         miningEfficiency = (float)Math.Sqrt((float)attachedGoldNodes.Count) * (float)Math.Sqrt(1.0f / ((float)neighboringMines.Count + 1.0f));
 
-        Debug.Log(this.ToString() + ": attachedGoldNodes is " + attachedGoldNodes.Count + ", neighboringMines is " + neighboringMines.Count + ", mining efficiency is: " + miningEfficiency);
-
     }
 
     /// <summary>
@@ -105,5 +103,21 @@ public class GoldMineScript : MonoBehaviour
         if (!attachedGoldNodes.Contains(goldnode_as_tile)) attachedGoldNodes.Add(goldnode_as_tile);
     }
 
+    /// <summary>
+    /// Remove references to the gold mine that will be destroyed
+    /// </summary>
+    public void OnDestroy()
+    {
+        foreach (GameObject goldnode in attachedGoldNodes)
+        {
+            GoldNodeScript nodescript = goldnode.GetComponent<GoldNodeScript>();
+            nodescript.RemoveFromAttachedGoldmines(gameObject);
+        }
+        foreach (GameObject goldnode in attachedGoldNodes)
+        {
+            GoldNodeScript nodescript = goldnode.GetComponent<GoldNodeScript>();
+            nodescript.UpdateAttachedGoldMinesEfficiency();
+        }
+    }
 
 }
