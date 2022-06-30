@@ -11,7 +11,7 @@ public class GoldMineScript : MonoBehaviour
     private int miningSpeed;
 
     // mining efficiency modifier which depends on the amount of nearby gold nodes and other nearby gold mines
-    private float miningEfficiency;
+    [SerializeField] private float miningEfficiency;
     
     // Progress of gold generation 
     private float goldProgress;
@@ -33,7 +33,6 @@ public class GoldMineScript : MonoBehaviour
         if (tickComponent == null) { Debug.Log("GoldMineScript: Game Event System component not found"); }
 
         tickSpeed = tickComponent.GetTickSpeed();
-        miningEfficiency = 1.00f;
     }
 
     private void OnEnable()
@@ -104,7 +103,8 @@ public class GoldMineScript : MonoBehaviour
     }
 
     /// <summary>
-    /// Remove references to the gold mine that will be destroyed
+    /// Remove references to the gold mine that will be destroyed.
+    /// Nearby gold mines will increase their efficiency.
     /// </summary>
     public void OnDestroy()
     {
@@ -119,5 +119,7 @@ public class GoldMineScript : MonoBehaviour
             nodescript.UpdateAttachedGoldMinesEfficiency();
         }
     }
+
+    public float GetMiningEfficiency() { return miningEfficiency; }
 
 }
