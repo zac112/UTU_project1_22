@@ -109,7 +109,6 @@ MonoBehaviour:
   attack: 0
   startingHealth: 10
   healthBar: {fileID: 0}
-  _healthPoints: 20
   _width: 2
   _length: 2
   _isRotated: 0
@@ -157,7 +156,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.55, y: 0.1}
     oldSize: {x: 2.56, y: 2.56}
     newSize: {x: 2.56, y: 2.56}
     adaptiveTilingThreshold: 0.5
@@ -193,6 +192,8 @@ MonoBehaviour:
   smithyUI: {fileID: 0}
   objectName: {fileID: 0}
   objectHealth: {fileID: 0}
+  objectMiningEfficiency: {fileID: 0}
+  objectMiningEfficiencyGO: {fileID: 0}
 --- !u!114 &8983888226771963827
 MonoBehaviour:
   m_ObjectHideFlags: 0
