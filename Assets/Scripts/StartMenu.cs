@@ -131,5 +131,6 @@ public class StartMenu : MonoBehaviour
     public void SetPlayModeOffline()
     {
         GameSettings.Instance().networkMode = NetworkMode.Offline;
+        GameSettings.Instance().gameSeed = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
     }
 }
