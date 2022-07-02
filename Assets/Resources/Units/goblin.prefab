@@ -149,7 +149,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 6361766368815121272}
-  enemyGraph: {fileID: 6361766368815121272}
   speed: 200
   nextWaypointDistance: 3
 --- !u!114 &-8672845128490483070

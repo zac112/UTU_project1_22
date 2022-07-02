@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7692720436433584526}
   - component: {fileID: 7692720436433584528}
-  - component: {fileID: 7692720436433584525}
   - component: {fileID: 7692720436433584527}
   m_Layer: 0
   m_Name: NetworkManager
@@ -53,19 +52,6 @@ MonoBehaviour:
   ConnectPort: 7777
   ServerListenPort: 7777
   MessageSendMode: 0
---- !u!114 &7692720436433584525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7692720436433584530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cce779ae899ad6a42bab721801717a1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  g: {fileID: 6361766368815121265, guid: 51c9540fa25cf2e43949a3077192ba47, type: 3}
 --- !u!114 &7692720436433584527
 MonoBehaviour:
   m_ObjectHideFlags: 0
